@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary: #3A0CA3;
+}
+
+.navbar-color {
+    background-color: #3A0CA3;
+}
+
+.button {
+    border: none;
+    background-color: #3A0CA3;
+    border: none;
+    color: #fff;
+}
+
+.button:hover {
+    background-color: #210367;
+    color: #fff;
+}
+
+.button-reset {
+    background-color: crimson;
+    color: #fff;
+}
+
+.button-reset:hover {
+    background-color: rgb(179, 4, 39);
+    color: #fff;
+}
+
+.list {
+    /* background-color: #34469B; */
+    color: white;
+}
+
+.list-logout {
+    border-color: none;
+    border: none;
+    color: white;
+}
+
+.list-logout:hover {
+    background-color: rgb(161, 7, 38);
+    color: white;
+}
+
+.list-active {
+    background-color: #509CDB;
+    color: white;
+    transition: all ease-in-out 3s;
+}
+
+.list:hover {
+    background-color: #509CDB;
+    color: white;
+}
+
+.bg-sidebar {
+    background-color: #3A0CA3;
+}
+
+.bg-purple {
+    background-color: #3A0CA3;
+}
+
+.list-group {
+    cursor: pointer;
+}
+
+.group-list {
+    color: white;
+}
+
+.a-icon {
+    text-decoration: none;
+    color: #fff;
+}
+
+.icon {
+    font-size: 2rem;
+    color: white;
+}
+
+.icon-round {
+    width: 70px;
+    height: 70px;
+}
+
+.list-none {
+    margin-top: 10px;
+    list-style: none;
+}
+
+.button-logout {
+    text-align: start !important;
+    border: none !important;
+    background-color: crimson !important;
+    width: 100% !important;
+}
+
+.button-logout:hover {
+    background-color: crimson;
+}
+
+.detail {
+    text-decoration: none;
+    font-size: smaller;
+}
+
+.nilai {
+    overflow: auto;
+    height: 80vh;
+}
+
+.profile {
+    width: 50px;
+    height: auto;
+}
+
+@media (max-width: 576px) {
+    .icon-round {
+        width: 50px;
+        height: 50px;
+    }
+
+    .icon {
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .title-data {
+        font-size: 10px;
+        margin: 0;
+    }
+
+    .detail-data {
+        font-size: 15px;
+        margin: 0;
+    }
+}
+
+@media (min-width: 576px) {
+    .list {
+        width: 100%;
+    }
+
+    .list-logout {
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .grafik_nilai {
+        height: 40rem;
+    }
+}
+
+@media ((min-width: 1100px) and (max-width: 1500px)) {
+    .grafik_nilai {
+        height: 30rem;
+    }
+}
+
+@media (min-width: 2000px) {
+    .grafik_nilai {
+        height: 45rem;
+    }
+}
+
+@media (min-width: 2200px) {
+    .grafik_nilai {
+        height: 100rem;
+    }
+}
