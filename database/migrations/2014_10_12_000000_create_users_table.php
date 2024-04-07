@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('nisn')->primary(); // Menambahkan NISN sebagai primary key
+            $table->id();
+            $table->string('nisn')->unique(); // Mengatur NISN sebagai kolom unik, tetapi tidak sebagai primary key
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
