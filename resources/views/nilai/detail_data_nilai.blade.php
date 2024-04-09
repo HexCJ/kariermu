@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between">
-        <h4 class="h4">Data Nilai Siswa</h4>
+        <h4 class="h4">Data Nilai Siswa Semester $1</h4>
         <div class="alert alert-success">
           <p class="text-success m-0"><i class="fa-regular fa-circle-check me-2"></i>Data Terverifikasi Guru</p>
         </div>
@@ -40,7 +40,7 @@
   <div class="row">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between">
-        <h4 class="h4">Data Nilai Siswa</h4>
+        <h4 class="h4">Data Nilai Siswa Semester $1</h4>
         <div class="alert alert-danger">
           <p class="text-danger m-0"><i class="fa-regular fa-circle-xmark me-2"></i>Data Gagal Terverifikasi Guru</p>
         </div>
@@ -80,7 +80,7 @@
   <div class="row">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between">
-        <h4 class="h4">Data Nilai Siswa</h4>
+        <h4 class="h4">Data Nilai Siswa Semester $1</h4>
         <div class="alert alert-secondary">
           <p class="text-secondary m-0"><i class="fa-solid fa-clock-rotate-left me-2"></i>Data sedang diverifikasi Guru</p>
         </div>
