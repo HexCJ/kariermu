@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,7 +42,7 @@ Route::get('detail_status',[Controller::class, 'detailStatus'])->name('detail.st
 Route::get('admin',[Controller::class,'dashboardAdmin'])->middleware(['auth', 'verified', 'role:admin']);
 
 
-Route::get('siswa',[Controller::class,'dataSiswa'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa']);
+Route::get('siswa',[Controller::class,'dataSiswa'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa'])->name('siswa');
 Route::get('siswa/tambah',[Controller::class,'addDataSiswa'])->middleware(['auth', 'verified', 'role:admin|siswa']);
 
 Route::get('siswa/edit',[Controller::class,'editDataSiswa'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa']);
@@ -57,3 +59,16 @@ Route::get('penulis',function(){
     return view('tulisan');
 })->middleware(['auth', 'verified', 'role:penulis|admin']);
 require __DIR__.'/auth.php';
+
+
+//route input siswa
+Route::post('/input',[Controller::class, 'input'])->name('user.input');
+//route edit siswa  
+Route::get('/edit/{id}',[Controller::class, 'edit'])->name('user.edit');
+Route::put('/update/{id}',[Controller::class, 'update'])->name('user.update');
+
+
+Route::delete('/siswa/hapus/{id}',[Controller::class, 'hapus'])->name('siswa.hapus');
+
+
+

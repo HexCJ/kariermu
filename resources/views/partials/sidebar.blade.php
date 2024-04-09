@@ -18,10 +18,14 @@
             <a href="/guru" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chalkboard-user me-3"></i>Guru</a>
             <a href="/guru" class="a-icon text-center d-block d-md-none py-2 px-3 text-center"><i class="fa-solid fa-chalkboard-user"></i></a>
         </li>
+
+        @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('penulis'))
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Siswa") ? 'list-active' : '' }} text-center text-md-start">
             <a href="/siswa" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-graduation-cap me-3"></i>Siswa</a>
             <a href="/siswa" class="a-icon d-block d-md-none py-2 px-3 text-center"><i class="fa-solid fa-graduation-cap"></i></a>
         </li>
+        @endif
+        
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Karir") ? 'list-active' : '' }} text-center text-md-start">
             <a href="/karir" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-briefcase me-3"></i>Data Karir</a>
             <a href="/karir" class="a-icon d-block d-md-none py-2 px-3"><i class="fa-solid fa-briefcase"></i></a>

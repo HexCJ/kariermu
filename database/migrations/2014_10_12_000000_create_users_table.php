@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nisn')->unique();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -23,6 +23,7 @@ return new class extends Migration
 
             // Menambahkan kolom nama, alamat, jenis_kelamin, kelas, dan jurusan
             $table->string('alamat');
+            $table->string('tahun_lulus');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->enum('status', ['Lulus', 'Belum Lulus'])->default('Belum Lulus');
             $table->enum('kelas', ['X', 'XI', 'XII', 'Lulus']);
