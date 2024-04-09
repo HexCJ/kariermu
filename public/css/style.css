@@ -122,7 +122,9 @@
     width: 50px;
     height: auto;
 }
-
+.data-profile{
+    min-height: 80vh;
+}
 @media (max-width: 576px) {
     .icon-round {
         width: 50px;

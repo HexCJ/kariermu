@@ -1,3 +1,23 @@
+const alertPlaceholder = document.getElementById('alert-test')
+const appendAlert = (message, type) => {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.append(wrapper)
+}
+
+const alertTrigger = document.getElementById('submitUpdate')
+if (alertTrigger) {
+  alertTrigger.addEventListener('click', () => {
+    appendAlert('Data Anda Berhasil Terkirim!', 'success')
+  })
+}
+
 new DataTable('#dataSiswa');
 new DataTable('#dataguru');
 new DataTable('#dataNilai');

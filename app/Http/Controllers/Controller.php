@@ -22,15 +22,22 @@ class Controller extends BaseController
             'title' => 'Dashboard'
         ]);
     }
+    public function profile()
+    {   
+        return view('data-profile',[
+            'title' => 'Data Profile'
+        ]);
+    }
+
     public function dataNilai()
     {   
-        return view('data_nilai',[
+        return view('nilai/data_nilai',[
             'title' => 'Data Nilai Siswa'
         ]);
     }
     public function detailDataNilai()
     {   
-        return view('detail_data_nilai',[
+        return view('nilai/detail_data_nilai',[
             'title' => 'Detail Data Nilai Siswa'
         ]);
     }
