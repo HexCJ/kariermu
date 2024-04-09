@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nilai_semester', function (Blueprint $table) {
+        Schema::create('nilai', function (Blueprint $table) {
             $table->string('nisn');
             $table->foreign('nisn')->references('nisn')->on('users')->onDelete('cascade');
-            $table->integer('nilai_semester_1')->nullable();
-            $table->integer('nilai_semester_2')->nullable();
-            $table->integer('nilai_semester_3')->nullable();
-            $table->integer('nilai_semester_4')->nullable();
-            $table->integer('nilai_semester_5')->nullable();
-            $table->integer('nilai_semester_6')->nullable();
+            $table->string('semester');
+            $table->foreign('semester')->references('id_semester')->on('semester')->onDelete('cascade');
+            $table->string('mata_pelajaran');
+            $table->foreign('mata_pelajaran')->references('id_mata_pelajaran')->on('mata_pelajaran')->onDelete('cascade');
+            $table->integer('nilai'); 
+
             $table->timestamps();
         });
     }

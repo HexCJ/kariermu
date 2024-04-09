@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nisn')->unique(); // Mengatur NISN sebagai kolom unik, tetapi tidak sebagai primary key
+            $table->string('nisn')->unique();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -21,11 +21,14 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            // Menambahkan kolom nama, alamat, jenis_kelamin, dan keinginan_setelah_lulus
-            $table->string('alamat')->nullable();
-            $table->string('status')->nullable();
-            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
-            $table->string('keinginan_setelah_lulus')->nullable();
+            // Menambahkan kolom nama, alamat, jenis_kelamin, kelas, dan jurusan
+            $table->string('alamat');
+            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
+            $table->enum('status', ['Lulus', 'Belum Lulus'])->default('Belum Lulus');
+            $table->enum('kelas', ['X', 'XI', 'XII', 'Lulus']);
+            $table->string('jurusan');
+            $table->foreign('jurusan')->references('id_jurusan')->on('jurusan')->onDelete('cascade');
+
         });
     }
 

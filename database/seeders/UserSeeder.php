@@ -20,9 +20,10 @@ class UserSeeder extends Seeder
             'name'=>'admin',
             'email'=>'admin@gmail.com',
             'alamat'=>'rumah admin',
-            'status'=>'aktif',
             'jenis_kelamin'=>'Laki-laki',
-            'keinginan_setelah_lulus'=>'menjadi admin',
+            'status'=>'Lulus',
+            'kelas'=>'Lulus',
+            'jurusan'=>'RPL',
             'password'=>bcrypt('admin1')
         ]);
         //buat role sesuai RolePermission
@@ -33,9 +34,10 @@ class UserSeeder extends Seeder
             'name'=>'penulis',
             'email'=>'penulis@gmail.com',
             'alamat'=>'rumah penulis',
-            'status'=>'tidak aktif',
             'jenis_kelamin'=>'Perempuan',
-            'keinginan_setelah_lulus'=>'menjadi penulis',
+            'status'=>'Lulus',
+            'kelas'=>'Lulus',
+            'jurusan'=>'DPIB',
             'password'=>bcrypt('penulis1')
         ]);
         //buat role sesuai RolePermission
@@ -46,9 +48,10 @@ class UserSeeder extends Seeder
             'name'=>'siswa',
             'email'=>'siswa@gmail.com',
             'alamat'=>'rumah siswa',
-            'status'=>'aktif',
             'jenis_kelamin'=>'Laki-laki',
-            'keinginan_setelah_lulus'=>'menjadi mahasiswa',
+            'status'=>'Belum Lulus',
+            'kelas'=>'XI',
+            'jurusan'=>'OT',
             'password'=>bcrypt('siswa1')
         ]);
         //buat role sesuai RolePermission

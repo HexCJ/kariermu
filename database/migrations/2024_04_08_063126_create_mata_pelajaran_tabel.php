@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('laporan', function (Blueprint $table) {
-            $table->string('nisn');
-            $table->foreign('nisn')->references('nisn')->on('users')->onDelete('cascade');
-            $table->enum('status', ['Menganggur', 'Kuliah', 'Bekerja', 'Siswa'])->nullable();
-            $table->string('tempat_kerja_kuliah')->nullable();
+        Schema::create('mata_pelajaran', function (Blueprint $table) {
+            $table->string('id_mata_pelajaran')->primary(); //  id_jurusan primary key
+            $table->string('nama_mata_pelajaran');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('laporan');
+        Schema::dropIfExists('mata_pelajaran_tabel');
     }
 };
