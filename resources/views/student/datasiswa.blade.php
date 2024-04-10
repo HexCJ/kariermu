@@ -32,7 +32,7 @@
                           <th>NISN</th>
                           <th>Nama</th>
                           <th>Jenis Kelamin</th>
-                          <th>Kejuruan</th>
+                          <th>Jurusan</th>
                           <th>Kelas</th>
                           <th>Email</th>
                           <th>Password</th>

@@ -48,7 +48,8 @@ Route::get('siswa/tambah',[Controller::class,'addDataSiswa'])->middleware(['auth
 Route::get('siswa/edit',[Controller::class,'editDataSiswa'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa']);
 
 // data guru
-Route::get('guru',[Controller::class,'dataGuru'])->middleware(['auth', 'verified', 'role:penulis|admin|guru']);
+Route::get('guru',[Controller::class,'dataGuru'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('guru');
+Route::get('guru/tambah',[Controller::class,'addDataGuru'])->middleware(['auth', 'verified', 'role:penulis|admin|guru']);
 
 
 Route::get('tulisan',function(){
@@ -66,9 +67,12 @@ Route::post('/input',[Controller::class, 'input'])->name('user.input');
 //route edit siswa  
 Route::get('/edit/{id}',[Controller::class, 'edit'])->name('user.edit');
 Route::put('/update/{id}',[Controller::class, 'update'])->name('user.update');
-
-
+//route hapus siswa
 Route::delete('/siswa/hapus/{id}',[Controller::class, 'hapus'])->name('siswa.hapus');
+
+//route input guru
+Route::post('/inputGuru',[Controller::class, 'inputGuru'])->name('guru.input');
+
 
 
 

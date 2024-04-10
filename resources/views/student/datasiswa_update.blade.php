@@ -35,11 +35,17 @@
         
         <div class="col-6">
             <label for="jurusan" class="text-secondary mb-3">Jurusan</label>
-            <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="jurusan" name="jurusan">
+            {{-- <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="jurusan" name="jurusan">
                 <option value="RPL" {{ $data->jurusan == 'RPL' ? 'selected' : '' }}>Rekayasa Perangkat Lunak</option>
                 <option value="DGM" {{ $data->jurusan == 'DGM' ? 'selected' : '' }}>Desain Gambar Mesin</option>
                 <option value="DPIB" {{ $data->jurusan == 'DPIB' ? 'selected' : '' }}>Desain Permodelan dan Informasi Bangunan</option>
                 <option value="TITL" {{ $data->jurusan == 'TITL' ? 'selected' : '' }}>Teknik Instalasi Tenaga Listrik</option>
+            </select> --}}
+            <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="jurusan" name="jurusan">
+              <option selected disabled>Pilih Jurusan</option>
+              @foreach($jurusans as $jurusan)
+              <option value="{{ $jurusan->id_jurusan }}" {{ $data->jurusan == $jurusan->id_jurusan ? 'selected' : '' }}>{{ $jurusan->nama_jurusan }}</option>
+                @endforeach
             </select>
         </div>
         

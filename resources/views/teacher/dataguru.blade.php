@@ -25,26 +25,43 @@
               <div class="card mt-3" style="height: 43rem">
                 <div class="card-body table-responsive">
                   {{-- empty --}}
-                  <div class="d-flex flex-column text-center d-flex justify-content-center align-items-center text-secondary h-100">
+                  {{-- <div class="d-flex flex-column text-center d-flex justify-content-center align-items-center text-secondary h-100">
                     <h3 class="fw-medium">Data Guru Tidak Ada</h3>
                     <h5 class="">Segera Isi Tambah Guru</h5>
-                  </div>
+                  </div> --}}
                   {{-- @endempty --}}
 
                   {{-- ada --}}
-                  <div class="d-none">
+                  <div class="">
                     <table id="dataguru" class="table table-bordered w-100 mt-3">
                       <thead>
                         <tr>
                           <th>NIP</th>
                           <th>Nama</th>
-                          <th>Kejuruan</th>
+                          <th>Alamat</th>
+                          <th>Email</th>
+                          <th>Password</th>
+                          <th>Jenis Kelamin</th>
                           <th>Mata Pelajaran</th>
-                          <th>Mengajar Kelas</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach($data as $d)
+                        <tr>
+                          <td>{{ $d->nip }}</td> 
+                          <td>{{ $d->name }}</td> 
+                          <td>{{ $d->alamat }}</td> 
+                          <td>{{ $d->email }}</td> 
+                          <td>{{ $d->password }}</td> 
+                          <td>{{ $d->jenis_kelamin }}</td>
+                          <td>{{ $d->mata_pelajaran }}</td>
+                          <td class="py-4 py-lg-3 d-flex flex-column flex-md-row gap-4 gap-md-3">
+                            <a href="/guru/edit" class="button py-2 px-3 rounded text-decoration-none text-center"><i class="bi bi-person-fill-gear me-2 i-icon"></i>Edit</a>
+                            <a href="/" class="button-reset py-2 px-3 rounded text-decoration-none text-center"><i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus</a>
+                          </td>
+                        </tr>
+                          @endforeach
                         {{-- <tr>
                           <td>3671800912</td>
                           <td>Cahyo Kusumo</td>
@@ -65,7 +82,7 @@
                             </div>
                           </td>
                         </tr> --}}
-                        <tr>
+                        {{-- <tr>
                           <td>3671800912</td>
                           <td>Cahyo Kusumo</td>
                           <td>Rekayasa Perangkat Lunak (RPL)</td>
@@ -97,7 +114,7 @@
                             <a href="/guru/edit" class="button py-2 px-3 rounded text-decoration-none text-center"><i class="bi bi-person-fill-gear me-2 i-icon"></i>Edit</a>
                             <a href="/" class="button-reset py-2 px-3 rounded text-decoration-none text-center"><i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus</a>
                           </td>
-                        </tr>
+                        </tr> --}}
                       </tbody>
                     </table>
                   </div>

@@ -48,13 +48,12 @@
           <div class="col-6">
             <label for="jurusan" class="text-secondary mb-3">Jurusan</label>
             <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="jurusan" name="jurusan">
-              <option selected>Open this select menu</option>
-              <option value="RPL">Rekayasa Perangkat Lunak</option>
-              <option value="DGM">Desain Gambar Mesin</option>
-              <option value="DPIB">Desain Permodelan dan Informasi Bangunan</option>
-              <option value="TITL">Teknik Instalasi Tenaga Listrik</option>
-            </select>
-            @error('jurusan')
+              <option selected disabled>Pilih Jurusan</option>
+              @foreach($jurusans as $jurusan)
+                  <option value="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}</option>
+              @endforeach
+          </select>
+          @error('jurusan')
             <small>{{$message}}<small>
             @enderror
           </div>
