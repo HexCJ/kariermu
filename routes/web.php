@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[Controller::class,'index']);
 Route::get('/dashboard',[Controller::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/profile',[Controller::class,'profile'])->middleware(['auth', 'verified'])->name('profile');
+Route::get('/profile',[ProfileController::class,'index'])->middleware(['auth', 'verified'])->name('profile');
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth');
 
 
@@ -46,18 +46,17 @@ Route::get('detail_status',[Controller::class, 'detailStatus'])->name('detail.st
 Route::get('admin',[Controller::class,'dashboardAdmin'])->middleware(['auth', 'verified', 'role:admin']);
 
 // data guru
-Route::get('data-kelas',[Controller::class,'dataKelas'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('data-kelas');
-Route::get('data-kelas/tambah',[Controller::class,'addDataKelas'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('add-datakelas');
+Route::get('data-kelas',[JurusanController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('data-kelas');
 
 
-Route::get('siswa',[Controller::class,'dataSiswa'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa'])->name('siswa');
-Route::get('siswa/tambah',[Controller::class,'addDataSiswa'])->middleware(['auth', 'verified', 'role:admin|siswa']);
-Route::get('siswa/edit',[Controller::class,'editDataSiswa'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa']);
+Route::get('siswa',[SiswaController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa'])->name('siswa');
+Route::get('siswa/tambah',[SiswaController::class,'create'])->middleware(['auth', 'verified', 'role:admin|siswa'])->name('tambah_siswa');
+Route::get('siswa/edit',[SiswaController::class,'edit'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa'])->name('edit_siswa');
 
 // data guru
-Route::get('guru',[Controller::class,'dataGuru'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('guru');
-Route::get('guru/tambah',[Controller::class,'addDataGuru'])->middleware(['auth', 'verified', 'role:penulis|admin|guru']);
-Route::get('guru/edit',[Controller::class,'editDataGuru'])->middleware(['auth', 'verified', 'role:penulis|admin|guru']);
+Route::get('guru',[GuruController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('guru');
+Route::get('guru/tambah',[GuruController::class,'create'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('tambah_guru');
+Route::get('guru/edit',[GuruController::class,'edit'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('edit_guru');
 
 
 Route::get('tulisan',function(){
@@ -73,7 +72,7 @@ require __DIR__.'/auth.php';
 
 
 //route input siswa
-Route::post('/input',[SiswaController::class, 'store'])->name('user.input');
+Route::post('/siswa/tambah',[SiswaController::class, 'store'])->name('user.input');
 //route edit siswa  
 Route::get('siswa/edit/{id}',[SiswaController::class, 'edit'])->name('user.edit');
 Route::put('siswa/update/{id}',[SiswaController::class, 'update'])->name('user.update');

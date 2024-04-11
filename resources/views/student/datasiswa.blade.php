@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
+  @include('partials.notification')
   <div class="row">
     <div class="col-12 mt-4">
         <div class="d-flex">
@@ -22,7 +23,7 @@
                 </div>
                 <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Cari siswa berdasarkan NIP atau Nama">
               </div>
-              <div class="card mt-3" style="height: 43rem">
+              <div class="card mt-3" style="min-height: 43rem">
                 <div class="card-body table-responsive">
                   
                   <div class="">

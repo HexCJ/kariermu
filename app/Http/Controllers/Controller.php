@@ -30,21 +30,23 @@ class Controller extends BaseController
             'title' => 'Dashboard'
         ]);
     }
-    public function profile()
-    {   
-        return view('data-profile',[
-            'title' => 'Data Profile'
-        ]);
-    }
+    // public function profile()
+    // {   
+    //     return view('data-profile',[
+    //         'title' => 'Data Profile'
+    //     ]);
+    // }
 
-    public function dataKelas()
-    {   
-        $data = Jurusan::get();
+    // public function dataKelas()
+    // {   
+    //     $data = Jurusan::get();
 
-        return view('data-kelas.data-kelas',compact('data'),[
-            'title' => 'Data Jurusan'
-        ]);
-    }
+    //     return view('data-kelas.data-kelas',compact('data'),[
+    //         'title' => 'Data Jurusan'
+    //     ]);
+    // }
+
+    // nilai
     public function dataNilai()
     {   
         return view('nilai/data_nilai',[
@@ -69,24 +71,26 @@ class Controller extends BaseController
             'title' => 'Dashboard'
         ]);
     }
-    public function DataSiswa()
-    {   
-        //tampilin data
-        $data = User::get();
-        return view('student/datasiswa',compact('data'),[
-            'title' => 'Data Siswa'
-        ]);
-    }
-    public function addDataSiswa()
-    {   
-        $jurusans = Jurusan::all();
 
-        return view('student/datasiswa_add',[
-            'title' => 'Tambah Data Siswa' ,
-            'jurusans' => $jurusans 
+    // public function DataSiswa()
+    // {   
+    //     //tampilin data
+    //     $data = User::get();
+    //     return view('student/datasiswa',compact('data'),[
+    //         'title' => 'Data Siswa',
+    //         'status_proses' => 'success',
+    //         'message' => 'Data Berhasil Ditambahkan',
+    //     ]);
+    // }
+    // public function addDataSiswa()
+    // {   
+    //     $jurusans = Jurusan::all();
 
-        ]);
-    }
+    //     return view('student/datasiswa_add',[
+    //         'title' => 'Tambah Data Siswa' ,
+    //         'jurusans' => $jurusans 
+    //     ]);
+    // }
     // public function editDataSiswa($id)
     // {   
     // // Ambil data siswa berdasarkan ID
@@ -108,30 +112,28 @@ class Controller extends BaseController
     //         'title' => 'Edit Data Siswa'
     //     ]);
     // }
-    public function dataGuru()
-    {   
-        $data = Guru::get();
-        return view('teacher/dataguru',compact('data'),
-        [
-            'title' => 'Data Guru'
-        ]);
-    }
-    public function addDataGuru()
-    {   
-        $matapelajarans = MataPelajaran::all();
+    // public function dataGuru()
+    // {   
+    //     $data = Guru::get();
+    //     return view('teacher/dataguru',compact('data'),
+    //     [
+    //         'title' => 'Data Guru'
+    //     ]);
+    // }
+    // public function addDataGuru()
+    // {   
+    //     $matapelajarans = MataPelajaran::all();
 
-        return view('teacher/dataguru_add',[
-            'title' => 'Tambah Data Guru' ,
-            'matapelajarans' => $matapelajarans 
+    //     return view('teacher/dataguru_add',[
+    //         'title' => 'Tambah Data Guru' ,
+    //         'matapelajarans' => $matapelajarans 
 
-        ]);
-    }
-    public function editDataGuru()
-    {   
-        return view('teacher/dataguru_update',[
-            'title' => 'Edit Data Guru' ,
-        ]);
-    }
-
-    
+    //     ]);
+    // }
+    // public function editDataGuru()
+    // {   
+    //     return view('teacher/dataguru_update',[
+    //         'title' => 'Edit Data Guru' ,
+    //     ]);
+    // }
 }

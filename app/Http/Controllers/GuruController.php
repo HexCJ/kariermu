@@ -19,7 +19,11 @@ class GuruController extends Controller
      */
     public function index()
     {
-        //
+        $data = Guru::get();
+        return view('teacher/dataguru',compact('data'),
+        [
+            'title' => 'Data Guru'
+        ]);
     }
 
     /**
@@ -27,7 +31,13 @@ class GuruController extends Controller
      */
     public function create()
     {
-        //
+        $matapelajarans = MataPelajaran::all();
+
+        return view('teacher/dataguru_add',[
+            'title' => 'Tambah Data Guru' ,
+            'matapelajarans' => $matapelajarans 
+
+        ]);
     }
 
     /**
@@ -59,9 +69,12 @@ class GuruController extends Controller
         $data['mata_pelajaran'] = $request->matapelajaran;
         
         //create
-        Guru::create($data);
+        if(Guru::create($data)){
+            return redirect()->back()->with('success', 'Data Guru berhasil ditambahkan');
+        }else{
+            return redirect()->back()->with('fail', 'Data Guru gagal ditambahkan');
+        }
         //kembali
-        return redirect()->route('guru');
         // dd($request->all());
     }
 
@@ -89,6 +102,7 @@ class GuruController extends Controller
         'data' => $data,
         'matapelajarans' => $matapelajarans // Kirim data mata pelajaran ke view
     ]);
+   
     }
 
     /**
@@ -129,9 +143,11 @@ class GuruController extends Controller
         }
     
         // Simpan perubahan data
-        $data->save();
-    
-        return redirect()->route('guru');
+        if($data->save()){
+            return redirect()->back()->with('success', 'Data Guru berhasil diedit');
+        }else{
+            return redirect()->back()->with('fail', 'Data Guru gagal diedit');
+        }
     }
 
     /**
@@ -139,10 +155,11 @@ class GuruController extends Controller
      */
     public function destroy(string $id)
     {
-        
         $data = Guru::findOrFail($id);
-        $data->delete();
-
-        return redirect()->back()->with('success', 'Data Guru berhasil dihapus');
+        if($data->delete()){
+            return redirect()->back()->with('success', 'Data Guru berhasil dihapus');
+        }else{
+            return redirect()->back()->with('fail', 'Data Guru gagal dihapus');
+        }
     }
 }

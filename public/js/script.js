@@ -69,3 +69,16 @@ module.exports = {
     actions: [],
     config: config,
 };
+
+// Tangkap event submit dari formulir
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.confirm-form-submit').forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Menghentikan pengiriman formulir secara langsung
+
+            // Menampilkan SweetAlert konfirmasi penghapusan
+            var formId = this.getAttribute('id');
+            confirmFormSubmission(formId);
+        });
+    });
+});

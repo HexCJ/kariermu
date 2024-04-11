@@ -16,7 +16,11 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        //
+        $data = Jurusan::get();
+
+        return view('data-kelas.data-kelas',compact('data'),[
+            'title' => 'Data Jurusan'
+        ]);
     }
 
     /**
@@ -41,16 +45,16 @@ class JurusanController extends Controller
         // jika valid gagal
         if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
         // terima dan kirim
-                // terima dan kirim
-                $data['id_jurusan'] = $request->id_jurusan;
-                $data['nama_jurusan'] = $request->nama_jurusan;
+            // terima dan kirim
+            $data['id_jurusan'] = $request->id_jurusan;
+            $data['nama_jurusan'] = $request->nama_jurusan;
 
-                
-                //create
-                Jurusan::create($data);
-                //kembali
-                return redirect()->route('data-kelas');
-                // dd($request->all());
+            
+            //create
+            Jurusan::create($data);
+            //kembali
+            return redirect()->route('data-kelas');
+            // dd($request->all());
     }
 
     /**
@@ -62,7 +66,8 @@ class JurusanController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editin
+     * g the specified resource.
      */
     public function edit(Request $request, $id)
     {

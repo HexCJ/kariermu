@@ -16,7 +16,11 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        //
+        //tampilin data
+        $data = User::get();
+        return view('student/datasiswa',compact('data'),[
+            'title' => 'Data Siswa',
+        ]);
     }
 
     /**
@@ -24,7 +28,12 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        $jurusans = Jurusan::all();
+
+        return view('student/datasiswa_add',[
+            'title' => 'Tambah Data Siswa' ,
+            'jurusans' => $jurusans 
+        ]);
     }
 
     /**
@@ -61,9 +70,12 @@ class SiswaController extends Controller
         $data['status'] = $request->status;
         
         //create
-        User::create($data);
-        //kembali
-        return redirect()->route('siswa');
+        if(User::create($data)){
+            //kembali
+            return redirect()->route('siswa')->with('success', 'Data Siswa berhasil ditambahkan');
+        }else{
+            return redirect()->route('siswa')->with('fail', 'Data Siswa gagal ditambahkan');
+        }
     }
 
     /**
@@ -135,9 +147,11 @@ class SiswaController extends Controller
         }
     
         // Simpan perubahan data
-        $data->save();
-    
-        return redirect()->route('siswa');
+        if($data->save()){
+            return redirect()->route('siswa')->with('success', 'Data Siswa berhasil diedit');
+        }else{
+            return redirect()->route('siswa')->with('fail', 'Data Siswa gagal diedit');
+        }
 
     }
 
@@ -148,8 +162,10 @@ class SiswaController extends Controller
     {
         //
         $data = user::findOrFail($id);
-        $data->delete();
-
-        return redirect()->back()->with('success', 'Data siswa berhasil dihapus');
+        if($data->delete()){
+            return redirect()->back()->with('success', 'Data Siswa berhasil dihapus');
+        }else{
+            return redirect()->back()->with('fail', 'Data Siswa gagal dihapus');
+        }
     }
 }

@@ -16,13 +16,18 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+    public function index(): View
+    {
+        return view('data-profile',[
+            'title' => 'Data Profile'
+        ]);
+    }
     public function edit(Request $request): View
     {
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
     }
-
     /**
      * Update the user's profile information.
      */
