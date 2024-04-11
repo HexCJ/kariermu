@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('nilai', function (Blueprint $table) {
+            $table->id();
             $table->string('nisn');
             $table->foreign('nisn')->references('nisn')->on('users')->onDelete('cascade');
             $table->string('semester');

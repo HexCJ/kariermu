@@ -39,7 +39,9 @@ class Controller extends BaseController
 
     public function dataKelas()
     {   
-        return view('data-kelas.data-kelas',[
+        $data = Jurusan::get();
+
+        return view('data-kelas.data-kelas',compact('data'),[
             'title' => 'Data Jurusan'
         ]);
     }
@@ -85,20 +87,20 @@ class Controller extends BaseController
 
         ]);
     }
-    public function editDataSiswa($id)
-    {   
-    // Ambil data siswa berdasarkan ID
-    $data = User::findOrFail($id);
+    // public function editDataSiswa($id)
+    // {   
+    // // Ambil data siswa berdasarkan ID
+    // $data = User::findOrFail($id);
 
-    // Ambil data jurusan dari tabel jurusan
-    $jurusans = Jurusan::all();
+    // // Ambil data jurusan dari tabel jurusan
+    // $jurusans = Jurusan::all();
 
-    return view('student/datasiswa_update',[
-        'title' => 'Edit Data Siswa',
-        'data' => $data,
-        'jurusans' => $jurusans // Kirim data jurusan ke view
-    ]);
-    }
+    // return view('student/datasiswa_update',[
+    //     'title' => 'Edit Data Siswa',
+    //     'data' => $data,
+    //     'jurusans' => $jurusans // Kirim data jurusan ke view
+    // ]);
+    // }
     // public function editDataSiswa()
     // {   
     //     return view('student/datasiswa_update',
@@ -131,134 +133,5 @@ class Controller extends BaseController
         ]);
     }
 
-
-    //form siswa
-    //add siswa
-    public function input(Request $request)
-    {
-        //validator
-        $validator = Validator::make($request->all(),[
-            'nisn'=>'required',
-            'nama'=>'required',
-            // 'email'=>'required|email',
-            'jkelamin'=>'required|in:Laki-laki, Perempuan',   
-            // 'jurusan'=>'required|in:RPL, DGM, DPIB, TITL',   
-            // 'kelas'=>'required|in:X/SEPULUH, XI/SEBELAS, XII/DUA BELAS',   
-            'password'=>'required',   
-            'alamat'=>'required',   
-            'lulus'=>'required',   
-            'status'=>'required|in:Belum Lulus, Lulus',   
-
-        ]);
-        //jika valid gagal
-        if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
-        //terima dan kirim
-        $data['nisn'] = $request->nisn;
-        $data['name'] = $request->nama;
-        $data['jenis_kelamin'] = $request->jkelamin;
-        $data['jurusan'] = $request->jurusan;
-        $data['kelas'] = $request->kelas;
-        $data['email'] = $request->email;
-        $data['password'] = Hash::make($request->password);
-        $data['alamat'] = $request->alamat;
-        $data['tahun_lulus'] = $request->lulus;
-        $data['status'] = $request->status;
-        
-        //create
-        User::create($data);
-        //kembali
-        return redirect()->route('siswa');
-    }
-    //edit siswa
-    public function edit(Request $request,$id){
-        $data = User::find($id);
-
-        return view('student/datasiswa_update',compact('data'),
-        [
-            'title' => 'Edit Data Siswa'
-        ]);
-    }
-    //update siswa
-    public function update(Request $request, $id){
-        $validator = Validator::make($request->all(),[
-            'nisn'=>'required',
-            'nama'=>'required',
-            // 'email'=>'required|email',
-            'jkelamin'=>'required|in:Laki-laki, Perempuan',   
-            'jurusan'=>'required|in:RPL, DGM, DPIB, TITL',   
-            // 'kelas'=>'required|in:X/SEPULUH, XI/SEBELAS, XII/DUA BELAS',   
-            'alamat'=>'required',   
-            'lulus'=>'required',   
-            'status'=>'required|in:Belum Lulus, Lulus',   
-        ]);
     
-        if($validator->fails()) {
-            return redirect()->back()->withInput()->withErrors($validator);
-        }
-        
-        // Ambil data siswa berdasarkan ID
-        $data = User::find($id);
-    
-        // Mengisi data dengan input dari form
-        $data->nisn = $request->nisn;
-        $data->name = $request->nama;
-        $data->jenis_kelamin = $request->jkelamin;
-        $data->jurusan = $request->jurusan;
-        $data->kelas = $request->kelas;
-        $data->email = $request->email;
-        $data->alamat = $request->alamat;
-        $data->tahun_lulus = $request->lulus;
-        $data->status = $request->status;
-    
-        // Periksa apakah password baru diisi
-        if($request->password){
-            $data->password = Hash::make($request->password);
-        }
-    
-        // Simpan perubahan data
-        $data->save();
-    
-        return redirect()->route('siswa');
-    }
-    //hapus siswa
-    public function hapus($id)
-    {
-    $data = user::findOrFail($id);
-    $data->delete();
-
-    return redirect()->back()->with('success', 'Data siswa berhasil dihapus');
-    }
-
-    //form guru
-    public function inputGuru(Request $request)
-    {
-        //validator
-        $validator = Validator::make($request->all(),[
-            'nip'=>'required',
-            'nama'=>'required',
-            'email'=>'required|email',
-            // 'jkelamin'=>'required|in:Laki-laki, Perempuan',   
-            'password'=>'required',   
-            'alamat'=>'required',
-            // 'matapelajaran'=>'required|in:MTK, BING',   
-   
-
-        ]);
-        // jika valid gagal
-        if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
-        // terima dan kirim
-        $data['nip'] = $request->nip;
-        $data['name'] = $request->nama;
-        $data['jenis_kelamin'] = $request->jkelamin;
-        $data['email'] = $request->email;
-        $data['password'] = Hash::make($request->password);
-        $data['alamat'] = $request->alamat;
-        $data['mata_pelajaran'] = $request->matapelajaran;
-        
-        //create
-        Guru::create($data);
-        //kembali
-        return redirect()->route('guru');
-        // dd($request->all());
-    }
 }

@@ -16,34 +16,34 @@
                       {{-- Nama --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                        <p class="text-secondary mb-3 mt-2">Jona</p>
+                        <p class="text-secondary mb-3 mt-2">{{ $user->name }}</p>
                       </div>
                       {{-- Alamat --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                        <p class="text-secondary mb-3 mt-2">Jl.Jambu</p>
+                        <p class="text-secondary mb-3 mt-2">{{ $user->alamat }}</p>
                       </div>
                       {{-- jk --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="h5"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
-                        <p class="text-secondary mb-3 mt-2">Laki-Laki</p>
+                        <p class="text-secondary mb-3 mt-2">{{ $user->jenis_kelamin }}</p>
                       </div>
                     </div>
                     <div class="col-12 col-md-6">
                       {{-- NISN --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="h5"><i class="fa-solid fa-id-card me-2"></i>NISN</label>
-                        <p class="text-secondary mb-3 mt-2">367102932211</p>
+                        <p class="text-secondary mb-3 mt-2">{{ $user->nisn }}</p>
                       </div>
                       {{-- Kelas --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="h5"><i class="fa-solid fa-school me-2"></i>Kelas</label>
-                        <p class="text-secondary mb-3 mt-2">XI(Sebelas)</p>
+                        <p class="text-secondary mb-3 mt-2">{{ $user->kelas }}</p>
                       </div>
                       {{-- Jurusan --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="h5"><i class="fa-solid fa-user-tie me-2"></i>Jurusan</label>
-                        <p class="text-secondary mb-3 mt-2">Rekayasa Perangkat Lunak</p>
+                        <p class="text-secondary mb-3 mt-2">{{ $user->jurusan }}</p>
                       </div>
                     </div>
                   </div>

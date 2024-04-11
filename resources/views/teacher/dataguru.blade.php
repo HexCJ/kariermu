@@ -62,8 +62,16 @@
                                 <i class="bi bi-person-fill-gear me-2 i-icon"></i>Option
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="/guru/edit" class="dropdown-item" href="#"><i class="bi bi-person-fill-gear me-2 i-icon"></i>Edit</a></li>
-                                <li><a href="#" class="dropdown-item text-danger"><i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus</a></li>
+                                <li><a href="{{ route('guru.edit',['id' => $d->id]) }}" class="dropdown-item" href="#"><i class="bi bi-person-fill-gear me-2 i-icon"></i>Edit</a></li>
+                                <li>
+                                  <a href="#" class="dropdown-item text-danger" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this data?')) { document.getElementById('hapus-guru-{{ $d->id }}').submit(); }">
+                                    <i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus
+                                  </a>
+                                  <form id="hapus-guru-{{ $d->id }}" action="{{ route('guru.hapus', ['id' => $d->id]) }}" method="POST" style="display: none;">
+                                      @csrf
+                                      @method('DELETE')
+                                  </form>
+                                </li>                              
                               </ul>
                             </div>
                           </td>

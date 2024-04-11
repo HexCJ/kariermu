@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -56,5 +58,21 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function show()
+    {
+        // Mendapatkan ID pengguna yang saat ini masuk
+        $userId = Auth::id();
+
+        // Mengambil data pengguna berdasarkan ID
+        $user = User::find($userId);
+
+        // Kemudian Anda dapat melewatkan data pengguna ke tampilan profil
+        return view('data-profile', [
+            'user' => $user,
+            'title' => 'Data Profile'
+
+        ]);
     }
 }

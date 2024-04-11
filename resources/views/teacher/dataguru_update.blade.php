@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<form action="" method="POST">
+<form action="{{ route('guru.update',['id' => $data->id]) }}" method="POST">
   @csrf
+  @method('PUT')
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 mt-4">
@@ -11,7 +12,7 @@
           <div class="col-12">
             <label for="nama" class="text-secondary mb-3">NIP</label>
             <div class="input-group mb-2">
-              <input type="text" class="form-control" id="nip" name="nip">
+              <input type="text" class="form-control" id="nip" name="nip" value="{{ $data->nip }}">
             </div>
             @error('nip')
               <small class="text-danger">{{ $message }}</small>
@@ -22,7 +23,7 @@
           <div class="col-12 col-md-6 mb-3">
             <label for="nama" class="text-secondary mb-3">Nama Lengkap</label>
             <div class="input-group mb-2">
-              <input type="text" value="{{old('nama')}}" class="form-control" id="nama" name="nama">
+              <input type="text" class="form-control" id="nama" name="nama" value="{{ $data->name }}">
             </div>
             @error('nama')
               <small class="text-danger">{{ $message }}</small>
@@ -30,11 +31,10 @@
           </div>
           <div class="col-12 col-md-6 mb-3">
             <label for="jkelamin" class="text-secondary mb-3">Jenis Kelamin</label>
-            <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="jkelamin" name="jkelamin"  value="{{old('jkelamin')}}">
-              <option selected>Open this select menu</option>
-              <option value="Laki-laki">Laki-laki</option>
-              <option value="Perempuan">Perempuan</option>
-            </select>
+            <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="jkelamin" name="jkelamin">
+              <option value="Laki-laki" {{ $data->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+              <option value="Perempuan" {{ $data->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+          </select>
             @error('jkelamin')
               <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -44,7 +44,7 @@
           <div class="col-12">
             <label for="alamat" class="text-secondary mb-3">Alamat</label>
             <div class="input-group mb-2">
-              <input type="text" value="{{old('alamat')}}" class="form-control" id="alamat" name="alamat">
+              <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $data->alamat }}">
             </div>
             @error('alamat')
               <small class="text-danger">{{ $message }}</small>
@@ -55,7 +55,7 @@
           <div class="col-12 col-md-6">
             <label for="email" class="text-secondary mb-3">Email</label>
             <div class="input-group mb-2">
-              <input type="email" class="form-control" id="email" name="email"  value="{{old('email')}}" >
+              <input type="email" class="form-control" id="email" name="email"  value="{{ $data->email }}" >
             </div>
             @error('email')
               <small class="text-danger">{{ $message }}</small>
@@ -75,7 +75,10 @@
           <div class="col-12">
             <label for="matapelajaran" class="text-secondary mb-3">Mata Pelajaran</label>
             <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="matapelajaran" name="matapelajaran">
-              <option selected disabled>Pilih Jurusan</option>
+              <option selected disabled>Pilih Mata Pelajaran</option>
+              @foreach($matapelajarans as $matapelajaran)
+              <option value="{{ $matapelajaran->id_mata_pelajaran }}" {{ $data->mata_pelajaran == $matapelajaran->id_mata_pelajaran ? 'selected' : '' }}>{{ $matapelajaran->nama_mata_pelajaran }}</option>
+                @endforeach
             </select>
           </div>
         </div>
