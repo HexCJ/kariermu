@@ -12,125 +12,123 @@
         <div class="row mb-3 mt-5">
           <div class="col-12">
             <label for="nisn" class="text-secondary mb-3">NISN</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="nisn" name="nisn">
+            <div class="input-group mb-2">
+              <input type="text" value="{{old('nisn')}}" class="form-control" id="nisn" name="nisn">
             </div>
             @error('nisn')
-                <small>{{$message}}<small>
+              <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-6">
+        <div class="row mb-3">
+          <div class="col-12 col-md-6 mb-3">
             <label for="nama" class="text-secondary mb-3">Nama Lengkap</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="nama" name="nama">
+            <div class="input-group mb-2">
+              <input type="text" value="{{old('nama')}}" class="form-control" id="nama" name="nama">
             </div>
             @error('nama')
-            <small>{{$message}}<small>
+              <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
-        
-          <div class="col-6">
+          <div class="col-12 col-md-6 mb-3">
             <label for="jkelamin" class="text-secondary mb-3">Jenis Kelamin</label>
-            <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="jkelamin" name="jkelamin">
+            <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="jkelamin" name="jkelamin"  value="{{old('jkelamin')}}">
               <option selected>Open this select menu</option>
               <option value="Laki-laki">Laki-laki</option>
               <option value="Perempuan">Perempuan</option>
             </select>
             @error('jkelamin')
-            <small>{{$message}}<small>
+              <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
-
-
-          <div class="col-6">
+          <div class="col-12 col-md-6 mb-3">
             <label for="jurusan" class="text-secondary mb-3">Jurusan</label>
-            <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="jurusan" name="jurusan">
+            <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="jurusan" name="jurusan"  value="{{old('jurusan')}}" >
               <option selected disabled>Pilih Jurusan</option>
               @foreach($jurusans as $jurusan)
                   <option value="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}</option>
               @endforeach
-          </select>
-          @error('jurusan')
-            <small>{{$message}}<small>
+            </select>
+            @error('jurusan')
+              <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
-
-          <div class="col-6">
+          <div class="col-12 col-md-6 mb-3">
             <label for="kelas" class="text-secondary mb-3">Kelas</label>
-            <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="kelas" name="kelas">
+            <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="kelas" name="kelas"  value="{{old('kelas')}}">
               <option selected>Open this select menu</option>
               <option value="X">X/SEPULUH</option>
               <option value="XI">XI/SEBELAS</option>
               <option value="XII">XII/DUA BELAS</option>
             </select>
-            {{-- @error('kelas')
-            <small>{{$message}}<small>
-            @enderror --}}
-          </div>
-
-          <div class="row mb-3 mt-5">
-            <div class="col-12">
-              <label for="email" class="text-secondary mb-3">Email</label>
-              <div class="input-group">
-                <input type="email" class="form-control" id="email" name="email">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row mb-3 mt-5">
-          <div class="col-12">
-            <label for="password" class="text-secondary mb-3">Password</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="password" name="password">
-            </div>
-          </div>
-          @error('password')
-          <small>{{$message}}<small>
-          @enderror
-        </div>
-      </div>
-
-        <div class="row mb-3 mt-5">
-          <div class="col-12">
-            <label for="alamat" class="text-secondary mb-3">Alamat</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="alamat" name="alamat">
-            </div>
-            @error('alamat')
-            <small>{{$message}}<small>
+            @error('kelas')
+              <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
         </div>
-      </div>
+
+        <div class="row mb-3">
+          <div class="col-12 col-md-6">
+            <label for="email" class="text-secondary mb-3">Email</label>
+            <div class="input-group mb-2">
+              <input type="email" class="form-control" id="email" name="email"  value="{{old('email')}}" >
+            </div>
+            @error('email')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
+
+          </div>
+          <div class="col-12 col-md-6">
+            <label for="password" class="text-secondary mb-3">Password</label>
+            <div class="input-group mb-2">
+              <input type="text" class="form-control" id="password" name="password">
+            </div>
+            @error('passsword')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
+
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-12">
+            <label for="alamat" class="text-secondary mb-3">Alamat</label>
+            <div class="input-group mb-2">
+              <input type="text" value="{{old('alamat')}}" class="form-control" id="alamat" name="alamat">
+            </div>
+            @error('alamat')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
+
+          </div>
+        </div>
 
         <div class="row mb-3">
           <div class="col-12">
             <label for="lulus" class="text-secondary mb-3">Tahun Lulus</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="lulus" name="lulus">
+            <div class="input-group mb-2">
+              <input type="text" class="form-control" id="lulus" name="lulus" value="{{old('lulus')}}">
             </div>
             @error('lulus')
-            <small>{{$message}}<small>
+              <small class="text-danger">{{ $message }}</small>
             @enderror
+
           </div>
         </div>
 
         <div class="row mb-3">
           <div class="col-12">
             <label for="status" class="text-secondary mb-3">Status</label>
-            <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="status" name="status">
+            <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="status" name="status"  value="{{old('nama')}}">
               <option selected>Open this select menu</option>
               <option value="Belum Lulus">Siswa Aktif</option> 
               <option value="Lulus">Alumni</option>
             </select>
+            @error('status')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
           </div>
-          @error('status')
-          <small>{{$message}}<small>
-          @enderror
         </div>
         
         {{-- belum dipake --}}
@@ -170,7 +168,7 @@
         </script> --}}
         {{-- end belum dipake --}}
 
-        <div class="d-flex gap-2 mt-5">
+        <div class="d-flex gap-2 mt-3">
           <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center ">Submit</button>
           <button type="reset" class="btn px-3 btn-danger">Reset</button>
         </div>

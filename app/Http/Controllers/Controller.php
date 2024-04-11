@@ -37,6 +37,12 @@ class Controller extends BaseController
         ]);
     }
 
+    public function dataKelas()
+    {   
+        return view('data-kelas.data-kelas',[
+            'title' => 'Data Jurusan'
+        ]);
+    }
     public function dataNilai()
     {   
         return view('nilai/data_nilai',[
@@ -116,6 +122,12 @@ class Controller extends BaseController
             'title' => 'Tambah Data Guru' ,
             'matapelajarans' => $matapelajarans 
 
+        ]);
+    }
+    public function editDataGuru()
+    {   
+        return view('teacher/dataguru_update',[
+            'title' => 'Edit Data Guru' ,
         ]);
     }
 

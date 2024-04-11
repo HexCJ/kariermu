@@ -12,7 +12,7 @@
               <div class="card mt-3">
                 <div class="card-body">
                   <div class="data-profile row px-5 py-3">
-                    <div class="col-6">
+                    <div class="col-12 col-md-6">
                       {{-- Nama --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
@@ -29,7 +29,7 @@
                         <p class="text-secondary mb-3 mt-2">Laki-Laki</p>
                       </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-md-6">
                       {{-- NISN --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="h5"><i class="fa-solid fa-id-card me-2"></i>NISN</label>

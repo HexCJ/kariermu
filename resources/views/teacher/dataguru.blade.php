@@ -56,9 +56,16 @@
                           <td>{{ $d->password }}</td> 
                           <td>{{ $d->jenis_kelamin }}</td>
                           <td>{{ $d->mata_pelajaran }}</td>
-                          <td class="py-4 py-lg-3 d-flex flex-column flex-md-row gap-4 gap-md-3">
-                            <a href="/guru/edit" class="button py-2 px-3 rounded text-decoration-none text-center"><i class="bi bi-person-fill-gear me-2 i-icon"></i>Edit</a>
-                            <a href="/" class="button-reset py-2 px-3 rounded text-decoration-none text-center"><i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus</a>
+                          <td class="d-flex justify-content-center align-items-center">
+                            <div class="dropdown py-3">
+                              <a class="button py-2 px-3 rounded text-decoration-none text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-fill-gear me-2 i-icon"></i>Option
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="/guru/edit" class="dropdown-item" href="#"><i class="bi bi-person-fill-gear me-2 i-icon"></i>Edit</a></li>
+                                <li><a href="#" class="dropdown-item text-danger"><i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus</a></li>
+                              </ul>
+                            </div>
                           </td>
                         </tr>
                           @endforeach
