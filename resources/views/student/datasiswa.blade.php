@@ -11,22 +11,62 @@
         <div class="container-fluid px-4">
           <div class="row">
             <div class="col p-0">
-              <div class="input-group mb-3 mt-3">
-                <div class="dropdown">
-                  <button class="btn dropdown-toggle ps-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
-                  <ul class="dropdown-menu">
-                    <li><button class="dropdown-item" type="button">A-Z</button></li>
-                    <li><button class="dropdown-item" type="button">Z-A</button></li>
-                    <li><button class="dropdown-item" type="button">Kejuruan</button></li>
-                    <li><button class="dropdown-item" type="button">Tahun Ajaran</button></li>
-                  </ul>
+              {{-- sortir data siswa --}}
+              <form action="{{ route('siswa') }}" method="GET">
+                <div class="row mt-3">
+                  <div class="col-3">
+                    <div class="input-group mb-3 mt-3">
+                      <select name="jurusan" id="jurusan" class="rounded form-select">
+                        <option value="" multiple aria-label="Multiple select example">Semua Jurusan</option>
+                        @foreach ($jurusans as $jurusan)
+                        <option value="{{ $jurusan->id_jurusan }}" {{ request('jurusan') == $jurusan->id_jurusan ? 'selected' : '' }}>{{ $jurusan->nama_jurusan }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="input-group mb-3 mt-3">
+                      <select name="kelas" id="kelas" class="rounded form-select">
+                        <option value="" multiple aria-label="Multiple select example">Semua Kelas</option>
+                        <option value="X" {{ request()->input('kelas') == 'X' ? 'selected' : '' }}>X/SEPULUH</option>
+                        <option value="XI" {{ request()->input('kelas') == 'XI' ? 'selected' : '' }}>XI/SEBELAS</option>
+                        <option value="XII" {{ request()->input('kelas') == 'XII' ? 'selected' : '' }}>XII/DUA BELAS</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="input-group mb-3 mt-3">
+                      <select name="jenis_kelamin" id="jenis_kelamin" class="rounded form-select">
+                        <option value="" multiple aria-label="Multiple select example">Semua Jenis Kelamin</option>
+                        <option value="Laki-laki" {{ request()->input('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-Laki</option>
+                        <option value="Perempuan" {{ request()->input('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="input-group mb-3 mt-3">
+                      <select name="status" id="status" class="rounded form-select">
+                        <option value="" multiple aria-label="Multiple select example">Semua Status</option>
+                        <option value="Belum Lulus" {{ request()->input('status') == 'Belum Lulus' ? 'selected' : '' }}>Siswa Aktif</option>
+                        <option value="Lulus" {{ request()->input('status') == 'Lulus' ? 'selected' : '' }}>Alumni</option>
+                      </select>
+                    </div>
+                  </div>
+                  {{-- input manual --}}
+                  {{-- <div class="col d-none">
+                    <div class="input-group mb-3 mt-3">
+                      <input type="text" name="search" class="form-control" aria-label="Text input with dropdown button" placeholder="Cari siswa berdasarkan NIP atau Nama" value="">
+                    </div>
+                  </div> --}}
+                  <div class="col-12 mb-2 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-sort me-2"></i>Sortir Data Siswa</button>
+                  </div>
                 </div>
-                <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Cari siswa berdasarkan NIP atau Nama">
-              </div>
+              </form>
               <div class="card mt-3" style="min-height: 43rem">
                 <div class="card-body table-responsive">
                   <div class="">
-                    <table id="dataSiswa" class="table table-bordered w-100 mt-3">
+                    <table class="table table-bordered w-100 mt-3" id="dataSiswa">
                       <thead>
                         <tr>
                           <th>NISN</th>

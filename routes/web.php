@@ -23,6 +23,10 @@ use Illuminate\Support\Facades\Route;
 
 // route laravel breezer
 Route::get('/',[Controller::class,'index']);
+Route::get('siswa',[SiswaController::class,'siswa'])->name('siswa');
+
+// Route::get('/siswa/search', ['SiswaController@search'])->name('search');
+
 Route::get('/dashboard',[Controller::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -64,7 +68,7 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('siswa',[SiswaController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa'])->name('siswa');
+// Route::get('siswa',[SiswaController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa'])->name('siswa');
 Route::get('siswa/tambah',[SiswaController::class,'create'])->middleware(['auth', 'verified', 'role:admin|siswa'])->name('tambah_siswa');
 //route input siswa
 Route::post('/siswa/tambah',[SiswaController::class, 'store'])->name('user.input');
@@ -76,7 +80,7 @@ Route::delete('/siswa/hapus/{id}',[SiswaController::class, 'destroy'])->name('si
 
 
 // route guru
-Route::get('guru',[GuruController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('guru');
+Route::get('guru',[GuruController::class,'guru'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('guru');
 Route::get('guru/tambah',[GuruController::class,'create'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('tambah_guru');
 //route input guru
 Route::post('/inputGuru',[GuruController::class, 'store'])->name('guru.input');

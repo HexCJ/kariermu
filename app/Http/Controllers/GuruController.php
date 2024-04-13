@@ -17,14 +17,51 @@ class GuruController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $data = Guru::get();
-        return view('teacher/dataguru',compact('data'),
-        [
-            'title' => 'Data Guru'
-        ]);
-    }
+
+
+     public function guru (Request $request)
+     {
+         $query = Guru::query();
+ 
+         // Tampilin data
+         if ($request->has('search')) {
+             $query->where('name', 'LIKE', '%' . $request->input('search') . '%');
+         }
+         // Tampilkan data
+         if ($request->filled('mata_pelajaran')) {
+             $query->where('mata_pelajaran', $request->input('mata_pelajaran'));
+         }
+         // Tampilkan data
+         if ($request->filled('jenis_kelamin')) {
+             $query->where('jenis_kelamin', $request->input('jenis_kelamin'));
+         }
+         // Tampilkan data
+        //  if ($request->filled('kelas')) {
+        //      $query->where('kelas', $request->input('kelas'));
+        //  }
+         // Tampilkan data
+        //  if ($request->filled('status')) {
+        //      $query->where('status', $request->input('status'));
+        //  }
+     
+         $data = $query->get();
+         $matapelajarans = MataPelajaran::all();
+     
+         return view('teacher.dataguru', [
+            'data' => $data,
+            'title' => 'Data Guru',
+            'matapelajarans' => $matapelajarans 
+         ]);
+     }
+     
+    // public function index()
+    // {
+    //     $data = Guru::get();
+    //     return view('teacher/dataguru',compact('data'),
+    //     [
+    //         'title' => 'Data Guru'
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.

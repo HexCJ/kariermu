@@ -16,12 +16,50 @@ class SiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+        // public function index()
+    // {
+    //     //tampilin data
+    //     $data = User::get();
+    //     $jurusans = Jurusan::all();
+    //     return view('student/datasiswa',compact('data'),[
+    //         'title' => 'Data Siswa',
+    //         'jurusans' => $jurusans
+    //     ]);
+    // }
+    public function siswa (Request $request)
     {
-        //tampilin data
-        $data = User::get();
-        return view('student/datasiswa',compact('data'),[
+        $query = User::query();
+
+        // Tampilin data
+        if ($request->has('search')) {
+            $query->where('name', 'LIKE', '%' . $request->input('search') . '%');
+        }
+        // Tampilkan data
+        if ($request->filled('jurusan')) {
+            $query->where('jurusan', $request->input('jurusan'));
+        }
+        // Tampilkan data
+        if ($request->filled('kelas')) {
+            $query->where('kelas', $request->input('kelas'));
+        }
+        // Tampilkan data
+        if ($request->filled('jenis_kelamin')) {
+            $query->where('jenis_kelamin', $request->input('jenis_kelamin'));
+        }
+        // Tampilkan data
+        if ($request->filled('status')) {
+            $query->where('status', $request->input('status'));
+        }
+        
+    
+        $data = $query->get();
+        $jurusans = Jurusan::all();
+    
+        return view('student.datasiswa', [
+            'data' => $data,
             'title' => 'Data Siswa',
+            'jurusans' => $jurusans
         ]);
     }
     
@@ -233,4 +271,13 @@ class SiswaController extends Controller
             return redirect()->back()->with('fail', 'Data Siswa gagal dihapus');
         }
     }
+
+    // public function search(Request $request)
+    // {
+    //     $category = $request->input('category');
+    
+    //     $products = Jurusan::where('category', $category)->get();
+    
+    //     return view('search', compact('data','products'));
+    // }
 }
