@@ -3,7 +3,7 @@
 <form action="{{ route('guru.update',['id' => $data->id]) }}" method="POST">
   @csrf
   @method('PUT')
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-12 mt-4">
       <h4>Tambah Guru</h4>

@@ -1,22 +1,66 @@
-const alertPlaceholder = document.getElementById('alert-test')
-const appendAlert = (message, type) => {
-  const wrapper = document.createElement('div')
-  wrapper.innerHTML = [
-    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-    `   <div>${message}</div>`,
-    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-    '</div>'
-  ].join('')
+// // new DataTable('#dataSiswa');
+// $(document).ready( function () {
+//     loadData();
+// } );
 
-  alertPlaceholder.append(wrapper)
-}
-
-const alertTrigger = document.getElementById('submitUpdate')
-if (alertTrigger) {
-  alertTrigger.addEventListener('click', () => {
-    appendAlert('Data Anda Berhasil Terkirim!', 'success')
-  })
-}
+// function loadData(){ 
+//     $('#dataSiswa').DataTable({
+//         processing: true,
+//         pagination: true,
+//         serverSide: true,
+//         searching: true,
+//         ordering: false,
+//         ajax: {
+//             url: "/siswa",
+//         },
+//         columns:[
+//             {
+//                 data:'nisn',
+//                 name:'nisn',
+//             },
+//             {
+//                 data:'name',
+//                 name:'name',
+//             },
+//             {
+//                 data:'jenis_kelamin',
+//                 name:'jenis_kelamin',
+//             },
+//             {
+//                 data:'jurusan',
+//                 name:'jurusan',
+//             },
+//             {
+//                 data:'kelas',
+//                 name:'kelas',
+//             },
+//             {
+//                 data:'email',
+//                 name:'email',
+//             },
+//             {
+//                 data:'password',
+//                 name:'password',
+//             },
+//             {
+//                 data:'alamat',
+//                 name:'alamat',
+//             },
+//             {
+//                 data:'tahun_lulus',
+//                 name:'tahun_lulus',
+//             },
+//             {
+//                 data:'status',
+//                 name:'status',
+//             },
+//             {
+//                 data:'aksi',
+//                 name:'aksi',
+//             },
+//         ]
+//     });
+// }
 
 new DataTable('#dataSiswa');
 new DataTable('#dataguru');

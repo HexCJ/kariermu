@@ -2,13 +2,11 @@
 @section('content')
 <form action="{{ route('user.input') }}" method="POST">
   @csrf
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-12 mt-4">
       <h4>Tambah Siswa</h4>
-
       <form action="">
-
         <div class="row mb-3 mt-5">
           <div class="col-12">
             <label for="nisn" class="text-secondary mb-3">NISN</label>
@@ -20,8 +18,7 @@
             @enderror
           </div>
         </div>
-
-        <div class="row mb-3">
+        <div class="row">
           <div class="col-12 col-md-6 mb-3">
             <label for="nama" class="text-secondary mb-3">Nama Lengkap</label>
             <div class="input-group mb-2">
@@ -67,7 +64,6 @@
             @enderror
           </div>
         </div>
-
         <div class="row mb-3">
           <div class="col-12 col-md-6">
             <label for="email" class="text-secondary mb-3">Email</label>
@@ -90,7 +86,6 @@
 
           </div>
         </div>
-
         <div class="row mb-3">
           <div class="col-12">
             <label for="alamat" class="text-secondary mb-3">Alamat</label>
@@ -116,7 +111,6 @@
 
           </div>
         </div>
-
         <div class="row mb-3">
           <div class="col-12">
             <label for="status" class="text-secondary mb-3">Status</label>
@@ -130,7 +124,6 @@
             @enderror
           </div>
         </div>
-        
         {{-- belum dipake --}}
         {{-- spatie di sini untuk akses user --}}
         {{-- <div class="row mb-3">
@@ -168,7 +161,7 @@
         </script> --}}
         {{-- end belum dipake --}}
 
-        <div class="d-flex gap-2 mt-3">
+        <div class="d-flex gap-2 mt-5">
           <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center ">Submit</button>
           <button type="reset" class="btn px-3 btn-danger">Reset</button>
         </div>

@@ -2,7 +2,7 @@
 @section('content')
 <form action="{{ route('guru.input') }}" method="POST">
   @csrf
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-12 mt-4">
       <h4>Tambah Guru</h4>

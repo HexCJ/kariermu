@@ -49,11 +49,14 @@ class JurusanController extends Controller
             $data['id_jurusan'] = $request->id_jurusan;
             $data['nama_jurusan'] = $request->nama_jurusan;
 
+            if(Jurusan::create($data)){
+                //kembali
+                return redirect()->route('data-kelas')->with('success', 'Data Jurusan berhasil ditambahkan');
+            }else{
+                return redirect()->route('data-kelas')->with('fail', 'Data Jurusan gagal ditambahkan');
+            }
             
-            //create
-            Jurusan::create($data);
             //kembali
-            return redirect()->route('data-kelas');
             // dd($request->all());
     }
 
@@ -103,9 +106,12 @@ class JurusanController extends Controller
     $jurusan = Jurusan::findOrFail($id);
 
     // Hapus data
-    $jurusan->delete();
-
+    if($jurusan->delete()){
+        //kembali
+        return redirect()->route('data-kelas')->with('success', 'Jurusan berhasil dihapus');
+    }else{
+        return redirect()->route('data-kelas')->with('fail', 'Data Jurusan gagal ditambahkan');
+    }
     // Redirect dengan pesan sukses
-    return redirect()->route('data-kelas')->with('success', 'Jurusan berhasil dihapus');
 }
 }

@@ -25,7 +25,6 @@
               </div>
               <div class="card mt-3" style="min-height: 43rem">
                 <div class="card-body table-responsive">
-                  
                   <div class="">
                     <table id="dataSiswa" class="table table-bordered w-100 mt-3">
                       <thead>
@@ -43,8 +42,6 @@
                           <th>Aksi</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        
                         @foreach($data as $d)
                         <tr>
                           <td>{{ $d->nisn }}</td> 
@@ -77,8 +74,7 @@
                             </div>
                           </td>
                         </tr>
-                        @endforeach
-                      </tbody>
+                        @endforeach 
                     </table>
                   </div>
                 </div>

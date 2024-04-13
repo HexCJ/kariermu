@@ -70,9 +70,9 @@ class GuruController extends Controller
         
         //create
         if(Guru::create($data)){
-            return redirect()->back()->with('success', 'Data Guru berhasil ditambahkan');
+            return redirect()->route('guru')->with('success', 'Data Guru berhasil ditambahkan');
         }else{
-            return redirect()->back()->with('fail', 'Data Guru gagal ditambahkan');
+            return redirect()->route('guru')->with('fail', 'Data Guru gagal ditambahkan');
         }
         //kembali
         // dd($request->all());
