@@ -102,12 +102,12 @@
                               <ul class="dropdown-menu">
                                 <li><a href="{{ route('user.edit',['id' => $d->id]) }}" class="dropdown-item" href="#"><i class="bi bi-person-fill-gear me-2 i-icon"></i>Edit</a></li>
                                 <li>
-                                  <a href="#" class="dropdown-item text-danger" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this data?')) { document.getElementById('hapus-siswa-{{ $d->id }}').submit(); }">
-                                    <i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus
-                                  </a>
-                                  <form id="hapus-siswa-{{ $d->id }}" action="{{ route('siswa.hapus', ['id' => $d->id]) }}" method="POST" style="display: none;">
-                                      @csrf
-                                      @method('DELETE')
+                                  <form id="hapus-siswa-{{ $d->id }}" action="{{ route('siswa.hapus', $d->id) }}" method="POST">
+                                    <button type="submit" class="dropdown-item text-danger">
+                                      <i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus
+                                    </button>
+                                    @csrf
+                                    @method('DELETE')
                                   </form>
                                 </li>
                               </ul>

@@ -87,31 +87,35 @@ class JurusanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // //
-        // $data = Jurusan::find($id);
+        $jurusan = Jurusan::findOrFail($id);
+        // dd($mapel);
+        $nama_jurusan = $jurusan->nama_jurusan;
 
-        // $data->id_jurusan = $request->id_jurusan;
-        // $data->nama_jurusan = $request->nama_jurusan;
-        // $data->save();
-    
-        // return redirect()->route('data-kelas');
+        if($jurusan->update([
+            'id_jurusan'     => $request->id_jurusan,
+            'nama_jurusan'   => $request->nama_jurusan
+        ])){
+            return redirect()->route('data-kelas')->with(['success' => 'Data Mata Pelajaran '.$nama_jurusan.' Berhasil DiUpdate!']);
+        } else{
+            return redirect()->route('data-kelas')->with(['fail' => 'Data Mata Pelajaran '.$nama_jurusan.' Gagal DiUpdate!']);
+        }
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-{
-    // Cari data berdasarkan ID
-    $jurusan = Jurusan::findOrFail($id);
+    {
+        // Redirect dengan pesan sukses
+        $jurusan = Jurusan::findOrFail($id);
+        // dd($mapel);
+        $nama_jurusan = $jurusan->nama_jurusan;
 
-    // Hapus data
-    if($jurusan->delete()){
-        //kembali
-        return redirect()->route('data-kelas')->with('success', 'Jurusan berhasil dihapus');
-    }else{
-        return redirect()->route('data-kelas')->with('fail', 'Data Jurusan gagal ditambahkan');
+        if($jurusan->delete()){
+            return redirect()->route('data-kelas')->with(['success' => 'Data Jurusan '.$nama_jurusan.' Berhasil Dihapus!']);
+        }else {
+            return redirect()->route('data-kelas')->with(['fail' => 'Data Jurusan '.$nama_jurusan.' Berhasil Dihapus!']);
+        }
     }
-    // Redirect dengan pesan sukses
-}
 }

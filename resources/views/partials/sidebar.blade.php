@@ -22,6 +22,12 @@
             <a href="{{ route('data-kelas') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-school-flag me-3"></i>Data Jurusan</a>
             <a href="{{ route('data-kelas') }}" class="a-icon d-block d-md-none py-2 px-3 text-center"><i class="fa-solid fa-school-flag"></i></a>
         </li>
+        {{-- data kelas --}}
+        <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Mata Pelajaran") ? 'list-active' : '' }} text-center text-md-start">
+            {{-- paddingnya di a href --}}
+            <a href="{{ route('mapel') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chalkboard me-3"></i>Data Mata Pelajaran</a>
+            <a href="{{ route('mapel') }}" class="a-icon d-block d-md-none py-2 px-3 text-center"><i class="fa-solid fa-chalkboard"></i></a>
+        </li>
         {{-- data guru --}}
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Guru" || $title == "Tambah Data Guru" || $title == "Edit Data Guru") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('guru') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chalkboard-user me-3"></i>Guru</a>
@@ -44,13 +50,6 @@
             <a href="{{ route('datanilai') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chart-column me-3"></i>Data Nilai</a>
             <a href="{{ route('datanilai') }}" class="a-icon d-block d-md-none py-2 px-3"><i class="fa-solid fa-chart-column"></i></a>
         </li>
-        {{-- <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <x-responsive-nav-link :href="route('logout')"
-                    onclick="event.preventDefault();
-                                this.closest('form').submit();">
-                {{ __('Log Out') }}
-        </form> --}}
         {{-- logout --}}
         <li class="list-group list-logout text-medium cursor-pointer text-center rounded text-md-start">
             <form  action="{{ route('logout') }}" method="POST">

@@ -27,8 +27,7 @@ class SiswaController extends Controller
     //         'jurusans' => $jurusans
     //     ]);
     // }
-    public function siswa (Request $request)
-    {
+    public function siswa (Request $request){
         $query = User::query();
 
         // Tampilin data
@@ -232,6 +231,8 @@ class SiswaController extends Controller
         
         // Ambil data siswa berdasarkan ID
         $data = User::find($id);
+        $namasiswa = $data->name;
+
     
         // Mengisi data dengan input dari form
         $data->nisn = $request->nisn;
@@ -251,9 +252,9 @@ class SiswaController extends Controller
     
         // Simpan perubahan data
         if($data->save()){
-            return redirect()->route('siswa')->with('success', 'Data Siswa berhasil diedit');
+            return redirect()->route('siswa')->with('success', 'Data Siswa '.$namasiswa.' berhasil diedit');
         }else{
-            return redirect()->route('siswa')->with('fail', 'Data Siswa gagal diedit');
+            return redirect()->route('siswa')->with('fail', 'Data Siswa gagal '.$namasiswa.' diedit');
         }
 
     }
@@ -265,10 +266,12 @@ class SiswaController extends Controller
     {
         //
         $data = user::findOrFail($id);
+        $namasiswa = $data->name;
+
         if($data->delete()){
-            return redirect()->back()->with('success', 'Data Siswa berhasil dihapus');
+            return redirect()->back()->with('success', 'Data Siswa '.$namasiswa.' berhasil dihapus');
         }else{
-            return redirect()->back()->with('fail', 'Data Siswa gagal dihapus');
+            return redirect()->back()->with('fail', 'Data Siswa gagal '.$namasiswa.' dihapus');
         }
     }
 

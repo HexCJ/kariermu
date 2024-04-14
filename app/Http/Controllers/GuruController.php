@@ -165,6 +165,8 @@ class GuruController extends Controller
         
         // Ambil data siswa berdasarkan ID
         $data = Guru::find($id);
+        $namaguru = $data->name;
+
 
         $data->nip = $request->nip;
         $data->name = $request->nama;
@@ -181,9 +183,9 @@ class GuruController extends Controller
     
         // Simpan perubahan data
         if($data->save()){
-            return redirect()->back()->with('success', 'Data Guru berhasil diedit');
+            return redirect()->back()->with('success', 'Data Guru '.$namaguru.' berhasil diedit');
         }else{
-            return redirect()->back()->with('fail', 'Data Guru gagal diedit');
+            return redirect()->back()->with('fail', 'Data Guru '.$namaguru.' gagal diedit');
         }
     }
 
@@ -193,10 +195,11 @@ class GuruController extends Controller
     public function destroy(string $id)
     {
         $data = Guru::findOrFail($id);
+        $namaguru = $data->name;
         if($data->delete()){
-            return redirect()->back()->with('success', 'Data Guru berhasil dihapus');
+            return redirect()->back()->with('success', 'Data Guru '.$namaguru.' berhasil dihapus');
         }else{
-            return redirect()->back()->with('fail', 'Data Guru gagal dihapus');
+            return redirect()->back()->with('fail', 'Data Guru'.$namaguru.'gagal dihapus');
         }
     }
 }

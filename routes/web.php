@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\MapelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\serverSide;
 use App\Http\Controllers\SiswaController;
@@ -69,6 +70,7 @@ require __DIR__.'/auth.php';
 
 
 // Route::get('siswa',[SiswaController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa'])->name('siswa');
+Route::get('siswa',[SiswaController::class,'siswa'])->name('siswa');
 Route::get('siswa/tambah',[SiswaController::class,'create'])->middleware(['auth', 'verified', 'role:admin|siswa'])->name('tambah_siswa');
 //route input siswa
 Route::post('/siswa/tambah',[SiswaController::class, 'store'])->name('user.input');
@@ -98,7 +100,15 @@ Route::delete('/guru/hapus/{id}',[GuruController::class, 'destroy'])->name('guru
 //route jurusan
 Route::get('data-kelas',[JurusanController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|guru'])->name('data-kelas');
 Route::post('/input',[JurusanController::class, 'store'])->name('data-kelas.input');
+Route::put('/data-kelas/update/{id}',[JurusanController::class, 'update'])->name('data-kelas.update');
 Route::delete('/data-kelas/hapus/{id}', [JurusanController::class, 'destroy'])->name('data-kelas.hapus');
+
+// mapel
+Route::get('mapel',[MapelController::class, 'mapel'])->name('mapel');
+Route::get('mapel/tambah',[MapelController::class, 'create'])->name('tambah-mapel');
+Route::post('mapelInput',[MapelController::class, 'store'])->name('mapel.input');
+Route::put('/mapel/update/{id}',[MapelController::class, 'update'])->name('mapel.update');
+Route::delete('/mapel/hapus/{id}',[MapelController::class, 'destroy'])->name('mapel.hapus');
 
 
 
