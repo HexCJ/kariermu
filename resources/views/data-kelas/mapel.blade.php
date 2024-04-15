@@ -121,11 +121,11 @@
                               <i class="bi bi-person-fill-gear me-2 i-icon"></i>Option
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editDatamapel{{ $d->id_mata_pelajaran }}"><i class="bi bi-person-fill-gear me-2 i-icon"></i>Edit</a></li>
+                              <li><a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editDatamapel{{ $d->id_mata_pelajaran }}"><i class="fa-regular fa-pen-to-square me-2"></i>Edit</a></li>
                                 <form  action="{{ route('mapel.hapus' , $d->id_mata_pelajaran)}}" method="POST">
                                   @csrf
                                   @method('DELETE')
-                                  <button type="submit" class="dropdown-item text-danger"><i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus</button>
+                                  <button type="submit" class="dropdown-item text-danger"><i class="bi bi-trash3 me-2"></i>Hapus</button>
                                 </form>
                               </li>
                             </ul>

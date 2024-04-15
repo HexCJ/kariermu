@@ -17,11 +17,21 @@
             </div>
             <div class="mb-4 col-12">
               <label for="photo" class="text-secondary mb-3">Foto</label>
-              <div class="input-group">
-                <input type="file" class="form-control" id="photo" name="photo">
-                @if($data->image)
-                <img src="{{asset('storage/photo-user/'.$data->image)}}" alt="">
-                @endif
+              <div class="row">
+                <div class="col-3">
+                  <div class="">
+                    @if($data->image)
+                    <img src="{{asset('storage/photo-user/'.$data->image) }}" class="profile-foto w-100" alt="">
+                    @else
+                    <img src="{{asset('img/logo.png') }}" class="profile-foto w-100" alt="">
+                    @endif
+                  </div>
+                </div>
+                <div class="col-9">
+                  <div class="input-group">
+                    <input type="file" class="form-control" id="photo" name="photo">
+                  </div>
+                </div>
               </div>
             </div>
             <div class="mb-4 col-6">

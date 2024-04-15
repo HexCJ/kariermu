@@ -38,11 +38,9 @@
                     <a href="{{ route('guru') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-chalkboard-user me-3"></i>Guru</a>
                 </li>
                 {{-- data siswa --}}
-                @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('penulis'))
                 <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Siswa" || $title == "Tambah Data Siswa" || $title == "Edit Data Siswa") ? 'list-active' : '' }} text-md-start">
                     <a href="{{ route('siswa') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-graduation-cap me-3"></i>Siswa</a>
                 </li>
-                @endif
                 {{-- data karir --}}
                 <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Karir") ? 'list-active' : '' }} text-md-start">
                     <a href="/karir" class="a-icon py-2 px-3"><i class="fa-solid fa-briefcase me-3"></i>Data Karir</a>

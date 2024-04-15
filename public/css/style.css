@@ -17,6 +17,10 @@
     background-color: #3A0CA3;
     color: #fff;
 }
+.button-alert {
+    border: none;
+    background-color: none;
+}
 .button-s{
     font-size: 2rem;
 }
@@ -131,6 +135,18 @@
     right: 0;
     margin-right: 15px;
 }
+.profile-foto{
+    width: 75%;
+    object-fit: cover;
+    border-radius: 12px;
+    aspect-ratio: 1;
+}
+.profile-foto{
+    width: 75%;
+    object-fit: cover;
+    border-radius: 12px;
+    aspect-ratio: 1;
+}
 @media (max-width: 576px) {
     h4{
       font-size: 20px !important;  
@@ -165,10 +181,15 @@
         font-size: 10px;
         margin: 0;
     }
-
     .detail-data {
         font-size: 15px;
         margin: 0;
+    }
+    .profile-foto{
+        width: 60%;
+        object-fit: cover;
+        border-radius: 12px;
+        aspect-ratio: 1;
     }
 }
 

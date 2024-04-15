@@ -86,7 +86,8 @@
                         @foreach($data as $d)
                         <tr>
                           <td>{{ $d->nisn }}</td> 
-                          <td><img src="{{asset('storage/photo-user/'.$d->image)}}" alt=""></td> 
+                          <td>
+                            <img src="{{asset('storage/photo-user/'.$d->image)}}" alt="" style="width: 100px"></td> 
                           <td>{{ $d->name }}</td> 
                           <td>{{ $d->jenis_kelamin }}</td> 
                           <td>{{ $d->jurusan }}</td> 

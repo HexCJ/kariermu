@@ -69,7 +69,6 @@ class ProfileController extends Controller
     {
         // Mendapatkan ID pengguna yang saat ini masuk
         $userId = Auth::id();
-
         // Mengambil data pengguna berdasarkan ID
         $user = User::find($userId);
 

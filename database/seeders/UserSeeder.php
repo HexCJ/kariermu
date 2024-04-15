@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $admin = User::updateOrCreate([
-            'nisn'=>'5001',
+            'nisn'=>'1',
             'name'=>'admin',
             'email'=>'admin123@gmail.com',
             'alamat'=>'rumah admin',
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'status'=>'Lulus',
             'kelas'=>'Lulus',
             'jurusan'=>'RPL',
-            'password'=>bcrypt('admin1')
+            'password'=>bcrypt('1')
         ]);
         //buat role sesuai RolePermission
         $admin->assignRole('admin');

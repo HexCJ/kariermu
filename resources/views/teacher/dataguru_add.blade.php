@@ -18,19 +18,17 @@
             @enderror
           </div>
         </div>
-        <div class="row mb-3 mt-5">
-          <div class="col-12">
-            <label for="photo" class="text-secondary mb-3">Masukan photo anda</label>
-            <div class="input-group mb-2">
-              <input type="file" value="{{old('photo')}}" class="form-control" id="photo" name="photo">
-            </div>
-            @error('photo')
-              <small class="text-danger">{{ $message }}</small>
-            @enderror
+        <div class="col-12">
+          <label for="photo" class="text-secondary mb-3">Masukan photo anda</label>
+          <div class="input-group mb-2">
+            <input type="file" value="{{old('photo')}}" class="form-control" id="photo" name="photo">
           </div>
+          @error('photo')
+            <small class="text-danger">{{ $message }}</small>
+          @enderror
         </div>
-        <div class="row mb-3">
-          <div class="col-12 col-md-6 mb-3">
+        <div class="row mt-3">
+          <div class="col-12 col-md-6">
             <label for="nama" class="text-secondary mb-3">Nama Lengkap</label>
             <div class="input-group mb-2">
               <input type="text" value="{{old('nama')}}" class="form-control" id="nama" name="nama">
@@ -39,10 +37,10 @@
               <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
-          <div class="col-12 col-md-6 mb-3">
+          <div class="col-12 col-md-6">
             <label for="jkelamin" class="text-secondary mb-3">Jenis Kelamin</label>
             <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="jkelamin" name="jkelamin"  value="{{old('jkelamin')}}">
-              <option selected>Open this select menu</option>
+              <option selected>Pilih Jenis Kelamin</option>
               <option value="Laki-laki">Laki-laki</option>
               <option value="Perempuan">Perempuan</option>
             </select>
