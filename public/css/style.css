@@ -15,8 +15,10 @@
 .button {
     border: none;
     background-color: #3A0CA3;
-    border: none;
     color: #fff;
+}
+.button-s{
+    font-size: 2rem;
 }
 
 .button:hover {
@@ -143,18 +145,22 @@
       font-size: 15px !important;  
     }
     a{
-      font-size: 10px !important;  
+        font-size: 10px !important;  
     }
     .icon-round {
         width: 50px;
         height: 50px;
     }
-
     .icon {
         font-size: 1.5rem;
         color: white;
     }
-
+    .button-s{
+        font-size: 1.3rem !important;  
+    }
+    .button-logout{
+        font-size: 10px !important;  
+      }
     .title-data {
         font-size: 10px;
         margin: 0;
