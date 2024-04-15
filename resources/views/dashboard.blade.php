@@ -55,7 +55,7 @@
       </div>
       <div class="row mt-5 px-0 px-lg-3 px-xl-1">
         {{-- chart grafik data karir --}}
-         <div class="col-12 col-sm-12 col-md-9 card p-3">
+         <div class="col-12 col-md-6 card p-3">
            <h4 class="mb-5 mt-2">Presentase Data Karir</h4>
            <div>
              <div>
