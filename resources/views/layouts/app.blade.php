@@ -33,10 +33,10 @@
     <div class="container-fluid mb-5">
         <div class="row">
             @include('partials.sidebar')
-            <div class="col-2">
-
+            @include('partials.navbar')
+            <div class="col-2 d-none d-md-block">
             </div>
-            <div class="col-10 mt-3">
+            <div class="col-12 col-md-10 mt-3">
                 @yield('content')
             </div>
         </div>
