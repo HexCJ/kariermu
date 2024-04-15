@@ -23,6 +23,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'nisn',
+        'image',
         'name',
         'jenis_kelamin',
         'jurusan',
@@ -53,4 +54,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($user) {
+            $user->assignRole('siswa');
+        });
+    }
 }

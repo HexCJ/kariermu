@@ -7,6 +7,7 @@ use App\Models\Jurusan;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 use Route;
@@ -147,6 +148,7 @@ class SiswaController extends Controller
         $validator = Validator::make($request->all(),[
             'nisn'=>'required',
             'nama'=>'required',
+            'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
             // 'email'=>'required|email',
             // 'jkelamin'=>'required|in:Laki-laki, Perempuan',   
             // 'jurusan'=>'required|in:RPL, DGM, DPIB, TITL',   
@@ -160,16 +162,25 @@ class SiswaController extends Controller
         //jika valid gagal
         if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
         //terima dan kirim
-        $data['nisn'] = $request->nisn;
-        $data['name'] = $request->nama;
+        $photo    = $request->file('photo');
+        $filename = date('Y-m-d').$photo->getClientOriginalName();
+        $path     = 'photo-user/'.$filename;
+
+        Storage::disk('public')->put($path,file_get_contents($photo));
+        
+
+        $data['nisn']          = $request->nisn;
+        $data['name']          = $request->nama;
+        $data['image']         = $filename;
         $data['jenis_kelamin'] = $request->jkelamin;
-        $data['jurusan'] = $request->jurusan;
-        $data['kelas'] = $request->kelas;
-        $data['email'] = $request->email;
-        $data['password'] = Hash::make($request->password);
-        $data['alamat'] = $request->alamat;
-        $data['tahun_lulus'] = $request->lulus;
-        $data['status'] = $request->status;
+        $data['jurusan']       = $request->jurusan;
+        $data['kelas']         = $request->kelas;
+        $data['email']         = $request->email;
+        $data['password']      = Hash::make($request->password);
+        $data['alamat']        = $request->alamat;
+        $data['tahun_lulus']   = $request->lulus;
+        $data['status']        = $request->status;
+
         
         //create
         if(User::create($data)){
@@ -179,6 +190,7 @@ class SiswaController extends Controller
             return redirect()->route('siswa')->with('fail', 'Data Siswa gagal ditambahkan');
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -215,6 +227,7 @@ class SiswaController extends Controller
         $validator = Validator::make($request->all(),[
             // 'nisn'=>'required',
             // 'nama'=>'required',
+            'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
             // 'email'=>'required|email',
             // 'jkelamin'=>'required|in:Laki-laki, Perempuan',   
             // 'jurusan'=>'required|in:RPL, DGM, DPIB, TITL',   
@@ -248,6 +261,17 @@ class SiswaController extends Controller
         // Periksa apakah password baru diisi
         if($request->password){
             $data->password = Hash::make($request->password);
+        }
+
+        $photo    = $request->file('photo');
+        if($photo){
+            $filename = date('Y-m-d').$photo->getClientOriginalName();
+            $path     = 'photo-user/'.$filename;
+    
+            Storage::disk('public')->put($path,file_get_contents($photo));
+            $data['image']         = $filename;
+
+            
         }
     
         // Simpan perubahan data

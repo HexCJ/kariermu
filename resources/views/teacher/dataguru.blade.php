@@ -59,6 +59,7 @@
                       <tr>
                         <th>NIP</th>
                         <th>Nama</th>
+                        <th>Foto</th>
                         <th>Alamat</th>
                         <th>Email</th>
                         <th>Password</th>
@@ -71,6 +72,7 @@
                       @foreach($data as $d)
                       <tr>
                         <td>{{ $d->nip }}</td> 
+                        <td><img src="{{asset('storage/photo-guru/'.$d->image)}}" alt=""></td> 
                         <td>{{ $d->name }}</td> 
                         <td>{{ $d->alamat }}</td> 
                         <td>{{ $d->email }}</td> 

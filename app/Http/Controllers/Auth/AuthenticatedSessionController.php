@@ -33,8 +33,8 @@ class AuthenticatedSessionController extends Controller
         if(Auth::user()->hasRole('admin')){
             return redirect()->to('admin');
         }
-        if(Auth::user()->hasRole('penulis')){
-            return redirect()->to('penulis');
+        if(Auth::user()->hasRole('guru')){
+            return redirect()->to('guru');
         }
         if(Auth::user()->hasRole('siswa')){
             return redirect()->to('siswa');

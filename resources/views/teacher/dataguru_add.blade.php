@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form action="{{ route('guru.input') }}" method="POST">
+<form action="{{ route('guru.input') }}" method="POST" enctype="multipart/form-data">
   @csrf
 <div class="container">
   <div class="row">
@@ -14,6 +14,17 @@
               <input type="text" class="form-control" id="nip" name="nip">
             </div>
             @error('nip')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
+          </div>
+        </div>
+        <div class="row mb-3 mt-5">
+          <div class="col-12">
+            <label for="photo" class="text-secondary mb-3">Masukan photo anda</label>
+            <div class="input-group mb-2">
+              <input type="file" value="{{old('photo')}}" class="form-control" id="photo" name="photo">
+            </div>
+            @error('photo')
               <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>

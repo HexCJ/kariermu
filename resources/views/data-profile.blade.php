@@ -21,7 +21,7 @@
                       {{-- Email --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="h5"><i class="fa-solid fa-envelope me-2"></i>Email</label>
-                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $user->alamat }}</p>
+                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $user->email }}</p>
                       </div>
                       {{-- Alamat --}}
                       <div class="form-group mb-4">

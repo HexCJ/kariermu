@@ -29,7 +29,7 @@
             <a href="{{ route('guru') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chalkboard-user me-3"></i>Guru</a>
         </li>
         {{-- data siswa --}}
-        @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('penulis'))
+        @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('siswa'))
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Siswa" || $title == "Tambah Data Siswa" || $title == "Edit Data Siswa") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('siswa') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-graduation-cap me-3"></i>Siswa</a>
         </li>

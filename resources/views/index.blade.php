@@ -30,11 +30,11 @@
                         <h4 class="fw-bold">Login</h4>
                         <p class="fw-medium text-secondary">Enter Your Account Detail</p>
                         <div class="d-flex flex-column gap-3 justify-content-start">
-                            <x-input-label for="email" :value="__('Email')"/>
+                            <x-input-label for="nisn" :value="__('nisn or nip')"/>
                             <div class="fom-control">
-                                <input type="email" name="email" id="email" class="form-control" placeholder="Masukan NISN anda" value="{{old('email')}}" required autofocus autocomplete="username">
-                                <x-input-error :messages="$errors->get('email')" class="text-danger list-group-item list-none"/>
-                            </div>
+                                <input type="text" name="nisn" id="nisn" class="form-control" placeholder="Masukan NISN anda" value="{{old('nisn or nip')}}" required autofocus autocomplete="username">
+                                <x-input-error :messages="$errors->get('nisn')" class="text-danger list-group-item list-none"/>
+                                </div>
                             <x-input-label for="password" :value="__('Password')"/>    
                             <div class="fom-control">
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Masukan Password Anda" required autocomplete="current-password">

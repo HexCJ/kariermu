@@ -29,8 +29,8 @@ class RolePermissionSeeder extends Seeder
 
         //role
         Role::updateOrCreate(['name' => 'admin']);
-        Role::updateOrCreate(['name' => 'penulis']);
         Role::updateOrCreate(['name' => 'siswa']);
+        Role::updateOrCreate(['name' => 'guru']);
 
         //memberi fitur untuk role admin
         $roleAdmin = Role::findByName('admin');
@@ -38,13 +38,19 @@ class RolePermissionSeeder extends Seeder
         $roleAdmin->givePermissionTo('edit-user');
         $roleAdmin->givePermissionTo('hapus-user');
         $roleAdmin->givePermissionTo('lihat-user');
+        $roleAdmin->givePermissionTo('tambah-tulisan');
+        $roleAdmin->givePermissionTo('edit-tulisan');
+        $roleAdmin->givePermissionTo('hapus-tulisan');
+        $roleAdmin->givePermissionTo('lihat-tulisan');
+        
 
-        //memberi fitur untuk role penulis
-        $rolePenulis = Role::findByName('penulis');
-        $rolePenulis->givePermissionTo('tambah-tulisan');
-        $rolePenulis->givePermissionTo('edit-tulisan');
-        $rolePenulis->givePermissionTo('hapus-tulisan');
-        $rolePenulis->givePermissionTo('lihat-tulisan');
+        //memberi fitur untuk role Guru
+        $roleGuru = Role::findByName('guru');
+        $roleGuru->givePermissionTo('tambah-tulisan');
+        $roleGuru->givePermissionTo('edit-tulisan');
+        $roleGuru->givePermissionTo('hapus-tulisan');
+        $roleGuru->givePermissionTo('lihat-tulisan');
+        
 
         $roleSiswa = Role::findByName('siswa');
         $roleSiswa->givePermissionTo('lihat-tulisan');

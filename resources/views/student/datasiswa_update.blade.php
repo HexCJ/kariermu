@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form action="{{ route('user.update',['id' => $data->id]) }}" method="POST">
+<form action="{{ route('user.update',['id' => $data->id]) }}" method="POST" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 <div class="container">
@@ -13,6 +13,15 @@
               <label for="nisn" class="text-secondary mb-3">NISN</label>
               <div class="input-group">
                 <input type="text" class="form-control" id="nisn" name="nisn" value="{{ $data->nisn }}">
+              </div>
+            </div>
+            <div class="mb-4 col-12">
+              <label for="photo" class="text-secondary mb-3">Foto</label>
+              <div class="input-group">
+                <input type="file" class="form-control" id="photo" name="photo">
+                @if($data->image)
+                <img src="{{asset('storage/photo-user/'.$data->image)}}" alt="">
+                @endif
               </div>
             </div>
             <div class="mb-4 col-6">

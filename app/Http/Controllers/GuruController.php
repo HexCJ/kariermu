@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Guru;
+use Illuminate\Support\Facades\DB;
 use App\Models\MataPelajaran;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-
-
-
+use Illuminate\Support\Facades\Storage;
 
 class GuruController extends Controller
 {
@@ -86,6 +85,7 @@ class GuruController extends Controller
         $validator = Validator::make($request->all(),[
             'nip'=>'required',
             'nama'=>'required',
+            'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
             'email'=>'required|email',
             // 'jkelamin'=>'required|in:Laki-laki, Perempuan',   
             'password'=>'required',   
@@ -97,13 +97,31 @@ class GuruController extends Controller
         // jika valid gagal
         if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
         // terima dan kirim
+        
+        $photo    = $request->file('photo');
+        $filename = date('Y-m-d').$photo->getClientOriginalName();
+        $path     = 'photo-guru/'.$filename;
+
+        Storage::disk('public')->put($path,file_get_contents($photo));
+
         $data['nip'] = $request->nip;
         $data['name'] = $request->nama;
+        $data['image']         = $filename;
         $data['jenis_kelamin'] = $request->jkelamin;
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
         $data['alamat'] = $request->alamat;
         $data['mata_pelajaran'] = $request->matapelajaran;
+
+        // $newGuru = Guru::request($data);
+        // $newGuru->assignRole('admin');
+    
+        // // Menugaskan peran 'guru' secara langsung
+        // DB::table('model_has_roles')->insert([
+        //     'model_id' => $newGuru->id,
+        //     'role_id' => 4, // ID peran 'guru' dalam tabel peran (role)
+        // ]);
+    
         
         //create
         if(Guru::create($data)){
@@ -151,6 +169,7 @@ class GuruController extends Controller
             //validator
             $validator = Validator::make($request->all(),[
             // 'nip'=>'required',
+            'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
             // 'nama'=>'required',
             // 'email'=>'required|email',
             // // 'jkelamin'=>'required|in:Laki-laki, Perempuan',   
@@ -179,6 +198,17 @@ class GuruController extends Controller
         // Periksa apakah password baru diisi
         if($request->password){
             $data->password = Hash::make($request->password);
+        }
+
+        $photo    = $request->file('photo');
+        if($photo){
+            $filename = date('Y-m-d').$photo->getClientOriginalName();
+            $path     = 'photo-guru/'.$filename;
+    
+            Storage::disk('public')->put($path,file_get_contents($photo));
+            $data['image']         = $filename;
+
+            
         }
     
         // Simpan perubahan data

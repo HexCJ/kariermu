@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form action="{{ route('guru.update',['id' => $data->id]) }}" method="POST">
+<form action="{{ route('guru.update',['id' => $data->id]) }}" method="POST" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 <div class="container">
@@ -17,6 +17,15 @@
             @error('nip')
               <small class="text-danger">{{ $message }}</small>
             @enderror
+          </div>
+        </div>
+        <div class="mb-4 col-12">
+          <label for="photo" class="text-secondary mb-3">Foto</label>
+          <div class="input-group">
+            <input type="file" class="form-control" id="photo" name="photo">
+            @if($data->image)
+            <img src="{{asset('storage/photo-guru/'.$data->image)}}" alt="">
+            @endif
           </div>
         </div>
         <div class="row mb-3">

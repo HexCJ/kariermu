@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('mata_pelajaran');
             $table->foreign('mata_pelajaran')->references('id_mata_pelajaran')->on('mata_pelajaran')->onDelete('cascade');
             $table->integer('nilai'); 
+            $table->enum('status', ['Pending', 'Tidak Terverifikasi', 'Terverifikasi']);
+            $table->string('pesan')->nullable();
+
+
 
             $table->timestamps();
         });
