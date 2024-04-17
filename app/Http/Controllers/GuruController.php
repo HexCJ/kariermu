@@ -99,33 +99,47 @@ class GuruController extends Controller
         // terima dan kirim
         
         $photo    = $request->file('photo');
-        $filename = date('Y-m-d').$photo->getClientOriginalName();
-        $path     = 'photo-guru/'.$filename;
-
-        Storage::disk('public')->put($path,file_get_contents($photo));
+        if($photo){
+            $filename = date('Y-m-d').$photo->getClientOriginalName();
+            $path     = 'photo-guru/'.$filename;
+    
+            Storage::disk('public')->put($path,file_get_contents($photo));
+        }
 
         $data['nip'] = $request->nip;
         $data['name'] = $request->nama;
-        $data['image']         = $filename;
+        $photo    = $request->file('photo');
+        if($photo){
+            $filename = date('Y-m-d').$photo->getClientOriginalName();
+            $path     = 'photo-guru/'.$filename;
+    
+            Storage::disk('public')->put($path,file_get_contents($photo));
+            $data['image']         = $filename;
+
+            
+        }        
         $data['jenis_kelamin'] = $request->jkelamin;
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
         $data['alamat'] = $request->alamat;
         $data['mata_pelajaran'] = $request->matapelajaran;
 
-        // $newGuru = Guru::request($data);
-        // $newGuru->assignRole('admin');
-    
-        // // Menugaskan peran 'guru' secara langsung
-        // DB::table('model_has_roles')->insert([
-        //     'model_id' => $newGuru->id,
-        //     'role_id' => 4, // ID peran 'guru' dalam tabel peran (role)
-        // ]);
+        $newGuru = Guru::request($data);
+        $newGuru->assignRole('admin');
+
+
     
         
         //create
         if(Guru::create($data)){
             return redirect()->route('guru')->with('success', 'Data Guru berhasil ditambahkan');
+            // $newGuru = Guru::request($data);
+            // $newGuru->assignRole('admin');
+       
+            // DB::table('model_has_roles')->insert([
+            //     'model_id' => $newGuru->id,
+            //     'role_id' => 4,
+            // ]);
         }else{
             return redirect()->route('guru')->with('fail', 'Data Guru gagal ditambahkan');
         }

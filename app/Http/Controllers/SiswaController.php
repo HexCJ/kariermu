@@ -163,15 +163,28 @@ class SiswaController extends Controller
         if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
         //terima dan kirim
         $photo    = $request->file('photo');
-        $filename = date('Y-m-d').$photo->getClientOriginalName();
-        $path     = 'photo-user/'.$filename;
+        if($photo){
 
-        Storage::disk('public')->put($path,file_get_contents($photo));
+            $filename = date('Y-m-d').$photo->getClientOriginalName();
+            $path     = 'photo-user/'.$filename;
+            
+            Storage::disk('public')->put($path,file_get_contents($photo));
+        }
         
 
         $data['nisn']          = $request->nisn;
+        $photo                 = $request->file('photo');
+
+        if($photo){
+            $filename          = date('Y-m-d').$photo->getClientOriginalName();
+            $path              = 'photo-user/'.$filename;
+    
+            Storage::disk('public')->put($path,file_get_contents($photo));
+            $data['image']     = $filename;
+
+            
+        }
         $data['name']          = $request->nama;
-        $data['image']         = $filename;
         $data['jenis_kelamin'] = $request->jkelamin;
         $data['jurusan']       = $request->jurusan;
         $data['kelas']         = $request->kelas;
