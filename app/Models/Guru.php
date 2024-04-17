@@ -4,10 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
-class Guru extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Notifications\Notifiable;
+
+class Guru extends Authenticatable implements AuthenticatableContract
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens, HasRoles, Notifiable;
 
     protected $table = 'guru';
 
@@ -27,3 +33,4 @@ class Guru extends Model
         return $this->belongsTo(MataPelajaran::class, 'mata_pelajaran', 'id_mata_pelajaran');
     }
 }
+

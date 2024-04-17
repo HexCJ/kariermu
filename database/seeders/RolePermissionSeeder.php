@@ -30,7 +30,7 @@ class RolePermissionSeeder extends Seeder
         //role
         Role::updateOrCreate(['name' => 'admin']);
         Role::updateOrCreate(['name' => 'siswa']);
-        Role::updateOrCreate(['name' => 'guru']);
+        Role::updateOrCreate(['name' => 'guru', 'guard_name' => 'guru']);
 
         //memberi fitur untuk role admin
         $roleAdmin = Role::findByName('admin');

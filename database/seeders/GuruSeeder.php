@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Guru;
+use Spatie\Permission\Models\Role;
 
 class GuruSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class GuruSeeder extends Seeder
      */
     public function run()
     {
-        Guru::updateOrCreate([
+        $guru = Guru::updateOrCreate([
             'nip' => '11123',
             'name' => 'Jonathan',
             'email' => 'Jonathan@example.com',
@@ -24,7 +25,7 @@ class GuruSeeder extends Seeder
             'mata_pelajaran' => 'BING', 
         ]);
 
-        Guru::updateOrCreate([
+        $guru = Guru::updateOrCreate([
             'nip' => '22234',
             'name' => 'cahyo',
             'email' => 'cahyo@example.com',
@@ -33,5 +34,11 @@ class GuruSeeder extends Seeder
             'jenis_kelamin' => 'Laki-laki',
             'mata_pelajaran' => 'MTK', 
         ]);
+
+        // Pastikan peran 'guru' sudah ada di basis data atau buat jika belum ada
+        $role = Role::firstOrCreate(['name' => 'guru', 'guard_name' => 'guru']);
+
+        // Memberikan peran 'guru' kepada guru yang telah dibuat dengan menggunakan guard 'guru'
+        $guru->assignRole($role);
     }
 }

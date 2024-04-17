@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+//test
+use Spatie\Permission\Models\Role;
+//
 use Illuminate\Http\Request;
 use App\Models\Guru;
 use Illuminate\Support\Facades\DB;
@@ -124,22 +127,34 @@ class GuruController extends Controller
         $data['alamat'] = $request->alamat;
         $data['mata_pelajaran'] = $request->matapelajaran;
 
-        $newGuru = Guru::request($data);
-        $newGuru->assignRole('admin');
+        // $newGuru = Guru::request($data);
+        // $newGuru->assignRole('admin');
 
+        // $guru = Guru::updateOrCreate([
+        //     'nip'=>'request->nip',
+        // ]);
 
     
         
         //create
-        if(Guru::create($data)){
+        if($guru = Guru::create($data)){
+        // Pastikan peran 'guru' sudah ada di basis data atau buat jika belum ada
+        $role = Role::firstOrCreate(['name' => 'guru', 'guard_name' => 'guru']);
+        // Memberikan peran 'guru' kepada guru yang telah dibuat dengan menggunakan guard 'guru'
+        $guru->assignRole($role);
+        
+            // $guru->assignRole('admin');
+            // $guru->syncRoles(['admin']);
             return redirect()->route('guru')->with('success', 'Data Guru berhasil ditambahkan');
+            
             // $newGuru = Guru::request($data);
-            // $newGuru->assignRole('admin');
        
             // DB::table('model_has_roles')->insert([
             //     'model_id' => $newGuru->id,
             //     'role_id' => 4,
             // ]);
+            // $guru = Guru::create($data);
+
         }else{
             return redirect()->route('guru')->with('fail', 'Data Guru gagal ditambahkan');
         }
