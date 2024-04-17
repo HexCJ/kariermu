@@ -114,7 +114,7 @@
                         </div>
                         <td>{{ $d->id_jurusan }}</td> 
                         <td>{{ $d->nama_jurusan }}</td> 
-                        <td class="d-flex justify-content-end align-items-center">
+                        <td class="d-flex justify-content-start align-items-center px-3">
                           <div class="dropdown py-3">
                             <a class="button py-2 px-3 rounded text-decoration-none text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                               <i class="bi bi-person-fill-gear me-2 i-icon"></i>Option

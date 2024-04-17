@@ -33,7 +33,7 @@
                   </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-2 mb-2 d-flex justify-content-end py-3 text-center">
-                  <button type="submit" class="btn btn-primary w-100 w-sm-50"><i class="fa-solid fa-sort me-2"></i>Sortir Data Siswa</button>
+                  <button type="submit" class="btn btn-primary w-100 w-sm-50"><i class="fa-solid fa-sort me-2"></i>Sortir Data Guru</button>
                 </div>
                 {{-- input manual --}}
                 {{-- <div class="col d-none">
@@ -62,7 +62,7 @@
                         <th>Foto</th>
                         <th>Alamat</th>
                         <th>Email</th>
-                        <th>Password</th>
+                        {{-- <th>Password</th> --}}
                         <th>Jenis Kelamin</th>
                         <th>Mata Pelajaran</th>
                         <th>Aksi</th>
@@ -76,7 +76,7 @@
                         <td><img src="{{asset('storage/photo-guru/'.$d->image)}}" alt="" style="width:100px"></td> 
                         <td>{{ $d->alamat }}</td> 
                         <td>{{ $d->email }}</td> 
-                        <td>{{ $d->password }}</td> 
+                        {{-- <td>{{ $d->password }}</td>  --}}
                         <td>{{ $d->jenis_kelamin }}</td>
                         <td>{{ $d->mata_pelajaran }}</td>
                         <td class="d-flex justify-content-center align-items-center">

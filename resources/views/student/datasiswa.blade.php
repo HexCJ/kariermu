@@ -76,7 +76,7 @@
                           <th>Jurusan</th>
                           <th>Kelas</th>
                           <th>Email</th>
-                          <th>Password</th>
+                          {{-- <th>Password</th> --}}
                           <th>Alamat</th>
                           <th>Tahun Lulus</th>
                           <th>Status</th>
@@ -93,7 +93,7 @@
                           <td>{{ $d->jurusan }}</td> 
                           <td>{{ $d->kelas }}</td> 
                           <td>{{ $d->email }}</td> 
-                          <td>{{ $d->password }}</td> 
+                          {{-- <td>{{ $d->password }}</td>  --}}
                           <td>{{ $d->alamat }}</td> 
                           <td>{{ $d->tahun_lulus }}</td> 
                           <td>{{ $d->status }}</td> 
