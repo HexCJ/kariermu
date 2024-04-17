@@ -121,12 +121,35 @@
                               <i class="bi bi-person-fill-gear me-2 i-icon"></i>Option
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editDatamapel{{ $d->id_mata_pelajaran }}"><i class="fa-regular fa-pen-to-square me-2"></i>Edit</a></li>
-                                <form  action="{{ route('mapel.hapus' , $d->id_mata_pelajaran)}}" method="POST">
+                              <li>
+                                <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editDatamapel{{ $d->id_mata_pelajaran }}"><i class="fa-regular fa-pen-to-square me-2"></i>Edit</a></li>
+                                <form id="formHapusMapel{{ $d->id_mata_pelajaran }}" action="{{ route('mapel.hapus', $d->id_mata_pelajaran)}}" method="POST">
                                   @csrf
                                   @method('DELETE')
-                                  <button type="submit" class="dropdown-item text-danger"><i class="bi bi-trash3 me-2"></i>Hapus</button>
+                                  <button type="button" class="dropdown-item text-danger" id="btnHapusMapel{{ $d->id_mata_pelajaran }}">
+                                      <i class="bi bi-trash3 me-2"></i>Hapus
+                                  </button>
                                 </form>
+                                <script>
+                                  document.addEventListener('DOMContentLoaded', function() {
+                                      document.getElementById('btnHapusMapel{{ $d->id_mata_pelajaran }}').addEventListener('click', function() {
+                                          Swal.fire({
+                                              title: 'Apakah Anda yakin menghapus {{ $d->nama_mata_pelajaran}} ?',
+                                              text: "Data yang dihapus tidak dapat dikembalikan!",
+                                              icon: 'warning',
+                                              showCancelButton: true,
+                                              confirmButtonColor: '#d33',
+                                              cancelButtonColor: '#3085d6',
+                                              confirmButtonText: 'Ya, hapus!',
+                                              cancelButtonText: 'Batal'
+                                          }).then((result) => {
+                                              if (result.isConfirmed) {
+                                                  document.getElementById('formHapusMapel{{ $d->id_mata_pelajaran }}').submit();
+                                              }
+                                          });
+                                      });
+                                  });
+                                </script>
                               </li>
                             </ul>
                           </div>

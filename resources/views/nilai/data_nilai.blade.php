@@ -7,14 +7,14 @@
         <h4 class="h4">Data Nilai Siswa</h4>
       </div>
       <div class="container-fluid overflow-hidden">
-        <div class="row d-flex justify-content-between">
-          <div class="grafik_nilai col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 mb-5 mb-xl-0 ms-0 ms-lg-0 ms-xl-0 mt-5 card">
+        <div class="row d-flex">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 mb-5 mb-xl-0 ms-0 ms-lg-0 ms-xl-0 mt-5">
+            <div class="p-3 card">
             <h4 class="mt-3 ms-3 mb-3">Grafik Rata Rata Per Semester</h4>
-            <div class="p-3">
               <canvas id="datanilai" class="h-100 w-100"></canvas>
             </div>
           </div>
-          <div class="nilai col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 ms-0 ms-lg-5 ms-sm-0 mt-0 mt-md-5 card">
+          <div class="nilai col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 ms-sm-0 mt-0 mt-md-5 card">
             <h4 class="mt-3 ms-3 mb-3">Nilai Rata-Rata</h4>
             <div class="container">
               <div class="row p-3">

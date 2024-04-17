@@ -6,7 +6,7 @@
         <div class="d-flex mb-3">
           <h4>Data Diri</h4>
         </div>
-      <!-- Modal Add -->
+      <!-- Modal Update -->
       <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
           <div class="modal-content">
@@ -14,7 +14,7 @@
               <h1 class="modal-title fs-5" id="exampleModalLabel">Update Data Profile</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            {{-- add section --}}
+            {{-- Update section --}}
             <div class="modal-body">
               <form action="{{ route('data-kelas.input') }}" method="POST">
                 @csrf
@@ -36,49 +36,49 @@
                       {{-- NISN --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="text-secondary"><i class="fa-solid fa-id-card me-2"></i>NISN</label>
-                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $user->nisn }}</p>
+                        <input type="text" value="{{ $user->nisn }}" class="text-secondary mb-3 mt-2 p-2 card"></input>
                       </div>
                       {{-- Nama --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="text-secondary"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $user->name }}</p>
+                        <input type="text" value="{{ $user->name }}" class="text-secondary mb-3 mt-2 p-2 card"></input>
                       </div>
                       {{-- Email --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="text-secondary"><i class="fa-solid fa-envelope me-2"></i>Email</label>
-                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $user->email }}</p>
+                        <input type="text" value="{{ $user->email }}" class="text-secondary mb-3 mt-2 p-2 card"></input>
                       </div>
                       {{-- Alamat --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="text-secondary"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $user->alamat }}</p>
+                        <input type="text" value="{{ $user->alamat }}" class="text-secondary mb-3 mt-2 p-2 card"></input>
                       </div>
                       {{-- jk --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="text-secondary"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
-                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $user->jenis_kelamin }}</p>
+                        <input type="text" value="{{ $user->jenis_kelamin }}" class="text-secondary mb-3 mt-2 p-2 card"></input>
                       </div>
                     </div>
                     <div class="col-12 col-md-3">
                       {{-- Kelas --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="text-secondary"><i class="fa-solid fa-school me-2"></i>Kelas</label>
-                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $user->kelas }}</p>
+                        <input type="text" value="{{ $user->kelas }}" class="text-secondary mb-3 mt-2 p-2 card"></input>
                       </div>
                       {{-- Jurusan --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="text-secondary"><i class="fa-solid fa-user-tie me-2"></i>Jurusan</label>
-                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $user->jurusan }}</p>
+                        <input type="text" value="{{ $user->jurusan }}" class="text-secondary mb-3 mt-2 p-2 card"></input>
                       </div>
                       {{-- Tahun lulus --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="text-secondary"><i class="fa-solid fa-calendar-days me-2"></i>Tahun Lulus</label>
-                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $user->tahun_lulus }}</p>
+                        <input type="text" value="{{ $user->tahun_lulus }}" class="text-secondary mb-3 mt-2 p-2 card"></input>
                       </div>
                       {{-- Tahun lulus --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="text-secondary"><i class="fa-solid fa-graduation-cap me-2"></i>Status</label>
-                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $user->status }}</p>
+                        <input type="text" value="{{ $user->status }}" class="text-secondary mb-3 mt-2 p-2 card"></input>
                       </div>
                     </div>
                   </div>

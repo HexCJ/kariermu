@@ -106,12 +106,32 @@
                                 <li><a href="{{ route('user.edit',['id' => $d->id]) }}" class="dropdown-item" href="#"><i class="bi bi-person-fill-gear me-2 i-icon"></i>Edit</a></li>
                                 <li>
                                   <form id="hapus-siswa-{{ $d->id }}" action="{{ route('siswa.hapus', $d->id) }}" method="POST">
-                                    <button type="submit" class="dropdown-item text-danger">
+                                    <button type="button" id="btnHapusSiswa{{ $d->id }}" class="dropdown-item text-danger">
                                       <i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus
                                     </button>
                                     @csrf
                                     @method('DELETE')
                                   </form>
+                                  <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        document.getElementById('btnHapusSiswa{{ $d->id }}').addEventListener('click', function() {
+                                            Swal.fire({
+                                                title: 'Apakah Anda yakin menghapus {{ $d->name}} ?',
+                                                text: "Data yang dihapus tidak dapat dikembalikan!",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#d33',
+                                                cancelButtonColor: '#3085d6',
+                                                confirmButtonText: 'Ya, hapus!',
+                                                cancelButtonText: 'Batal'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    document.getElementById('hapus-siswa-{{ $d->id }}').submit();
+                                                }
+                                            });
+                                        });
+                                    });
+                                  </script>
                                 </li>
                               </ul>
                             </div>

@@ -6,7 +6,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 mt-4">
-      <h4>Tambah Guru</h4>
+      <h4>Edit Guru</h4>
       <form action="">
         <div class="row mb-3 mt-5">
           <div class="col-12">
@@ -21,11 +21,21 @@
         </div>
         <div class="mb-4 col-12">
           <label for="photo" class="text-secondary mb-3">Foto</label>
-          <div class="input-group">
-            <input type="file" class="form-control" id="photo" name="photo">
-            @if($data->image)
-            <img src="{{asset('storage/photo-guru/'.$data->image)}}" alt="">
-            @endif
+          <div class="row">
+            <div class="col-3">
+              <div class="">
+                @if($data->image)
+                <img src="{{asset('storage/photo-guru/'.$data->image) }}" class="profile-foto w-100" alt="profile">
+                @else
+                <img src="{{asset('img/person-circle.svg') }}" class="profile-foto w-100" alt="profile">
+                @endif
+              </div>
+            </div>
+            <div class="col-9">
+              <div class="input-group">
+                <input type="file" class="form-control" id="photo" name="photo">
+              </div>
+            </div>
           </div>
         </div>
         <div class="row mb-3">

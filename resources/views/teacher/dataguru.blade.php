@@ -72,8 +72,8 @@
                       @foreach($data as $d)
                       <tr>
                         <td>{{ $d->nip }}</td> 
-                        <td><img src="{{asset('storage/photo-guru/'.$d->image)}}" alt=""></td> 
                         <td>{{ $d->name }}</td> 
+                        <td><img src="{{asset('storage/photo-guru/'.$d->image)}}" alt="" style="width:100px"></td> 
                         <td>{{ $d->alamat }}</td> 
                         <td>{{ $d->email }}</td> 
                         <td>{{ $d->password }}</td> 
@@ -90,11 +90,32 @@
                                 <form id="hapus-guru-{{ $d->id }}" action="{{ route('guru.hapus', $d->id) }}" method="POST">
                                   @csrf
                                   @method('DELETE')
-                                  <button type="submit" class="dropdown-item text-danger">
+                                  <button type="button" id="btnHapusGuru{{ $d->id }}" class="dropdown-item text-danger">
                                     <i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus
                                   </button>
                                 </form>
-                              </li>                              
+                              </li>       
+                                <script>
+                                  document.addEventListener('DOMContentLoaded', function() {
+                                      document.getElementById('btnHapusGuru{{ $d->id }}').addEventListener('click', function() {
+                                          Swal.fire({
+                                              title: 'Apakah Anda yakin menghapus {{ $d->name}} ?',
+                                              text: "Data yang dihapus tidak dapat dikembalikan!",
+                                              icon: 'warning',
+                                              showCancelButton: true,
+                                              confirmButtonColor: '#d33',
+                                              cancelButtonColor: '#3085d6',
+                                              confirmButtonText: 'Ya, hapus!',
+                                              cancelButtonText: 'Batal'
+                                          }).then((result) => {
+                                              if (result.isConfirmed) {
+                                                  document.getElementById('hapus-guru-{{ $d->id }}').submit();
+                                              }
+                                          });
+                                      });
+                                  });
+                                </script>
+                              </li>                    
                             </ul>
                           </div>
                         </td>

@@ -23,7 +23,7 @@
                     @if($data->image)
                     <img src="{{asset('storage/photo-user/'.$data->image) }}" class="profile-foto w-100" alt="">
                     @else
-                    <img src="{{asset('img/logo.png') }}" class="profile-foto w-100" alt="">
+                    <img src="{{asset('img/person-circle.svg') }}" class="profile-foto w-100" alt="">
                     @endif
                   </div>
                 </div>

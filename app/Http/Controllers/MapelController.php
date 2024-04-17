@@ -68,12 +68,12 @@ class MapelController extends Controller
         $mapel = MataPelajaran::findOrFail($id);
         // dd($mapel);
         $namamapel = $mapel->nama_mata_pelajaran;
-
-        if($mapel->update([
+        $mapel->update([
             'id_mata_pelajaran'     => $request->id_mapel,
             'nama_mata_pelajaran'   => $request->nama_mapel
-        ])){
-            return redirect()->route('mapel')->with(['success' => 'Data Mata Pelajaran '.$namamapel.' Berhasil Diupdate!']);
+        ]);
+        if($mapel->update()){
+            return redirect()->route('mapel')->with(['success-update' => 'Data Mata Pelajaran '.$namamapel.' Berhasil Diupdate!']);
         } else{
             return redirect()->route('mapel')->with(['fail' => 'Data Mata Pelajaran '.$namamapel.' Gagal Diupdate!']);
         }
@@ -88,7 +88,7 @@ class MapelController extends Controller
         // dd($mapel);
         $namamapel = $mapel->nama_mata_pelajaran;
         if($mapel->delete()){
-            return redirect()->route('mapel')->with(['success' => 'Data Mata Pelajaran '.$namamapel.' Berhasil Dihapus!']);
+            return redirect()->route('mapel')->with(['success-delete' => 'Data Mata Pelajaran '.$namamapel.' Berhasil Dihapus!']);
         }
     }
 }

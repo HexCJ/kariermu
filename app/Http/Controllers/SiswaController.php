@@ -276,7 +276,7 @@ class SiswaController extends Controller
     
         // Simpan perubahan data
         if($data->save()){
-            return redirect()->route('siswa')->with('success', 'Data Siswa '.$namasiswa.' berhasil diedit');
+            return redirect()->route('siswa')->with('success-update', 'Data Siswa '.$namasiswa.' berhasil diedit');
         }else{
             return redirect()->route('siswa')->with('fail', 'Data Siswa gagal '.$namasiswa.' diedit');
         }
@@ -293,7 +293,7 @@ class SiswaController extends Controller
         $namasiswa = $data->name;
 
         if($data->delete()){
-            return redirect()->back()->with('success', 'Data Siswa '.$namasiswa.' berhasil dihapus');
+            return redirect()->back()->with('success-delete', 'Data Siswa '.$namasiswa.' berhasil dihapus');
         }else{
             return redirect()->back()->with('fail', 'Data Siswa gagal '.$namasiswa.' dihapus');
         }

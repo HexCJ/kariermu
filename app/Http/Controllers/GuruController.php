@@ -153,7 +153,7 @@ class GuruController extends Controller
     $matapelajarans = MataPelajaran::all();
 
     return view('teacher/dataguru_update',[
-        'title' => 'Edit Data Siswa',
+        'title' => 'Edit Data Guru',
         'data' => $data,
         'matapelajarans' => $matapelajarans // Kirim data mata pelajaran ke view
     ]);
@@ -213,9 +213,9 @@ class GuruController extends Controller
     
         // Simpan perubahan data
         if($data->save()){
-            return redirect()->back()->with('success', 'Data Guru '.$namaguru.' berhasil diedit');
+            return redirect()->route('guru')->with('success-update', 'Data Guru '.$namaguru.' berhasil diedit');
         }else{
-            return redirect()->back()->with('fail', 'Data Guru '.$namaguru.' gagal diedit');
+            return redirect()->route('guru')->with('fail', 'Data Guru '.$namaguru.' gagal diedit');
         }
     }
 
@@ -227,7 +227,7 @@ class GuruController extends Controller
         $data = Guru::findOrFail($id);
         $namaguru = $data->name;
         if($data->delete()){
-            return redirect()->back()->with('success', 'Data Guru '.$namaguru.' berhasil dihapus');
+            return redirect()->back()->with('success-delete', 'Data Guru '.$namaguru.' berhasil dihapus');
         }else{
             return redirect()->back()->with('fail', 'Data Guru'.$namaguru.'gagal dihapus');
         }

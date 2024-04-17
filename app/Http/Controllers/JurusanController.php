@@ -95,7 +95,7 @@ class JurusanController extends Controller
             'id_jurusan'     => $request->id_jurusan,
             'nama_jurusan'   => $request->nama_jurusan
         ])){
-            return redirect()->route('data-kelas')->with(['success' => 'Data Mata Pelajaran '.$nama_jurusan.' Berhasil DiUpdate!']);
+            return redirect()->route('data-kelas')->with(['success-update' => 'Data Mata Pelajaran '.$nama_jurusan.' Berhasil DiUpdate!']);
         } else{
             return redirect()->route('data-kelas')->with(['fail' => 'Data Mata Pelajaran '.$nama_jurusan.' Gagal DiUpdate!']);
         }
@@ -113,7 +113,7 @@ class JurusanController extends Controller
         $nama_jurusan = $jurusan->nama_jurusan;
 
         if($jurusan->delete()){
-            return redirect()->route('data-kelas')->with(['success' => 'Data Jurusan '.$nama_jurusan.' Berhasil Dihapus!']);
+            return redirect()->route('data-kelas')->with(['success-delete' => 'Data Jurusan '.$nama_jurusan.' Berhasil Dihapus!']);
         }else {
             return redirect()->route('data-kelas')->with(['fail' => 'Data Jurusan '.$nama_jurusan.' Berhasil Dihapus!']);
         }

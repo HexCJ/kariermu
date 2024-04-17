@@ -56,7 +56,6 @@
           <div class="col mt-3 p-0">
             <div class="card mt-3" style="min-height: 43rem">
               <div class="card-body table-responsive">
-                
                 <div class="">
                   <table id="dataSiswa" class="table table-bordered w-100 mt-3">
                     <thead>
@@ -70,7 +69,7 @@
                       @foreach($data as $d)
                       <tr>
                         <!-- Modal Update -->
-                        <div class="modal fade" id="editDatamapel{{ $d->id_jurusan }}" tabindex="" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="editDataJurusan{{ $d->id_jurusan }}" tabindex="" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -121,37 +120,39 @@
                               <i class="bi bi-person-fill-gear me-2 i-icon"></i>Option
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editDatamapel{{ $d->id_jurusan }}"><i class="fa-regular fa-pen-to-square me-2"></i>Edit</a></li>
-                                <form  action="{{ route('data-kelas.hapus' , $d->id_jurusan)}}" method="POST">
+                              <li>
+                                <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editDataJurusan{{ $d->id_jurusan }}"><i class="fa-regular fa-pen-to-square me-2"></i>Edit</a></li>
+                                <form id="formHapusJurusan{{ $d->id_jurusan }}" action="{{ route('data-kelas.hapus' , $d->id_jurusan)}}" method="POST">
                                   @csrf
                                   @method('DELETE')
-                                  <button type="submit" class="dropdown-item text-danger"><i class="bi bi-trash3 me-2"></i>Hapus</button>
+                                  <button type="button" id="btnHapusJurusan{{ $d->id_jurusan }}" class="dropdown-item text-danger"><i class="bi bi-trash3 me-2"></i>Hapus</button>
                                 </form>
+                                <script>
+                                  document.addEventListener('DOMContentLoaded', function() {
+                                      document.getElementById('btnHapusJurusan{{ $d->id_jurusan }}').addEventListener('click', function() {
+                                          Swal.fire({
+                                              title: 'Apakah Anda yakin menghapus {{ $d->nama_jurusan}} ?',
+                                              text: "Data yang dihapus tidak dapat dikembalikan!",
+                                              icon: 'warning',
+                                              showCancelButton: true,
+                                              confirmButtonColor: '#d33',
+                                              cancelButtonColor: '#3085d6',
+                                              confirmButtonText: 'Ya, hapus!',
+                                              cancelButtonText: 'Batal'
+                                          }).then((result) => {
+                                              if (result.isConfirmed) {
+                                                  document.getElementById('formHapusJurusan{{ $d->id_jurusan }}').submit();
+                                              }
+                                          });
+                                      });
+                                  });
+                                </script>
                               </li>
                             </ul>
                           </div>
                         </td>
                       </tr>
                       @endforeach
-                      {{-- <tr>
-                        <td>RPL</td> 
-                        <td>Rekayasa Perangkat Lunak</td> 
-                        <td class="d-flex justify-content-end align-items-center">
-                          <div class="dropdown py-3">
-                            <a class="button py-2 px-3 rounded text-decoration-none text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="bi bi-person-fill-gear me-2 i-icon"></i>Option
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a href="" class="dropdown-item" href="#"><i class="bi bi-person-fill-gear me-2 i-icon"></i>Edit</a></li>
-                              <li>
-                                <a href="#" class="dropdown-item text-danger">
-                                  <i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr> --}}
                     </tbody>
                   </table>
                 </div>
