@@ -7,6 +7,7 @@ use App\Http\Controllers\MapelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\serverSide;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\DataKarirController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -109,6 +110,9 @@ Route::get('mapel/tambah',[MapelController::class, 'create'])->name('tambah-mape
 Route::post('mapelInput',[MapelController::class, 'store'])->name('mapel.input');
 Route::put('/mapel/update/{id}',[MapelController::class, 'update'])->name('mapel.update');
 Route::delete('/mapel/hapus/{id}',[MapelController::class, 'destroy'])->name('mapel.hapus');
+
+
+route::get('data-karir',[DataKarirController::class, 'index'])->name('karir');
 
 
 
