@@ -114,7 +114,8 @@
             <div class="col-12 col-sm-7 col-md-8 col-xl-9">
               <div class="card mt-3 border shadow">
                 <div class="card-body">
-                  <h4 class="mb-3 border-bottom">Personal Information</h4>
+                  <h4 class="mb-3">Personal Information</h4>
+                  <h4 class="mb-3 border-bottom"></h4>
                   <div class="data-profile row px-5 py-3">
                     <div class="col-12 col-md-6">
                       {{-- NISN --}}
