@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid px-4">
+      <div class="container-fluid px-4" data-aos="fade-up">
         <div class="row">
           <div class="col mt-3 p-0">
             <div class="card mt-3" style="min-height: 43rem">

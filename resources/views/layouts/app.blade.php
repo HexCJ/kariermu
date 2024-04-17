@@ -24,6 +24,12 @@
     {{-- table --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css">
 
+    {{-- animate --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    {{-- script animate --}}
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
@@ -55,6 +61,12 @@
 
 {{-- sweetalert --}}
 
+{{-- data aos animate --}}
+<script>
+  AOS.init({
+    once: true,
+  });
+</script>
 {{-- js --}}
 <script src="{{ asset('js/script.js') }}"></script>
 

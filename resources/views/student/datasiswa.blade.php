@@ -6,9 +6,9 @@
     <div class="col-12 mt-4">
         <div class="d-flex">
           <h4>Data Siswa</h4>
-          <a href="/siswa/tambah" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah siswa</a>
+          <a href="{{ route('tambah_siswa') }}" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah siswa</a>
         </div>
-        <div class="container-fluid px-4">
+        <div class="container-fluid px-4" data-aos="fade-up">
           <div class="row">
             <div class="col p-0">
               {{-- sortir data siswa --}}

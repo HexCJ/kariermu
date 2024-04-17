@@ -8,7 +8,7 @@
         <h4>Data Guru</h4>
         <a href="/guru/tambah" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Guru</a>
       </div>
-      <div class="container-fluid px-4">
+      <div class="container-fluid px-4" data-aos="fade-up">
         <div class="row">
           <div class="col p-0">
             <form action="{{ route('guru') }}" method="GET">

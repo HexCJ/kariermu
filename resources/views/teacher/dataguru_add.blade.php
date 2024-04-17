@@ -7,8 +7,8 @@
     <div class="col-12 mt-4">
       <h4>Tambah Guru</h4>
       <form action="">
-        <div class="row mb-3 mt-5">
-          <div class="col-12">
+        <div class="row mb-3 mt-5"  data-aos="fade-up">
+          <div class="col-12" data-aos="fade-up">
             <label for="nama" class="text-secondary mb-3">NIP</label>
             <div class="input-group mb-2">
               <input type="text" class="form-control" id="nip" name="nip">
@@ -18,7 +18,7 @@
             @enderror
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12" data-aos="fade-up">
           <label for="photo" class="text-secondary mb-3">Masukan photo anda</label>
           <div class="input-group mb-2">
             <input type="file" value="{{old('photo')}}" class="form-control" id="photo" name="photo">
@@ -27,7 +27,7 @@
             <small class="text-danger">{{ $message }}</small>
           @enderror
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3" data-aos="fade-up">
           <div class="col-12 col-md-6">
             <label for="nama" class="text-secondary mb-3">Nama Lengkap</label>
             <div class="input-group mb-2">
@@ -49,7 +49,7 @@
             @enderror
           </div>
         </div>
-        <div class="row mb-3">
+        <div class="row mb-3" data-aos="fade-up">
           <div class="col-12">
             <label for="alamat" class="text-secondary mb-3">Alamat</label>
             <div class="input-group mb-2">
@@ -60,7 +60,7 @@
             @enderror
           </div>
         </div>
-        <div class="row mb-3">
+        <div class="row mb-3" data-aos="fade-up">
           <div class="col-12 col-md-6">
             <label for="email" class="text-secondary mb-3">Email</label>
             <div class="input-group mb-2">
@@ -80,7 +80,7 @@
             @enderror
           </div>
         </div>
-        <div class="row">
+        <div class="row" data-aos="fade-up">
           <div class="col-12">
             <label for="matapelajaran" class="text-secondary mb-3">Mata Pelajaran</label>
             <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="matapelajaran" name="matapelajaran">

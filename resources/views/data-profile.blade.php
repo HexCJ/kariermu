@@ -92,7 +92,7 @@
           </div>
         </div>
       </div>
-        <div class="container-fluid">
+        <div class="container-fluid"  data-aos="fade-up">
           <div class="row">
             <div class="col-12 col-sm-5 col-md-4 col-xl-3">
               <div class="card mt-3 border shadow">
@@ -102,7 +102,7 @@
                   @else
                   <img src="{{asset('img/person-circle.svg')}}" alt="profile" class="profile-foto rounded-circle">
                   <div class="alert alert-warning mt-3 w-100">
-                    <strong>Profile Picture Kosong !</strong>
+                    <strong  data-aos="fade-up">Profile Picture Kosong !</strong>
                     <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfile"> disini</a></p>
                   </div>
                   @endif

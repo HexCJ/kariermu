@@ -121,7 +121,7 @@
           <div class="col p-0">
             <div class="card mt-3">
               <div class="card-body alert alert-danger jika_udah_diinput_dia_gak_lagi_alert-danger">
-                <div class="d-flex flex-column text-center d-flex justify-content-center align-items-center min-vh-100">
+                <div class="d-flex flex-column text-center d-flex justify-content-center align-items-center min-vh-100" data-aos="fade-up">
                   <h3 class="fw-bold">Anda Belum Melaporkan Data Karir</h3>
                   <h5 class="mt-3">Segera <a href="" class="alert-link" data-bs-toggle="modal" data-bs-target="#addDataKarir">Laporkan </a>Karir Anda</h5>
                 </div>
@@ -131,12 +131,12 @@
                     <div class="data-profile row px-5 py-3">
                       <div class="col-12">
                         {{-- Nama --}}
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-4" data-aos="fade-right">
                           <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Status Karir</label>
                           <p class="text-secondary mb-3 mt-2 p-2 card">Bekerja</p>
                         </div>
                         {{-- Alamat --}}
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-4" data-aos="fade-right">
                           <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat Tempat Kerja/Kuliah</label>
                           <p class="text-secondary mb-3 mt-2 p-2 card">Universitas Gunadarma</p>
                         </div>

@@ -7,7 +7,7 @@
     <div class="col-12 mt-4">
       <h4>Tambah Siswa</h4>
       <form action="">
-        <div class="row mb-3 mt-5">
+        <div class="row mb-3 mt-5" data-aos="fade-up">
           <div class="col-12">
             <label for="nisn" class="text-secondary mb-3">NISN</label>
             <div class="input-group mb-2">
@@ -18,7 +18,7 @@
             @enderror
           </div>
         </div>
-        <div class="col-12 mb-3">
+        <div class="col-12 mb-3" data-aos="fade-up">
           <label for="photo" class="text-secondary mb-3">Masukan photo anda</label>
           <div class="input-group mb-2">
             <input type="file" value="{{old('photo')}}" class="form-control" id="photo" name="photo">
@@ -27,7 +27,7 @@
             <small class="text-danger">{{ $message }}</small>
           @enderror
         </div>
-        <div class="row">
+        <div class="row" data-aos="fade-up">
           <div class="col-12 col-md-6 mb-3">
             <label for="nama" class="text-secondary mb-3">Nama Lengkap</label>
             <div class="input-group mb-2">
@@ -73,7 +73,7 @@
             @enderror
           </div>
         </div>
-        <div class="row mb-3">
+        <div class="row mb-3" data-aos="fade-up">
           <div class="col-12 col-md-6">
             <label for="email" class="text-secondary mb-3">Email</label>
             <div class="input-group mb-2">
@@ -95,7 +95,7 @@
 
           </div>
         </div>
-        <div class="row mb-3">
+        <div class="row mb-3" data-aos="fade-up">
           <div class="col-12">
             <label for="alamat" class="text-secondary mb-3">Alamat</label>
             <div class="input-group mb-2">
@@ -107,8 +107,7 @@
 
           </div>
         </div>
-
-        <div class="row mb-3">
+        <div class="row mb-3" data-aos="fade-up">
           <div class="col-12">
             <label for="lulus" class="text-secondary mb-3">Tahun Lulus</label>
             <div class="input-group mb-2">
@@ -120,7 +119,7 @@
 
           </div>
         </div>
-        <div class="row mb-3">
+        <div class="row mb-3" data-aos="fade-up">
           <div class="col-12">
             <label for="status" class="text-secondary mb-3">Status</label>
             <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="status" name="status"  value="{{old('nama')}}">

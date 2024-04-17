@@ -3,12 +3,12 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 mt-4">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between" data-aos="fade-up">
         <h4 class="h4">Welcome To Admin Dashboard SMKN 4 Tangerang</h4>
       </div>
       <div class="row mt-5 d-flex justify-content-center px-0 px-lg-3 px-xl-0 px-xl-1">
         {{-- data status karir tidak bekerja --}}
-        <div class="col-6 col-sm-6 col-md-5 col-xl-3 col-lg-3 d-flex px-3 px-md-2 justify-content-md-start pe-2 mb-3">
+        <div class="col-6 col-sm-6 col-md-5 col-xl-3 col-lg-3 d-flex px-3 px-md-2 justify-content-md-start pe-2 mb-3" data-aos="fade-up">
           <div class="icon-round rounded-circle bg-purple p-3 text-center d-flex align-items-center justify-content-center">
             <i class="fa-solid fa-users-line icon"></i>
           </div>
@@ -19,7 +19,7 @@
           </div>
         </div>
         {{-- Data status karir bekerja --}}
-        <div class="col-6 col-sm-6 col-md-5 col-xl-3 col-lg-3 d-flex px-3 px-md-2 justify-content-md-start pe-2 mb-3">
+        <div class="col-6 col-sm-6 col-md-5 col-xl-3 col-lg-3 d-flex px-3 px-md-2 justify-content-md-start pe-2 mb-3" data-aos="fade-up">
           <div class="icon-round rounded-circle bg-purple p-3 text-center d-flex align-items-center justify-content-center">
             <i class="icon fa-solid fa-briefcase"></i>
           </div>
@@ -30,7 +30,7 @@
           </div>
         </div>
         {{-- data status karir kuliah --}}
-        <div class="col-6 col-sm-6 col-md-5 col-xl-3 col-lg-3 d-flex px-3 px-md-2 justify-content-md-start pe-2 mb-3">
+        <div class="col-6 col-sm-6 col-md-5 col-xl-3 col-lg-3 d-flex px-3 px-md-2 justify-content-md-start pe-2 mb-3" data-aos="fade-up">
           <div class="icon-round rounded-circle bg-purple p-3 text-center d-flex align-items-center justify-content-center">
             <i class="icon fa-solid fa-graduation-cap a-icon"></i>
             {{-- <i class="fa-solid fa-user-graduate a-icon icon"></i> --}}
@@ -42,7 +42,7 @@
           </div>
         </div>
         {{-- data status karir wirausaha --}}
-        <div class="col-6 col-sm-6 col-md-5 col-xl-3 col-lg-3 d-flex px-3 px-md-2 justify-content-md-start pe-2 mb-3">
+        <div class="col-6 col-sm-6 col-md-5 col-xl-3 col-lg-3 d-flex px-3 px-md-2 justify-content-md-start pe-2 mb-3" data-aos="fade-up">
           <div class="icon-round rounded-circle bg-purple p-3 text-center d-flex align-items-center justify-content-center">
             <i class="fa-solid fa-shop a-icon icon"></i>
           </div>

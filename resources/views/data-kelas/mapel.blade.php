@@ -51,12 +51,11 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid px-4">
+      <div class="container-fluid px-4" data-aos="fade-up">
         <div class="row">
           <div class="col mt-3 p-0">
             <div class="card mt-3" style="min-height: 43rem">
               <div class="card-body table-responsive">
-                
                 <div class="">
                   <table id="dataSiswa" class="table table-bordered w-100 mt-3">
                     <thead>
