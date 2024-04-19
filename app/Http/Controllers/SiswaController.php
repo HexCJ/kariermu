@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Jurusan; 
+use App\Models\Jurusan;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Hash;
@@ -146,7 +147,7 @@ class SiswaController extends Controller
     {
         //
         $validator = Validator::make($request->all(),[
-            'nisn'=>'required',
+            'nip'=>'required',
             'nama'=>'required',
             'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
             // 'email'=>'required|email',
@@ -193,15 +194,27 @@ class SiswaController extends Controller
         $data['alamat']        = $request->alamat;
         $data['tahun_lulus']   = $request->lulus;
         $data['status']        = $request->status;
-
         
-        //create
-        if(User::create($data)){
+        $user = User::create($data);
+        $siswa = Siswa::create($data);
+        
+        
+        // create
+        if($user = User::create($data)){
+            if ($request->nama === 'guru') {
+                $user->assignRole('guru');
+            } else {
+                // Berikan peran 'siswa' jika tidak
+                $user->assignRole('siswa');
+            }
             //kembali
             return redirect()->route('siswa')->with('success', 'Data Siswa berhasil ditambahkan');
         }else{
             return redirect()->route('siswa')->with('fail', 'Data Siswa gagal ditambahkan');
         }
+
+    // Jika nama pengguna adalah 'guru', berikan peran 'guru'
+
     }
 
 

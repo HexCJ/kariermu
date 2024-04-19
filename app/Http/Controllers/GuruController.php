@@ -137,23 +137,8 @@ class GuruController extends Controller
     
         
         //create
-        if($guru = Guru::create($data)){
-        // Pastikan peran 'guru' sudah ada di basis data atau buat jika belum ada
-        $role = Role::firstOrCreate(['name' => 'guru', 'guard_name' => 'guru']);
-        // Memberikan peran 'guru' kepada guru yang telah dibuat dengan menggunakan guard 'guru'
-        $guru->assignRole($role);
-        
-            // $guru->assignRole('admin');
-            // $guru->syncRoles(['admin']);
+        if(Guru::create($data)){
             return redirect()->route('guru')->with('success', 'Data Guru berhasil ditambahkan');
-            
-            // $newGuru = Guru::request($data);
-       
-            // DB::table('model_has_roles')->insert([
-            //     'model_id' => $newGuru->id,
-            //     'role_id' => 4,
-            // ]);
-            // $guru = Guru::create($data);
 
         }else{
             return redirect()->route('guru')->with('fail', 'Data Guru gagal ditambahkan');

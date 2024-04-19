@@ -35,35 +35,10 @@ return [
     |
     */
 
-    // 'guards' => [
-    //     'web' => [
-    //         'driver' => 'session',
-    //         'provider' => 'users',
-    //     ],
-    // ],
     'guards' => [
-        // 'web' => [
-        //     'driver' => 'session',
-        //     'provider' => 'users', // Ubah provider ke 'users'
-        // ],
-    
-        // 'guru' => [ // Tambahkan guard baru untuk tabel 'guru'
-        //     'driver' => 'session',
-        //     'provider' => 'gurus', // Sesuaikan dengan penyedia pengguna untuk 'guru'
-        // ], 
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
-        ],
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
-        ],
-    
-        'guru' => [
-            'driver' => 'session',
-            'provider' => 'gurus',
         ],
     ],
 
@@ -84,29 +59,17 @@ return [
     |
     */
 
-    // 'providers' => [
-    //     'users' => [
-    //         'driver' => 'eloquent',
-    //         'model' => App\Models\User::class,
-    //     ],
-
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-    
-        'gurus' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Guru::class,
-        ],
-],
 
-    //     // 'users' => [
-    //     //     'driver' => 'database',
-    //     //     'table' => 'users',
-    //     // ],
-    // ],
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table' => 'users',
+        // ],
+    ],
 
     /*
     |--------------------------------------------------------------------------

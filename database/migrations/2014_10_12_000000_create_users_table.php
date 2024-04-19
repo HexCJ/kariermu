@@ -13,22 +13,26 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nisn')->unique();
-            $table->string('name');
-            $table->string('email')->unique()->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('nisn')->unique()->nullable();
+            $table->string('nip')->unique()->nullable();
+            $table->string('id_admin')->unique()->nullable();
+            // $table->string('name');
+            // $table->string('email')->unique()->nullable();
+            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['Admin', 'Guru', 'Siswa']);
+
             $table->rememberToken();
             $table->timestamps();
 
             // Menambahkan kolom nama, alamat, jenis_kelamin, kelas, dan jurusan
-            $table->string('alamat');
-            $table->string('tahun_lulus');
-            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->enum('status', ['Lulus', 'Belum Lulus'])->default('Belum Lulus');
-            $table->enum('kelas', ['X', 'XI', 'XII', 'Lulus']);
-            $table->string('jurusan');
-            $table->foreign('jurusan')->references('id_jurusan')->on('jurusan')->onDelete('cascade');
+            // $table->string('alamat');
+            // $table->string('tahun_lulus');
+            // $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
+            // $table->enum('status', ['Lulus', 'Belum Lulus'])->default('Belum Lulus');
+            // $table->enum('kelas', ['X', 'XI', 'XII', 'Lulus']);
+            // $table->string('jurusan');
+            // $table->foreign('jurusan')->references('id_jurusan')->on('jurusan')->onDelete('cascade');
 
         });
     }

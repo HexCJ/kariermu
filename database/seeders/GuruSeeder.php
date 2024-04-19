@@ -15,30 +15,35 @@ class GuruSeeder extends Seeder
      */
     public function run()
     {
-        $guru = Guru::updateOrCreate([
-            'nip' => '11123',
-            'name' => 'Jonathan',
-            'email' => 'Jonathan@example.com',
-            'password' => bcrypt('Jonathan1'),
-            'alamat' => 'jl sawah balong',
-            'jenis_kelamin' => 'Laki-laki',
-            'mata_pelajaran' => 'BING', 
-        ]);
+        // $guru = Guru::updateOrCreate([
+        //     'nip' => '11123',
+        //     'name' => 'Jonathan',
+        //     'email' => 'Jonathan@example.com',
+        //     'password' => bcrypt('Jonathan1'),
+        //     'alamat' => 'jl sawah balong',
+        //     'jenis_kelamin' => 'Laki-laki',
+        //     'mata_pelajaran' => 'BING', 
+        // ]);
 
+        // $guru = Guru::updateOrCreate([
+        //     'nip' => '22234',
+        //     'name' => 'cahyo',
+        //     'email' => 'cahyo@example.com',
+        //     'password' => bcrypt('Cahyo1'),
+        //     'alamat' => 'jl sawah balong',
+        //     'jenis_kelamin' => 'Laki-laki',
+        //     'mata_pelajaran' => 'MTK', 
+        // ]);
         $guru = Guru::updateOrCreate([
-            'nip' => '22234',
-            'name' => 'cahyo',
-            'email' => 'cahyo@example.com',
-            'password' => bcrypt('Cahyo1'),
-            'alamat' => 'jl sawah balong',
+            'nip' => '2222',
+            'name' => 'guru',
+            'email' => 'guru@example.com',
+            'password' => bcrypt('guru1'),
+            'alamat' => 'rumah guru',
             'jenis_kelamin' => 'Laki-laki',
             'mata_pelajaran' => 'MTK', 
         ]);
 
-        // Pastikan peran 'guru' sudah ada di basis data atau buat jika belum ada
-        $role = Role::firstOrCreate(['name' => 'guru', 'guard_name' => 'guru']);
 
-        // Memberikan peran 'guru' kepada guru yang telah dibuat dengan menggunakan guard 'guru'
-        $guru->assignRole($role);
     }
 }

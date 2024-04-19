@@ -11,20 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('guru', function (Blueprint $table) {
+        Schema::create('siswa', function (Blueprint $table) {
             $table->id();
-            $table->string('nip')->unique();
-            $table->foreign('nip')->references('nip')->on('users')->onDelete('cascade');
+            $table->string('nisn')->unique();
+            $table->foreign('nisn')->references('nisn')->on('users')->onDelete('cascade'); 
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('password');
             $table->string('alamat');
+            $table->string('tahun_lulus');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->string('mata_pelajaran');
-            $table->foreign('mata_pelajaran')->references('id_mata_pelajaran')->on('mata_pelajaran')->onDelete('cascade');
+            $table->enum('status', ['Lulus', 'Belum Lulus'])->default('Belum Lulus');
+            $table->enum('kelas', ['X', 'XI', 'XII', 'Lulus']);
+            $table->string('jurusan');
+            $table->foreign('jurusan')->references('id_jurusan')->on('jurusan')->onDelete('cascade');
             $table->timestamps();
-
-
         });
     }
 
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('guru');
+        Schema::dropIfExists('siswa');
     }
 };
