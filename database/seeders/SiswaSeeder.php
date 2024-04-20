@@ -15,10 +15,10 @@ class SiswaSeeder extends Seeder
     public function run(): void
     {
         Siswa::updateOrCreate([
-            'nisn' => '2',
+            'nisn' => '3333',
             'name' => 'siswa',
             'email' => 'siswa@example.com',
-            'password' => bcrypt('2'),
+            'password' => bcrypt('siswa1'),
             'alamat' => 'rumah Siswa',
             'tahun_lulus' => '2022',
             'jenis_kelamin' => 'Laki-laki',

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
+use App\Models\Guru;
 use App\Models\User;
 use App\Models\Jurusan;
 use App\Models\Siswa;
@@ -67,62 +69,75 @@ class UserController extends Controller
     {
         //
         $validator = Validator::make($request->all(),[
-            'nip'=>'required',
-            'nama'=>'required',
-            'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
-            'password'=>'required',   
+            // 'nip'=>'required',
+            // 'nama'=>'required',
+            // 'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
+            // 'password'=>'required',   
         ]);
         //jika valid gagal
         if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
         //terima dan kirim
-        $photo    = $request->file('photo');
-        if($photo){
-
-            $filename = date('Y-m-d').$photo->getClientOriginalName();
-            $path     = 'photo-user/'.$filename;
+        // $photo    = $request->file('photo');
+        // if($photo){
+        //     $filename = date('Y-m-d').$photo->getClientOriginalName();
+        //     $path     = 'photo-user/'.$filename;
             
-            Storage::disk('public')->put($path,file_get_contents($photo));
-        }
-        
-
-        $data['nisn']          = $request->nisn;
-        $photo                 = $request->file('photo');
-
-        if($photo){
-            $filename          = date('Y-m-d').$photo->getClientOriginalName();
-            $path              = 'photo-user/'.$filename;
+        //     Storage::disk('public')->put($path,file_get_contents($photo));
+        // }
+        // $data['nisn']          = $request->nisn;
+        // $photo                 = $request->file('photo');
+        // if($photo){
+        //     $filename          = date('Y-m-d').$photo->getClientOriginalName();
+        //     $path              = 'photo-user/'.$filename;
     
-            Storage::disk('public')->put($path,file_get_contents($photo));
-            $data['image']     = $filename;
+        //     Storage::disk('public')->put($path,file_get_contents($photo));
+        //     $data['image']     = $filename;     
+        // }
+        // $data['name']          = $request->nama;
+        // $data['jenis_kelamin'] = $request->jkelamin;
+        // $data['jurusan']       = $request->jurusan;
+        // $data['kelas']         = $request->kelas;
+        // $data['email']         = $request->email;
+        // $data['password']      = Hash::make($request->password);
+        // $data['alamat']        = $request->alamat;
+        // $data['tahun_lulus']   = $request->lulus;
+        // $data['status']        = $request->status;
+        
+            $data['nisn']            = $request->nisn;
+            $data['nip']             = $request->nip;
+            $data['id_admin']        = $request->id_admin;
+            $data['name']            = $request->nama;
+            $data['password']        = $request->password;
+            $data['role']            = $request->role;
 
-            
-        }
-        $data['name']          = $request->nama;
-        $data['jenis_kelamin'] = $request->jkelamin;
-        $data['jurusan']       = $request->jurusan;
-        $data['kelas']         = $request->kelas;
-        $data['email']         = $request->email;
-        $data['password']      = Hash::make($request->password);
-        $data['alamat']        = $request->alamat;
-        $data['tahun_lulus']   = $request->lulus;
-        $data['status']        = $request->status;
-        
-        $user = User::create($data);
-        $siswa = Siswa::create($data);
-        
+        // if($request->nisn){
+        //     $data['nisn']        = $request->nisn;
+        // }
+        // if($request->nip){
+        //     $data['nip']        = $request->nip;
+        // }
+        // if($request->id_admin){
+        //     $data['id_admin']        = $request->id_admin;
+        // }
         
         // create
         if($user = User::create($data)){
-            if ($request->nama === 'guru') {
-                $user->assignRole('guru');
-            } else {
-                // Berikan peran 'siswa' jika tidak
+            if ($request->role === 'Siswa') {
+                $siswa = Siswa::create($data);
                 $user->assignRole('siswa');
+            }else if ($request->role === 'Guru'){
+                // Berikan peran 'siswa' jika tidak
+                $guru = Guru::create($data);
+                $user->assignRole('guru');            
+            }else if ($request->role === 'Admin'){
+                // Berikan peran 'siswa' jika tidak
+                $admin = Admin::create($data);
+                $user->assignRole('admin');            
             }
             //kembali
-            return redirect()->route('siswa')->with('success', 'Data Siswa berhasil ditambahkan');
+            return redirect()->route('users')->with('success', 'Data User berhasil ditambahkan');
         }else{
-            return redirect()->route('siswa')->with('fail', 'Data Siswa gagal ditambahkan');
+            return redirect()->route('users')->with('fail', 'Data User gagal ditambahkan');
         }
 
     // Jika nama pengguna adalah 'guru', berikan peran 'guru'

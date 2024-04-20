@@ -195,19 +195,10 @@ class SiswaController extends Controller
         $data['tahun_lulus']   = $request->lulus;
         $data['status']        = $request->status;
         
-        $user = User::create($data);
-        $siswa = Siswa::create($data);
         
         
         // create
-        if($user = User::create($data)){
-            if ($request->nama === 'guru') {
-                $user->assignRole('guru');
-            } else {
-                // Berikan peran 'siswa' jika tidak
-                $user->assignRole('siswa');
-            }
-            //kembali
+        if($siswa = Siswa::create($data)){
             return redirect()->route('siswa')->with('success', 'Data Siswa berhasil ditambahkan');
         }else{
             return redirect()->route('siswa')->with('fail', 'Data Siswa gagal ditambahkan');
@@ -269,7 +260,7 @@ class SiswaController extends Controller
         }
         
         // Ambil data siswa berdasarkan ID
-        $data = User::find($id);
+        $data = Siswa::find($id);
         $namasiswa = $data->name;
 
     
