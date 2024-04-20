@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Siswa;
 
 class ProfileController extends Controller
 {
@@ -65,12 +66,30 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
+    // public function show()
+    // {
+    //     // Mendapatkan ID pengguna yang saat ini masuk
+    //     $userId = Auth::id();
+
+    //     // Mengambil data pengguna berdasarkan ID
+    //     $user = Siswa::find($userId);
+
+    //     // @dd($user);
+    //     // exit;
+    //     // Kemudian Anda dapat melewatkan data pengguna ke tampilan profil
+    //     return view('data-profile', [
+    //         'user' => $user,
+    //         'title' => 'Data Profile'
+
+    //     ]);
+    // }
+    // }
     public function show()
     {
         // Mendapatkan ID pengguna yang saat ini masuk
         $userId = Auth::id();
         // Mengambil data pengguna berdasarkan ID
-        $user = User::find($userId);
+        $user = Siswa::find($userId);
 
         // Kemudian Anda dapat melewatkan data pengguna ke tampilan profil
         return view('data-profile', [

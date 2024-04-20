@@ -1,0 +1,94 @@
+@extends('layouts.app')
+@section('content')
+<div class="container-fluid">
+  @include('partials.notification')
+  <div class="row">
+    <div class="col-12 mt-4">
+        <div class="d-flex">
+          <h4>Data Users</h4>
+          <a href="{{ route('tambah_users') }}" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Users</a>
+        </div>
+        <div class="container-fluid px-4" data-aos="fade-up">
+          <div class="row">
+            <div class="col p-0">
+              {{-- sortir data siswa --}}
+              <div class="card mt-3" style="min-height: 43rem">
+                <div class="card-body table-responsive">
+                  <div class="">
+                    @if ($data->isEmpty())
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                      <div><i class="bi bi-exclamation-circle me-3"></i>Data Users Kosong</div>
+                    </div>
+                    @endif
+                    <table id="dataUser" class="table table-bordered w-100 mt-3">
+                      <thead>
+                        <tr>
+                          <th>NISN</th>
+                          <th>NIP</th>
+                          <th>id_admin</th>
+                          <th>Nama</th>
+                          <th>Password</th>
+                          <th>Role</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                        @foreach($data as $d)
+                        <tr>
+                          <td>{{ $d->nisn }}</td> 
+                          <td>{{ $d->nip }}</td> 
+                          <td>{{ $d->id_admin }}</td> 
+                          <td>{{ $d->name }}</td> 
+                          <td>{{ $d->password }}</td> 
+                          <td>{{ $d->role }}</td>
+                          <td class="d-flex justify-content-center align-items-center">
+                            <div class="dropdown py-3">
+                              <a class="button py-2 px-3 rounded text-decoration-none text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-fill-gear me-2 i-icon"></i>Option
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="{{ route('users.edit',['id' => $d->id]) }}" class="dropdown-item" href="#"><i class="bi bi-person-fill-gear me-2 i-icon"></i>Edit</a></li>
+                                <li>
+                                  <form id="hapus-users-{{ $d->id }}" action="{{ route('users.hapus', $d->id) }}" method="POST">
+                                    <button type="button" id="btnHapusUsers{{ $d->id }}" class="dropdown-item text-danger">
+                                      <i class="bi bi-person-fill-dash me-2 i-icon"></i>Hapus
+                                    </button>
+                                    @csrf
+                                    @method('DELETE')
+                                  </form>
+                                  <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        document.getElementById('btnHapusUsers{{ $d->id }}').addEventListener('click', function() {
+                                            Swal.fire({
+                                                title: 'Apakah Anda yakin menghapus {{ $d->name}} ?',
+                                                text: "Data yang dihapus tidak dapat dikembalikan!",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#d33',
+                                                cancelButtonColor: '#3085d6',
+                                                confirmButtonText: 'Ya, hapus!',
+                                                cancelButtonText: 'Batal'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    document.getElementById('hapus-users-{{ $d->id }}').submit();
+                                                }
+                                            });
+                                        });
+                                    });
+                                  </script>
+                                </li>
+                              </ul>
+                            </div>
+                          </td>
+                        </tr>
+                        @endforeach 
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+@endsection

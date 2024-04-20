@@ -95,7 +95,7 @@ class UserSeeder extends Seeder
         // $guru->assignRole('guru');
         
         $admin = User::updateOrCreate([
-            'id_admin'=>'4444',
+            'nisn'=>'2',
             // 'name'=>'guru',
             // 'email'=>'guru@gmail.com',
             // 'alamat'=>'rumah guru',
@@ -104,8 +104,8 @@ class UserSeeder extends Seeder
             // 'status'=>'Belum Lulus',
             // 'kelas'=>'XI',
             // 'jurusan'=>'OT',
-            'role'=>'Admin',
-            'password'=>bcrypt('admin4')
+            'role'=>'siswa',
+            'password'=>bcrypt('2')
         ]);
         //buat role sesuai RolePermission
         $admin->assignRole('admin');

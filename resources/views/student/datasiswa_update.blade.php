@@ -79,7 +79,7 @@
             <div class="mb-4 col-6">
               <label for="password" class="text-secondary mb-3">Password</label>
               <div class="input-group">
-                <input type="text" class="form-control" id="password" name="password">
+                <input type="text" class="form-control" id="password" name="password" value="{{ $data->password }}">
               </div>
             </div>
             <div class="mb-4 col-12">

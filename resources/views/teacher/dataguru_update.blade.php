@@ -53,7 +53,7 @@
             <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="jkelamin" name="jkelamin">
               <option value="Laki-laki" {{ $data->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
               <option value="Perempuan" {{ $data->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-          </select>
+            </select>
             @error('jkelamin')
               <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -83,7 +83,7 @@
           <div class="col-12 col-md-6">
             <label for="password" class="text-secondary mb-3">Password</label>
             <div class="input-group mb-2">
-              <input type="text" class="form-control" id="password" name="password">
+              <input type="text" class="form-control" id="password" name="password" value="{{ $data->password }}">
             </div>
             @error('passsword')
               <small class="text-danger">{{ $message }}</small>

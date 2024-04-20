@@ -19,6 +19,9 @@
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Mata Pelajaran") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('mapel') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chalkboard me-3"></i>Data Mata Pelajaran</a>
         </li>
+        <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Users" || $title == "Tambah Data Users" || $title == "Edit Data Users") ? 'list-active' : '' }} text-center text-md-start">
+            <a href="{{ route('users') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-users me-3"></i>Users</a>
+        </li>
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Guru" || $title == "Tambah Data Guru" || $title == "Edit Data Guru") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('guru') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chalkboard-user me-3"></i>Guru</a>
         </li>

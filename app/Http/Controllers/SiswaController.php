@@ -30,7 +30,7 @@ class SiswaController extends Controller
     //     ]);
     // }
     public function siswa (Request $request){
-        $query = User::query();
+        $query = Siswa::query();
 
         // Tampilin data
         if ($request->has('search')) {
@@ -232,7 +232,7 @@ class SiswaController extends Controller
     public function edit(Request $request,$id)
     {
         // Ambil data siswa berdasarkan ID
-    $data = User::findOrFail($id);
+    $data = Siswa::findOrFail($id);
 
     // Ambil data jurusan dari tabel jurusan
     $jurusans = Jurusan::all();
@@ -285,6 +285,9 @@ class SiswaController extends Controller
         $data->status = $request->status;
     
         // Periksa apakah password baru diisi
+        if($request->role === 'Admin'){
+
+        }
         if($request->password){
             $data->password = Hash::make($request->password);
         }
@@ -315,7 +318,7 @@ class SiswaController extends Controller
     public function destroy($id)
     {
         //
-        $data = user::findOrFail($id);
+        $data = Siswa::findOrFail($id);
         $namasiswa = $data->name;
 
         if($data->delete()){

@@ -7,6 +7,7 @@ use App\Http\Controllers\MapelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\serverSide;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataKarirController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,6 @@ use Illuminate\Support\Facades\Route;
 
 // route laravel breezer
 Route::get('/',[Controller::class,'index']);
-Route::get('siswa',[SiswaController::class,'siswa'])->name('siswa');
 
 // Route::get('/siswa/search', ['SiswaController@search'])->name('search');
 
@@ -115,8 +115,16 @@ Route::delete('/mapel/hapus/{id}',[MapelController::class, 'destroy'])->middlewa
 route::get('data-karir',[DataKarirController::class, 'index'])->name('karir');
 
 
+// Route::get('siswa',[SiswaController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa'])->name('siswa');
+Route::get('users',[UserController::class,'users'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users');
+Route::get('users/tambah',[UserController::class,'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('tambah_users');
+//route input users
+Route::post('/users/tambah',[UserController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.input');
+//route edit users  
+Route::get('users/edit/{id}',[UserController::class, 'edit'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.edit');
 
-
-
+Route::put('users/update/{id}',[UserController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.update');
+//route hapus users
+Route::delete('/users/hapus/{id}',[UserController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.hapus');
 
 

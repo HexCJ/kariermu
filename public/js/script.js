@@ -1,3 +1,9 @@
+// datatables
+new DataTable('#dataUser');
+new DataTable('#dataSiswa');
+new DataTable('#dataguru');
+new DataTable('#dataNilai');
+
 // // new DataTable('#dataSiswa');
 // $(document).ready( function () {
 //     loadData();
@@ -63,12 +69,6 @@
 // }
 
 // sweetalert
-// datatables
-new DataTable('#dataSiswa');
-new DataTable('#dataguru');
-new DataTable('#dataNilai');
-
-
 
 // chart nilai
 // <block:segmentUtils:1>

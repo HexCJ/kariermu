@@ -6,7 +6,7 @@
     <div class="col-12 mt-4">
       <div class="d-flex">
         <h4>Data Guru</h4>
-        <a href="/guru/tambah" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Guru</a>
+        {{-- <a href="/guru/tambah" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Guru</a> --}}
       </div>
       <div class="container-fluid px-4" data-aos="fade-up">
         <div class="row">
@@ -54,6 +54,11 @@
 
                 {{-- ada --}}
                 <div class="">
+                  @if ($data->isEmpty())
+                  <div class="alert alert-warning d-flex align-items-center" role="alert">
+                    <div><i class="bi bi-exclamation-circle me-3"></i>Data Guru Kosong</div>
+                  </div>
+                  @endif
                   <table id="dataguru" class="table table-bordered w-100 mt-3">
                     <thead>
                       <tr>

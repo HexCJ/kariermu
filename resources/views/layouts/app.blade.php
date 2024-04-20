@@ -72,7 +72,6 @@
 
 {{-- chart data karir --}}
 <script>
-  // new DataTable('#dataSiswa');
   new DataTable('#dataNilai');
   const ctx = document.getElementById('myChart');
 

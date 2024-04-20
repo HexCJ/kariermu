@@ -6,7 +6,7 @@
     <div class="col-12 mt-4">
         <div class="d-flex">
           <h4>Data Siswa</h4>
-          <a href="{{ route('tambah_siswa') }}" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah siswa</a>
+          {{-- <a href="{{ route('tambah_siswa') }}" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah siswa</a> --}}
         </div>
         <div class="container-fluid px-4" data-aos="fade-up">
           <div class="row">
@@ -66,6 +66,11 @@
               <div class="card mt-3" style="min-height: 43rem">
                 <div class="card-body table-responsive">
                   <div class="">
+                    @if ($data->isEmpty())
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                      <div><i class="bi bi-exclamation-circle me-3"></i>Data Siswa Kosong</div>
+                    </div>
+                    @endif
                     <table class="table table-bordered w-100 mt-3" id="dataSiswa">
                       <thead>
                         <tr>
