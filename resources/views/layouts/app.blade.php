@@ -32,6 +32,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    {{-- chart js --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -49,9 +52,6 @@
 
 {{-- bootstrap js --}}
 <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-{{-- chart js --}}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 {{-- table --}}
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -72,7 +72,6 @@
 
 {{-- chart data karir --}}
 <script>
-  new DataTable('#dataNilai');
   const ctx = document.getElementById('myChart');
 
   new Chart(ctx, {

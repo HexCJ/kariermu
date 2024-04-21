@@ -27,8 +27,10 @@
                       <label for="image" class="text-secondary ">Foto Profile</label>
                       @if($siswa->image == true)
                       <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
-                      @else
-                      <img src="{{asset('img/person-circle.svg')}}" alt="profile" class="profile-foto rounded-circle">
+                      @elseif($siswa->jenis_kelamin === 'Laki-laki')
+                      <img src="{{asset('img/sma1.png')}}" alt="profile" class="profile-foto rounded-circle">
+                      @elseif($siswa->jenis_kelamin === 'Perempuan')
+                      <img src="{{asset('img/sma2.png')}}" alt="profile" class="profile-foto rounded-circle">
                       @endif
                       <input type="file" class="form-control mt-3" id="photo" name="photo">
                       @error('image')
@@ -101,11 +103,17 @@
               <div class="card mt-3 border shadow">
                 <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
                   @if($siswa->image == true)
-                  <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto rounded-circle">
-                  @else
-                  <img src="{{asset('img/person-circle.svg')}}" alt="profile" class="profile-foto rounded-circle">
+                  <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
+                  @elseif($siswa->jenis_kelamin === 'Laki-laki')
+                  <img src="{{asset('img/sma1.png')}}" alt="profile" class="profile-foto rounded-circle">
                   <div class="alert alert-warning mt-3 w-100">
-                    <strong  data-aos="fade-up">Profile Picture Kosong !</strong>
+                    <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
+                    <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfile"> disini</a></p>
+                  </div>
+                  @elseif($siswa->jenis_kelamin === 'Perempuan')
+                  <img src="{{asset('img/sma2.png')}}" alt="profile" class="profile-foto rounded-circle">
+                  <div class="alert alert-warning mt-3 w-100">
+                    <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
                     <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfile"> disini</a></p>
                   </div>
                   @endif
@@ -206,8 +214,10 @@
                       <label for="image" class="text-secondary ">Foto Profile</label>
                       @if($guru->image == true)
                       <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
-                      @else
-                      <img src="{{asset('img/person-circle.svg')}}" alt="profile" class="profile-foto rounded-circle">
+                      @elseif($guru->jenis_kelamin === 'Laki-laki')
+                      <img src="{{asset('img/sma1.png')}}" alt="profile" class="profile-foto rounded-circle">
+                      @elseif($guru->jenis_kelamin === 'Perempuan')
+                      <img src="{{asset('img/sma2.png')}}" alt="profile" class="profile-foto rounded-circle">
                       @endif
                       <input type="file" class="form-control mt-3" id="photo" name="photo">
                       @error('image')
@@ -263,11 +273,17 @@
               <div class="card mt-3 border shadow">
                 <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
                   @if($guru->image == true)
-                  <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto rounded-circle">
-                  @else
-                  <img src="{{asset('img/person-circle.svg')}}" alt="profile" class="profile-foto rounded-circle">
+                  <img src="{{asset('storage/photo-/'.$guru->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
+                  @elseif($guru->jenis_kelamin === 'Laki-laki')
+                  <img src="{{asset('img/sma1.png')}}" alt="profile" class="profile-foto rounded-circle">
                   <div class="alert alert-warning mt-3 w-100">
-                    <strong  data-aos="fade-up">Profile Picture Kosong !</strong>
+                    <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
+                    <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfileGuru"> disini</a></p>
+                  </div>
+                  @elseif($guru->jenis_kelamin === 'Perempuan')
+                  <img src="{{asset('img/sma2.png')}}" alt="profile" class="profile-foto rounded-circle">
+                  <div class="alert alert-warning mt-3 w-100">
+                    <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
                     <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfileGuru"> disini</a></p>
                   </div>
                   @endif
@@ -353,8 +369,10 @@
                       <label for="image" class="text-secondary ">Foto Profile</label>
                       @if($admin->image == true)
                       <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
-                      @else
-                      <img src="{{asset('img/person-circle.svg')}}" alt="profile" class="profile-foto rounded-circle">
+                      @elseif($admin->jenis_kelamin === 'Laki-laki')
+                      <img src="{{asset('img/sma1.png')}}" alt="profile" class="profile-foto rounded-circle">
+                      @elseif($admin->jenis_kelamin === 'Perempuan')
+                      <img src="{{asset('img/sma2.png')}}" alt="profile" class="profile-foto rounded-circle">
                       @endif
                       <input type="file" class="form-control mt-3" id="photo" name="photo">
                       @error('image')
@@ -395,11 +413,17 @@
               <div class="card mt-3 border shadow">
                 <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
                   @if($admin->image == true)
-                  <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto rounded-circle">
-                  @else
-                  <img src="{{asset('img/person-circle.svg')}}" alt="profile" class="profile-foto rounded-circle">
+                  <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
+                  @elseif($admin->jenis_kelamin === 'Laki-laki')
+                  <img src="{{asset('img/sma1.png')}}" alt="profile" class="profile-foto rounded-circle">
                   <div class="alert alert-warning mt-3 w-100">
-                    <strong  data-aos="fade-up">Profile Picture Kosong !</strong>
+                    <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
+                    <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfileAdmin"> disini</a></p>
+                  </div>
+                  @elseif($admin->jenis_kelamin === 'Perempuan')
+                  <img src="{{asset('img/sma2.png')}}" alt="profile" class="profile-foto rounded-circle">
+                  <div class="alert alert-warning mt-3 w-100">
+                    <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
                     <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfileAdmin"> disini</a></p>
                   </div>
                   @endif

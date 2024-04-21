@@ -11,6 +11,9 @@
 .navbar-color {
     background-color: #3A0CA3;
 }
+.navbar-text {
+    color: #3A0CA3;
+}
 
 .button {
     border: none;
@@ -147,6 +150,10 @@
     border-radius: 12px;
     aspect-ratio: 1;
 }
+.notfound{
+    width: 300px;
+    height:auto;
+}
 @media (max-width: 576px) {
     h4{
       font-size: 20px !important;  
@@ -190,6 +197,10 @@
         object-fit: cover;
         border-radius: 12px;
         aspect-ratio: 1;
+    }
+    .notfound{
+        width: 100px;
+        height:auto
     }
 }
 
