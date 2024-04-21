@@ -64,7 +64,7 @@ class UserSeeder extends Seeder
         $siswa = User::updateOrCreate([
             'nisn'=>'3333',
             'name'=>'siswa',
-        //     // 'email'=>'guru@gmail.com',
+            'email' => 'siswa@example.com',
         //     // 'alamat'=>'rumah guru',
         //     // 'tahun_lulus'=>'2025',
         //     // 'jenis_kelamin'=>'Laki-laki',
@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
         $admin = User::updateOrCreate([
             'id_admin'=>'1111',
             'name'=>'admin',
-        //     // 'email'=>'guru@gmail.com',
+            'email' => 'admin@example.com',
         //     // 'alamat'=>'rumah guru',
         //     // 'tahun_lulus'=>'2025',
         //     // 'jenis_kelamin'=>'Laki-laki',
@@ -96,7 +96,7 @@ class UserSeeder extends Seeder
         $guru = User::updateOrCreate([
             'nip'=>'2222',
             'name'=>'guru',
-        //     // 'email'=>'guru@gmail.com',
+            'email' => 'guru@example.com',
         //     // 'alamat'=>'rumah guru',
         //     // 'tahun_lulus'=>'2025',
         //     // 'jenis_kelamin'=>'Laki-laki',

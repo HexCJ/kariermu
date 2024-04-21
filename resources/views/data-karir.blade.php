@@ -1,10 +1,14 @@
 @extends('layouts.app')
 @section('content')
-<form action="{{ route('user.input') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('karir.update', ['id' => $siswa->nisn]) }}" method="POST" enctype="multipart/form-data">
   @csrf
 <div class="container-fluid">
   <div class="row">
     <!-- Modal Add -->
+    <?php
+    echo $siswa->nisn;
+
+?>
     <div class="modal fade" id="addDataKarir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
         <div class="modal-content">
@@ -14,8 +18,9 @@
           </div>
           {{-- add section --}}
           <div class="modal-body">
-            <form action="" method="POST">
+            <form action="{{ route('karir.update', ['id' => $siswa->nisn]) }}" method="POST">
               @csrf
+              @method('PUT')
               <div class="container-fluid">
                 <div class="row">
                   <form action="">
@@ -23,10 +28,10 @@
                       <label for="status" class="text-secondary mb-3">Status</label>
                       <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="status" name="status">
                         <option selected>Pilih Status Anda</option>
-                        <option value="Belum Lulus">Bekerja</option> 
-                        <option value="Lulus">Kuliah</option>
-                        <option value="Lulus">Menganggur</option>
-                        <option value="Lulus">Wirausaha</option>
+                        <option value="Bekerja">Bekerja</option> 
+                        <option value="Kuliah">Kuliah</option>
+                        <option value="Menganggur">Menganggur</option>
+                        <option value="Siswa">Wirausaha</option>
                       </select>
                       @error('status')
                         <small class="text-danger">{{ $message }}</small>
@@ -34,11 +39,11 @@
                     </div>
                     <div class="row">
                       <div class="col-12 mb-3">
-                        <label for="alamat" class="text-secondary mb-3">Tempat Bekerja</label>
+                        <label for="tempat_kerja_kuliah" class="text-secondary mb-3">tempat kerja / kuliah</label>
                         <div class="input-group mb-2">
-                          <input type="text" value="{{old('alamat')}}" class="form-control" id="alamat" name="alamat">
+                          <input type="text" value="{{old('tempat_kerja_kuliah')}}" class="form-control" id="tempat_kerja_kuliah" name="tempat_kerja_kuliah">
                         </div>
-                        @error('alamat')
+                        @error('tempat_kerja_kuliah')
                           <small class="text-danger">{{ $message }}</small>
                         @enderror
                       </div>
@@ -56,6 +61,7 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <!-- Modal Add -->
     <div class="modal fade" id="editDataKarir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -67,8 +73,9 @@
           </div>
           {{-- add section --}}
           <div class="modal-body">
-            <form action="" method="POST">
+            <form action="{{ route('karir.update', ['id' => $siswa->nisn]) }}" method="POST">
               @csrf
+              @method('PUT')
               <div class="container-fluid">
                 <div class="row">
                   <form action="">
@@ -76,10 +83,15 @@
                       <label for="status" class="text-secondary mb-3">Status</label>
                       <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="status" name="status">
                         <option selected>Pilih Status Anda</option>
-                        <option value="Belum Lulus">Bekerja</option> 
-                        <option value="Lulus">Kuliah</option>
-                        <option value="Lulus">Menganggur</option>
-                        <option value="Lulus">Wirausaha</option>
+                        <option value="Bekerja">Bekerja</option> 
+                        <option value="Kuliah">Kuliah</option>
+                        <option value="Menganggur">Menganggur</option>
+                        <option value="Siswa">Wirausaha</option>
+
+                        <option value="Bekerja" {{ $siswa->status == 'Bekerja' ? 'selected' : '' }}>Bekerja</option>
+                        <option value="Kuliah" {{ $siswa->status == 'Kuliah' ? 'selected' : '' }}>Kuliah</option>
+                        <option value="Menganggur" {{ $siswa->status == 'Menganggur' ? 'selected' : '' }}>Menganggur</option>
+                        <option value="Siswa" {{ $siswa->status == 'Siswa' ? 'selected' : '' }}>Wirausaha</option>
                       </select>
                       @error('status')
                         <small class="text-danger">{{ $message }}</small>
@@ -87,11 +99,11 @@
                     </div>
                     <div class="row">
                       <div class="col-12 mb-3">
-                        <label for="alamat" class="text-secondary mb-3">Tempat Bekerja</label>
+                        <label for="tempat_kerja_kuliah" class="text-secondary mb-3">tempat kerja / kuliah</label>
                         <div class="input-group mb-2">
-                          <input type="text" value="Universitas Gunadarma" class="form-control" id="alamat" name="alamat">
+                          <input type="text" value="{{ $siswa->tempat_kerja_kuliah }}" class="form-control" id="tempat_kerja_kuliah" name="tempat_kerja_kuliah">
                         </div>
-                        @error('alamat')
+                        @error('tempat_kerja_kuliah')
                           <small class="text-danger">{{ $message }}</small>
                         @enderror
                       </div>
@@ -120,11 +132,13 @@
         <div class="row">
           <div class="col p-0">
             <div class="card mt-3">
+              @if ($siswa->nisn == false)
               <div class="card-body alert alert-danger jika_udah_diinput_dia_gak_lagi_alert-danger">
                 <div class="d-flex flex-column text-center d-flex justify-content-center align-items-center min-vh-100" data-aos="fade-up">
                   <h3 class="fw-bold">Anda Belum Melaporkan Data Karir</h3>
                   <h5 class="mt-3">Segera <a href="" class="alert-link" data-bs-toggle="modal" data-bs-target="#addDataKarir">Laporkan </a>Karir Anda</h5>
                 </div>
+                @endif
                 {{-- jika ada --}}
                 <div class="row">
                   <div class="col-12">
@@ -133,12 +147,12 @@
                         {{-- Nama --}}
                         <div class="form-group mb-4" data-aos="fade-right">
                           <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Status Karir</label>
-                          <p class="text-secondary mb-3 mt-2 p-2 card">Bekerja</p>
+                          <p class="text-secondary mb-3 mt-2 p-2 card">{{$siswa->status}}</p>
                         </div>
                         {{-- Alamat --}}
                         <div class="form-group mb-4" data-aos="fade-right">
                           <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat Tempat Kerja/Kuliah</label>
-                          <p class="text-secondary mb-3 mt-2 p-2 card">Universitas Gunadarma</p>
+                          <p class="text-secondary mb-3 mt-2 p-2 card">{{$siswa->tempat_kerja_kuliah}}</p>
                         </div>
                       </div>  
                       <div class="d-flex justify-content-end">

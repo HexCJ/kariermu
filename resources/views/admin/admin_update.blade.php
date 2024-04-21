@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form action="{{ route('users.update',['id' => $data->id]) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.update',['id' => $data->id]) }}" method="POST" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 <div class="container">
@@ -25,30 +25,31 @@
           </div> --}}
         </div>
         <div class="row mb-3">
-          @if($data->role  == 'Admin')
           <div class="mb-4 col-12">
             <label for="id_admin" class="text-secondary mb-3">id_admin</label>
             <div class="input-group">
               <input type="text" class="form-control" name="id_admin" value="{{ $data->id_admin }}">
             </div>
           </div>
-          @endif
-          @if($data->role == 'Guru')
           <div class="mb-4 col-12">
-            <label for="nip" class="text-secondary mb-3">NIP</label>
-            <div class="input-group">
-              <input type="text" class="form-control" name="nip" value="{{ $data->nip }}">
+            <label for="photo" class="text-secondary mb-3">Foto</label>
+            <div class="row">
+              <div class="col-3">
+                <div class="">
+                  @if($data->image)
+                  <img src="{{asset('storage/photo-user/'.$data->image) }}" class="profile-foto w-100" alt="">
+                  @else
+                  <img src="{{asset('img/person-circle.svg') }}" class="profile-foto w-100" alt="">
+                  @endif
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="input-group">
+                  <input type="file" class="form-control" id="photo" name="photo">
+                </div>
+              </div>
             </div>
           </div>
-          @endif
-          @if($data->role == 'Siswa')
-          <div class="mb-4 col-12">
-            <label for="nisn" class="text-secondary mb-3">NISN</label>
-            <div class="input-group">
-              <input type="text" class="form-control" name="nisn" value="{{ $data->nisn }}">
-            </div>
-          </div>
-          @endif
           <div class="mb-4 col-6">
             <label for="nama" class="text-secondary mb-3">Nama Lengkap</label>
             <div class="input-group">
@@ -62,6 +63,20 @@
             </div>
           </div>
         </div>
+        <div class="row mb-3">
+          <div class="mb-4 col-12">
+            <label for="email" class="text-secondary mb-3">Email</label>
+            <div class="input-group">
+              <input type="text" class="form-control" name="email" value="{{ $data->email }}">
+            </div>
+          </div>
+        <div class="row mb-3">
+          <div class="mb-4 col-12">
+            <label for="alamat" class="text-secondary mb-3">Alamat</label>
+            <div class="input-group">
+              <input type="text" class="form-control" name="alamat" value="{{ $data->alamat }}">
+            </div>
+          </div>
         <div class="d-flex gap-2 mt-3">
           <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center ">Submit</button>
           <a href="../" class="btn px-3 btn-secondary">Close</a>

@@ -30,12 +30,6 @@ class Controller extends BaseController
             'title' => 'Dashboard'
         ]);
     }
-    // public function profile()
-    // {   
-    //     return view('data-profile',[
-    //         'title' => 'Data Profile'
-    //     ]);
-    // }
 
     // public function dataKelas()
     // {   
@@ -72,68 +66,5 @@ class Controller extends BaseController
         ]);
     }
 
-    // public function DataSiswa()
-    // {   
-    //     //tampilin data
-    //     $data = User::get();
-    //     return view('student/datasiswa',compact('data'),[
-    //         'title' => 'Data Siswa',
-    //         'status_proses' => 'success',
-    //         'message' => 'Data Berhasil Ditambahkan',
-    //     ]);
-    // }
-    // public function addDataSiswa()
-    // {   
-    //     $jurusans = Jurusan::all();
 
-    //     return view('student/datasiswa_add',[
-    //         'title' => 'Tambah Data Siswa' ,
-    //         'jurusans' => $jurusans 
-    //     ]);
-    // }
-    // public function editDataSiswa($id)
-    // {   
-    // // Ambil data siswa berdasarkan ID
-    // $data = User::findOrFail($id);
-
-    // // Ambil data jurusan dari tabel jurusan
-    // $jurusans = Jurusan::all();
-
-    // return view('student/datasiswa_update',[
-    //     'title' => 'Edit Data Siswa',
-    //     'data' => $data,
-    //     'jurusans' => $jurusans // Kirim data jurusan ke view
-    // ]);
-    // }
-    // public function editDataSiswa()
-    // {   
-    //     return view('student/datasiswa_update',
-    //     [
-    //         'title' => 'Edit Data Siswa'
-    //     ]);
-    // }
-    // public function dataGuru()
-    // {   
-    //     $data = Guru::get();
-    //     return view('teacher/dataguru',compact('data'),
-    //     [
-    //         'title' => 'Data Guru'
-    //     ]);
-    // }
-    // public function addDataGuru()
-    // {   
-    //     $matapelajarans = MataPelajaran::all();
-
-    //     return view('teacher/dataguru_add',[
-    //         'title' => 'Tambah Data Guru' ,
-    //         'matapelajarans' => $matapelajarans 
-
-    //     ]);
-    // }
-    // public function editDataGuru()
-    // {   
-    //     return view('teacher/dataguru_update',[
-    //         'title' => 'Edit Data Guru' ,
-    //     ]);
-    // }
 }

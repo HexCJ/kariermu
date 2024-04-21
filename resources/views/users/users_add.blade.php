@@ -58,12 +58,21 @@
           </div>
         </div>
         <div class="row mb-3" data-aos="fade-up">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-12">
             <label for="nama" class="text-secondary mb-3">Nama Lengkap</label>
             <div class="input-group mb-2">
               <input type="text" value="{{old('nama')}}" class="form-control" name="nama">
             </div>
             @error('nama')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
+          </div>
+          <div class="col-12 col-md-6">
+            <label for="email" class="text-secondary mb-3">Email</label>
+            <div class="input-group mb-2">
+              <input type="text" class="form-control" id="email" name="email">
+            </div>
+            @error('email')
               <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
@@ -76,6 +85,7 @@
               <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
+        </div>
         </div>
         {{-- belum dipake --}}
         {{-- spatie di sini untuk akses user --}}

@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('nip')->unique();
             $table->foreign('nip')->references('nip')->on('users')->onDelete('cascade');
             $table->string('name');
-            $table->string('email')->unique()->nullable();
+            $table->string('email');
+            $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
             $table->string('password');
             // $table->foreign('password')->references('password')->on('users')->onDelete('cascade');
             $table->string('alamat')->nullable();

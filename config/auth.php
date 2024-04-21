@@ -35,12 +35,31 @@ return [
     |
     */
 
+    // 'guards' => [
+    //     'web' => [
+    //         'driver' => 'session',
+    //         'provider' => 'users',
+    //     ],
+    // ],
     'guards' => [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswas',
+        ],
+        'guru' => [
+            'driver' => 'session',
+            'provider' => 'gurus',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -59,16 +78,30 @@ return [
     |
     */
 
+    // 'providers' => [
+    //     'users' => [
+    //         'driver' => 'eloquent',
+    //         'model' => App\Models\User::class,
+    //     ],
+    // ],
+
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'siswas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Siswa::class,
+        ],
+        'gurus' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Guru::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
     ],
 
     /*

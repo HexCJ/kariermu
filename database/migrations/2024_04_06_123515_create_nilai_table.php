@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('nisn');
             $table->foreign('nisn')->references('nisn')->on('users')->onDelete('cascade');
-            $table->string('semester');
+            $table->string('semester')->nullable();
             $table->foreign('semester')->references('id_semester')->on('semester')->onDelete('cascade');
-            $table->string('mata_pelajaran');
+            $table->string('mata_pelajaran')->nullable();
             $table->foreign('mata_pelajaran')->references('id_mata_pelajaran')->on('mata_pelajaran')->onDelete('cascade');
-            $table->integer('nilai'); 
-            $table->enum('status', ['Pending', 'Tidak Terverifikasi', 'Terverifikasi']);
+            $table->integer('nilai')->nullable(); 
+            $table->enum('status', ['Pending', 'Tidak Terverifikasi', 'Terverifikasi'])->nullable();
             $table->string('pesan')->nullable();
 
 

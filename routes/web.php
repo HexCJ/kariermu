@@ -35,7 +35,8 @@ Route::get('/dashboard',[Controller::class,'dashboard'])->middleware(['auth', 'v
 
 // Route::get('/profile',[ProfileController::class,'index'])->middleware(['auth', 'verified'])->name('profile');
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile');
-
+Route::get('profile/edit/{nisn}',[ProfileController::class, 'edit'])->middleware(['auth'])->name('profile.edit');
+Route::put('profile/update/{nisn}', [ProfileController::class, 'update'])->middleware(['auth'])->name('profile.update');
 
 // nilai
 Route::get('/nilai',[Controller::class,'dataNilai'])->name('datanilai');
@@ -118,7 +119,8 @@ Route::put('/mapel/update/{id}',[MapelController::class, 'update'])->middleware(
 Route::delete('/mapel/hapus/{id}',[MapelController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('mapel.hapus');
 
 
-route::get('data-karir',[DataKarirController::class, 'index'])->name('karir');
+route::get('data-karir',[DataKarirController::class, 'show'])->name('karir');
+route::put('data-karir/update/{id}',[DataKarirController::class, 'update'])->name('karir.update');
 
 
 // Route::get('siswa',[SiswaController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa'])->name('siswa');

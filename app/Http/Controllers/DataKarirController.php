@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Laporan;
+use App\Models\Siswa;
+use Illuminate\Support\Facades\Auth;
 
 class DataKarirController extends Controller
 {
@@ -13,6 +15,7 @@ class DataKarirController extends Controller
     {
         return view('data-karir',[
             'title' => 'Data Karir'
+
         ]);
     }
 
@@ -35,9 +38,18 @@ class DataKarirController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $user = Auth::user();
+
+        // ambil nip dari user
+        $nisn = $user->nisn;
+        $siswa = Laporan::where('nisn', $nisn)->first();
+        return view('data-karir',[
+        'siswa' => $siswa,
+        'title' => 'Data Karir'
+
+        ]);
     }
 
     /**
@@ -53,7 +65,29 @@ class DataKarirController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // $validator = Validator::make($request->all(),[
+        //     // 'nisn'=>'required',
+        //     // 'nama'=>'required',
+
+        // ]);
+    
+        // if($validator->fails()) {
+        //     return redirect()->back()->withInput()->withErrors($validator);
+        // }
+        $user = Auth::user();
+
+        // ambil nip dari user
+        $nisn = $user->nisn;
+        $siswa = Laporan::where('nisn', $nisn)->first();
+        $siswa->status = $request->status;
+        $siswa->tempat_kerja_kuliah = $request->tempat_kerja_kuliah;
+        if($siswa->save()){
+            return redirect()->route('karir')->with('success-update', 'Laporan anda berhasil simpan');
+        }else{
+            return redirect()->route('karir')->with('fail', 'Laporan anda gagal simpan');
+        }
+
+
     }
 
     /**

@@ -26,6 +26,7 @@ class User extends Authenticatable
         'nip',
         'id_admin',
         'name',
+        'email',
         'password',
         'role',
 
@@ -50,6 +51,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class, 'nisn');
+    }
+    public function guru()
+    {
+        return $this->hasOne(Guru::class, 'nip');
+    }
+    public function admin()
+    {
+        return $this->hasOne(Admin::class, 'id_admin');
+    }
 
     // protected static function boot()
     // {
