@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Admin;
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -70,15 +74,68 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        //
+    $data = Admin::findOrFail($id);
+
+    return view('admin/admin_update',[
+        'title' => 'Edit Data Admin',
+        'data' => $data,
+    ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
+    {   
+        $validator = Validator::make($request->all(),[
+            // 'id_admin'=>'required',
+            // 'nama'=>'required',
+            'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
+            // 'email'=>'required|email',
+            // 'jkelamin'=>'required|in:Laki-laki, Perempuan',
+            // 'password'=>'required',   
+            // 'alamat'=>'required',     
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+        
+        // Ambil data siswa berdasarkan ID
+        $data = Admin::find($id);
+        $namaadmin = $data->name;
+
+        $data->id_admin = $request->id_admin;
+        $data->name = $request->nama;
+        $data->email = $request->email;
+        $data->alamat = $request->alamat;
+        if($request->password){
+            $data->password = Hash::make($request->password);
+        }
+
+        $photo    = $request->file('photo');
+        if($photo){
+            $filename = date('Y-m-d').$photo->getClientOriginalName();
+            $path     = 'photo-admin/'.$filename;
+    
+            Storage::disk('public')->put($path,file_get_contents($photo));
+            $data['image']         = $filename;
+
+            
+        }
+    
+        // Simpan perubahan data
+        if($data->save()){
+            $id_admin = $request->id_admin;
+            $datauser = User::where('id_admin', $id_admin)->first();
+            $datauser->name = $data->name;
+            $datauser->password = $data->password;
+            $datauser->save();
+            return redirect()->route('admin')->with('success-update', 'Data Admin '.$namaadmin.' berhasil diedit');
+        }else{
+            return redirect()->route('admin')->with('fail', 'Data Admin gagal '.$namaadmin.' diedit');
+        }
+ 
     }
 
     /**
@@ -88,8 +145,11 @@ class AdminController extends Controller
     {
         $data = Admin::findOrFail($id);
         $namaadmin = $data->name;
+        $id_admin = $data->id_admin;
+        $dataadmin = User::where('id_admin', $id_admin)->first();
 
         if($data->delete()){
+            $dataadmin->delete();
             return redirect()->back()->with('success-delete', 'Data Siswa '.$namaadmin.' berhasil dihapus');
         }else{
             return redirect()->back()->with('fail', 'Data Siswa gagal '.$namaadmin.' dihapus');

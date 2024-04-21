@@ -51,6 +51,20 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class, 'nisn');
+    }
+    public function guru()
+    {
+        return $this->hasOne(Guru::class, 'nip');
+    }
+    public function admin()
+    {
+        return $this->hasOne(Admin::class, 'id_admin');
+    }
+
     // protected static function boot()
     // {
     //     parent::boot();

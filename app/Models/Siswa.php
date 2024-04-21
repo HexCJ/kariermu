@@ -34,8 +34,13 @@ class Siswa extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'nisn', 'nisn');
+        return $this->belongsTo(User::class, 'nisn');
     }
+
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'nisn');
+    // }
 
     public function jurusan()
     {

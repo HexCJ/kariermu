@@ -172,9 +172,56 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //validator
+        $validator = Validator::make($request->all(),[
+            'password'=>'required',   
+        ]);
+    
+        if($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+        $data = User::find($id);
+        $data->name = $request->nama;
+        if($request->password){
+            $data->password = Hash::make($request->password);
+        }
 
+        if($data->save()){
+
+            if($data->role === 'Siswa')
+            {
+                $nisn = $request->nisn;
+                $datasiswa = Siswa::where('nisn', $nisn)->first();
+                $datasiswa->name = $data->name;
+                $datasiswa->password = $data->password;
+                $datasiswa->save();
+                return redirect()->route('users')->with('success-update', 'Data Siswa berhasil diedit');
+            }
+            else if ($data->role === 'Guru'){
+                $nip = $request->nip;
+                $dataguru = Guru::where('nip', $nip)->first();
+                $dataguru->name = $data->name;
+                $dataguru->password = $data->password;
+                $dataguru->save();
+                return redirect()->route('users')->with('success-update', 'Data Guru berhasil diedit');            
+            }
+            else if ($data->role === 'Admin'){
+                $id_admin = $request->id_admin;
+                $dataadmin = Admin::where('id_admin', $id_admin)->first();
+                $dataadmin->name = $data->name;
+                $dataadmin->password = $data->password;
+                $dataadmin->save();
+                return redirect()->route('users')->with('success-update', 'Data Admin berhasil diedit');        
+            }
+        }
+
+        else{
+            return redirect()->route('users')->with('fail', 'Data Siswa gagal diedit');
+        }
+    
+        
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */

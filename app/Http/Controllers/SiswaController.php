@@ -276,9 +276,7 @@ class SiswaController extends Controller
         $data->status = $request->status;
     
         // Periksa apakah password baru diisi
-        if($request->role === 'Admin'){
 
-        }
         if($request->password){
             $data->password = Hash::make($request->password);
         }
@@ -296,6 +294,11 @@ class SiswaController extends Controller
     
         // Simpan perubahan data
         if($data->save()){
+            $nisn = $request->nisn;
+            $datauser = User::where('nisn', $nisn)->first();
+            $datauser->name = $data->name;
+            $datauser->password = $data->password;
+            $datauser->save();
             return redirect()->route('siswa')->with('success-update', 'Data Siswa '.$namasiswa.' berhasil diedit');
         }else{
             return redirect()->route('siswa')->with('fail', 'Data Siswa gagal '.$namasiswa.' diedit');
@@ -311,8 +314,11 @@ class SiswaController extends Controller
         //
         $data = Siswa::findOrFail($id);
         $namasiswa = $data->name;
-
+        $nisn = $data->nisn;
+        $datasiswa = User::where('nisn', $nisn)->first();
+        
         if($data->delete()){
+            $datasiswa->delete();
             return redirect()->back()->with('success-delete', 'Data Siswa '.$namasiswa.' berhasil dihapus');
         }else{
             return redirect()->back()->with('fail', 'Data Siswa gagal '.$namasiswa.' dihapus');

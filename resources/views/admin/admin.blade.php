@@ -36,7 +36,7 @@
                         @foreach($data as $d)
                         <tr>
                           <td>{{ $d->id_admin }}</td> 
-                          <td>{{ $d->foto }}</td> 
+                          <td><img src="{{asset('storage/photo-admin/'.$d->image)}}" alt="" style="width: 100px"></td> 
                           <td>{{ $d->name }}</td> 
                           <td>{{ $d->email }}</td> 
                           <td>{{ $d->password }}</td> 
