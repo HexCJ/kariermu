@@ -75,8 +75,8 @@
                       <thead>
                         <tr>
                           <th>NISN</th>
-                          <th>Foto</th>
                           <th>Nama</th>
+                          <th>Foto</th>
                           <th>Jenis Kelamin</th>
                           <th>Jurusan</th>
                           <th>Kelas</th>
@@ -91,8 +91,8 @@
                         @foreach($data as $d)
                         <tr>
                           <td>{{ $d->nisn }}</td> 
-                          <td><img src="{{asset('storage/photo-user/'.$d->image)}}" alt="" style="width: 100px"></td> 
                           <td>{{ $d->name }}</td> 
+                          <td><img src="{{asset('storage/photo-user/'.$d->image)}}" alt="" style="width: 100px"></td> 
                           <td>{{ $d->jenis_kelamin }}</td> 
                           <td>{{ $d->jurusan }}</td> 
                           <td>{{ $d->kelas }}</td> 

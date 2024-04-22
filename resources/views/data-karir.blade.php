@@ -32,27 +32,11 @@
                         <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
-                    <div class="col-12 mb-3 d-none" id="kerja">
-                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3">Tempat Kerja</label>
-                      <div class="input-group mb-2">
-                        <input type="text" value="{{old('tempat_kerja_kuliah')}}" class="form-control" id="tempat_kerja_kuliah" name="tempat_kerja_kuliah">
-                      </div>
-                      @error('tempat_kerja_kuliah')
-                        <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                    <div class="col-12 mb-3 d-none" id="kuliah">
-                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3">Tempat Kuliah</label>
-                      <div class="input-group mb-2">
-                        <input type="text" value="{{old('tempat_kerja_kuliah')}}" class="form-control" id="tempat_kerja_kuliah" name="tempat_kerja_kuliah">
-                      </div>
-                      @error('tempat_kerja_kuliah')
-                        <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                    <div class="col-12 mb-3 d-none" id="wirausaha">
-                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3">Tempat Wirausaha</label>
-                      <div class="input-group mb-2">
+                    <div class="col-12 mb-3">
+                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="kerja">Tempat Kerja</label>
+                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="kuliah">Tempat Kuliah</label>
+                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="wirausaha">Tempat Berw</label>
+                      <div class="input-group mb-2 d-none" id="input">
                         <input type="text" value="{{old('tempat_kerja_kuliah')}}" class="form-control" id="tempat_kerja_kuliah" name="tempat_kerja_kuliah">
                       </div>
                       @error('tempat_kerja_kuliah')
@@ -70,21 +54,26 @@
                           var kerja = document.getElementById('kerja');
                           var kuliah = document.getElementById('kuliah');
                           var wirausaha = document.getElementById('wirausaha');
+                          var input = document.getElementById('input');
                       
                           // Tampilkan input yang sesuai dengan opsi yang dipilih
                           if (status === 'Bekerja') {
                             kerja.classList.remove('d-none');
+                            input.classList.remove('d-none');
                             kuliah.classList.add('d-none');
                             wirausaha.classList.add('d-none');
                           } else if (status === 'Kuliah') {
                             kuliah.classList.remove('d-none');
+                            input.classList.remove('d-none');
                             kerja.classList.add('d-none');
                             wirausaha.classList.add('d-none');
                           } else if (status === 'Wirausaha') {
+                            input.classList.remove('d-none');
                             wirausaha.classList.remove('d-none');
                             kuliah.classList.add('d-none');
                             kerja.classList.add('d-none');  
                           } else {
+                              input.classList.add('d-none');
                               kuliah.classList.add('d-none');
                               kerja.classList.add('d-none');  
                               wirausaha.classList.add('d-none');  
@@ -171,9 +160,9 @@
             <div class="card mt-3">
               <div class="card-body">
               @if ($siswa->status == false)
-                <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center min-vh-100" data-aos="fade-up">
+                <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
                   <img src="{{ asset('img/404.png') }}" alt="" class="notfound">
-                  <p class="fw-medium mt-5 mb-0">Anda Belum Melaporkan Data Karir</p>
+                  <p class="fw-semibold mt-5 mb-0">Anda Belum Melaporkan Data Karir</p>
                   <p class="mt-2">Segera Laporkan Karir Anda</p>
                 </div>
                 @endif

@@ -11,6 +11,7 @@
 .navbar-color {
     background-color: #3A0CA3;
 }
+
 .navbar-text {
     color: #3A0CA3;
 }
@@ -20,11 +21,13 @@
     background-color: #3A0CA3;
     color: #fff;
 }
+
 .button-alert {
     border: none;
     background-color: none;
 }
-.button-s{
+
+.button-s {
     font-size: 2rem;
 }
 
@@ -131,44 +134,50 @@
     width: 50px;
     height: auto;
 }
-.data-profile{
+
+.data-profile {
     min-height: 80vh;
 }
-.notif{
+
+.notif {
     right: 0;
     margin-right: 15px;
 }
-.profile-foto{
+
+.profile-foto {
     width: 75%;
     object-fit: cover;
     border-radius: 12px;
     aspect-ratio: 1;
 }
-.profile-foto{
+
+.profile-foto {
     width: 75%;
     object-fit: cover;
     border-radius: 12px;
     aspect-ratio: 1;
 }
-.notfound{
-    width: 300px;
-    height:auto;
+
+.notfound {
+    width: 200px;
+    height: auto;
 }
+
 @media (max-width: 576px) {
-    h4{
-      font-size: 20px !important;  
+    h4 {
+        font-size: 20px !important;
     }
-    h3{
-      font-size: 15px !important;  
+    h3 {
+        font-size: 15px !important;
     }
-    h1{
-      font-size: 25px !important;  
+    h1 {
+        font-size: 25px !important;
     }
-    button{
-      font-size: 15px !important;  
+    button {
+        font-size: 15px !important;
     }
-    a{
-        font-size: 10px !important;  
+    a {
+        font-size: 10px !important;
     }
     .icon-round {
         width: 50px;
@@ -178,12 +187,12 @@
         font-size: 1.5rem;
         color: white;
     }
-    .button-s{
-        font-size: 1.3rem !important;  
+    .button-s {
+        font-size: 1.3rem !important;
     }
-    .button-logout{
-        font-size: 10px !important;  
-      }
+    .button-logout {
+        font-size: 10px !important;
+    }
     .title-data {
         font-size: 10px;
         margin: 0;
@@ -192,15 +201,15 @@
         font-size: 15px;
         margin: 0;
     }
-    .profile-foto{
+    .profile-foto {
         width: 60%;
         object-fit: cover;
         border-radius: 12px;
         aspect-ratio: 1;
     }
-    .notfound{
+    .notfound {
         width: 100px;
-        height:auto
+        height: auto
     }
 }
 
@@ -208,7 +217,6 @@
     .list {
         width: 100%;
     }
-
     .list-logout {
         width: 100%;
     }

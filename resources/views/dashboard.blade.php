@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid">
   {{-- admin /guru --}}
-  <div class="row d-none">
+  <div class="row">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between" data-aos="fade-up">
         <h4 class="h4">Welcome To Admin Dashboard SMKN 4 Tangerang</h4>
@@ -78,11 +78,11 @@
       </div> --}}
       <div class="row mt-5 px-0 px-lg-3 px-xl-1">
          <div class="col-12 col-md-6">
-          <img src="{{ asset('img/sma3.gif') }}" class="w-100" alt="">
+          @include('svg.sma_high')
          </div>
          <div class="col-12 col-md-6 ps-0 ps-md-5 d-flex flex-column justify-content-center gap-3">
           <h2 class="fw-bold text-primary-emphasis">Halo, Username Selamat Datang Di Kariermu.</h2>
-          <h4 class="fw-bold text-primary-emphasis">Laporkan Status Kariermu Di Sini</h4>
+          <h4 class="fw-medium text-primary-emphasis">Laporkan Status Kariermu Di Sini</h4>
           <div class="row">
             {{-- <div class="col-4">
               <div class="alert alert-danger">
