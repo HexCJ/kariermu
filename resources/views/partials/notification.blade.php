@@ -2,8 +2,10 @@
 <script>
 Swal.fire({
 title: "Berhasil!",
+// icon: "success"
+imageUrl: 'img/success.png', // Ganti 'link_ke_gambar.jpg' dengan URL gambar yang ingin Anda tampilkan
+imageHeight: 300, // Lebar gambar dalam piksel
 text: "Data berhasil ditambahkan.",
-icon: "success"
 });
 </script>
 <div class="position-absolute notif">
@@ -18,8 +20,10 @@ icon: "success"
 <script>
 Swal.fire({
 title: "Berhasil!",
+imageUrl: 'img/success.png', // Ganti 'link_ke_gambar.jpg' dengan URL gambar yang ingin Anda tampilkan
+imageHeight: 300, // Lebar gambar dalam piksel
 text: "Data berhasil diedit.",
-icon: "success"
+// icon: "success"
 });
 </script>
 <div class="position-absolute notif">
@@ -34,6 +38,8 @@ icon: "success"
 <script>
 Swal.fire({
 title: "Berhasil!",
+imageUrl: 'img/success.png', // Ganti 'link_ke_gambar.jpg' dengan URL gambar yang ingin Anda tampilkan
+imageHeight: 300, // Lebar gambar dalam piksel
 text: "Data berhasil terhapus.",
 icon: "success"
 });

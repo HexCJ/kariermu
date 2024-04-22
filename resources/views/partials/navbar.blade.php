@@ -14,19 +14,21 @@
           <div class="col bg-sidebar sidebar min-vh-100">
             <ul class="p-0 d-flex flex-column d-flex justify-content-center align-items-center gap-2">
                 {{-- profile --}}
-                <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Profile") ? 'list-active' : '' }} text-md-start">
-                    {{-- paddingnya di a href --}}
-                    <a href="{{ route('profile') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-user me-3"></i>Profile</a>
-                </li>
-                {{-- dashboard --}}
-                <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Dashboard") ? 'list-active' : '' }} text-md-start">
+                @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('guru') || auth()->user()->hasRole('siswa'))
+                  <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Profile") ? 'list-active' : '' }} text-md-start">
+                      {{-- paddingnya di a href --}}
+                      <a href="{{ route('profile') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-user me-3"></i>Profile</a>
+                  </li>
+                  {{-- dashboard --}}
+                  <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Dashboard") ? 'list-active' : '' }} text-md-start">
                     {{-- paddingnya di a href --}}
                     <a href="{{ route('dashboard') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-house-chimney-user me-3"></i>Dashboard</a>
-                </li>
-                {{-- data kelas --}}
+                  </li>
+                @endif
+                @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('guru'))
                 <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Jurusan") ? 'list-active' : '' }} text-md-start">
-                    {{-- paddingnya di a href --}}
-                    <a href="{{ route('data-kelas') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-school-flag me-3"></i>Data Jurusan</a>
+                  {{-- paddingnya di a href --}}
+                  <a href="{{ route('data-kelas') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-school-flag me-3"></i>Data Jurusan</a>
                 </li>
                 {{-- data kelas --}}
                 <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Mata Pelajaran") ? 'list-active' : '' }} text-md-start">
@@ -34,6 +36,9 @@
                     <a href="{{ route('mapel') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-chalkboard me-3"></i>Data Mata Pelajaran</a>
                 </li>
                 {{-- data guru --}}
+                <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Users" || $title == "Tambah Data Users" || $title == "Edit Data Users") ? 'list-active' : '' }} text-md-start">
+                    <a href="{{ route('users') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-users me-3"></i>Users</a>
+                </li>
                 <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Guru" || $title == "Tambah Data Guru" || $title == "Edit Data Guru") ? 'list-active' : '' }} text-md-start">
                     <a href="{{ route('guru') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-chalkboard-user me-3"></i>Guru</a>
                 </li>
@@ -41,14 +46,17 @@
                 <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Siswa" || $title == "Tambah Data Siswa" || $title == "Edit Data Siswa") ? 'list-active' : '' }} text-md-start">
                     <a href="{{ route('siswa') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-graduation-cap me-3"></i>Siswa</a>
                 </li>
-                {{-- data karir --}}
-                <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Karir") ? 'list-active' : '' }} text-md-start">
-                    <a href="/karir" class="a-icon py-2 px-3"><i class="fa-solid fa-briefcase me-3"></i>Data Karir</a>
-                </li>
-                {{-- data nilai  --}}
-                <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Nilai Siswa" || $title == "Detail Data Nilai Siswa") ? 'list-active' : '' }} text-md-start">
-                    <a href="{{ route('datanilai') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-chart-column me-3"></i>Data Nilai</a>
-                </li>
+                @endif
+                @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('guru') || auth()->user()->hasRole('siswa'))
+                  {{-- data karir --}}
+                  <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Karir") ? 'list-active' : '' }} text-md-start">
+                      <a href="{{ route('karir') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-briefcase me-3"></i>Data Karir</a>
+                  </li>
+                  {{-- data nilai  --}}
+                  <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Nilai Siswa" || $title == "Detail Data Nilai Siswa") ? 'list-active' : '' }} text-md-start">
+                      <a href="{{ route('datanilai') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-chart-column me-3"></i>Data Nilai</a>
+                  </li>
+                @endif
                 {{-- logout --}}
                 <li class="list-group w-100 list-logout text-medium cursor-pointer rounded text-md-start">
                     <form  action="{{ route('logout') }}" method="POST">

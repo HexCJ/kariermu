@@ -20,7 +20,8 @@
                       <div><i class="bi bi-exclamation-circle me-3"></i>Data Admin Kosong</div>
                     </div>
                     @endif
-                    <table id="dataUser" class="table table-bordered w-100 mt-3">
+                    @if (!$data->isEmpty())
+                    <table id="dataUser" class="table table-striped w-100 mt-3">
                       <thead>
                         <tr>
                           <th>ID Admin</th>
@@ -84,6 +85,7 @@
                         </tr>
                         @endforeach 
                     </table>
+                    @endif
                   </div>
                 </div>
               </div>

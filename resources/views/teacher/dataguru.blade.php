@@ -43,23 +43,20 @@
                 </div> --}}
               </div>
             </form>
-            <div class="card mt-3" style="height: 43rem">
-              <div class="card-body table-responsive">
-                {{-- empty --}}
-                {{-- <div class="d-flex flex-column text-center d-flex justify-content-center align-items-center text-secondary h-100">
-                  <h3 class="fw-medium">Data Guru Tidak Ada</h3>
-                  <h5 class="">Segera Isi Tambah Guru</h5>
-                </div> --}}
-                {{-- @endempty --}}
-
-                {{-- ada --}}
+            <div class="card mt-3 table-responsive" style="min-height: 43rem">
+              <div class="card-body">
                 <div class="">
                   @if ($data->isEmpty())
                   <div class="alert alert-warning d-flex align-items-center" role="alert">
                     <div><i class="bi bi-exclamation-circle me-3"></i>Data Guru Kosong</div>
                   </div>
+                  <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
+                    <img src="{{ asset('img/404_guru.png') }}" alt="" class="notfound">
+                    <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Guru</p>
+                  </div>
                   @endif
-                  <table id="dataguru" class="table table-bordered w-100 mt-3">
+                  @if(!$data->isEmpty())
+                  <table id="dataguru" class="table table-striped w-100 mt-3">
                     <thead>
                       <tr>
                         <th>NIP</th>
@@ -128,6 +125,7 @@
                         @endforeach
                     </tbody>
                   </table>
+                  @endif
                 </div>
                 {{-- gak ada --}}
               </div>

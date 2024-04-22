@@ -159,12 +159,12 @@
           <div class="col p-0">
             <div class="card mt-3">
               <div class="card-body">
-              @if ($siswa->status == false)
-                <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
-                  <img src="{{ asset('img/404.png') }}" alt="" class="notfound">
-                  <p class="fw-semibold mt-5 mb-0">Anda Belum Melaporkan Data Karir</p>
-                  <p class="mt-2">Segera Laporkan Karir Anda</p>
-                </div>
+                @if ($siswa->status == false)
+                  <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
+                    <img src="{{ asset('img/no-input.png') }}" alt="" class="notfound">
+                    <p class="fw-semibold mt-5 mb-0">Anda Belum Melaporkan Data Karir</p>
+                    <p class="mt-2">Segera Laporkan Karir Anda</p>
+                  </div>
                 @endif
                 {{-- jika ada --}}
                 @if($siswa->status == true)
