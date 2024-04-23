@@ -27,7 +27,6 @@
                           <th>NIP</th>
                           <th>id_admin</th>
                           <th>Nama</th>
-                          <th>Password</th>
                           <th>Role</th>
                           <th>Aksi</th>
                         </tr>
@@ -38,7 +37,6 @@
                           <td>{{ $d->nip }}</td> 
                           <td>{{ $d->id_admin }}</td> 
                           <td>{{ $d->name }}</td> 
-                          <td>{{ $d->password }}</td> 
                           <td>{{ $d->role }}</td>
                           <td class="d-flex justify-content-center align-items-center">
                             <div class="dropdown py-3">

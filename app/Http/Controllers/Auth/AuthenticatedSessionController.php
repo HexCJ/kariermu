@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         //jika didapat informasi role user ,arahkan ke web(routing)         
         if(Auth::user()->hasRole('admin')){
-            return redirect()->to('admin');
+            return redirect()->to('dashboard');
         }
         if(Auth::user()->hasRole('guru')){
             return redirect()->to('dashboard');

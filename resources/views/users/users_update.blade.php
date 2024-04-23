@@ -55,12 +55,12 @@
               <input type="text" class="form-control" id="nama" name="nama" value="{{ $data->name }}">
             </div>
           </div>
-          <div class="mb-4 col-6">
+          {{-- <div class="mb-4 col-6">
             <label for="password" class="text-secondary mb-3">Password</label>
             <div class="input-group">
               <input type="text" class="form-control" id="password" name="password" value="{{ $data->password }}">
             </div>
-          </div>
+          </div> --}}
         </div>
         <div class="d-flex gap-2 mt-3">
           <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center ">Submit</button>

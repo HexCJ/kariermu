@@ -4,11 +4,6 @@
   @csrf
 <div class="container-fluid">
   <div class="row">
-    <!-- Modal Add -->
-    <?php
-    echo $siswa->nisn;
-
-?>
     <div class="modal fade" id="addDataKarir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
         <div class="modal-content">
@@ -27,31 +22,65 @@
                     <div class="col-12 mb-3">
                       <label for="status" class="text-secondary mb-3">Status</label>
                       <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="status" name="status">
-                        <option selected>Pilih Status Anda</option>
-                        <option value="Bekerja">Bekerja</option> 
-                        <option value="Kuliah">Kuliah</option>
-                        <option value="Menganggur">Menganggur</option>
-                        <option value="Siswa">Wirausaha</option>
+                        <option selected >Pilih Status Anda</option>
+                        <option value="Bekerja"{{ old('status') == 'Bekerja' ? 'selected' : '' }}>Bekerja</option> 
+                        <option value="Kuliah">{{ old('status') == 'Kuliah' ? 'selected' : '' }}Kuliah</option>
+                        <option value="Menganggur"{{ old('status') == 'Menganggur' ? 'selected' : '' }}>Menganggur</option>
+                        <option value="Wirausaha"{{ old('status') == 'Wirausaha' ? 'selected' : '' }}>Wirausaha</option>
                       </select>
                       @error('status')
                         <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
-                    <div class="row">
-                      <div class="col-12 mb-3">
-                        <label for="tempat_kerja_kuliah" class="text-secondary mb-3">tempat kerja / kuliah</label>
-                        <div class="input-group mb-2">
-                          <input type="text" value="{{old('tempat_kerja_kuliah')}}" class="form-control" id="tempat_kerja_kuliah" name="tempat_kerja_kuliah">
-                        </div>
-                        @error('tempat_kerja_kuliah')
-                          <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                    <div class="col-12 mb-3">
+                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="kerja">Tempat Kerja</label>
+                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="kuliah">Tempat Kuliah</label>
+                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="wirausaha">Tempat Berw</label>
+                      <div class="input-group mb-2 d-none" id="input">
+                        <input type="text" value="{{old('tempat_kerja_kuliah')}}" class="form-control" id="tempat_kerja_kuliah" name="tempat_kerja_kuliah">
                       </div>
+                      @error('tempat_kerja_kuliah')
+                        <small class="text-danger">{{ $message }}</small>
+                      @enderror
                     </div>
                     {{-- jiika datanya kosong --}}
                 </div>
               </div>
               <div class="modal-footer">
+                <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                      document.getElementById('status').addEventListener('change', function() {
+                          var status = this.value;
+                          var kerja = document.getElementById('kerja');
+                          var kuliah = document.getElementById('kuliah');
+                          var wirausaha = document.getElementById('wirausaha');
+                          var input = document.getElementById('input');
+                      
+                          // Tampilkan input yang sesuai dengan opsi yang dipilih
+                          if (status === 'Bekerja') {
+                            kerja.classList.remove('d-none');
+                            input.classList.remove('d-none');
+                            kuliah.classList.add('d-none');
+                            wirausaha.classList.add('d-none');
+                          } else if (status === 'Kuliah') {
+                            kuliah.classList.remove('d-none');
+                            input.classList.remove('d-none');
+                            kerja.classList.add('d-none');
+                            wirausaha.classList.add('d-none');
+                          } else if (status === 'Wirausaha') {
+                            input.classList.remove('d-none');
+                            wirausaha.classList.remove('d-none');
+                            kuliah.classList.add('d-none');
+                            kerja.classList.add('d-none');  
+                          } else {
+                              input.classList.add('d-none');
+                              kuliah.classList.add('d-none');
+                              kerja.classList.add('d-none');  
+                              wirausaha.classList.add('d-none');  
+                          }
+                      });
+                  });
+                  </script>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center" data-bs-dismiss="modal">Submit</button>
               </div>
@@ -83,15 +112,10 @@
                       <label for="status" class="text-secondary mb-3">Status</label>
                       <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="status" name="status">
                         <option selected>Pilih Status Anda</option>
-                        <option value="Bekerja">Bekerja</option> 
-                        <option value="Kuliah">Kuliah</option>
-                        <option value="Menganggur">Menganggur</option>
-                        <option value="Siswa">Wirausaha</option>
-
                         <option value="Bekerja" {{ $siswa->status == 'Bekerja' ? 'selected' : '' }}>Bekerja</option>
                         <option value="Kuliah" {{ $siswa->status == 'Kuliah' ? 'selected' : '' }}>Kuliah</option>
                         <option value="Menganggur" {{ $siswa->status == 'Menganggur' ? 'selected' : '' }}>Menganggur</option>
-                        <option value="Siswa" {{ $siswa->status == 'Siswa' ? 'selected' : '' }}>Wirausaha</option>
+                        <option value="Wirausaha" {{ $siswa->status == 'Wirausaha' ? 'selected' : '' }}>Wirausaha</option>
                       </select>
                       @error('status')
                         <small class="text-danger">{{ $message }}</small>
@@ -126,20 +150,24 @@
       <div class="d-flex">
         <h4>Laporan Data Karir Siswa</h4>
         {{-- jika gak ada --}}
+        @if ($siswa->status == false)
         <a href="" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto" data-bs-toggle="modal" data-bs-target="#addDataKarir"><i class="fa-solid fa-briefcase me-2"></i>Lapor Karir</a>
+        @endif
       </div>
       <div class="container-fluid px-4">
         <div class="row">
           <div class="col p-0">
             <div class="card mt-3">
-              @if ($siswa->nisn == false)
-              <div class="card-body alert alert-danger jika_udah_diinput_dia_gak_lagi_alert-danger">
-                <div class="d-flex flex-column text-center d-flex justify-content-center align-items-center min-vh-100" data-aos="fade-up">
-                  <h3 class="fw-bold">Anda Belum Melaporkan Data Karir</h3>
-                  <h5 class="mt-3">Segera <a href="" class="alert-link" data-bs-toggle="modal" data-bs-target="#addDataKarir">Laporkan </a>Karir Anda</h5>
-                </div>
+              <div class="card-body">
+                @if ($siswa->status == false)
+                  <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
+                    <img src="{{ asset('img/no-input.png') }}" alt="" class="notfound">
+                    <p class="fw-semibold mt-5 mb-0">Anda Belum Melaporkan Data Karir</p>
+                    <p class="mt-2">Segera Laporkan Karir Anda</p>
+                  </div>
                 @endif
                 {{-- jika ada --}}
+                @if($siswa->status == true)
                 <div class="row">
                   <div class="col-12">
                     <div class="data-profile row px-5 py-3">
@@ -161,6 +189,7 @@
                     </div>
                   </div>
                 </div>
+                @endif
               </div>
             </div>
           </div>

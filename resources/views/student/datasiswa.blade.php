@@ -70,13 +70,18 @@
                     <div class="alert alert-warning d-flex align-items-center" role="alert">
                       <div><i class="bi bi-exclamation-circle me-3"></i>Data Siswa Kosong</div>
                     </div>
+                    <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
+                      <img src="{{ asset('img/404.png') }}" alt="" class="notfound">
+                      <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Siswa</p>
+                    </div>
                     @endif
-                    <table class="table table-bordered w-100 mt-3" id="dataSiswa">
+                    @if(!$data->isEmpty())
+                    <table class="table table-striped w-100 mt-3" id="dataSiswa">
                       <thead>
                         <tr>
                           <th>NISN</th>
-                          <th>Foto</th>
                           <th>Nama</th>
+                          <th>Foto</th>
                           <th>Jenis Kelamin</th>
                           <th>Jurusan</th>
                           <th>Kelas</th>
@@ -91,8 +96,8 @@
                         @foreach($data as $d)
                         <tr>
                           <td>{{ $d->nisn }}</td> 
-                          <td><img src="{{asset('storage/photo-user/'.$d->image)}}" alt="" style="width: 100px"></td> 
                           <td>{{ $d->name }}</td> 
+                          <td><img src="{{asset('storage/photo-user/'.$d->image)}}" alt="" style="width: 100px"></td> 
                           <td>{{ $d->jenis_kelamin }}</td> 
                           <td>{{ $d->jurusan }}</td> 
                           <td>{{ $d->kelas }}</td> 
@@ -143,6 +148,7 @@
                         </tr>
                         @endforeach 
                     </table>
+                    @endif
                   </div>
                 </div>
               </div>
