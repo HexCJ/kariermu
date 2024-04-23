@@ -107,7 +107,7 @@ class UserSeeder extends Seeder
             'password'=>bcrypt('guru1')
         ]);
         // //buat role sesuai RolePermission
-        $guru->assignRole('guru');z
+        $guru->assignRole('guru');
         
 
 
@@ -144,5 +144,6 @@ class UserSeeder extends Seeder
         //     //buat role sesuai RolePermission
         //     $siswa->assignRole('siswa');
         // }
-    }
+        }
+        
 }

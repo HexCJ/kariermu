@@ -298,6 +298,7 @@ class SiswaController extends Controller
             $datauser = User::where('nisn', $nisn)->first();
             $datauser->name = $data->name;
             $datauser->password = $data->password;
+            $datauser->email = $data->email;
             $datauser->save();
             return redirect()->route('siswa')->with('success-update', 'Data Siswa '.$namasiswa.' berhasil diedit');
         }else{

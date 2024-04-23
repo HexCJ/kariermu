@@ -119,7 +119,7 @@ class ProfileController extends Controller
             $path     = 'photo-user/'.$filename;
             
             Storage::disk('public')->put($path,file_get_contents($photo));
-            $data['image']         = $filename;  
+            $siswa['image']         = $filename;  
         }
         // dd($request->all());
     
@@ -127,6 +127,7 @@ class ProfileController extends Controller
         if($siswa->save()){
             $datauser = User::where('nisn', $nisn)->first();
             $datauser->name = $siswa->name;
+            $datauser->email = $siswa->email;
             $datauser->save();
 
             return redirect()->route('profile')->with('success-update', 'Data Siswa '.$namasiswa.' berhasil diedit');
@@ -184,7 +185,7 @@ class ProfileController extends Controller
             $path     = 'photo-guru/'.$filename;
     
             Storage::disk('public')->put($path,file_get_contents($photo));
-            $data['image']         = $filename;
+            $guru['image']         = $filename;
 
             
         }
@@ -194,6 +195,7 @@ class ProfileController extends Controller
         if($guru->save()){
             $datauser = User::where('nip', $nip)->first();
             $datauser->name = $guru->name;
+            $datauser->email = $guru->email;
             $datauser->save();
 
             return redirect()->route('profile')->with('success-update', 'Data Guru '.$namaguru.' berhasil diedit');
@@ -230,7 +232,7 @@ class ProfileController extends Controller
         $admin = Admin::where('id_admin', $id_admin)->first();
         $namaadmin = $admin->name;
 
-        // Mengisi data/siswa dengan input dari form
+        // Mengisi data admin dengan input dari form
         $admin->id_admin = $admin->id_admin;
         $admin->name = $request->nama;
         $admin->email = $request->email;
@@ -247,7 +249,7 @@ class ProfileController extends Controller
             $path     = 'photo-admin/'.$filename;
     
             Storage::disk('public')->put($path,file_get_contents($photo));
-            $data['image']         = $filename;
+            $admin['image']         = $filename;
 
             
         }
@@ -257,6 +259,7 @@ class ProfileController extends Controller
         if($admin->save()){
             $datadmin = User::where('id_admin', $id_admin)->first();
             $datadmin->name = $admin->name;
+            $datadmin->email = $admin->email;
             $datadmin->save();
 
             return redirect()->route('profile')->with('success-update', 'Data Admin '.$namaadmin.' berhasil diedit');
