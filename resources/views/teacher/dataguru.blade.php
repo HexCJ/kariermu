@@ -35,12 +35,6 @@
                 <div class="col-12 col-sm-12 col-md-2 mb-2 d-flex justify-content-end py-3 text-center">
                   <button type="submit" class="btn btn-primary w-100 w-sm-50"><i class="fa-solid fa-sort me-2"></i>Sortir Data Guru</button>
                 </div>
-                {{-- input manual --}}
-                {{-- <div class="col d-none">
-                  <div class="input-group mb-3 mt-3">
-                    <input type="text" name="search" class="form-control" aria-label="Text input with dropdown button" placeholder="Cari siswa berdasarkan NIP atau Nama" value="">
-                  </div>
-                </div> --}}
               </div>
             </form>
             <div class="card mt-3 table-responsive" style="min-height: 43rem">
@@ -51,12 +45,12 @@
                     <div><i class="bi bi-exclamation-circle me-3"></i>Data Guru Kosong</div>
                   </div>
                   <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
-                    <img src="{{ asset('img/404_guru.png') }}" alt="" class="notfound">
+                    <img class="data-kosong" src="{{ asset('img/data_kosong_guru.png') }}" alt="">
                     <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Guru</p>
                   </div>
                   @endif
                   @if(!$data->isEmpty())
-                  <table id="dataguru" class="table table-striped w-100 mt-3">
+                  <table id="dataguru" class="table table-hover w-100 mt-3">
                     <thead>
                       <tr>
                         <th>NIP</th>
@@ -127,7 +121,6 @@
                   </table>
                   @endif
                 </div>
-                {{-- gak ada --}}
               </div>
             </div>
           </div>

@@ -170,6 +170,18 @@
     width: 200px;
     height: auto;
 }
+.data-kosong {
+    width: 100px;
+    height: auto;
+}
+.data-kosong-kelas {
+    width: 300px;
+    height: auto;
+}
+.select-option-form {
+    margin-top: 8px !important;
+    padding: 10px !important;
+}
 
 @media (max-width: 576px) {
     h4 {
@@ -217,7 +229,7 @@
     }
     .notfound {
         width: 100px;
-        height: auto
+        height: auto;
     }
 }
 

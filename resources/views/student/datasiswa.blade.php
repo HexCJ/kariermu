@@ -71,12 +71,12 @@
                       <div><i class="bi bi-exclamation-circle me-3"></i>Data Siswa Kosong</div>
                     </div>
                     <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
-                      <img src="{{ asset('img/404.png') }}" alt="" class="notfound">
+                      <img class="data-kosong" src="{{ asset('img/data_kosong.png') }}" alt="">
                       <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Siswa</p>
                     </div>
                     @endif
                     @if(!$data->isEmpty())
-                    <table class="table table-striped w-100 mt-3" id="dataSiswa">
+                    <table class="table table-hover w-100 mt-3" id="dataSiswa">
                       <thead>
                         <tr>
                           <th>NISN</th>

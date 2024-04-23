@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MataPelajaran;
 use App\Models\User;
 
 use App\Http\Requests\ProfileUpdateRequest;
@@ -52,6 +53,7 @@ class ProfileController extends Controller
 
             // Ambil NISN pengguna yang sedang login
             $nisn = Auth::user()->nisn;
+            $jurusans = Jurusan::all();
 
             // Ambil data profil berdasarkan NISN pengguna yang sedang login
             $siswa = Siswa::where('nisn', $nisn)->first();
@@ -323,8 +325,10 @@ class ProfileController extends Controller
 
         // Jika data guru ketemu, balikin view dengan data guru
         if ($guru) {
+            $mapels = MataPelajaran::all();
             return view('data-profile', [
                 'guru' => $guru,
+                'mapels' => $mapels,
                 'title' => 'Data Profile'
             ]);
         }
@@ -339,8 +343,10 @@ class ProfileController extends Controller
 
         // kalo data siswa ketemu, balik ke view dengan data siswa
         if ($siswa) {
+            $jurusans = Jurusan::all();
             return view('data-profile', [
                 'siswa' => $siswa,
+                'jurusans' => $jurusans,
                 'title' => 'Data Profile'
             ]);
         }
