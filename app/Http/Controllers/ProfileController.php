@@ -68,7 +68,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function updatesiswa(Request $request, string $id): RedirectResponse
     {
         //siswa
         
@@ -88,22 +88,18 @@ class ProfileController extends Controller
         
         if($validator->fails()) {
             return redirect()->back()->withInput()->withErrors($validator);
+            
         }
-        
-        // Ambil data siswa berdasarkan ID
-        // $user = Auth::user();
-        // $data = Siswa::find('nisn');
-        
-        // $nisn = $user->nisn;
-        // $siswa = Siswa::where('nisn', $nisn)->first();
-        $nisn = Auth::user()->nisn;
-        
-        // Ambil data siswa berdasarkan NISN pengguna yang sedang login
-        $siswa = Siswa::where('nisn', $nisn)->first();        
+
+        $user = Auth::user();
+        // ambil nisn dari user
+
+        $nisn = $user->nisn;
+        $siswa = Siswa::where('nisn', $nisn)->first();
         $namasiswa = $siswa->name;
-        
+
         // Mengisi data/siswa dengan input dari form
-        $siswa->nisn = $request->nisn;
+        $siswa->nisn = $siswa->nisn;
         $siswa->name = $request->nama;
         $siswa->jenis_kelamin = $request->jkelamin;
         $siswa->jurusan = $request->jurusan;
@@ -112,43 +108,162 @@ class ProfileController extends Controller
         $siswa->alamat = $request->alamat;
         $siswa->tahun_lulus = $request->lulus;
         $siswa->status = $request->status;
-        
+
         // Periksa apakah password baru diisi
-        
         if($request->password){
             $siswa->password = Hash::make($request->password);
         }
-        
         $photo    = $request->file('photo');
         if($photo){
             $filename = date('Y-m-d').$photo->getClientOriginalName();
             $path     = 'photo-user/'.$filename;
             
             Storage::disk('public')->put($path,file_get_contents($photo));
-            $data['image']         = $filename;
-            
-            
+            $data['image']         = $filename;  
         }
-        dd($request->all());
+        // dd($request->all());
     
         // Simpan perubahan data
         if($siswa->save()){
+            $datauser = User::where('nisn', $nisn)->first();
+            $datauser->name = $siswa->name;
+            $datauser->save();
+
             return redirect()->route('profile')->with('success-update', 'Data Siswa '.$namasiswa.' berhasil diedit');
         }else{
             return redirect()->route('profile')->with('fail', 'Data Siswa gagal '.$namasiswa.' diedit');
         }
         //end siswa
+    }
+    
+    public function updateguru(Request $request, string $id): RedirectResponse
+    {
+        //guru
         
+         //validator
+         $validator = Validator::make($request->all(),[
+            // 'nip'=>'required',
+            'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
+            // 'nama'=>'required',
+            // 'email'=>'required|email',
+            // // 'jkelamin'=>'required|in:Laki-laki, Perempuan',   
+            // 'password'=>'required',   
+            // 'alamat'=>'required',
+            // 'matapelajaran'=>'required|in:MTK, BING',   
+        ]);
         
-        // $request->user()->fill($request->validated());
+        if($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+            
+        }
 
-        // if ($request->user()->isDirty('email')) {
-        //     $request->user()->email_verified_at = null;
-        // }
+        $user = Auth::user();
+        // ambil nisn dari user
 
-        // $request->user()->save();
+        $nip = $user->nip;
+        $guru = Guru::where('nip', $nip)->first();
+        $namaguru = $guru->name;
 
-        // return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        // Mengisi data/siswa dengan input dari form
+        $guru->nip = $guru->nip;
+        $guru->name = $request->nama;
+        $guru->jenis_kelamin = $request->jkelamin;
+        $guru->email = $request->email;
+        $guru->password = Hash::make($request->password);
+        $guru->alamat = $request->alamat;
+        $guru->mata_pelajaran = $request->matapelajaran;
+
+        // Periksa apakah password baru diisi
+        if($request->password){
+            $guru->password = Hash::make($request->password);
+        }
+
+        $photo    = $request->file('photo');
+        if($photo){
+            $filename = date('Y-m-d').$photo->getClientOriginalName();
+            $path     = 'photo-guru/'.$filename;
+    
+            Storage::disk('public')->put($path,file_get_contents($photo));
+            $data['image']         = $filename;
+
+            
+        }
+        // dd($request->all());
+    
+        // Simpan perubahan data
+        if($guru->save()){
+            $datauser = User::where('nip', $nip)->first();
+            $datauser->name = $guru->name;
+            $datauser->save();
+
+            return redirect()->route('profile')->with('success-update', 'Data Guru '.$namaguru.' berhasil diedit');
+        }else{
+            return redirect()->route('profile')->with('fail', 'Data Guru gagal '.$namaguru.' diedit');
+        }
+        //end siswa
+    }
+
+    public function updateadmin(Request $request, string $id): RedirectResponse
+    {
+        //admin
+        
+         //validator
+         $validator = Validator::make($request->all(),[
+            // 'id_admin'=>'required',
+            // 'nama'=>'required',
+            'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
+            // 'email'=>'required|email',
+            // 'jkelamin'=>'required|in:Laki-laki, Perempuan',
+            // 'password'=>'required',   
+            // 'alamat'=>'required',   
+        ]);
+        
+        if($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+            
+        }
+
+        $user = Auth::user();
+        // ambil nisn dari user
+
+        $id_admin = $user->id_admin;
+        $admin = Admin::where('id_admin', $id_admin)->first();
+        $namaadmin = $admin->name;
+
+        // Mengisi data/siswa dengan input dari form
+        $admin->id_admin = $admin->id_admin;
+        $admin->name = $request->nama;
+        $admin->email = $request->email;
+        $admin->alamat = $request->alamat;
+
+        // Periksa apakah password baru diisi
+        if($request->password){
+            $admin->password = Hash::make($request->password);
+        }
+
+        $photo    = $request->file('photo');
+        if($photo){
+            $filename = date('Y-m-d').$photo->getClientOriginalName();
+            $path     = 'photo-admin/'.$filename;
+    
+            Storage::disk('public')->put($path,file_get_contents($photo));
+            $data['image']         = $filename;
+
+            
+        }
+        // dd($request->all());
+    
+        // Simpan perubahan data
+        if($admin->save()){
+            $datadmin = User::where('id_admin', $id_admin)->first();
+            $datadmin->name = $admin->name;
+            $datadmin->save();
+
+            return redirect()->route('profile')->with('success-update', 'Data Admin '.$namaadmin.' berhasil diedit');
+        }else{
+            return redirect()->route('profile')->with('fail', 'Data Admin gagal '.$namaadmin.' diedit');
+        }
+        //end siswa
     }
 
     /**
@@ -214,6 +329,7 @@ class ProfileController extends Controller
 
     // kalo gak ada guru, coba cari siswa berdasarkan nisn
     $nisn = $user->nisn;
+    
     if (!empty($nisn)) {
         // Jika nisn ada, cari data siswa berdasarkan nisn
         $siswa = Siswa::where('nisn', $nisn)->first();

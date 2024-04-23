@@ -35,8 +35,10 @@ Route::get('/dashboard',[Controller::class,'dashboard'])->middleware(['auth', 'v
 
 // Route::get('/profile',[ProfileController::class,'index'])->middleware(['auth', 'verified'])->name('profile');
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile');
-Route::get('profile/edit/{nisn}',[ProfileController::class, 'edit'])->middleware(['auth'])->name('profile.edit');
-Route::put('profile/update/{nisn}', [ProfileController::class, 'update'])->middleware(['auth'])->name('profile.update');
+// Route::get('profile/edit/{nisn}',[ProfileController::class, 'edit'])->middleware(['auth'])->name('profile.edit');
+Route::put('profile/updatesiswa/{id}', [ProfileController::class, 'updatesiswa'])->middleware(['auth'])->name('profile.updatesiswa');
+Route::put('profile/updateguru/{id}', [ProfileController::class, 'updateguru'])->middleware(['auth'])->name('profile.updateguru');
+Route::put('profile/updateadmin/{id}', [ProfileController::class, 'updateadmin'])->middleware(['auth'])->name('profile.updateadmin');
 
 // nilai
 Route::get('/nilai',[Controller::class,'dataNilai'])->name('datanilai');

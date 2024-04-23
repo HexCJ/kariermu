@@ -18,7 +18,7 @@
             </div>
             {{-- Update section --}}
             <div class="modal-body">
-              <form action="{{ route('profile.update', ['nisn' => $siswa->nisn]) }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('profile.updatesiswa', ['id' => $siswa->nisn]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="container-fluid">
@@ -198,8 +198,9 @@
             </div>
             {{-- Update section --}}
             <div class="modal-body">
-              <form action="{{ route('data-kelas.input') }}" method="POST">
+              <form action="{{ route('profile.updateguru', ['id' => $guru->nip]) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="container-fluid">
                   <div class="row">
                     <div class="col-12 col-md-6 mb-3 d-flex flex-column gap-3">
@@ -345,7 +346,8 @@
             </div>
             {{-- Update section --}}
             <div class="modal-body">
-              <form action="{{ route('data-kelas.input') }}" method="POST">
+              <form action="{{ route('profile.updateadmin', ['id' => $admin->id_admin]) }}" method="POST">
+                @method('PUT')
                 @csrf
                 <div class="container-fluid">
                   <div class="row">
@@ -372,10 +374,14 @@
                         <label for="nama" class="text-secondary"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
                         <input type="text" value="{{ $admin->name }}" class="text-secondary mb-3 mt-2 p-2 card" id="nama" name="nama"></input>
                       </div>
+                      <div class="form-group mb-4">
+                        <label for="email" class="text-secondary"><i class="fa-solid fa-user-tag me-2"></i>email </label>
+                        <input type="text" value="{{ $admin->email }}" class="text-secondary mb-3 mt-2 p-2 card" id="email" name="email"></input>
+                      </div>
                       {{-- Nama --}}
                       <div class="form-group mb-4">
                         <label for="nama" class="text-secondary"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                        <input type="text" value="{{ $admin->name }}" class="text-secondary mb-3 mt-2 p-2 card" id="alamat" name="alamat"></input>
+                        <input type="text" value="{{ $admin->alamat }}" class="text-secondary mb-3 mt-2 p-2 card" id="alamat" name="alamat"></input>
                       </div>
                     </div>
                   </div>
