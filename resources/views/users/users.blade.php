@@ -19,7 +19,12 @@
                     <div class="alert alert-warning d-flex align-items-center" role="alert">
                       <div><i class="bi bi-exclamation-circle me-3"></i>Data Users Kosong</div>
                     </div>
+                    <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
+                      <img class="data-kosong" src="{{ asset('img/data_kosong.png') }}" alt="">
+                      <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Users</p>
+                    </div>
                     @endif
+                    @if(!$data->isEmpty())
                     <table id="dataUser" class="table table-bordered w-100 mt-3">
                       <thead>
                         <tr>
@@ -80,6 +85,7 @@
                         </tr>
                         @endforeach 
                     </table>
+                    @endif
                   </div>
                 </div>
               </div>

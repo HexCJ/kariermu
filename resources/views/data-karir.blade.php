@@ -90,7 +90,6 @@
       </div>
     </div>
   </div>
-
   <div class="row">
     <!-- Modal Add -->
     <div class="modal fade" id="editDataKarir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -145,29 +144,32 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 mt-4">
-      <div class="d-flex">
-        <h4>Laporan Data Karir Siswa</h4>
-        {{-- jika gak ada --}}
-        @if ($siswa->status == false)
-        <a href="" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto" data-bs-toggle="modal" data-bs-target="#addDataKarir"><i class="fa-solid fa-briefcase me-2"></i>Lapor Karir</a>
-        @endif
+  @if ($siswa->status == false)
+    <div class="row">
+      <div class="col-12 mt-4">
+        <div class="d-flex">
+          <h4>Laporan Data Karir Siswa</h4>
+          {{-- jika gak ada --}}
+          @if ($siswa->status == false)
+          <a href="" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto" data-bs-toggle="modal" data-bs-target="#addDataKarir"><i class="fa-solid fa-briefcase me-2"></i>Lapor Karir</a>
+          @endif
+        </div>
+          <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 90vh" data-aos="fade-up">
+            <img src="{{ asset('img/data_kosong.png') }}" alt="" class="data-kosong">
+            <p class="fw-semibold mt-5 mb-0">Anda Belum Melaporkan Data Karir</p>
+            <p class="mt-2">Segera Laporkan Karir Anda</p>
+          </div>
+        </div>
       </div>
+    @endif
+      {{-- jika ada --}}
+    <div class="row">
       <div class="container-fluid px-4">
         <div class="row">
           <div class="col p-0">
+            @if($siswa->status == true)
             <div class="card mt-3">
               <div class="card-body">
-                @if ($siswa->status == false)
-                  <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
-                    <img src="{{ asset('img/no-input.png') }}" alt="" class="notfound">
-                    <p class="fw-semibold mt-5 mb-0">Anda Belum Melaporkan Data Karir</p>
-                    <p class="mt-2">Segera Laporkan Karir Anda</p>
-                  </div>
-                @endif
-                {{-- jika ada --}}
-                @if($siswa->status == true)
                 <div class="row">
                   <div class="col-12">
                     <div class="data-profile row px-5 py-3">
@@ -196,6 +198,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
+</div>
 </div>
 @endsection

@@ -1,9 +1,40 @@
 // datatables
-new DataTable('#dataMapel');
-new DataTable('#dataKelas');
-new DataTable('#dataUser');
-new DataTable('#dataSiswa');
-new DataTable('#dataguru');
+new DataTable('#dataMapel', {
+    language: {
+        "search": "Cari :",
+        "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img src='img/404.png' alt='' class='notfound'><p class='fw-semibold mt-5 mb-0'>Data Mata Pelajaran Tidak Ditemukan</p></div>"
+    }
+});
+new DataTable('#dataKelas',{
+    language: {
+        "search": "Cari Kelas :",
+        "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img class='notfound' src='img/404.png' alt=''><p class='fw-semibold mt-5 mb-0'>Data Kelas Tidak Ditemukan</p></div>"
+    }
+});
+new DataTable('#dataSiswa', {
+    language: {
+        "search": "Cari Data Siswa :",
+        "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img class='notfound' src='img/404.png' alt=''><p class='fw-semibold mt-5 mb-0'>Data Siswa Tidak Ditemukan</p></div>"
+    }
+});
+new DataTable('#dataguru', {
+    language: {
+        "search": "Cari Data Guru :",
+        "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img class='notfound' class='notfound' src='img/404_guru.png' alt=''><p class='fw-semibold mt-5 mb-0'>Data Guru Tidak Ditemukan</p></div>"
+    }
+});
+new DataTable('#dataAdmin', {
+    language: {
+        "search": "Cari Data Admin :",
+        "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img class='notfound' src='img/404.png' alt=''><p class='fw-semibold mt-5 mb-0'>Data Admin Tidak Ditemukan</p></div>"
+    }
+});
+new DataTable('#dataUser', {
+    language: {
+        "search": "Cari Data Mata Pelajaran :",
+        "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img class='notfound' src='img/404.png' alt=''><p class='fw-semibold mt-5 mb-0'>Data Admin Tidak Ditemukan</p></div>"
+    }
+});
 new DataTable('#dataNilai');
 
 // // new DataTable('#dataSiswa');
@@ -121,9 +152,9 @@ new DataTable('#dataNilai');
 // };
 
 // Tangkap event submit dari formulir
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll('.confirm-form-submit').forEach(function(form) {
-        form.addEventListener('submit', function(event) {
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.confirm-form-submit').forEach(function (form) {
+        form.addEventListener('submit', function (event) {
             event.preventDefault(); // Menghentikan pengiriman formulir secara langsung
 
             // Menampilkan SweetAlert konfirmasi penghapusan

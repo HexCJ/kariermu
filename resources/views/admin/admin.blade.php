@@ -21,16 +21,15 @@
                     </div>
                     @endif
                     @if (!$data->isEmpty())
-                    <table id="dataUser" class="table table-striped w-100 mt-3">
+                    <table id="dataUser" class="table table-hover w-100 mt-3">
                       <thead>
                         <tr>
                           <th>ID Admin</th>
                           <th>Foto</th>
                           <th>Nama</th>
                           <th>Email</th>
-                          <th>Password</th>
                           <th>Alamat</th>
-                          {{-- <th>Jenis Kelamin</th> --}}
+                          <th>Jenis Kelamin</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
@@ -40,9 +39,8 @@
                           <td><img src="{{asset('storage/photo-admin/'.$d->image)}}" alt="" style="width: 100px"></td> 
                           <td>{{ $d->name }}</td> 
                           <td>{{ $d->email }}</td> 
-                          <td>{{ $d->password }}</td> 
                           <td>{{ $d->alamat }}</td> 
-                          {{-- <td>{{ $d->jenis_kelamin }}</td>  --}}
+                          <td>{{ $d->jenis_kelamin }}</td> 
                           <td class="d-flex justify-content-center align-items-center">
                             <div class="dropdown py-3">
                               <a class="button py-2 px-3 rounded text-decoration-none text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
