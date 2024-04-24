@@ -46,6 +46,7 @@ Route::put('profile/updateadmin/{id}', [ProfileController::class, 'updateadmin']
 // nilai
 Route::get('/nilai',[Controller::class,'dataNilai'])->name('datanilai');
 Route::get('/nilai/detail_nilai',[Controller::class,'detailDataNilai']);
+Route::get('/nilai/add_nilai',[Controller::class,'inputNilai']);
 
 Route::get('detail_status',[Controller::class, 'detailStatus'])->name('detail.status');
 
@@ -104,11 +105,6 @@ Route::get('guru/edit/{id}',[GuruController::class, 'edit'])->middleware(['auth'
 Route::put('guru/update/{id}',[GuruController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.update');
 //route hapus guru
 Route::delete('/guru/hapus/{id}',[GuruController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.hapus');
-
-// //edit
-// Route::get('data-kelas/edit/{id}',[JurusanController::class, 'edit'])->name('data-kelas.edit');
-// Route::put('data-kelas/update/{id}',[JurusanController::class, 'update'])->name('data-kelas.update');
-//route hapus guru
 
 //route jurusan
 Route::get('data-kelas',[JurusanController::class,'index'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('data-kelas');

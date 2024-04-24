@@ -179,11 +179,13 @@
                           <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Status Karir</label>
                           <p class="text-secondary mb-3 mt-2 p-2 card">{{$siswa->status}}</p>
                         </div>
+                        @if($siswa->tempat_kerja_kuliah)
                         {{-- Alamat --}}
                         <div class="form-group mb-4" data-aos="fade-right">
                           <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat Tempat Kerja/Kuliah</label>
                           <p class="text-secondary mb-3 mt-2 p-2 card">{{$siswa->tempat_kerja_kuliah}}</p>
                         </div>
+                        @endif
                       </div>  
                       <div class="d-flex justify-content-end">
                         <p class="position-absolute"><a href="" class="cursor-pointer btn btn-success" data-bs-toggle="modal" data-bs-target="#editDataKarir"><i class="fa-regular fa-pen-to-square"></i></a></p>

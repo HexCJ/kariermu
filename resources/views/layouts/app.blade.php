@@ -59,8 +59,6 @@
 <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
 
-{{-- sweetalert --}}
-
 {{-- data aos animate --}}
 <script>
   AOS.init({
@@ -69,65 +67,5 @@
 </script>
 {{-- js --}}
 <script src="{{ asset('js/script.js') }}"></script>
-
-{{-- chart data karir --}}
-<script>
-  const ctx = document.getElementById('myChart');
-
-  new Chart(ctx, {
-    type: 'bar',
-
-    data: {
-      labels: ['Pengangguran', 'Bekerja', 'Kuliah', 'Wirausaha'],
-      datasets: [{
-        label: 'Presentase Data Karir Siswa',
-        data: [50, 1600, 500, 600],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 205, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(201, 203, 207, 0.2)'
-        ],
-        borderColor: [
-          'rgb(255, 99, 132)',
-          'rgb(255, 159, 64)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(54, 162, 235)',
-          'rgb(153, 102, 255)',
-          'rgb(201, 203, 207)'
-        ],
-          borderWidth: 1,
-        }]
-    },
-    options: {
-      // indexAxis:'y',
-      plugins: {
-        // title: {
-        //       display: true, 
-        //       text: 'Presentase Data Karir Siswa'
-        // },
-      },
-      scales: {
-        x: {
-          title: {
-            display: true, 
-            text: 'Status Karir Siswa'
-          },
-        },
-        y: {
-          title: {
-            display: true,
-            text: 'Jumlah Data Siswa'
-          },
-          beginAtZero: true
-        }
-      }
-    }
-  });
-</script>
 </body>
 </html>

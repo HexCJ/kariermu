@@ -51,7 +51,7 @@ text: "Data berhasil terhapus.",
 </div>
 @endif
 
-@if(session('danger'))
+@if(session('fail'))
     <div class="position-absolute notif">
       <div class="alert alert-danger alert-dismissible" role="alert">
           <div><i class="fa-solid fa-xmark me-2"></i><strong>Gagal </strong>{!! session('danger') !!}</div>

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
+use App\Models\Laporan;
 use App\Models\Admin;
 class Controller extends BaseController
 {
@@ -31,8 +32,15 @@ class Controller extends BaseController
         // return view('dashboard',[
         //     'title' => 'Dashboard'
         // ]);
+        $statusk = 'Bekerja';
+        $statusm = 'Menganggur';
+        $statuskl = 'Kuliah';
+        $statusw = 'Wirausaha';
+        $totalkerja = Laporan::where('status', $statusk)->count();
+        $totalkuliah = Laporan::where('status', $statuskl)->count();
+        $totalwirausaha = Laporan::where('status', $statusw)->count();
+        $totaltkerja = Laporan::where('status', $statusm)->count();
         $user = Auth::user();
-
         // ambil nip dari user
         $nip = $user->nip;
     
@@ -44,6 +52,10 @@ class Controller extends BaseController
             if ($guru) {
                 return view('dashboard', [
                     'guru' => $guru,
+                    'totalkerja' => $totalkerja,
+                    'totalkuliah' => $totalkuliah,
+                    'totalwirausaha' => $totalwirausaha,
+                    'totaltkerja' => $totaltkerja,
                     'title' => 'Dashboard'
                 ]);
             }
@@ -77,6 +89,10 @@ class Controller extends BaseController
             if ($admin) {
                 return view('dashboard', [
                     'admin' => $admin,
+                    'totalkerja' => $totalkerja,
+                    'totalkuliah' => $totalkuliah,
+                    'totalwirausaha' => $totalwirausaha,
+                    'totaltkerja' => $totaltkerja,
                     'title' => 'Dashboard'
                 ]);
             }
@@ -102,6 +118,12 @@ class Controller extends BaseController
     public function detailDataNilai()
     {   
         return view('nilai/detail_data_nilai',[
+            'title' => 'Detail Data Nilai Siswa'
+        ]);
+    }
+    public function inputNilai()
+    {   
+        return view('nilai/add_nilai',[
             'title' => 'Detail Data Nilai Siswa'
         ]);
     }

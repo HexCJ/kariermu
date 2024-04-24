@@ -108,42 +108,6 @@ class UserSeeder extends Seeder
         ]);
         // //buat role sesuai RolePermission
         $guru->assignRole('guru');
-        
-
-
-        // for($i=0; $i<10; $i++){
-        //     $siswa = User::updateOrCreate([
-        //         'nisn'=>'1'.$i,
-        //         'name'=>'Cah'.$i,
-        //         'email'=>'cah'.$i.'@gmail.com',
-        //         'alamat'=>'rumah siswa',
-        //         'tahun_lulus'=>'2025',
-        //         'jenis_kelamin'=>'Perempuan',
-        //         'status'=>'Belum Lulus',
-        //         'kelas'=>'XII',
-        //         'jurusan'=>'OT',
-        //         'password'=>bcrypt('siswa1')
-        //     ]);
-        //     //buat role sesuai RolePermission
-        //     $siswa->assignRole('siswa');
-        // }
-
-        // for($i=0;$i<5000;$i++){
-        //     $siswa = User::updateOrCreate([
-        //         'nisn'=>''.$i,
-        //         'name'=>'siswa'.$i,
-        //         'email'=>'siswa'.$i.'@gmail.com',
-        //         'alamat'=>'rumah siswa',
-        //         'tahun_lulus'=>'2025',
-        //         'jenis_kelamin'=>'Laki-laki',
-        //         'status'=>'Belum Lulus',
-        //         'kelas'=>'XI',
-        //         'jurusan'=>'OT',
-        //         'password'=>bcrypt('siswa'.$i)
-        //     ]);
-        //     //buat role sesuai RolePermission
-        //     $siswa->assignRole('siswa');
-        // }
         }
         
 }

@@ -16,7 +16,7 @@
           </div>
           <div class="d-flex flex-column gap-1 gap-sm-2 ms-2 ms-sm-2 ms-md-4">
             <p class="title-data fw-medium text-secondary">Pengangguran</p>
-            <h1 class="detail-data fw-bold text-primary-emphasis">50</h1>
+            <h1 class="detail-data fw-bold text-primary-emphasis">{{ $totaltkerja }}</h1>
             <a href="{{ route('detail.status') }}" class="detail text-secondary">detail siswa menganggur..</a>
           </div>
         </div>
@@ -27,7 +27,7 @@
           </div>
           <div class="d-flex flex-column gap-1 gap-sm-2 ms-2 ms-sm-2 ms-md-4">
             <p class="title-data fw-medium text-secondary">Bekerja</p>
-            <h1 class="detail-data fw-bold text-primary-emphasis">1.600</h1>
+            <h1 class="detail-data fw-bold text-primary-emphasis">{{ $totalkerja }}</h1>
             <a href="{{ route('detail.status') }}" class="detail text-secondary">detail siswa bekerja..</a>
           </div>
         </div>
@@ -39,7 +39,7 @@
           </div>
           <div class="d-flex flex-column gap-1 gap-sm-2 ms-2 ms-sm-2 ms-md-4">
             <p class="title-data fw-medium text-secondary">Kuliah</p>
-            <h1 class="detail-data fw-bold text-primary-emphasis">500</h1>
+            <h1 class="detail-data fw-bold text-primary-emphasis">{{ $totalkuliah }}</h1>
             <a href="{{ route('detail.status') }}" class="detail text-secondary">detail siswa berkuliah..</a>
           </div>
         </div>
@@ -50,7 +50,7 @@
           </div>
           <div class="d-flex flex-column gap-1 gap-sm-2 ms-2 ms-sm-2 ms-md-4">
             <p class="title-data fw-medium text-secondary">Wirausaha</p>
-            <h1 class="detail-data fw-bold text-primary-emphasis">600</h1>
+            <h1 class="detail-data fw-bold text-primary-emphasis">{{ $totalwirausaha }}</h1>
             <a href="{{ route('detail.status') }}" class="detail text-secondary">detail siswa berwirausaha..</a>
           </div>
         </div>
@@ -65,13 +65,127 @@
              </div>
            </div>
          </div>
-         <div class="col-6">
+         <div class="col-12 col-md-5 card p-3 ms-0 ms-md-5 mt-5 mt-md-0">
+           <h4 class="mb-5 mt-2">Presentase Data Karir</h4>
+           <div>
+             <div>
+               <canvas id="doughnut-chart"></canvas>
+             </div>
+           </div>
          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+{{-- chart data karir --}}
+<script>
+  const ctx = document.getElementById('myChart');
+  var p = {{ $totaltkerja }}
+  var k = {{ $totalkerja }}
+  var kl = {{ $totalkuliah }}
+  var w = {{ $totalwirausaha }}
+  var total = p + k + kl + w
+
+  var persenp = p * total / 100;
+  var persenk = k * total / 100;
+  var persenkl = kl * total / 100;
+  var persenw = w * total / 100;
+  var persentotal = total * total / 100;
+  new Chart(ctx, {
+    type: 'bar',
+
+    data: {
+      
+      labels: ['Pengangguran '+persenp+'%', 'Bekerja '+ persenk+'%', 'Kuliah '+persenkl+'%', 'Wirausaha '+persenw+'%'],
+      datasets: [{
+        label: 'Presentase Data Karir Siswa',
+        data: [p, k, kl, w],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 205, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(201, 203, 207, 0.2)'
+        ],
+        borderColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)'
+        ],
+          borderWidth: 1,
+        }]
+    },
+    options: {
+      // indexAxis:'y',
+      plugins: {
+        // title: {
+        //       display: true, 
+        //       text: 'Presentase Data Karir Siswa'
+        // },
+      },
+      scales: {
+        x: {
+          title: {
+            display: true, 
+            text: 'Status Karir Siswa'
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Jumlah Data Siswa'
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+<script>
+    new Chart(document.getElementById("doughnut-chart"), {
+      type: 'doughnut',
+      data: {
+        labels: ['Pengangguran '+persenp+'%', 'Bekerja '+ persenk+'%', 'Kuliah '+persenkl+'%', 'Wirausaha '+persenw+'%'],
+        datasets: [
+          {
+            label: "Presentase Data Karir",
+            data: [p, k, kl, w],
+            backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 205, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(201, 203, 207, 0.2)'
+        ],
+        borderColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)'
+        ],
+          borderWidth: 1,
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Predicted world population (millions) in 2050'
+        }
+      }
+  });
+</script>
 @endif
 @if(auth()->user()->HasRole('siswa'))
 <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 90vh" data-aos="fade-up">
