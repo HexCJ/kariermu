@@ -32,7 +32,7 @@ new DataTable('#dataAdmin', {
 new DataTable('#dataUser', {
     language: {
         "search": "Cari Data Mata Pelajaran :",
-        "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img class='notfound' src='img/404.png' alt=''><p class='fw-semibold mt-5 mb-0'>Data Admin Tidak Ditemukan</p></div>"
+        "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img class='notfound' src='img/404.png' alt=''><p class='fw-semibold mt-5 mb-0'>Data Users Tidak Ditemukan</p></div>"
     }
 });
 new DataTable('#dataNilai');

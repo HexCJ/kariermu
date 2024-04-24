@@ -27,7 +27,7 @@
                     <select name="mata_pelajaran" id="mata_pelajaran" class="rounded form-select">
                       <option value="" multiple aria-label="Multiple select example">Semua Mata Pelajaran</option>
                       @foreach($matapelajarans as $matapelajaran)
-                          <option value="{{ $matapelajaran->id_mata_pelajaran }}">{{ $matapelajaran->nama_mata_pelajaran }}</option>
+                          <option value="{{ $matapelajaran->id_mata_pelajaran }}" {{ request()->input('mata_pelajaran') == $matapelajaran->id_mata_pelajaran ? 'selected' : '' }}>{{ $matapelajaran->nama_mata_pelajaran }}</option>
                       @endforeach
                     </select>
                   </div>

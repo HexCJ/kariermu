@@ -21,7 +21,7 @@
                     </div>
                     @endif
                     @if (!$data->isEmpty())
-                    <table id="dataUser" class="table table-hover w-100 mt-3">
+                    <table id="dataAdmin" class="table table-hover w-100 mt-3">
                       <thead>
                         <tr>
                           <th>ID Admin</th>

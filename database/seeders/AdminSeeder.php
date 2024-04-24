@@ -14,13 +14,6 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::updateOrCreate([
-            'id_admin' => '25',
-            'name' => 'admin',
-            'email' => 'admin25@example.com',
-            'password' => bcrypt('25'),
-            'alamat' => 'Alamat Admin',
-        ]);
         // Admin::updateOrCreate([
         //     'id_admin' => '4444',
         //     'name' => 'Admin4',

@@ -35,7 +35,7 @@
                     <div class="col-12 mb-3">
                       <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="kerja">Tempat Kerja</label>
                       <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="kuliah">Tempat Kuliah</label>
-                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="wirausaha">Tempat Berw</label>
+                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="wirausaha">Tempat Berwirausahae</label>
                       <div class="input-group mb-2 d-none" id="input">
                         <input type="text" value="{{old('tempat_kerja_kuliah')}}" class="form-control" id="tempat_kerja_kuliah" name="tempat_kerja_kuliah">
                       </div>

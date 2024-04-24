@@ -139,6 +139,47 @@
         </div>
       </div>
     </div>
+    <!-- Modal Profile -->
+    <div class="modal fade" id="editFoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-fullscreen-sm-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Foto Profile</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          {{-- Update section --}}
+          <div class="modal-body">
+            <form action="{{ route('profile.foto', ['id' => $siswa->nisn]) }}" method="POST" enctype="multipart/form-data">
+              @csrf
+              @method('PUT')
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-12 mb-3 d-flex flex-column gap-3">
+                    <div class="d-flex justify-content-center align-items-center flex-column gap-3">
+                      @if($siswa->image == true)
+                      <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
+                      @elseif($siswa->jenis_kelamin === 'Laki-laki')
+                      <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto rounded-circle">
+                      @elseif($siswa->jenis_kelamin === 'Perempuan')
+                      <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto rounded-circle">
+                      @endif
+                      <input type="file" class="form-control mt-3" id="photo" name="photo">
+                      @error('image')
+                      <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center" data-bs-dismiss="modal">Submit</button>
+              </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
     @if ($siswa->kelas == false)
     <div class="row">
       <div class="col-12 mt-4">
@@ -166,18 +207,31 @@
                 <div class="card mt-3 border shadow">
                   <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
                     @if($siswa->image == true)
-                    <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
+                    <div class="position-relative d-flex justify-content-center">
+                      <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
+                      <div class="d-flex justify-content-end position-absolute bottom-0">
+                        <a href="" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                      </div>
+                    </div>
                     @elseif($siswa->jenis_kelamin === 'Laki-laki')
-                    <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto rounded-circle">
+                    <div class="position-relative d-flex justify-content-center">
+                      <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto rounded-circle">
+                      <div class="d-flex justify-content-end position-absolute bottom-0">
+                        <a href="" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                      </div>
+                    </div>
                     <div class="alert alert-warning mt-3 w-100">
                       <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
-                      <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfile"> disini</a></p>
                     </div>
                     @elseif($siswa->jenis_kelamin === 'Perempuan')
-                    <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto rounded-circle">
+                    <div class="position-relative d-flex justify-content-center">
+                      <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto rounded-circle">
+                      <div class="d-flex justify-content-end position-absolute bottom-0">
+                        <a href="" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                      </div>
+                    </div>
                     <div class="alert alert-warning mt-3 w-100">
                       <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
-                      <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfile"> disini</a></p>
                     </div>
                     @endif
                     <p class="fw-bold m-0 mb-2 text-center mt-3">{{ $siswa->name }}</p>
@@ -259,26 +313,112 @@
   @if (auth()->user()->hasRole('guru'))
   <div class="row">
     <div class="col-12 mt-4">
-        <div class="d-flex mb-3">
-          <h4>Data Diri</h4>
+      <div class="d-flex mb-3">
+        <h4>Data Diri</h4>
+      </div>
+    <!-- Modal Update -->
+    <div class="modal fade" id="editProfileGuru" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Update Data Profile</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          {{-- Update section --}}
+          <div class="modal-body">
+            <form action="{{ route('profile.foto-guru', ['id' => $guru->nip]) }}" method="POST">
+              @csrf
+              @method('PUT')
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-12 col-md-6 mb-3 d-flex flex-column gap-3">
+                    <label for="image" class=" ">Foto Profile</label>
+                    @if($guru->image == true)
+                    <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
+                    @elseif($guru->jenis_kelamin === 'Laki-laki')
+                    <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto rounded-circle">
+                    @elseif($guru->jenis_kelamin === 'Perempuan')
+                    <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto rounded-circle">
+                    @endif
+                    <input type="file" class="form-control mt-3" id="photo" name="photo">
+                    @error('image')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                  </div>
+                  <div class="col-12 col-md-6">
+                    {{-- NISN --}}
+                    <div class="form-group mb-4">
+                      <label for="nama" class=""><i class="fa-solid fa-id-card me-2"></i>NIP</label>
+                      <input type="text" disabled value="{{ $guru->nip }}" class="text secondary mb-3 mt-2 p-2 card w-100 w-100" id="nip" name="nip"></input>
+                    </div>
+                    {{-- Nama --}}
+                    <div class="form-group mb-4">
+                      <label for="nama" class=""><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
+                      <input type="text" value="{{ $guru->name }}" class="mb-3 mt-2 p-2 card w-100 w-100" id="nama" name="nama"></input>
+                    </div>
+                    {{-- Email --}}
+                    <div class="form-group mb-4">
+                      <label for="nama" class=""><i class="fa-solid fa-envelope me-2"></i>Email</label>
+                      <input type="text" value="{{ $guru->email }}" class="mb-3 mt-2 p-2 card w-100 w-100"  id="email" name="email"></input>
+                    </div>
+                    {{-- Alamat --}}
+                    <div class="form-group mb-4">
+                      <label for="nama" class=""><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
+                      <input type="text" value="{{ $guru->alamat }}" class="mb-3 mt-2 p-2 card w-100 w-100" id="alamat" name="alamat"></input>
+                    </div>
+                    {{-- jk --}}
+                    <div class="form-group mb-4">
+                      <label for="jkelamin" class=""><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
+                      <select class="form-select form-select-sm select-option-form p-2 mb-3 " aria-label="Small select example" id="jkelamin" name="jkelamin">
+                          <option value="">Pilih Jenis Kelamin</option>
+                          <option value="Laki-laki" {{ $guru->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                          <option value="Perempuan" {{ $guru->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                      </select>
+                      @error('jkelamin')
+                        <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for="jurusan" class=""><i class="fa-solid fa-chalkboard me-2"></i>Mapel</label>
+                      <select class="form-select form-select-sm select-option-form p-2 mb-3  w-100" aria-label="Small select example" id="mapel" name="mapel">
+                        <option value="">Pilih Mapel</option>
+                        @foreach ($mapels as $mapel)
+                          <option value="{{ $mapel->id_mata_pelajaran }}" {{ $guru->mapel == $mapel->id_mata_pelajaran ? 'selected' : '' }}>{{ $mapel->nama_mata_pelajaran }}</option>
+                        @endforeach
+                      </select>
+                      @error('jurusan')
+                        <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center" data-bs-dismiss="modal">Submit</button>
+              </div>
+              </form>
+          </div>
         </div>
-      <!-- Modal Update -->
-      <div class="modal fade" id="editProfileGuru" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Update Data Profile</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            {{-- Update section --}}
-            <div class="modal-body">
-              <form action="{{ route('profile.updateguru', ['id' => $guru->nip]) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-12 col-md-6 mb-3 d-flex flex-column gap-3">
-                      <label for="image" class=" ">Foto Profile</label>
+      </div>
+    </div>
+    <!-- Modal Profile -->
+    <div class="modal fade" id="editFoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-fullscreen-sm-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Foto Profile</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          {{-- Update section --}}
+          <div class="modal-body">
+            <form action="{{ route('profile.foto-guru', ['id' => $guru->nip]) }}" method="POST" enctype="multipart/form-data">
+              @csrf
+              @method('PUT')
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-12 mb-3 d-flex flex-column gap-3">
+                    <div class="d-flex justify-content-center align-items-center flex-column gap-3">
                       @if($guru->image == true)
                       <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
                       @elseif($guru->jenis_kelamin === 'Laki-laki')
@@ -291,81 +431,49 @@
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
-                    <div class="col-12 col-md-6">
-                      {{-- NISN --}}
-                      <div class="form-group mb-4">
-                        <label for="nama" class=""><i class="fa-solid fa-id-card me-2"></i>NIP</label>
-                        <input type="text" disabled value="{{ $guru->nip }}" class="text secondary mb-3 mt-2 p-2 card w-100 w-100" id="nip" name="nip"></input>
-                      </div>
-                      {{-- Nama --}}
-                      <div class="form-group mb-4">
-                        <label for="nama" class=""><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                        <input type="text" value="{{ $guru->name }}" class="mb-3 mt-2 p-2 card w-100 w-100" id="nama" name="nama"></input>
-                      </div>
-                      {{-- Email --}}
-                      <div class="form-group mb-4">
-                        <label for="nama" class=""><i class="fa-solid fa-envelope me-2"></i>Email</label>
-                        <input type="text" value="{{ $guru->email }}" class="mb-3 mt-2 p-2 card w-100 w-100"  id="email" name="email"></input>
-                      </div>
-                      {{-- Alamat --}}
-                      <div class="form-group mb-4">
-                        <label for="nama" class=""><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                        <input type="text" value="{{ $guru->alamat }}" class="mb-3 mt-2 p-2 card w-100 w-100" id="alamat" name="alamat"></input>
-                      </div>
-                      {{-- jk --}}
-                      <div class="form-group mb-4">
-                        <label for="jkelamin" class=""><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
-                        <select class="form-select form-select-sm select-option-form p-2 mb-3 " aria-label="Small select example" id="jkelamin" name="jkelamin">
-                            <option value="">Pilih Jenis Kelamin</option>
-                            <option value="Laki-laki" {{ $guru->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                            <option value="Perempuan" {{ $guru->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                        </select>
-                        @error('jkelamin')
-                          <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                      </div>
-                      <div class="form-group mb-4">
-                        <label for="jurusan" class=""><i class="fa-solid fa-chalkboard me-2"></i>Mapel</label>
-                        <select class="form-select form-select-sm select-option-form p-2 mb-3  w-100" aria-label="Small select example" id="mapel" name="mapel">
-                          <option value="">Pilih Mapel</option>
-                          @foreach ($mapels as $mapel)
-                            <option value="{{ $mapel->id_mata_pelajaran }}" {{ $guru->mapel == $mapel->id_mata_pelajaran ? 'selected' : '' }}>{{ $mapel->nama_mata_pelajaran }}</option>
-                          @endforeach
-                        </select>
-                        @error('jurusan')
-                          <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                      </div>
-                    </div>
                   </div>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center" data-bs-dismiss="modal">Submit</button>
-                </div>
-                </form>
-            </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center" data-bs-dismiss="modal">Submit</button>
+              </div>
+              </form>
           </div>
         </div>
       </div>
+    </div>
         <div class="container-fluid"  data-aos="fade-up">
           <div class="row">
             <div class="col-12 col-sm-5 col-md-4 col-xl-3">
               <div class="card mt-3 border shadow">
                 <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
                   @if($guru->image == true)
-                  <img src="{{asset('storage/photo-admin/'.$guru->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
+                  <div class="position-relative d-flex justify-content-center">
+                    <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
+                    <div class="d-flex justify-content-end position-absolute bottom-0">
+                      <a href="" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                    </div>
+                  </div>
                   @elseif($guru->jenis_kelamin === 'Laki-laki')
-                  <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto rounded-circle">
+                  <div class="position-relative d-flex justify-content-center">
+                    <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto rounded-circle">
+                    <div class="d-flex justify-content-end position-absolute bottom-0">
+                      <a href="" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                    </div>
+                  </div>
                   <div class="alert alert-warning mt-3 w-100">
                     <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
-                    <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfileGuru"> disini</a></p>
                   </div>
                   @elseif($guru->jenis_kelamin === 'Perempuan')
-                  <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto rounded-circle">
+                  <div class="position-relative d-flex justify-content-center">
+                    <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto rounded-circle">
+                    <div class="d-flex justify-content-end position-absolute bottom-0">
+                      <a href="" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                    </div>
+                  </div>
                   <div class="alert alert-warning mt-3 w-100">
                     <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
-                    <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfileGuru"> disini</a></p>
                   </div>
                   @endif
                   <p class="fw-bold m-0 mb-2 text-center mt-3">{{ $guru->name }}</p>
@@ -505,71 +613,125 @@
           </div>
         </div>
       </div>
-        <div class="container-fluid" data-aos="fade-up">
-          <div class="row">
-            <div class="col-12 col-sm-5 col-md-4 col-xl-3">
-              <div class="card mt-3 border shadow">
-                <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
-                  @if($admin->image == true)
-                  <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
-                  @elseif($admin->jenis_kelamin === 'Laki-laki')
-                  <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto rounded-circle">
-                  <div class="alert alert-warning mt-3 w-100">
-                    <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
-                    <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfileAdmin"> disini</a></p>
+      <!-- Modal Profile -->
+      <div class="modal fade" id="editFoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-fullscreen-sm-down">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Foto Profile</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {{-- Update section --}}
+            <div class="modal-body">
+              <form action="{{ route('profile.foto-admin', ['id' => $admin->id_admin]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-12 mb-3 d-flex flex-column gap-3">
+                      <div class="d-flex justify-content-center align-items-center flex-column gap-3">
+                        @if($admin->image == true)
+                        <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
+                        @elseif($admin->jenis_kelamin === 'Laki-laki')
+                        <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto rounded-circle">
+                        @elseif($admin->jenis_kelamin === 'Perempuan')
+                        <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto rounded-circle">
+                        @endif
+                        <input type="file" class="form-control mt-3" id="photo" name="photo">
+                        @error('image')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                      </div>
+                    </div>
                   </div>
-                  @elseif($admin->jenis_kelamin === 'Perempuan')
-                  <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto rounded-circle">
-                  <div class="alert alert-warning mt-3 w-100">
-                    <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
-                    <p class="mt-2 mb-0">Tambahkan<a href="" class="alert-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#editProfileAdmin"> disini</a></p>
-                  </div>
-                  @endif
-                  <p class="fw-bold m-0 mb-2 text-center mt-3">{{ $admin->name }}</p>
-                  <p class="text-center">{{ $admin->email }}</p>
                 </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center" data-bs-dismiss="modal">Submit</button>
+                </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" data-aos="fade-up">
+        <div class="row">
+          <div class="col-12 col-sm-5 col-md-4 col-xl-3">
+            <div class="card mt-3 border shadow">
+              <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
+                @if($admin->image == true)
+                <div class="position-relative d-flex justify-content-center">
+                  <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto mt-5 rounded-circle">
+                  <div class="d-flex justify-content-end position-absolute bottom-0">
+                    <a href="" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                  </div>
+                </div>
+                @elseif($admin->jenis_kelamin === 'Laki-laki')
+                <div class="position-relative d-flex justify-content-center">
+                  <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto rounded-circle">
+                  <div class="d-flex justify-content-end position-absolute bottom-0">
+                    <a href="" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                  </div>
+                </div>
+                <div class="alert alert-warning mt-3 w-100">
+                  <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
+                </div>
+                @elseif($admin->jenis_kelamin === 'Perempuan')
+                <div class="position-relative d-flex justify-content-center">
+                  <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto rounded-circle">
+                  <div class="d-flex justify-content-end position-absolute bottom-0">
+                    <a href="" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                  </div>
+                </div>
+                <div class="alert alert-warning mt-3 w-100">
+                  <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
+                </div>
+                @endif
+                <p class="fw-bold m-0 mb-2 text-center mt-3">{{ $admin->name }}</p>
+                <p class="text-center">{{ $admin->email }}</p>
               </div>
             </div>
-            <div class="col-12 col-sm-7 col-md-8 col-xl-9">
-              <div class="card mt-3 border shadow">
-                <div class="card-body">
-                  <h4 class="mb-3">Personal Information</h4>
-                  <h4 class="mb-3 border-bottom"></h4>
-                  <div class="data-profile row px-5 py-3">
-                    <div class="col-12">
-                      {{-- NISN --}}
-                      <div class="form-group mb-4">
-                        <label for="nama" class="h5"><i class="fa-solid fa-id-card me-2"></i>ID Admin</label>
-                        <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->id_admin }}</p>
-                      </div>
-                      {{-- Nama --}}
-                      <div class="form-group mb-4">
-                        <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                        <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->name }}</p>
-                      </div>
-                      <div class="form-group mb-4">
-                        <label for="nama" class="h5"><i class="fa-solid fa-envelope me-2"></i>Email</label>
-                        <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->email }}</p>
-                      </div>
-                      <div class="form-group mb-4">
-                        <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                        <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->alamat }}</p>
-                      </div>
-                      {{-- jk --}}
-                      <div class="form-group mb-4">
-                        <label for="nama" class="h5"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
-                        <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->jenis_kelamin }}</p>
-                      </div>
+          </div>
+          <div class="col-12 col-sm-7 col-md-8 col-xl-9">
+            <div class="card mt-3 border shadow">
+              <div class="card-body">
+                <h4 class="mb-3">Personal Information</h4>
+                <h4 class="mb-3 border-bottom"></h4>
+                <div class="data-profile row px-5 py-3">
+                  <div class="col-12">
+                    {{-- NISN --}}
+                    <div class="form-group mb-4">
+                      <label for="nama" class="h5"><i class="fa-solid fa-id-card me-2"></i>ID Admin</label>
+                      <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->id_admin }}</p>
                     </div>
-                    <div class="d-flex justify-content-end">
-                      <p class=""><a href="" class="cursor-pointer btn btn-success" data-bs-toggle="modal" data-bs-target="#editProfileAdmin"><i class="fa-regular fa-pen-to-square"></i></a></p>
+                    {{-- Nama --}}
+                    <div class="form-group mb-4">
+                      <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
+                      <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->name }}</p>
                     </div>
+                    <div class="form-group mb-4">
+                      <label for="nama" class="h5"><i class="fa-solid fa-envelope me-2"></i>Email</label>
+                      <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->email }}</p>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
+                      <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->alamat }}</p>
+                    </div>
+                    {{-- jk --}}
+                    <div class="form-group mb-4">
+                      <label for="nama" class="h5"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
+                      <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->jenis_kelamin }}</p>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <p class=""><a href="" class="cursor-pointer btn btn-success" data-bs-toggle="modal" data-bs-target="#editProfileAdmin"><i class="fa-regular fa-pen-to-square"></i></a></p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
   @endif

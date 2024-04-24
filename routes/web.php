@@ -35,6 +35,9 @@ Route::get('/dashboard',[Controller::class,'dashboard'])->middleware(['auth', 'v
 
 // Route::get('/profile',[ProfileController::class,'index'])->middleware(['auth', 'verified'])->name('profile');
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile');
+Route::put('/profile/updateprofile/{id}', [ProfileController::class, 'profilefoto'])->middleware('auth')->name('profile.foto');
+Route::put('/profile/updateprofile-guru/{id}', [ProfileController::class, 'profilefotoguru'])->middleware('auth')->name('profile.foto-guru');
+Route::put('/profile/updateprofile-admin/{id}', [ProfileController::class, 'profilefotoadmin'])->middleware('auth')->name('profile.foto-admin');
 // Route::get('profile/edit/{nisn}',[ProfileController::class, 'edit'])->middleware(['auth'])->name('profile.edit');
 Route::put('profile/updatesiswa/{id}', [ProfileController::class, 'updatesiswa'])->middleware(['auth'])->name('profile.updatesiswa');
 Route::put('profile/updateguru/{id}', [ProfileController::class, 'updateguru'])->middleware(['auth'])->name('profile.updateguru');

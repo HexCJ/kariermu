@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 90vh">
+@if(auth()->user()->HasRole('admin') || auth()->user()->HasRole('guru'))
+<div class="container-fluid" data-aos="fade-up">
   {{-- admin /guru --}}
-  @if(auth()->user()->HasRole('admin') || auth()->user()->HasRole('guru'))
   <div class="row px-5">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between" data-aos="fade-up">
@@ -71,9 +71,11 @@
       </div>
     </div>
   </div>
-  @endif
+</div>
+@endif
+@if(auth()->user()->HasRole('siswa'))
+<div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 90vh" data-aos="fade-up">
   {{-- user --}}
-  @if(auth()->user()->HasRole('siswa'))
   <div class="row px-5">
     <div class="col-12 mt-4">
       {{-- <div class="d-flex justify-content-between" data-aos="fade-up">
@@ -106,6 +108,6 @@
       </div>
     </div>
   </div>
-  @endif
 </div>
+@endif
 @endsection
