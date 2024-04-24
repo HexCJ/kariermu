@@ -155,17 +155,20 @@
 .profile-foto {
     width: 75%;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 50%;
     aspect-ratio: 1;
 }
-
-.profile-foto {
-    width: 75%;
+.profile-foto:hover {
+    transition: all ease-in-out 0.3s;
     object-fit: cover;
     border-radius: 12px;
     aspect-ratio: 1;
 }
 
+.profile-foto:hover {
+    object-fit: cover;
+    aspect-ratio: 1;
+}
 .notfound {
     width: 200px;
     height: auto;

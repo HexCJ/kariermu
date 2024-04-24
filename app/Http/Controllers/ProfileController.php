@@ -360,6 +360,7 @@ class ProfileController extends Controller
         $admin->name = $request->nama;
         $admin->email = $request->email;
         $admin->alamat = $request->alamat;
+        $admin->jenis_kelamin = $request->jkelamin;
 
         // Periksa apakah password baru diisi
         if($request->password){
@@ -373,10 +374,7 @@ class ProfileController extends Controller
     
             Storage::disk('public')->put($path,file_get_contents($photo));
             $admin['image']         = $filename;
-
-            
         }
-        // dd($request->all());
     
         // Simpan perubahan data
         if($admin->save()){

@@ -57,21 +57,19 @@
       </div>
       <div class="row mt-5 px-0 px-lg-3 px-xl-1">
         {{-- chart grafik data karir --}}
-         <div class="col-12 col-md-6 card p-3">
-           <h4 class="mb-5 mt-2">Presentase Data Karir</h4>
-           <div>
-             <div>
-               <canvas id="myChart"></canvas>
-             </div>
-           </div>
+         <div class="col-12 col-md-8">
+          <div class="card  p-3">
+            <h4 class="mb-5 mt-2">Presentase Data Karir</h4>
+            <div>
+              <div>
+                <canvas id="myChart"></canvas>
+              </div>
+            </div>
+          </div>
          </div>
-         <div class="col-12 col-md-5 card p-3 ms-0 ms-md-5 mt-5 mt-md-0">
+         <div class="col-12 col-md-4 card p-3 ms-0 mt-5 mt-md-0">
            <h4 class="mb-5 mt-2">Presentase Data Karir</h4>
-           <div>
-             <div>
-               <canvas id="doughnut-chart"></canvas>
-             </div>
-           </div>
+          <canvas id="doughnut-chart"></canvas>
          </div>
         </div>
       </div>
