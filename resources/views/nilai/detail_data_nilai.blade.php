@@ -36,7 +36,7 @@
 
 
 {{-- jika status ditolak --}}
-<div class="container-fluid">
+<div class="container-fluid d-none">
   <div class="row">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between">
