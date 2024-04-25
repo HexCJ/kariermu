@@ -175,11 +175,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,$id)
     {
         //validator
         $validator = Validator::make($request->all(),[
-            'password'=>'required',   
+            // 'password'=>'required',   
         ]);
     
         if($validator->fails()) {
@@ -187,7 +187,12 @@ class UserController extends Controller
         }
         $data = User::find($id);
         $data->name = $request->nama;
-        $data->email = $request->email;
+        // $data->nisn = $request->nisn;
+        // $data->nip = $request->nip;
+        // $data->id_admin = $request->id_admin;
+        // dd($request->all());
+        // $data->email = $request->email;
+        
         if($request->password){
             $data->password = Hash::make($request->password);
         }
@@ -201,6 +206,7 @@ class UserController extends Controller
                 $datanilai = Nilai::where('nisn', $nisn)->first();
                 $datalaporan = Laporan::where('nisn', $nisn)->first();
                 $datasiswa->name = $data->name;
+                $datalaporan->name = $data->name;
                 $datasiswa->email = $data->email;
                 $datasiswa->password = $data->password;
                 $datasiswa->save();
