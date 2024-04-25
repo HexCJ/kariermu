@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Laporan;
+use App\Models\Nilai;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 
@@ -79,11 +80,15 @@ class DataKarirController extends Controller
         // ambil nip dari user
         $nisn = $user->nisn;
         $siswa = Laporan::where('nisn', $nisn)->first();
-        if($request->status === true){
+        if($request->filled('status')){
             $siswa->status = $request->status;
             $siswa->tempat_kerja_kuliah = $request->tempat_kerja_kuliah;
             if($siswa->save()){
-                return redirect()->route('karir')->with('success_lapor', 'Laporan anda berhasil simpan');
+                if($siswa->status === 'Kuliah' ){
+                    $datanilai = Nilai::create(['nisn' => $siswa->nisn]); 
+                    // $datanilaisiswa = Nilai::create(['nisn' => $request->nisn]); 
+                    return redirect()->route('karir')->with('success_lapor', 'Laporan anda berhasil simpan');
+                }
             }else{
                 return redirect()->route('karir')->with('fail', 'Laporan anda gagal simpan');
             }

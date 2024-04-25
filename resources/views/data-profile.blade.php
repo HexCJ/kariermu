@@ -42,7 +42,7 @@
                     {{-- Nama --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                      <input type="text" readonly value="{{ $siswa->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100"  id="nama" name="nama"></input>
+                      <input type="text" value="{{ $siswa->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100"  id="nama" name="nama"></input>
                     </div>
                     {{-- Email --}}
                     <div class="form-group mb-4">
@@ -356,7 +356,7 @@
                       {{-- Nama --}}
                       <div class="form-group mb-4">
                         <label for="nama" class=""><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                        <input type="text" readonly value="{{ $guru->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100 w-100" id="nama" name="nama"></input>
+                        <input type="text"  value="{{ $guru->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100 w-100" id="nama" name="nama"></input>
                       </div>
                       {{-- Email --}}
                       <div class="form-group mb-4">
@@ -580,7 +580,7 @@
                         {{-- Nama --}}
                         <div class="form-group mb-4">
                           <label for="nama" class=""><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                          <input readonly type="text" value="{{ $admin->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100" id="nama" name="nama"></input>
+                          <input type="text" value="{{ $admin->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100" id="nama" name="nama"></input>
                         </div>
                         {{-- Email --}}
                         <div class="form-group mb-4">

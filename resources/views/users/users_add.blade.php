@@ -67,15 +67,7 @@
               <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
-          <div class="col-12 col-md-6">
-            <label for="email" class="text-secondary mb-3">Email</label>
-            <div class="input-group mb-2">
-              <input type="text" class="form-control" id="email" name="email">
-            </div>
-            @error('email')
-              <small class="text-danger">{{ $message }}</small>
-            @enderror
-          </div>
+
           <div class="col-12 col-md-6">
             <label for="password" class="text-secondary mb-3">Password</label>
             <div class="input-group mb-2">

@@ -26,7 +26,6 @@ class User extends Authenticatable
         'nip',
         'id_admin',
         'name',
-        'email',
         'password',
         'role',
 

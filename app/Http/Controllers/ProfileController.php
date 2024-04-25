@@ -9,6 +9,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Admin;
 use App\Models\Guru;
 use App\Models\Jurusan;
+use App\Models\Laporan;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -205,6 +206,7 @@ class ProfileController extends Controller
         //siswa
         if($request->filled('kelas') &&
             $request->filled('jurusan') &&
+            $request->filled('email') &&
             $request->filled('alamat') &&
             $request->filled('jkelamin'))
             {
@@ -263,10 +265,6 @@ class ProfileController extends Controller
             // dd($request->all());
             // Simpan perubahan data
             if($siswa->save()){
-                $datauser = User::where('nisn', $nisn)->first();
-                $datauser->name = $siswa->name;
-                $datauser->email = $siswa->email;
-                $datauser->save();
                 return redirect()->route('profile')->with('success-edit-profile', 'Data Siswa '.$namasiswa.' berhasil diedit');
             }else{
                 return redirect()->route('profile')->with('fail', 'Data Siswa gagal '.$namasiswa.' diedit');
@@ -332,10 +330,10 @@ class ProfileController extends Controller
     
         // Simpan perubahan data
         if($guru->save()){
-            $datauser = User::where('nip', $nip)->first();
-            $datauser->name = $guru->name;
-            $datauser->email = $guru->email;
-            $datauser->save();
+            // $datauser = User::where('nip', $nip)->first();
+            // $datauser->name = $guru->name;
+            // $datauser->email = $guru->email;
+            // $datauser->save();
 
             return redirect()->route('profile')->with('success-edit-profile', 'Data Guru '.$namaguru.' berhasil diedit');
         }else{
@@ -394,10 +392,10 @@ class ProfileController extends Controller
         }
         // Simpan perubahan data
         if($admin->save()){
-            $datadmin = User::where('id_admin', $id_admin)->first();
-            $datadmin->name = $admin->name;
-            $datadmin->email = $admin->email;
-            $datadmin->save();
+            // $datadmin = User::where('id_admin', $id_admin)->first();
+            // $datadmin->name = $admin->name;
+            // $datadmin->email = $admin->email;
+            // $datadmin->save();
 
             return redirect()->route('profile')->with('success-edit-profile', 'Data Admin '.$namaadmin.' berhasil diedit');
         }else{

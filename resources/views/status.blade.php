@@ -57,7 +57,7 @@
                                                         @foreach ($data as $d)
                                                             <tr>
                                                                 <td>{{ $d->nisn }}</td>
-                                                                <td>Mamank</td>
+                                                                <td>{{ $d->name }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
                                                                 <td>{{ $d->status }}</td>
                                                             </tr>
@@ -130,7 +130,7 @@
                                                         @foreach ($data as $d)
                                                             <tr>
                                                                 <td>{{ $d->nisn }}</td>
-                                                                <td>Mamank</td>
+                                                                <td>{{ $d->name }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
                                                                 <td>{{ $d->status }}</td>
                                                                 <td>{{ $d->tempat_kerja_kuliah }}</td>
@@ -204,7 +204,7 @@
                                                         @foreach ($data as $d)
                                                             <tr>
                                                                 <td>{{ $d->nisn }}</td>
-                                                                <td>Mamank</td>
+                                                                <td>{{ $d->name }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
                                                                 <td>{{ $d->status }}</td>
                                                                 <td>{{ $d->tempat_kerja_kuliah }}</td>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('id_admin')->unique();
             $table->foreign('id_admin')->references('id_admin')->on('users')->onDelete('cascade');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             // $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
             $table->string('password')->nullable();
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable();

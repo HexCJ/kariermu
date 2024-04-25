@@ -109,7 +109,6 @@ class UserController extends Controller
             $data['nip']             = $request->nip;
             $data['id_admin']        = $request->id_admin;
             $data['name']            = $request->nama;
-            $data['email']            = $request->email;
             $data['password']        = $request->password;
             $data['role']            = $request->role;
 
@@ -127,7 +126,7 @@ class UserController extends Controller
         if($user = User::create($data)){
             if ($request->role === 'Siswa') {
                 $siswa = Siswa::create($data);
-                $datanilaisiswa = Nilai::create(['nisn' => $request->nisn]); 
+                // $datanilaisiswa = Nilai::create(['nisn' => $request->nisn]); 
                 $datalaporansiswa = Laporan::create(['nisn' => $request->nisn, 'name' => $request->name]); 
                 $user->assignRole('siswa');
             }else if ($request->role === 'Guru'){
@@ -207,7 +206,7 @@ class UserController extends Controller
                 $datalaporan = Laporan::where('nisn', $nisn)->first();
                 $datasiswa->name = $data->name;
                 $datalaporan->name = $data->name;
-                $datasiswa->email = $data->email;
+                // $datasiswa->email = $data->email;
                 $datasiswa->password = $data->password;
                 $datasiswa->save();
                 $datanilai->save();
@@ -218,7 +217,7 @@ class UserController extends Controller
                 $nip = $request->nip;
                 $dataguru = Guru::where('nip', $nip)->first();
                 $dataguru->name = $data->name;
-                $dataguru->email = $data->email;
+                // $dataguru->email = $data->email;
                 $dataguru->password = $data->password;
                 $dataguru->save();
                 return redirect()->route('users')->with('success-update', 'Data Guru berhasil diedit');            
@@ -227,7 +226,7 @@ class UserController extends Controller
                 $id_admin = $request->id_admin;
                 $dataadmin = Admin::where('id_admin', $id_admin)->first();
                 $dataadmin->name = $data->name;
-                $dataadmin->email = $data->email;
+                // $dataadmin->email = $data->email;    
                 $dataadmin->password = $data->password;
                 $dataadmin->save();
                 return redirect()->route('users')->with('success-update', 'Data Admin berhasil diedit');        
