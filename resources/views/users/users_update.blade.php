@@ -33,6 +33,9 @@
             </div>
           </div>
           @endif
+          @error('id_admin')
+          <small class="text-danger">{{ $message }}</small>
+          @enderror
           @if($data->role == 'Guru')
           <div class="mb-4 col-12">
             <label for="nip" class="text-secondary mb-3">NIP</label>
@@ -41,6 +44,9 @@
             </div>
           </div>
           @endif
+          @error('nip')
+            <small class="text-danger">{{ $message }}</small>
+          @enderror
           @if($data->role == 'Siswa')
           <div class="mb-4 col-12">
             <label for="nisn" class="text-secondary mb-3">NISN</label>
@@ -49,12 +55,18 @@
             </div>
           </div>
           @endif
-          <div class="mb-4 col-6">
+          @error('nisn')
+          <small class="text-danger">{{ $message }}</small>
+          @enderror
+          <div class="mb-4 col-12">
             <label for="nama" class="text-secondary mb-3">Nama Lengkap</label>
             <div class="input-group">
               <input type="text" class="form-control" id="nama" name="nama" value="{{ $data->name }}">
             </div>
           </div>
+          @error('name')
+          <small class="text-danger">{{ $message }}</small>
+          @enderror
           {{-- <div class="mb-4 col-6">
             <label for="password" class="text-secondary mb-3">Password</label>
             <div class="input-group">

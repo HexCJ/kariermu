@@ -79,15 +79,18 @@ class DataKarirController extends Controller
         // ambil nip dari user
         $nisn = $user->nisn;
         $siswa = Laporan::where('nisn', $nisn)->first();
-        $siswa->status = $request->status;
-        $siswa->tempat_kerja_kuliah = $request->tempat_kerja_kuliah;
-        if($siswa->save()){
-            return redirect()->route('karir')->with('success-update', 'Laporan anda berhasil simpan');
-        }else{
-            return redirect()->route('karir')->with('fail', 'Laporan anda gagal simpan');
+        if($request->status === true){
+            $siswa->status = $request->status;
+            $siswa->tempat_kerja_kuliah = $request->tempat_kerja_kuliah;
+            if($siswa->save()){
+                return redirect()->route('karir')->with('success_lapor', 'Laporan anda berhasil simpan');
+            }else{
+                return redirect()->route('karir')->with('fail', 'Laporan anda gagal simpan');
+            }
         }
-
-
+        else{
+            return redirect()->route('karir')->with('no_lapor', 'Tidak ada Laporan');
+        }
     }
 
     /**

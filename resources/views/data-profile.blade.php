@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
+  @include('partials.notification')
   {{-- Siswa --}}
   @if (auth()->user()->hasRole('siswa'))
     <!-- Modal Update -->
@@ -36,12 +37,12 @@
                     {{-- NISN --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-id-card me-2"></i>NISN</label>
-                      <input type="text" disabled value="{{ $siswa->nisn }}" class="text-secondary mb-3 mt-2 p-2 card w-100"  id="nisn" name="nisn"></input>
+                      <input type="text" readonly value="{{ $siswa->nisn }}" class="text-secondary mb-3 mt-2 p-2 card w-100"  id="nisn" name="nisn"></input>
                     </div>
                     {{-- Nama --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                      <input type="text" value="{{ $siswa->name }}" class=" mb-3 mt-2 p-2 card w-100"  id="nama" name="nama"></input>
+                      <input type="text" readonly value="{{ $siswa->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100"  id="nama" name="nama"></input>
                     </div>
                     {{-- Email --}}
                     <div class="form-group mb-4">
@@ -198,118 +199,119 @@
     @if($siswa->kelas)
     <div class="row">
       <div class="col-12 mt-4">
-          <div class="d-flex mb-3">
-            <h4>Data Diri</h4>
-          </div>
-          <div class="container-fluid"  data-aos="fade-up">
-            <div class="row">
-              <div class="col-12 col-sm-5 col-md-4 col-xl-3">
-                <div class="card mt-3 border shadow">
-                  <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
-                    @if($siswa->image == true)
-                    <div class="position-relative d-flex justify-content-center">
-                      <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto mt-5">
-                      <div class="d-flex justify-content-end position-absolute bottom-0">
-                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+        <div class="d-flex mb-3">
+          <h4>Data Diri</h4>
+        </div>
+            <div class="container-fluid"  data-aos="fade-up">
+              <div class="row">
+                <div class="col-12 col-sm-5 col-md-4 col-xl-3">
+                  <div class="card mt-3 border shadow">
+                    <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
+                      @if($siswa->image == true)
+                      <div class="position-relative d-flex justify-content-center">
+                        <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto mt-5">
+                        <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
+                          <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                        </div>
                       </div>
-                    </div>
-                    @elseif($siswa->jenis_kelamin === 'Laki-laki')
-                    <div class="position-relative d-flex justify-content-center">
-                      <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
-                      <div class="d-flex justify-content-end position-absolute bottom-0">
-                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                      @elseif($siswa->jenis_kelamin === 'Laki-laki')
+                      <div class="position-relative d-flex justify-content-center">
+                        <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
+                        <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
+                          <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                        </div>
                       </div>
-                    </div>
-                    <div class="alert alert-warning mt-3 w-100">
-                      <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
-                    </div>
-                    @elseif($siswa->jenis_kelamin === 'Perempuan')
-                    <div class="position-relative d-flex justify-content-center">
-                      <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto">
-                      <div class="d-flex justify-content-end position-absolute bottom-0">
-                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                      <div class="alert alert-warning mt-3 w-100">
+                        <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
                       </div>
+                      @elseif($siswa->jenis_kelamin === 'Perempuan')
+                      <div class="position-relative d-flex justify-content-center">
+                        <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto">
+                        <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
+                          <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                        </div>
+                      </div>
+                      <div class="alert alert-warning mt-3 w-100">
+                        <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
+                      </div>
+                      @endif
+                      <p class="fw-bold m-0 mb-2 text-center mt-3">{{ $siswa->name }}</p>
+                      <p class="text-center">{{ $siswa->email }}</p>
                     </div>
-                    <div class="alert alert-warning mt-3 w-100">
-                      <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
-                    </div>
-                    @endif
-                    <p class="fw-bold m-0 mb-2 text-center mt-3">{{ $siswa->name }}</p>
-                    <p class="text-center">{{ $siswa->email }}</p>
                   </div>
                 </div>
-              </div>
-              <div class="col-12 col-sm-7 col-md-8 col-xl-9">
-                <div class="card mt-3 border shadow">
-                  <div class="card-body">
-                    <h4 class="mb-3">Personal Information</h4>
-                    <h4 class="mb-3 border-bottom"></h4>
-                    <div class="data-profile row px-5 py-3">
-                      <div class="col-12 col-md-6">
-                        {{-- NISN --}}
-                        <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-id-card me-2"></i>NISN</label>
-                          <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->nisn }}</p>
+                <div class="col-12 col-sm-7 col-md-8 col-xl-9">
+                  <div class="card mt-3 border shadow">
+                    <div class="card-body">
+                      <h4 class="mb-3">Personal Information</h4>
+                      <h4 class="mb-3 border-bottom"></h4>
+                      <div class="data-profile row px-5 py-3">
+                        <div class="col-12 col-md-6">
+                          {{-- NISN --}}
+                          <div class="form-group mb-4">
+                            <label for="nama" class="h5"><i class="fa-solid fa-id-card me-2"></i>NISN</label>
+                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->nisn }}</p>
+                          </div>
+                          {{-- Nama --}}
+                          <div class="form-group mb-4">
+                            <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
+                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->name }}</p>
+                          </div>
+                          {{-- Email --}}
+                          <div class="form-group mb-4">
+                            <label for="nama" class="h5"><i class="fa-solid fa-envelope me-2"></i>Email</label>
+                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->email }}</p>
+                          </div>
+                          {{-- Alamat --}}
+                          <div class="form-group mb-4">
+                            <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
+                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->alamat }}</p>
+                          </div>
+                          {{-- jk --}}
+                          <div class="form-group mb-4">
+                            <label for="nama" class="h5"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
+                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->jenis_kelamin }}</p>
+                          </div>
                         </div>
-                        {{-- Nama --}}
-                        <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                          <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->name }}</p>
-                        </div>
-                        {{-- Email --}}
-                        <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-envelope me-2"></i>Email</label>
-                          <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->email }}</p>
-                        </div>
-                        {{-- Alamat --}}
-                        <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                          <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->alamat }}</p>
-                        </div>
-                        {{-- jk --}}
-                        <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
-                          <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->jenis_kelamin }}</p>
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-6">
-                        {{-- Kelas --}}
-                        <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-school me-2"></i>Kelas</label>
-                          <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->kelas }}</p>
-                        </div>
-                        {{-- Jurusan --}}
-                        <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-user-tie me-2"></i>Jurusan</label>
-                          <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->jurusan }}</p>
-                        </div>
-                        {{-- Tahun lulus --}}
-                        <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-graduation-cap me-2"></i>Status</label>
-                          <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->status }}</p>
-                        </div>
-                        @if($siswa->tahun_lulus)
+                        <div class="col-12 col-md-6">
+                          {{-- Kelas --}}
+                          <div class="form-group mb-4">
+                            <label for="nama" class="h5"><i class="fa-solid fa-school me-2"></i>Kelas</label>
+                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->kelas }}</p>
+                          </div>
+                          {{-- Jurusan --}}
+                          <div class="form-group mb-4">
+                            <label for="nama" class="h5"><i class="fa-solid fa-user-tie me-2"></i>Jurusan</label>
+                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->jurusan }}</p>
+                          </div>
                           {{-- Tahun lulus --}}
                           <div class="form-group mb-4">
-                            <label for="nama" class="h5"><i class="fa-solid fa-calendar-days me-2"></i>Tahun Lulus</label>
-                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->tahun_lulus }}</p>
+                            <label for="nama" class="h5"><i class="fa-solid fa-graduation-cap me-2"></i>Status</label>
+                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->status }}</p>
                           </div>
-                        @endif
-                      </div>
-                      <div class="d-flex justify-content-end">
-                        <p class=""><a href="" class="cursor-pointer btn btn-success" data-bs-toggle="modal" data-bs-target="#editProfile"><i class="fa-regular fa-pen-to-square"></i></a></p>
+                          @if($siswa->tahun_lulus)
+                            {{-- Tahun lulus --}}
+                            <div class="form-group mb-4">
+                              <label for="nama" class="h5"><i class="fa-solid fa-calendar-days me-2"></i>Tahun Lulus</label>
+                              <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->tahun_lulus }}</p>
+                            </div>
+                          @endif
+                        </div>
+                        <div class="d-flex justify-content-end">
+                          <p class=""><a href="" class="cursor-pointer btn btn-success" data-bs-toggle="modal" data-bs-target="#editProfile"><i class="fa-regular fa-pen-to-square"></i></a></p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+        </div>
       </div>
-    </div>
     @endif
   @endif
-  {{-- Guru --}}
+
+    {{-- Guru --}}
   @if (auth()->user()->hasRole('guru'))
     <div class="row">
       <div class="col-12 mt-4">
@@ -326,7 +328,7 @@
             </div>
             {{-- Update section --}}
             <div class="modal-body">
-              <form action="{{ route('profile.updateguru', ['id' => $guru->nip]) }}" method="POST">
+              <form action="{{ route('profile.updateguru', ['id' => $guru->nip]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="container-fluid">
@@ -349,12 +351,12 @@
                       {{-- NISN --}}
                       <div class="form-group mb-4">
                         <label for="nama" class=""><i class="fa-solid fa-id-card me-2"></i>NIP</label>
-                        <input type="text" disabled value="{{ $guru->nip }}" class="text secondary mb-3 mt-2 p-2 card w-100 w-100" id="nip" name="nip"></input>
+                        <input type="text" readonly value="{{ $guru->nip }}" class="text secondary mb-3 mt-2 p-2 card w-100 w-100" id="nip" name="nip"></input>
                       </div>
                       {{-- Nama --}}
                       <div class="form-group mb-4">
                         <label for="nama" class=""><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                        <input type="text" value="{{ $guru->name }}" class="mb-3 mt-2 p-2 card w-100 w-100" id="nama" name="nama"></input>
+                        <input type="text" readonly value="{{ $guru->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100 w-100" id="nama" name="nama"></input>
                       </div>
                       {{-- Email --}}
                       <div class="form-group mb-4">
@@ -451,15 +453,15 @@
                     @if($guru->image == true)
                     <div class="position-relative d-flex justify-content-center">
                       <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto mt-5">
-                      <div class="d-flex justify-content-end position-absolute bottom-0">
-                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                      <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
+                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                       </div>
                     </div>
                     @elseif($guru->jenis_kelamin === 'Laki-laki')
                     <div class="position-relative d-flex justify-content-center">
                       <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
-                      <div class="d-flex justify-content-end position-absolute bottom-0">
-                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                      <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
+                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                       </div>
                     </div>
                     <div class="alert alert-warning mt-3 w-100">
@@ -468,8 +470,8 @@
                     @elseif($guru->jenis_kelamin === 'Perempuan')
                     <div class="position-relative d-flex justify-content-center">
                       <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto">
-                      <div class="d-flex justify-content-end position-absolute bottom-0">
-                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                      <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
+                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                       </div>
                     </div>
                     <div class="alert alert-warning mt-3 w-100">
@@ -573,12 +575,12 @@
                         {{-- NISN --}}
                         <div class="form-group mb-4">
                           <label for="nama" class=""><i class="fa-solid fa-envelope me-2"></i>ID Admin</label>
-                          <input disabled type="text" value="{{ $admin->id_admin }}" class="text-secondary mb-3 mt-2 p-2 card w-100" id="id_admin" name="id_admin"></input>
+                          <input readonly type="text" value="{{ $admin->id_admin }}" class="text-secondary mb-3 mt-2 p-2 card w-100" id="id_admin" name="id_admin"></input>
                         </div>
                         {{-- Nama --}}
                         <div class="form-group mb-4">
                           <label for="nama" class=""><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                          <input type="text" value="{{ $admin->name }}" class=" mb-3 mt-2 p-2 card w-100" id="nama" name="nama"></input>
+                          <input readonly type="text" value="{{ $admin->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100" id="nama" name="nama"></input>
                         </div>
                         {{-- Email --}}
                         <div class="form-group mb-4">
@@ -662,15 +664,15 @@
                   @if($admin->image == true)
                   <div class="position-relative d-flex justify-content-center">
                     <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto mt-5">
-                    <div class="d-flex justify-content-end position-absolute bottom-0">
-                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                    <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;"">
+                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                     </div>
                   </div>
                   @elseif($admin->jenis_kelamin === 'Laki-laki')
                   <div class="position-relative d-flex justify-content-center">
                     <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
-                    <div class="d-flex justify-content-end position-absolute bottom-0">
-                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                    <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
+                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                     </div>
                   </div>
                   <div class="alert alert-warning mt-3 w-100">
@@ -679,8 +681,8 @@
                   @elseif($admin->jenis_kelamin === 'Perempuan')
                   <div class="position-relative d-flex justify-content-center">
                     <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto">
-                    <div class="d-flex justify-content-end position-absolute bottom-0">
-                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                    <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
+                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                     </div>
                   </div>
                   <div class="alert alert-warning mt-3 w-100">

@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             SiswaSeeder::class,
             AdminSeeder::class,
             NilaiSeeder::class,
-            JurusanSeeder::class,
+            LaporanSeeder::class,
         ]);
     }
 }

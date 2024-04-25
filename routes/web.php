@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\MapelController;
@@ -30,7 +31,6 @@ Route::get('/',[Controller::class,'index']);
 
 // Route::get('/siswa/search', ['SiswaController@search'])->name('search');
 
-Route::get('/dashboard',[Controller::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 // Route::get('/profile',[ProfileController::class,'index'])->middleware(['auth', 'verified'])->name('profile');
@@ -48,7 +48,11 @@ Route::get('/nilai',[Controller::class,'dataNilai'])->name('datanilai');
 Route::get('/nilai/detail_nilai',[Controller::class,'detailDataNilai']);
 Route::get('/nilai/add_nilai',[Controller::class,'inputNilai']);
 
-Route::get('detail_status',[Controller::class, 'detailStatus'])->name('detail.status');
+Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('detail_status/menganggur',[DashboardController::class, 'detailStatusTidakKerja'])->middleware(['auth'])->name('detail.tidakkerja');
+Route::get('detail_status/kerja',[DashboardController::class, 'detailStatusKerja'])->middleware(['auth', 'verified'])->name('detail.kerja');
+Route::get('detail_status/kuliah',[DashboardController::class, 'detailStatusKuliah'])->middleware(['auth', 'verified'])->name('detail.kuliah');
+Route::get('detail_status/wirausaha',[DashboardController::class, 'detailStatusWira'])->middleware(['auth', 'verified'])->name('detail.wirausaha');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

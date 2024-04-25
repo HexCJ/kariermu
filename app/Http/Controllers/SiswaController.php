@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Jurusan;
+use App\Models\Laporan;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -296,10 +297,14 @@ class SiswaController extends Controller
         if($data->save()){
             $nisn = $request->nisn;
             $datauser = User::where('nisn', $nisn)->first();
+            $datalaporan = Laporan::where('nisn', $nisn)->first();
             $datauser->name = $data->name;
+            $datalaporan->jurusan = $data->jurusan;
             $datauser->password = $data->password;
             $datauser->email = $data->email;
             $datauser->save();
+            $datalaporan->save();
+            
             return redirect()->route('siswa')->with('success-update', 'Data Siswa '.$namasiswa.' berhasil diedit');
         }else{
             return redirect()->route('siswa')->with('fail', 'Data Siswa gagal '.$namasiswa.' diedit');

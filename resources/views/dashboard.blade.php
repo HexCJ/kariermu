@@ -17,7 +17,7 @@
           <div class="d-flex flex-column gap-1 gap-sm-2 ms-2 ms-sm-2 ms-md-4">
             <p class="title-data fw-medium text-secondary">Pengangguran</p>
             <h1 class="detail-data fw-bold text-primary-emphasis">{{ $totaltkerja }}</h1>
-            <a href="{{ route('detail.status') }}" class="detail text-secondary">detail siswa menganggur..</a>
+            <a href="{{ route('detail.tidakkerja') }}" class="detail text-secondary">detail siswa menganggur..</a>
           </div>
         </div>
         {{-- Data status karir bekerja --}}
@@ -28,7 +28,7 @@
           <div class="d-flex flex-column gap-1 gap-sm-2 ms-2 ms-sm-2 ms-md-4">
             <p class="title-data fw-medium text-secondary">Bekerja</p>
             <h1 class="detail-data fw-bold text-primary-emphasis">{{ $totalkerja }}</h1>
-            <a href="{{ route('detail.status') }}" class="detail text-secondary">detail siswa bekerja..</a>
+            <a href="{{ route('detail.kerja') }}" class="detail text-secondary">detail siswa bekerja..</a>
           </div>
         </div>
         {{-- data status karir kuliah --}}
@@ -40,7 +40,7 @@
           <div class="d-flex flex-column gap-1 gap-sm-2 ms-2 ms-sm-2 ms-md-4">
             <p class="title-data fw-medium text-secondary">Kuliah</p>
             <h1 class="detail-data fw-bold text-primary-emphasis">{{ $totalkuliah }}</h1>
-            <a href="{{ route('detail.status') }}" class="detail text-secondary">detail siswa berkuliah..</a>
+            <a href="{{ route('detail.kuliah') }}" class="detail text-secondary">detail siswa berkuliah..</a>
           </div>
         </div>
         {{-- data status karir wirausaha --}}
@@ -51,7 +51,7 @@
           <div class="d-flex flex-column gap-1 gap-sm-2 ms-2 ms-sm-2 ms-md-4">
             <p class="title-data fw-medium text-secondary">Wirausaha</p>
             <h1 class="detail-data fw-bold text-primary-emphasis">{{ $totalwirausaha }}</h1>
-            <a href="{{ route('detail.status') }}" class="detail text-secondary">detail siswa berwirausaha..</a>
+            <a href="{{ route('detail.wirausaha') }}" class="detail text-secondary">detail siswa berwirausaha..</a>
           </div>
         </div>
       </div>
@@ -85,11 +85,11 @@
   var w = {{ $totalwirausaha }}
   var total = p + k + kl + w
 
-  var persenp = p * total / 100;
-  var persenk = k * total / 100;
-  var persenkl = kl * total / 100;
-  var persenw = w * total / 100;
-  var persentotal = total * total / 100;
+  var persenp = p /total * 100;
+  var persenk = k / total * 100;
+  var persenkl = kl / total * 100;
+  var persenw = w / total * 100;
+  var persentotal = total * total * 100;
   new Chart(ctx, {
     type: 'bar',
 
@@ -179,7 +179,6 @@
       options: {
         title: {
           display: true,
-          text: 'Predicted world population (millions) in 2050'
         }
       }
   });

@@ -128,7 +128,7 @@ class UserController extends Controller
             if ($request->role === 'Siswa') {
                 $siswa = Siswa::create($data);
                 $datanilaisiswa = Nilai::create(['nisn' => $request->nisn]); 
-                $datalaporansiswa = Laporan::create(['nisn' => $request->nisn]); 
+                $datalaporansiswa = Laporan::create(['nisn' => $request->nisn, 'name' => $request->name]); 
                 $user->assignRole('siswa');
             }else if ($request->role === 'Guru'){
                 // Berikan peran 'siswa' jika tidak

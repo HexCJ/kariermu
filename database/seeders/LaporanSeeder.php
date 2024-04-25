@@ -30,6 +30,8 @@ class LaporanSeeder extends Seeder
         Laporan::updateOrCreate([
             'nisn' => '3333', // Ganti dengan NISN yang sesuai
             'status' => 'Kuliah',
+            'name' => 'siswa',
+            'jurusan' => 'RPL', // Ganti dengan id jurusan yang sesuai
             'tempat_kerja_kuliah' => 'UI', // Isi jika diperlukan
         ]);
 

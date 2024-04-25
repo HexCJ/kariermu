@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<form action="{{ route('karir.update', ['id' => $siswa->nisn]) }}" method="POST" enctype="multipart/form-data">
-  @csrf
 <div class="container-fluid">
+  @include('partials.notification')
   <div class="row">
     <div class="modal fade" id="addDataKarir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
@@ -21,8 +20,8 @@
                   <form action="">
                     <div class="col-12 mb-3">
                       <label for="status" class="text-secondary mb-3">Status</label>
-                      <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="status" name="status">
-                        <option selected >Pilih Status Anda</option>
+                      <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="status" name="status" required>
+                        <option disabled selected>Pilih Status Anda</option>
                         <option value="Bekerja"{{ old('status') == 'Bekerja' ? 'selected' : '' }}>Bekerja</option> 
                         <option value="Kuliah">{{ old('status') == 'Kuliah' ? 'selected' : '' }}Kuliah</option>
                         <option value="Menganggur"{{ old('status') == 'Menganggur' ? 'selected' : '' }}>Menganggur</option>
@@ -35,7 +34,7 @@
                     <div class="col-12 mb-3">
                       <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="kerja">Tempat Kerja</label>
                       <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="kuliah">Tempat Kuliah</label>
-                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="wirausaha">Tempat Berwirausahae</label>
+                      <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="wirausaha">Tempat Berwirausaha</label>
                       <div class="input-group mb-2 d-none" id="input">
                         <input type="text" value="{{old('tempat_kerja_kuliah')}}" class="form-control" id="tempat_kerja_kuliah" name="tempat_kerja_kuliah">
                       </div>
@@ -79,7 +78,7 @@
                               wirausaha.classList.add('d-none');  
                           }
                       });
-                  });
+                    });
                   </script>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center" data-bs-dismiss="modal">Submit</button>
@@ -91,7 +90,7 @@
     </div>
   </div>
   <div class="row">
-    <!-- Modal Add -->
+    <!-- Modal Edit -->
     <div class="modal fade" id="editDataKarir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
         <div class="modal-content">
@@ -122,7 +121,7 @@
                     </div>
                     <div class="row">
                       <div class="col-12 mb-3">
-                        <label for="tempat_kerja_kuliah" class="text-secondary mb-3">tempat kerja / kuliah</label>
+                        <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="kerja">Tempat Bekerja</label>
                         <div class="input-group mb-2">
                           <input type="text" value="{{ $siswa->tempat_kerja_kuliah }}" class="form-control" id="tempat_kerja_kuliah" name="tempat_kerja_kuliah">
                         </div>
@@ -131,6 +130,40 @@
                         @enderror
                       </div>
                     </div>
+                    <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                      document.getElementById('status').addEventListener('change', function() {
+                          var status = this.value;
+                          var kerja = document.getElementById('kerja');
+                          var kuliah = document.getElementById('kuliah');
+                          var wirausaha = document.getElementById('wirausaha');
+                          var input = document.getElementById('input');
+                          
+                          // Tampilkan input yang sesuai dengan opsi yang dipilih
+                          if (status === 'Bekerja') {
+                            kerja.classList.remove('d-none');
+                            input.classList.remove('d-none');
+                            kuliah.classList.add('d-none');
+                            wirausaha.classList.add('d-none');
+                          } else if (status === 'Kuliah') {
+                            kuliah.classList.remove('d-none');
+                            input.classList.remove('d-none');
+                            kerja.classList.add('d-none');
+                            wirausaha.classList.add('d-none');
+                          } else if (status === 'Wirausaha') {
+                            input.classList.remove('d-none');
+                            wirausaha.classList.remove('d-none');
+                            kuliah.classList.add('d-none');
+                            kerja.classList.add('d-none');  
+                          } else {
+                            input.classList.add('d-none');
+                            kuliah.classList.add('d-none');
+                            kerja.classList.add('d-none');  
+                            wirausaha.classList.add('d-none');  
+                          }
+                      });
+                    });
+                  </script>
                     {{-- jiika datanya kosong --}}
                 </div>
               </div>
