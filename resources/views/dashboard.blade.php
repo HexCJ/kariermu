@@ -3,7 +3,7 @@
 @if(auth()->user()->HasRole('admin') || auth()->user()->HasRole('guru'))
 <div class="container-fluid" data-aos="fade-up">
   {{-- admin /guru --}}
-  <div class="row px-5">
+  <div class="row px-3">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between" data-aos="fade-up">
         <h4 class="h4">Welcome To Admin Dashboard SMKN 4 Tangerang</h4>
@@ -58,7 +58,7 @@
       <div class="row mt-5 px-0 px-lg-3 px-xl-1">
         {{-- chart grafik data karir --}}
          <div class="col-12 col-md-8">
-          <div class="card  p-3">
+          <div class="card p-3">
             <h4 class="mb-5 mt-2">Presentase Data Karir</h4>
             <div>
               <div>
@@ -206,7 +206,7 @@
               </div>
             </div> --}}
             <div class="col-12 col-md-6">
-              <a href="{{ route('karir') }}" class="btn btn-primary w-50">Laporkan.</a>
+              <a href="{{ route('karir') }}" class="btn btn-primary">Laporkan.</a>
             </div>
             {{-- <div class="col-6">
               <div class="alert alert-danger">

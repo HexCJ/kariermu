@@ -6,7 +6,7 @@
   @if (auth()->user()->hasRole('siswa'))
     <!-- Modal Update -->
     <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
+      <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">Update Data Profile</h1>
@@ -22,7 +22,7 @@
                   <div class="col-12 col-md-6 mb-3 d-flex flex-column gap-3">
                     <label for="image" class="">Foto Profile</label>
                     @if($siswa->image == true)
-                    <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto mt-5">
+                    <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto">
                     @elseif($siswa->jenis_kelamin === 'Laki-laki')
                     <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
                     @elseif($siswa->jenis_kelamin === 'Perempuan')
@@ -158,7 +158,7 @@
                   <div class="col-12 mb-3 d-flex flex-column gap-3">
                     <div class="d-flex justify-content-center align-items-center flex-column gap-3">
                       @if($siswa->image == true)
-                      <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto mt-5">
+                      <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto">
                       @elseif($siswa->jenis_kelamin === 'Laki-laki')
                       <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
                       @elseif($siswa->jenis_kelamin === 'Perempuan')
@@ -209,16 +209,16 @@
                     <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
                       @if($siswa->image == true)
                       <div class="position-relative d-flex justify-content-center">
-                        <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto mt-5">
+                        <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto">
                         <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
-                          <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                          <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle fs-6" style="width:30px; height:30px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                         </div>
                       </div>
                       @elseif($siswa->jenis_kelamin === 'Laki-laki')
                       <div class="position-relative d-flex justify-content-center">
                         <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
                         <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
-                          <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                          <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle fs-6" style="width:30px; height:30px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                         </div>
                       </div>
                       <div class="alert alert-warning mt-3 w-100">
@@ -228,7 +228,7 @@
                       <div class="position-relative d-flex justify-content-center">
                         <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto">
                         <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
-                          <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                          <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle fs-6" style="width:30px; height:30px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                         </div>
                       </div>
                       <div class="alert alert-warning mt-3 w-100">
@@ -320,7 +320,7 @@
         </div>
       <!-- Modal Update -->
       <div class="modal fade" id="editProfileGuru" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
+        <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">Update Data Profile</h1>
@@ -336,7 +336,7 @@
                     <div class="col-12 col-md-6 mb-3 d-flex flex-column gap-3">
                       <label for="image" class=" ">Foto Profile</label>
                       @if($guru->image == true)
-                      <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto mt-5">
+                      <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto">
                       @elseif($guru->jenis_kelamin === 'Laki-laki')
                       <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
                       @elseif($guru->jenis_kelamin === 'Perempuan')
@@ -422,7 +422,7 @@
                     <div class="col-12 mb-3 d-flex flex-column gap-3">
                       <div class="d-flex justify-content-center align-items-center flex-column gap-3">
                         @if($guru->image == true)
-                        <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto mt-5">
+                        <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto">
                         @elseif($guru->jenis_kelamin === 'Laki-laki')
                         <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
                         @elseif($guru->jenis_kelamin === 'Perempuan')
@@ -452,16 +452,16 @@
                   <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
                     @if($guru->image == true)
                     <div class="position-relative d-flex justify-content-center">
-                      <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto mt-5">
+                      <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto">
                       <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
-                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle fs-6" style="width:30px; height:30px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                       </div>
                     </div>
                     @elseif($guru->jenis_kelamin === 'Laki-laki')
                     <div class="position-relative d-flex justify-content-center">
                       <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
                       <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
-                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle fs-6" style="width:30px; height:30px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                       </div>
                     </div>
                     <div class="alert alert-warning mt-3 w-100">
@@ -471,7 +471,7 @@
                     <div class="position-relative d-flex justify-content-center">
                       <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto">
                       <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
-                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                        <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle fs-6" style="width:30px; height:30px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                       </div>
                     </div>
                     <div class="alert alert-warning mt-3 w-100">
@@ -544,7 +544,7 @@
           </div>
         <!-- Modal Update -->
         <div class="modal fade" id="editProfileAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
+          <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Update Data Profile</h1>
@@ -560,7 +560,7 @@
                       <div class="col-12 col-md-6 mb-3 d-flex flex-column gap-3">
                         <label for="image" class=" ">Foto Profile</label>
                         @if($admin->image == true)
-                        <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto mt-5">
+                        <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto">
                         @elseif($admin->jenis_kelamin === 'Laki-laki')
                         <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
                         @elseif($admin->jenis_kelamin === 'Perempuan')
@@ -633,7 +633,7 @@
                       <div class="col-12 mb-3 d-flex flex-column gap-3">
                         <div class="d-flex justify-content-center align-items-center flex-column gap-3">
                           @if($admin->image == true)
-                          <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto mt-5">
+                          <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto">
                           @elseif($admin->jenis_kelamin === 'Laki-laki')
                           <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
                           @elseif($admin->jenis_kelamin === 'Perempuan')
@@ -663,16 +663,16 @@
                 <div class="card-body d-flex justify-content-center align-items-center flex-column gap-2">
                   @if($admin->image == true)
                   <div class="position-relative d-flex justify-content-center">
-                    <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto mt-5">
+                    <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto">
                     <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;"">
-                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle fs-6" style="width:30px; height:30px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                     </div>
                   </div>
                   @elseif($admin->jenis_kelamin === 'Laki-laki')
                   <div class="position-relative d-flex justify-content-center">
                     <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
                     <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
-                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle fs-6" style="width:30px; height:30px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                     </div>
                   </div>
                   <div class="alert alert-warning mt-3 w-100">
@@ -682,7 +682,7 @@
                   <div class="position-relative d-flex justify-content-center">
                     <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto">
                     <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
-                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width:50px; height:50px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
+                      <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle fs-6" style="width:30px; height:30px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                     </div>
                   </div>
                   <div class="alert alert-warning mt-3 w-100">

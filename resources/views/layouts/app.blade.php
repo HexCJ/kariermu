@@ -44,7 +44,7 @@
             @include('partials.navbar')
             <div class="col-2 d-none d-md-block">
             </div>
-            <div class="col-12 col-md-10 mt-3">
+            <div class="col-sm-12 col-md-10 mt-3">
                 @yield('content')
             </div>
         </div>

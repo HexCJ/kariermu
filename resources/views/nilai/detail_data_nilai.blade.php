@@ -33,10 +33,8 @@
     </div>
   </div>
 </div>
-
-
 {{-- jika status ditolak --}}
-<div class="container-fluid d-none">
+<div class="container-fluid">
   <div class="row">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between">
@@ -74,7 +72,6 @@
     </div>
   </div>
 </div>
-
 {{-- jika status sedang dicek guru --}}
 <div class="container-fluid">
   <div class="row">
