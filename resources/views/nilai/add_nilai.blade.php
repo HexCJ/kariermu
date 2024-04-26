@@ -39,10 +39,10 @@
             </div>
           </div>
         </div>
-          <div class="col-12 mb-3">
+          <div class="col-12 mb-3 mt-5">
             <div class="form-group">
               <a href="" class="btn btn-secondary">Close</a>
-              <button type="submit" class="button">Submit</button>
+              <button type="submit" class="btn btn-primary ms-2">Submit</button>
             </div>
           </div>
         </div>

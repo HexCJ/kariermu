@@ -19,7 +19,7 @@
               <h4 class="mt-3 ms-3 mb-3">Nilai Rata-Rata</h4>
               <div class="container">
                 <div class="row p-3">
-                  <div class="col-12 mb-3 bg-warning rounded p-3 text-light">
+                  <div class="col-12 mb-3 bg-primary rounded p-3 text-light">
                     <div class="d-flex flex-column gap-2">
                       <div class="d-flex justify-content-between">
                         <h5>Semester 1</h5>
@@ -27,7 +27,7 @@
                       <p id="nilaiData">Anda Belum Menginputkan Nilai</p>
                     </div>
                     <div class="d-flex justify-content-end">
-                      <a href="/nilai/add_nilai" class="text-decoration-none text-light"><i class="fa-solid fa-plus text-success"></i></a>
+                      <a href="/nilai/add_nilai" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
                     </div>
                   </div>
                 </div>
