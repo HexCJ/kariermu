@@ -8,7 +8,7 @@
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Profile") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('profile') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-user me-3"></i>Profile</a>
         </li>
-        <li class="list-group list text-medium cursor-pointer {{ ($title == "Dashboard") ? 'list-active' : '' }} text-center text-md-start">
+        <li class="list-group list text-medium cursor-pointer {{ ($title == "Dashboard") || ($title == "Detail Siswa Menganggur") || ($title == "Detail Siswa Bekerja") || ($title == "Detail Siswa Berkuliah") || ($title == "Detail Siswa Berwirausaha") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('dashboard') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-house-chimney-user me-3"></i>Dashboard</a>
         </li>
         @endif

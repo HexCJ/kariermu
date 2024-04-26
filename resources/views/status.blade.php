@@ -34,13 +34,13 @@
                                         <div class="">
                                             @if ($data->isEmpty())
                                                 <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                                    <div><i class="bi bi-exclamation-circle me-3"></i>Data {{ $status }} Kosong</div>
+                                                    <div><i class="bi bi-exclamation-circle me-3"></i>Data Siswa {{ $status }} Kosong</div>
                                                 </div>
                                                 <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center"
                                                     style="height: 80vh" data-aos="fade-up">
                                                     <img class="data-kosong" src="{{ asset('img/data_kosong_guru.png') }}"
                                                         alt="">
-                                                    <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Menganggur</p>
+                                                    <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Siswa Menganggur</p>
                                                 </div>
                                             @endif
                                             @if (!$data->isEmpty())
@@ -180,13 +180,13 @@
                                         <div class="">
                                             @if ($data->isEmpty())
                                                 <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                                    <div><i class="bi bi-exclamation-circle me-3"></i>Data {{ $status }} Kosong</div>
+                                                    <div><i class="bi bi-exclamation-circle me-3"></i>Data Berkuliah Kosong</div>
                                                 </div>
                                                 <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center"
                                                     style="height: 80vh" data-aos="fade-up">
                                                     <img class="data-kosong" src="{{ asset('img/data_kosong_guru.png') }}"
                                                         alt="">
-                                                    <p class="fw-semibold mt-5 mb-0">Tidak Ada Data {{ $status }}</p>
+                                                    <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Data Siswa Berkuliah</p>
                                                 </div>
                                             @endif
                                             @if (!$data->isEmpty())
@@ -254,13 +254,13 @@
                                         <div class="">
                                             @if ($data->isEmpty())
                                                 <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                                    <div><i class="bi bi-exclamation-circle me-3"></i>Data {{ $status }} Kosong</div>
+                                                    <div><i class="bi bi-exclamation-circle me-3"></i>Data Berwirausaha Kosong</div>
                                                 </div>
                                                 <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center"
                                                     style="height: 80vh" data-aos="fade-up">
                                                     <img class="data-kosong" src="{{ asset('img/data_kosong_guru.png') }}"
                                                         alt="">
-                                                    <p class="fw-semibold mt-5 mb-0">Tidak Ada Data {{ $status }}</p>
+                                                    <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Siswa Berwirausaha</p>
                                                 </div>
                                             @endif
                                             @if (!$data->isEmpty())
@@ -278,7 +278,7 @@
                                                         @foreach ($data as $d)
                                                             <tr>
                                                                 <td>{{ $d->nisn }}</td>
-                                                                <td>Mamank</td>
+                                                                <td>{{ $d->name }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
                                                                 <td>{{ $d->status }}</td>
                                                                 <td>{{ $d->tempat_kerja_kuliah }}</td>

@@ -17,7 +17,7 @@
                   <div class="col-3">
                     <div class="input-group mb-3 mt-3">
                       <select name="jurusan" id="jurusan" class="rounded form-select">
-                        <option disabled value="" multiple aria-label="Multiple select example">Semua Jurusan</option>
+                        <option value="" multiple aria-label="Multiple select example">Semua Jurusan</option>
                         @foreach ($jurusans as $jurusan)
                         <option value="{{ $jurusan->id_jurusan }}" {{ request('jurusan') == $jurusan->id_jurusan ? 'selected' : '' }}>{{ $jurusan->nama_jurusan }}</option>
                         @endforeach
@@ -27,7 +27,7 @@
                   <div class="col-3">
                     <div class="input-group mb-3 mt-3">
                       <select name="kelas" id="kelas" class="rounded form-select">
-                        <option disabled value="" multiple aria-label="Multiple select example">Semua Kelas</option>
+                        <option value="" multiple aria-label="Multiple select example">Semua Kelas</option>
                         <option value="X" {{ request()->input('kelas') == 'X' ? 'selected' : '' }}>X/SEPULUH</option>
                         <option value="XI" {{ request()->input('kelas') == 'XI' ? 'selected' : '' }}>XI/SEBELAS</option>
                         <option value="XII" {{ request()->input('kelas') == 'XII' ? 'selected' : '' }}>XII/DUA BELAS</option>

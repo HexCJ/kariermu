@@ -107,7 +107,7 @@ class DashboardController extends Controller
         $data = $query->get();
     
         return view('status',[
-            'title' => 'Detail Siswa',
+            'title' => 'Detail Siswa Menganggur',
             'status' => $status,
             'data' => $data,
             'jurusans' => $jurusans,
@@ -128,7 +128,7 @@ class DashboardController extends Controller
         $data = $query->get();
     
         return view('status',[
-            'title' => 'Detail Siswa',
+            'title' => 'Detail Siswa Bekerja',
             'status' => $status,
             'data' => $data,
             'jurusans' => $jurusans,
@@ -150,7 +150,7 @@ class DashboardController extends Controller
         $data = $query->get();
     
         return view('status',[
-            'title' => 'Detail Siswa',
+            'title' => 'Detail Siswa Berkuliah',
             'status' => $status,
             'data' => $data,
             'jurusans' => $jurusans,
@@ -172,7 +172,7 @@ class DashboardController extends Controller
         $data = $query->get();
     
         return view('status',[
-            'title' => 'Detail Siswa',
+            'title' => 'Detail Siswa Wirausaha',
             'status' => $status,
             'data' => $data,
             'jurusans' => $jurusans,

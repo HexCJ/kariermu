@@ -2,7 +2,7 @@
 new DataTable('#dataStatus', {
     language: {
         "search": "Cari :",
-        "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img src='img/404.png' alt='' class='notfound'><p class='fw-semibold mt-5 mb-0'>Data Mata Pelajaran Tidak Ditemukan</p></div>"
+        "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img src='../img/404.png' alt='' class='notfound'><p class='fw-semibold mt-5 mb-0'>Data Siswa Tidak Ditemukan</p></div>"
     }
 });
 new DataTable('#dataMapel', {
