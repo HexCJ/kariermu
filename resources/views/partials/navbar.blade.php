@@ -47,7 +47,7 @@
                     <a href="{{ route('siswa') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-graduation-cap me-3"></i>Siswa</a>
                 </li>
                 @endif
-                @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('guru') || auth()->user()->hasRole('siswa'))
+                @if (auth()->user()->hasRole('siswa'))
                   {{-- data karir --}}
                   <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Karir") ? 'list-active' : '' }} text-md-start">
                       <a href="{{ route('karir') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-briefcase me-3"></i>Data Karir</a>

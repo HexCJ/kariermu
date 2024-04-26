@@ -166,11 +166,6 @@
     border-radius: 12px;
     aspect-ratio: 1;
 }
-
-.profile-foto:hover {
-    object-fit: cover;
-    aspect-ratio: 1;
-}
 .notfound {
     width: 200px;
     height: auto;
@@ -229,7 +224,6 @@
     .profile-foto {
         width: 60%;
         object-fit: cover;
-        border-radius: 12px;
         aspect-ratio: 1;
     }
     .notfound {

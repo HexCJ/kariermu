@@ -106,7 +106,7 @@
                           <td>{{ $d->alamat }}</td> 
                           <td>{{ $d->tahun_lulus }}</td> 
                           <td>{{ $d->status }}</td> 
-                          <td class="d-flex justify-content-center align-items-center">
+                          <td class="">
                             <div class="dropdown py-3">
                               <a class="button py-2 px-3 rounded text-decoration-none text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-person-fill-gear me-2 i-icon"></i>Option
