@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Nilai;
+use Illuminate\Support\Facades\Auth;
+
 
 use Illuminate\Http\Request;
 
@@ -24,7 +26,9 @@ class DataNilaiController extends Controller
     }
     public function inputNilai()
     {   
+        $nisn = Auth::user()->nisn;
         return view('nilai/add_nilai',[
+            'nisn' => $nisn,
             'title' => 'Input Data Nilai Siswa'
         ]);
     }
@@ -42,6 +46,47 @@ class DataNilaiController extends Controller
     public function store(Request $request)
     {
         //
+        // $nisn                   = Auth::user()->nisn;
+        // $data['nisn']           = $nisn;
+        // $data['semester']       = "S1";
+        // $data['mata_pelajaran'] = "BI";
+        // $data['nilai']          = $request->bindo;
+
+        $nisn = Auth::user()->nisn;
+        $semester = "S1";
+
+        $data_nilai = [
+            ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
+            ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
+            ['mata_pelajaran' => 'BING', 'request_field' => 'bing'],
+            ['mata_pelajaran' => 'PAI', 'request_field' => 'pai'],
+            ['mata_pelajaran' => 'SI', 'request_field' => 'si'],
+        ];
+
+        foreach ($data_nilai as $data) {
+            $input_field = $data['request_field'];
+            $mata_pelajaran = $data['mata_pelajaran'];
+            $nilai = $request->$input_field;
+            
+
+            // simpen data jadi array buat disimpan ke database
+             $data_to_store[] = [
+                'nisn' => $nisn,
+                'semester' => $semester,
+                'mata_pelajaran' => $mata_pelajaran,
+                'nilai' => $nilai
+    ];
+}
+
+        // Simpan data ke db
+        foreach ($data_to_store as $data) {
+            // dd($data);
+            Nilai::create($data);
+        }
+
+
+
+
     }
 
     /**

@@ -6,6 +6,8 @@
       <div class="d-flex justify-content-between">
         <h4 class="h4">Data Nilai Siswa Semester 1</h4>
       </div>
+      <form action="{{ route('datanilai.add') }}" method="POST">
+        @csrf
       <div class="container-fluid mt-5">
         <div class="row">
           <div class="col-12 col-sm-6 col-md-4 mb-3">
@@ -23,13 +25,13 @@
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Bahasa Inggris</label>
-              <input type="text" name="bingg" id="bingg" class="form-control">
+              <input type="text" name="bing" id="bing" class="form-control">
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Pendidikan Agama</label>
-              <input type="text" name="bingg" id="agama" class="form-control">
+              <input type="text" name="pai" id="pai" class="form-control">
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 mb-3">
@@ -46,6 +48,7 @@
             </div>
           </div>
         </div>
+      </form>
         <div class="row d-none">
           <div class="alert alert-warning d-flex align-items-center" role="alert">
             <div><i class="bi bi-exclamation-circle me-3"></i>Data Nilai Sudah Terisi</div>

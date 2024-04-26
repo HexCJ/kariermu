@@ -11,6 +11,7 @@ use App\Http\Controllers\serverSide;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataKarirController;
+use App\Http\Controllers\DataNilaiController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -47,6 +48,7 @@ Route::put('profile/updateadmin/{id}', [ProfileController::class, 'updateadmin']
 Route::get('/nilai',[Controller::class,'dataNilai'])->name('datanilai');
 Route::get('/nilai/detail_nilai',[Controller::class,'detailDataNilai']);
 Route::get('/nilai/add_nilai',[Controller::class,'inputNilai']);
+Route::post('/nilai/add_nilaibaru',[DataNilaiController::class,'store'])->name('datanilai.add');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('detail_status/menganggur',[DashboardController::class, 'detailStatusTidakKerja'])->middleware(['auth'])->name('detail.tidakkerja');
