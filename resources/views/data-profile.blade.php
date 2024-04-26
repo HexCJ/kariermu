@@ -245,54 +245,54 @@
                     <div class="card-body">
                       <h4 class="mb-3">Personal Information</h4>
                       <h4 class="mb-3 border-bottom"></h4>
-                      <div class="data-profile row px-5 py-3">
+                      <div class="data-profile row px-2 px-md-5 py-3">
                         <div class="col-12 col-md-6">
                           {{-- NISN --}}
                           <div class="form-group mb-4">
-                            <label for="nama" class="h5"><i class="fa-solid fa-id-card me-2"></i>NISN</label>
+                            <label for="nama" class="fw-semibold"><i class="fa-solid fa-id-card me-2"></i>NISN</label>
                             <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->nisn }}</p>
                           </div>
                           {{-- Nama --}}
                           <div class="form-group mb-4">
-                            <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
+                            <label for="nama" class="fw-semibold"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
                             <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->name }}</p>
                           </div>
                           {{-- Email --}}
                           <div class="form-group mb-4">
-                            <label for="nama" class="h5"><i class="fa-solid fa-envelope me-2"></i>Email</label>
+                            <label for="nama" class="fw-semibold"><i class="fa-solid fa-envelope me-2"></i>Email</label>
                             <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->email }}</p>
                           </div>
                           {{-- Alamat --}}
                           <div class="form-group mb-4">
-                            <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
+                            <label for="nama" class="fw-semibold"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
                             <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->alamat }}</p>
                           </div>
                           {{-- jk --}}
                           <div class="form-group mb-4">
-                            <label for="nama" class="h5"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
+                            <label for="nama" class="fw-semibold"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
                             <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->jenis_kelamin }}</p>
                           </div>
                         </div>
                         <div class="col-12 col-md-6">
                           {{-- Kelas --}}
                           <div class="form-group mb-4">
-                            <label for="nama" class="h5"><i class="fa-solid fa-school me-2"></i>Kelas</label>
+                            <label for="nama" class="fw-semibold"><i class="fa-solid fa-school me-2"></i>Kelas</label>
                             <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->kelas }}</p>
                           </div>
                           {{-- Jurusan --}}
                           <div class="form-group mb-4">
-                            <label for="nama" class="h5"><i class="fa-solid fa-user-tie me-2"></i>Jurusan</label>
+                            <label for="nama" class="fw-semibold"><i class="fa-solid fa-user-tie me-2"></i>Jurusan</label>
                             <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->jurusan }}</p>
                           </div>
                           {{-- Tahun lulus --}}
                           <div class="form-group mb-4">
-                            <label for="nama" class="h5"><i class="fa-solid fa-graduation-cap me-2"></i>Status</label>
+                            <label for="nama" class="fw-semibold"><i class="fa-solid fa-graduation-cap me-2"></i>Status</label>
                             <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->status }}</p>
                           </div>
                           @if($siswa->tahun_lulus)
                             {{-- Tahun lulus --}}
                             <div class="form-group mb-4">
-                              <label for="nama" class="h5"><i class="fa-solid fa-calendar-days me-2"></i>Tahun Lulus</label>
+                              <label for="nama" class="fw-semibold"><i class="fa-solid fa-calendar-days me-2"></i>Tahun Lulus</label>
                               <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->tahun_lulus }}</p>
                             </div>
                           @endif
@@ -488,38 +488,38 @@
                   <div class="card-body">
                     <h4 class="mb-3">Personal Information</h4>
                     <h4 class="mb-3 border-bottom"></h4>
-                    <div class="data-profile row px-5 py-3">
+                    <div class="data-profile row px-2 px-md-5 py-3">
                       <div class="col-12 col-md-6">
                         {{-- NISN --}}
                         <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-id-card me-2"></i>NIP</label>
+                          <label for="nama" class="fw-semibold"><i class="fa-solid fa-id-card me-2"></i>NIP</label>
                           <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->nip }}</p>
                         </div>
                         {{-- Nama --}}
                         <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
+                          <label for="nama" class="fw-semibold"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
                           <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->name }}</p>
                         </div>
                         {{-- Email --}}
                         <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-envelope me-2"></i>Email</label>
+                          <label for="nama" class="fw-semibold"><i class="fa-solid fa-envelope me-2"></i>Email</label>
                           <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->email }}</p>
                         </div>
                         {{-- Alamat --}}
                         <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
+                          <label for="nama" class="fw-semibold"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
                           <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->alamat }}</p>
                         </div>
                         {{-- jk --}}
                         <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
+                          <label for="nama" class="fw-semibold"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
                           <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->jenis_kelamin }}</p>
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
                         {{-- Kelas --}}
                         <div class="form-group mb-4">
-                          <label for="nama" class="h5"><i class="fa-solid fa-chalkboard me-2"></i>Mata Pejaran</label>
+                          <label for="nama" class="fw-semibold"><i class="fa-solid fa-chalkboard me-2"></i>Mata Pejaran</label>
                           <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->mata_pelajaran }}</p>
                         </div>
                       </div>
@@ -664,7 +664,7 @@
                   @if($admin->image == true)
                   <div class="position-relative d-flex justify-content-center">
                     <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto">
-                    <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;"">
+                    <div class="d-flex justify-content-end position-absolute" style="left: 65%;bottom:5%;">
                       <a href="" class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle fs-6" style="width:30px; height:30px" data-bs-toggle="modal" data-bs-target="#editFoto"><i class="fa-solid fa-pencil"></i></a>
                     </div>
                   </div>
@@ -699,29 +699,29 @@
                 <div class="card-body">
                   <h4 class="mb-3">Personal Information</h4>
                   <h4 class="mb-3 border-bottom"></h4>
-                  <div class="data-profile row px-5 py-3">
+                  <div class="data-profile row px-2 px-md-5 py-3">
                     <div class="col-12">
                       {{-- NISN --}}
                       <div class="form-group mb-4">
-                        <label for="nama" class="h5"><i class="fa-solid fa-id-card me-2"></i>ID Admin</label>
+                        <label for="nama" class="fw-semibold"><i class="fa-solid fa-id-card me-2"></i>ID Admin</label>
                         <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->id_admin }}</p>
                       </div>
                       {{-- Nama --}}
                       <div class="form-group mb-4">
-                        <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
+                        <label for="nama" class="fw-semibold"><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
                         <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->name }}</p>
                       </div>
                       <div class="form-group mb-4">
-                        <label for="nama" class="h5"><i class="fa-solid fa-envelope me-2"></i>Email</label>
+                        <label for="nama" class="fw-semibold"><i class="fa-solid fa-envelope me-2"></i>Email</label>
                         <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->email }}</p>
                       </div>
                       <div class="form-group mb-4">
-                        <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
+                        <label for="nama" class="fw-semibold"><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
                         <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->alamat }}</p>
                       </div>
                       {{-- jk --}}
                       <div class="form-group mb-4">
-                        <label for="nama" class="h5"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
+                        <label for="nama" class="fw-semibold"><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
                         <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->jenis_kelamin }}</p>
                       </div>
                     </div>

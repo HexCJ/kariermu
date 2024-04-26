@@ -209,13 +209,16 @@
                       <div class="col-12">
                         {{-- Nama --}}
                         <div class="form-group mb-4" data-aos="fade-right">
-                          <label for="nama" class="h5"><i class="fa-solid fa-user-tag me-2"></i>Status Karir</label>
+                          <label for="nama"><i class="fa-solid fa-user-tag me-2"></i>Status Karir</label>
                           <p class="text-secondary mb-3 mt-2 p-2 card">{{$siswa->status}}</p>
                         </div>
-                        @if($siswa->tempat_kerja_kuliah)
+                        @if($siswa->status === 'Bekerja' || $siswa->status === 'Kuliah' || $siswa->status === 'Wirausaha' )
                         {{-- Alamat --}}
+                        @php
+                          $status = $siswa->status 
+                        @endphp
                         <div class="form-group mb-4" data-aos="fade-right">
-                          <label for="nama" class="h5"><i class="fa-solid fa-location-dot me-2"></i>Alamat Tempat Kerja/Kuliah</label>
+                          <label for="nama"><i class="fa-solid fa-location-dot me-2"></i>Alamat Tempat {{ $status }}</label>
                           <p class="text-secondary mb-3 mt-2 p-2 card">{{$siswa->tempat_kerja_kuliah}}</p>
                         </div>
                         @endif

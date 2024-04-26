@@ -14,8 +14,8 @@
               {{-- sortir data siswa --}}
               <form action="{{ route('siswa') }}" method="GET">
                 <div class="row mt-3">
-                  <div class="col-3">
-                    <div class="input-group mb-3 mt-3">
+                  <div class="col-12 col-md-12 col-lg-3">
+                    <div class="input-group mb-3 mt-0 mt-md-3">
                       <select name="jurusan" id="jurusan" class="rounded form-select">
                         <option value="" multiple aria-label="Multiple select example">Semua Jurusan</option>
                         @foreach ($jurusans as $jurusan)
@@ -24,8 +24,8 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-3">
-                    <div class="input-group mb-3 mt-3">
+                  <div class="col-12 col-md-12 col-lg-3">
+                    <div class="input-group mb-3 mt-0 mt-md-3">
                       <select name="kelas" id="kelas" class="rounded form-select">
                         <option value="" multiple aria-label="Multiple select example">Semua Kelas</option>
                         <option value="X" {{ request()->input('kelas') == 'X' ? 'selected' : '' }}>X/SEPULUH</option>
@@ -34,8 +34,8 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-3">
-                    <div class="input-group mb-3 mt-3">
+                  <div class="col-12 col-md-12 col-lg-3">
+                    <div class="input-group mb-3 mt-0 mt-md-3">
                       <select name="jenis_kelamin" id="jenis_kelamin" class="rounded form-select">
                         <option value="" multiple aria-label="Multiple select example">Semua Jenis Kelamin</option>
                         <option value="Laki-laki" {{ request()->input('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-Laki</option>
@@ -43,8 +43,8 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-3">
-                    <div class="input-group mb-3 mt-3">
+                  <div class="col-12 col-md-12 col-lg-3">
+                    <div class="input-group mb-3 mt-0 mt-md-3">
                       <select name="status" id="status" class="rounded form-select">
                         <option value="" multiple aria-label="Multiple select example">Semua Status</option>
                         <option value="Belum Lulus" {{ request()->input('status') == 'Belum Lulus' ? 'selected' : '' }}>Siswa Aktif</option>
@@ -58,7 +58,7 @@
                       <input type="text" name="search" class="form-control" aria-label="Text input with dropdown button" placeholder="Cari siswa berdasarkan NIP atau Nama" value="">
                     </div>
                   </div> --}}
-                  <div class="col-12 mb-2 d-flex justify-content-end">
+                  <div class="col-12 mb-3 d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary"><i class="fa-solid fa-sort me-2"></i>Sortir Data Siswa</button>
                   </div>
                 </div>

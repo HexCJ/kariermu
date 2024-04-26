@@ -131,7 +131,7 @@
 
 .detail {
     text-decoration: none;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .nilai {
@@ -182,7 +182,10 @@
     margin-top: 8px !important;
     padding: 10px !important;
 }
-
+.title-data {
+    font-size: 10px;
+    margin-bottom: 10px;
+}
 @media (max-width: 576px) {
     h4 {
         font-size: 20px !important;

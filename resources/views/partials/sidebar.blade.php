@@ -1,9 +1,9 @@
 <div class="col-2 bg-sidebar sidebar p-3 min-vh-100 position-fixed d-none d-md-block min-vh-100 mb-5">
     <div class="text-center border-bottom mb-4 d-flex justify-content-center align-items-center flex-column">
-        <img src="{{ asset('img/logo1.png') }}" alt="" width="70px" class="mt-3 mb-3 d-none d-sm-block">
+        <img src="{{ asset('img/logo1.png') }}" alt="" width="50px" class="mt-3 mb-3 d-none d-sm-block">
         <p class="mt-1 text-light mb-3">Kariermu.</p>
     </div>
-    <ul class="p-0 d-flex flex-column d-flex gap-2 overflow-y-auto" style="height: 70vh">
+    <ul class="p-0 d-flex flex-column d-flex gap-2 overflow-y-auto" style="height: 80vh">
         @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('guru') || auth()->user()->hasRole('siswa'))
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Profile") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('profile') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-user me-3"></i>Profile</a>

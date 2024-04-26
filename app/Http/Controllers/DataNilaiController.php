@@ -13,9 +13,10 @@ class DataNilaiController extends Controller
      * Display a listing of the resource.
      */
     public function dataNilai()
-    {   
+    {
+        $nisn = Auth::user()->nisn;
         return view('nilai/data_nilai',[
-            'title' => 'Data Nilai Siswa'
+            'title' => 'Data Nilai Siswa',
         ]);
     }
     public function detailDataNilai()
@@ -74,9 +75,10 @@ class DataNilaiController extends Controller
                 'nisn' => $nisn,
                 'semester' => $semester,
                 'mata_pelajaran' => $mata_pelajaran,
-                'nilai' => $nilai
-    ];
-}
+                'nilai' => $nilai,
+                'status' => 'Pending'
+            ];
+        }
 
         // Simpan data ke db
         foreach ($data_to_store as $data) {
@@ -84,9 +86,14 @@ class DataNilaiController extends Controller
             Nilai::create($data);
         }
 
+        $rata_rata = Nilai::where('nisn', $nisn)
+        ->where('semester', $semester)->avg('nilai');
 
-
-
+        return view('nilai/add_nilai',[
+            'nisn' => $nisn,
+            'title' => 'Input Data Nilai Siswa',
+            'rata_rata' => $rata_rata
+        ]);
     }
 
     /**
