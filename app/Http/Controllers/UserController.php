@@ -74,7 +74,8 @@ class UserController extends Controller
             // 'nip'=>'required',
             // 'nama'=>'required',
             // 'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
-            // 'password'=>'required',   
+            'password'=>'required',   
+            
         ]);
         //jika valid gagal
         if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);

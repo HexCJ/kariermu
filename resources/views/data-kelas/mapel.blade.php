@@ -27,7 +27,7 @@
                       <div class="input-group mb-2">
                         <input type="text" class="form-control" id="id_mapel" name="id_mapel"> 
                       </div>
-                      @error('id_mapel')
+                      @error('id_mata_pelajaran')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
@@ -36,7 +36,7 @@
                       <div class="input-group mb-2">
                         <input type="text" class="form-control" id="nama_mapel" name="nama_mapel">
                       </div>
-                      @error('nama_mapel')
+                      @error('nama_mata_pelajaran')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
