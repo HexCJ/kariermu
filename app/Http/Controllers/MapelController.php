@@ -38,8 +38,8 @@ class MapelController extends Controller
     {
 
         $validator = Validator::make($request->all(),[
-            'id_mata_pelajaran'=>'required',   
-            'nama_mata_pelajaran'=>'required',   
+            'id_mapel'=>'required',   
+            'nama_mapel'=>'required',   
             
         ]);
         //jika valid gagal
@@ -48,9 +48,9 @@ class MapelController extends Controller
         $data['nama_mata_pelajaran'] = $request->nama_mapel;
 
         if(MataPelajaran::create($data)){
-            return redirect()->route('data-kelas')->with('success', 'Data Mapel berhasil ditambahkan');
+            return redirect()->route('mapel')->with('success', 'Data Mapel berhasil ditambahkan');
         }else{
-            return redirect()->route('data-kelas')->with('fail', 'Data Mapel gagal ditambahkan');
+            return redirect()->route('mapel')->with('fail', 'Data Mapel gagal ditambahkan');
         }
     }
 

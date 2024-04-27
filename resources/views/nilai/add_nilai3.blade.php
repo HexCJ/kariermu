@@ -4,9 +4,9 @@
   <div class="row">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between">
-        <h4 class="h4">Data Nilai Siswa Semester 1</h4>
+        <h4 class="h4">Data Nilai Siswa Semester 3</h4>
       </div>
-      <form action="{{ route('datanilai.add') }}" method="POST">
+      <form action="{{ route('datanilai3.add') }}" method="POST">
         @csrf
       <div class="container-fluid mt-5">
         <div class="row">
@@ -38,6 +38,36 @@
             <div class="form-group">
               <label for="" class="mb-3">Nilai Sejarah</label>
               <input type="text" name="si" id="si" class="form-control">
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="form-group">
+              <label for="" class="mb-3">Nilai Ilmu Pengetahuan Alam dan Sosial</label>
+              <input type="text" name="ipas" id="ipas" class="form-control">
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="form-group">
+              <label for="" class="mb-3">Nilai Seni Budaya</label>
+              <input type="text" name="sb" id="sb" class="form-control">
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="form-group">
+              <label for="" class="mb-3">Nilai Pendidikan Kewarganegaraan</label>
+              <input type="text" name="pkn" id="pkn" class="form-control">
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="form-group">
+              <label for="" class="mb-3">Nilai Pendidikan Olahraga dan Jasmani</label>
+              <input type="text" name="pjok" id="pjok" class="form-control">
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="form-group">
+              <label for="" class="mb-3">Nilai Kejuruan</label>
+              <input type="text" name="kejuruan" id="kejuruan" class="form-control">
             </div>
           </div>
         </div>

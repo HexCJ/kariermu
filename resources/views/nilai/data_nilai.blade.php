@@ -27,7 +27,7 @@
                       <p id="nilaiData">Anda Belum Menginputkan Nilai</p>
                     </div>
                     <div class="d-flex justify-content-end">
-                      <a href="/nilai/add_nilai" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
+                      <a href="/nilai/add_nilai1" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
                     </div>
                   </div>
                 </div>
@@ -41,7 +41,7 @@
                       <p id="nilaiData">81</p>
                     </div>
                     <div class="d-flex justify-content-end">
-                      <a href="/nilai/detail_nilai" class="text-decoration-none text-light">detail nilai..</a>
+                      <a href="/nilai/add_nilai2" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
                     </div>
                   </div>
                 </div>
@@ -54,8 +54,11 @@
                       </div>
                       <p id="nilaiData">90</p>
                     </div>
-                    <div class="d-flex justify-content-end">
+                    {{-- <div class="d-flex justify-content-end">
                       <a href="/nilai/detail_nilai" class="text-decoration-none text-light">detail nilai..</a>
+                    </div> --}}
+                    <div class="d-flex justify-content-end">
+                      <a href="/nilai/add_nilai3" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
                     </div>
                   </div>
                 </div>
@@ -68,8 +71,11 @@
                       </div>
                       <p id="nilaiData">80</p>
                     </div>
-                    <div class="d-flex justify-content-end">
+                    {{-- <div class="d-flex justify-content-end">
                       <a href="/nilai/detail_nilai" class="text-decoration-none text-light">detail nilai..</a>
+                    </div> --}}
+                    <div class="d-flex justify-content-end">
+                      <a href="/nilai/add_nilai4" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
                     </div>
                   </div>
                 </div>
@@ -83,7 +89,7 @@
                       <p id="nilaiData">80</p>
                     </div>
                     <div class="d-flex justify-content-end">
-                      <a href="/nilai/detail_nilai" class="text-decoration-none text-light">detail nilai..</a>
+                      <a href="/nilai/add_nilai5" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
                     </div>
                   </div>
                 </div>
@@ -109,7 +115,16 @@ const genericOptions = {
     radius: 0,
 };
 
-const nilaiData = [80, 85.4, 90, 86, 85];
+    // Menggunakan blade directive untuk memasukkan nilai rata-rata ke dalam JavaScript
+    var rata1 = {{ $rata_rata_semester['S1'] ?? '0' }};
+    var rata2 = {{ $rata_rata_semester['S2'] ?? '0' }};
+    var rata3 = {{ $rata_rata_semester['S3'] ?? '0' }};
+    var rata4 = {{ $rata_rata_semester['S4'] ?? '0' }};
+    var rata5 = {{ $rata_rata_semester['S5'] ?? '0' }};
+
+    // Menggunakan nilai-nilai tersebut dalam variabel nilaiData
+    const nilaiData = [rata1, rata2, rata3, rata4, rata5];
+
 const dataNilai = document.getElementById('datanilai');
 new Chart(dataNilai, {
     type: 'line',

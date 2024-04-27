@@ -45,7 +45,8 @@ class DataNilaiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    //semester 1
+    public function store1(Request $request)
     {
         //
         // $nisn                   = Auth::user()->nisn;
@@ -63,6 +64,11 @@ class DataNilaiController extends Controller
             ['mata_pelajaran' => 'BING', 'request_field' => 'bing'],
             ['mata_pelajaran' => 'PAI', 'request_field' => 'pai'],
             ['mata_pelajaran' => 'SI', 'request_field' => 'si'],
+            ['mata_pelajaran' => 'IPAS', 'request_field' => 'ipas'],
+            ['mata_pelajaran' => 'SB', 'request_field' => 'sb'],
+            ['mata_pelajaran' => 'PKN', 'request_field' => 'pkn'],
+            ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
+            ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
         ];
 
         foreach ($data_nilai as $data) {
@@ -83,18 +89,275 @@ class DataNilaiController extends Controller
 
         // Simpan data ke db
         foreach ($data_to_store as $data) {
-            // dd($data);
+            // dd($request->all());
             Nilai::create($data);
         }
 
-        $rata_rata = Nilai::where('nisn', $nisn)
-        ->where('semester', $semester)->avg('nilai');
+        // $rata_rata = Nilai::where('nisn', $nisn)
+        // ->where('semester', $semester)->avg('nilai');
+        
+        // return view('nilai/data_nilai',[
+        //     'nisn' => $nisn,
+        //     'title' => 'Input Data Nilai Siswa',
+        //     'rata_rata' => $rata_rata
+        // ]);
+        if($nilai = Nilai::create($data)){
+            return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
+        }else{
+            return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
+        }
+    }
 
-        return view('nilai/add_nilai',[
-            'nisn' => $nisn,
-            'title' => 'Input Data Nilai Siswa',
-            'rata_rata' => $rata_rata
-        ]);
+    //semester 2
+    public function store2(Request $request)
+    {
+        //
+        // $nisn                   = Auth::user()->nisn;
+        // $data['nisn']           = $nisn;
+        // $data['semester']       = "S1";
+        // $data['mata_pelajaran'] = "BI";
+        // $data['nilai']          = $request->bindo;
+
+        $nisn = Auth::user()->nisn;
+        $semester = "S2";
+
+        $data_nilai = [
+            ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
+            ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
+            ['mata_pelajaran' => 'BING', 'request_field' => 'bing'],
+            ['mata_pelajaran' => 'PAI', 'request_field' => 'pai'],
+            ['mata_pelajaran' => 'SI', 'request_field' => 'si'],
+            ['mata_pelajaran' => 'IPAS', 'request_field' => 'ipas'],
+            ['mata_pelajaran' => 'SB', 'request_field' => 'sb'],
+            ['mata_pelajaran' => 'PKN', 'request_field' => 'pkn'],
+            ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
+            ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
+        ];
+
+        foreach ($data_nilai as $data) {
+            $input_field = $data['request_field'];
+            $mata_pelajaran = $data['mata_pelajaran'];
+            $nilai = $request->$input_field;
+            
+
+            // simpen data jadi array buat disimpan ke database
+             $data_to_store[] = [
+                'nisn' => $nisn,
+                'semester' => $semester,
+                'mata_pelajaran' => $mata_pelajaran,
+                'nilai' => $nilai,
+                'status' => 'Pending'
+            ];
+        }
+
+        // Simpan data ke db
+        foreach ($data_to_store as $data) {
+            // dd($request->all());
+            Nilai::create($data);
+        }
+
+        // $rata_rata = Nilai::where('nisn', $nisn)
+        // ->where('semester', $semester)->avg('nilai');
+        
+        // return view('nilai/data_nilai',[
+        //     'nisn' => $nisn,
+        //     'title' => 'Input Data Nilai Siswa',
+        //     'rata_rata' => $rata_rata
+        // ]);
+        if($nilai = Nilai::create($data)){
+            return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
+        }else{
+            return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
+        }
+    }
+
+    //semester 3
+    public function store3(Request $request)
+    {
+        //
+        // $nisn                   = Auth::user()->nisn;
+        // $data['nisn']           = $nisn;
+        // $data['semester']       = "S1";
+        // $data['mata_pelajaran'] = "BI";
+        // $data['nilai']          = $request->bindo;
+
+        $nisn = Auth::user()->nisn;
+        $semester = "S3";
+
+        $data_nilai = [
+            ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
+            ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
+            ['mata_pelajaran' => 'BING', 'request_field' => 'bing'],
+            ['mata_pelajaran' => 'PAI', 'request_field' => 'pai'],
+            ['mata_pelajaran' => 'SI', 'request_field' => 'si'],
+            ['mata_pelajaran' => 'IPAS', 'request_field' => 'ipas'],
+            ['mata_pelajaran' => 'SB', 'request_field' => 'sb'],
+            ['mata_pelajaran' => 'PKN', 'request_field' => 'pkn'],
+            ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
+            ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
+        ];
+
+        foreach ($data_nilai as $data) {
+            $input_field = $data['request_field'];
+            $mata_pelajaran = $data['mata_pelajaran'];
+            $nilai = $request->$input_field;
+            
+
+            // simpen data jadi array buat disimpan ke database
+             $data_to_store[] = [
+                'nisn' => $nisn,
+                'semester' => $semester,
+                'mata_pelajaran' => $mata_pelajaran,
+                'nilai' => $nilai,
+                'status' => 'Pending'
+            ];
+        }
+
+        // Simpan data ke db
+        foreach ($data_to_store as $data) {
+            // dd($request->all());
+            Nilai::create($data);
+        }
+
+        // $rata_rata = Nilai::where('nisn', $nisn)
+        // ->where('semester', $semester)->avg('nilai');
+        
+        // return view('nilai/data_nilai',[
+        //     'nisn' => $nisn,
+        //     'title' => 'Input Data Nilai Siswa',
+        //     'rata_rata' => $rata_rata
+        // ]);
+        if($nilai = Nilai::create($data)){
+            return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
+        }else{
+            return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
+        }
+    }
+
+    //semester 4
+    public function store4(Request $request)
+    {
+        //
+        // $nisn                   = Auth::user()->nisn;
+        // $data['nisn']           = $nisn;
+        // $data['semester']       = "S1";
+        // $data['mata_pelajaran'] = "BI";
+        // $data['nilai']          = $request->bindo;
+
+        $nisn = Auth::user()->nisn;
+        $semester = "S4";
+
+        $data_nilai = [
+            ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
+            ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
+            ['mata_pelajaran' => 'BING', 'request_field' => 'bing'],
+            ['mata_pelajaran' => 'PAI', 'request_field' => 'pai'],
+            ['mata_pelajaran' => 'SI', 'request_field' => 'si'],
+            ['mata_pelajaran' => 'IPAS', 'request_field' => 'ipas'],
+            ['mata_pelajaran' => 'SB', 'request_field' => 'sb'],
+            ['mata_pelajaran' => 'PKN', 'request_field' => 'pkn'],
+            ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
+            ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
+        ];
+
+        foreach ($data_nilai as $data) {
+            $input_field = $data['request_field'];
+            $mata_pelajaran = $data['mata_pelajaran'];
+            $nilai = $request->$input_field;
+            
+
+            // simpen data jadi array buat disimpan ke database
+             $data_to_store[] = [
+                'nisn' => $nisn,
+                'semester' => $semester,
+                'mata_pelajaran' => $mata_pelajaran,
+                'nilai' => $nilai,
+                'status' => 'Pending'
+            ];
+        }
+
+        // Simpan data ke db
+        foreach ($data_to_store as $data) {
+            // dd($request->all());
+            Nilai::create($data);
+        }
+
+        // $rata_rata = Nilai::where('nisn', $nisn)
+        // ->where('semester', $semester)->avg('nilai');
+        
+        // return view('nilai/data_nilai',[
+        //     'nisn' => $nisn,
+        //     'title' => 'Input Data Nilai Siswa',
+        //     'rata_rata' => $rata_rata
+        // ]);
+        if($nilai = Nilai::create($data)){
+            return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
+        }else{
+            return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
+        }
+    }
+    
+    //semester 5
+    public function store5(Request $request)
+    {
+        //
+        // $nisn                   = Auth::user()->nisn;
+        // $data['nisn']           = $nisn;
+        // $data['semester']       = "S1";
+        // $data['mata_pelajaran'] = "BI";
+        // $data['nilai']          = $request->bindo;
+
+        $nisn = Auth::user()->nisn;
+        $semester = "S5";
+
+        $data_nilai = [
+            ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
+            ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
+            ['mata_pelajaran' => 'BING', 'request_field' => 'bing'],
+            ['mata_pelajaran' => 'PAI', 'request_field' => 'pai'],
+            ['mata_pelajaran' => 'SI', 'request_field' => 'si'],
+            ['mata_pelajaran' => 'IPAS', 'request_field' => 'ipas'],
+            ['mata_pelajaran' => 'SB', 'request_field' => 'sb'],
+            ['mata_pelajaran' => 'PKN', 'request_field' => 'pkn'],
+            ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
+            ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
+        ];
+
+        foreach ($data_nilai as $data) {
+            $input_field = $data['request_field'];
+            $mata_pelajaran = $data['mata_pelajaran'];
+            $nilai = $request->$input_field;
+            
+
+            // simpen data jadi array buat disimpan ke database
+             $data_to_store[] = [
+                'nisn' => $nisn,
+                'semester' => $semester,
+                'mata_pelajaran' => $mata_pelajaran,
+                'nilai' => $nilai,
+                'status' => 'Pending'
+            ];
+        }
+
+        // Simpan data ke db
+        foreach ($data_to_store as $data) {
+            // dd($request->all());
+            Nilai::create($data);
+        }
+
+        // $rata_rata = Nilai::where('nisn', $nisn)
+        // ->where('semester', $semester)->avg('nilai');
+        
+        // return view('nilai/data_nilai',[
+        //     'nisn' => $nisn,
+        //     'title' => 'Input Data Nilai Siswa',
+        //     'rata_rata' => $rata_rata
+        // ]);
+        if($nilai = Nilai::create($data)){
+            return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
+        }else{
+            return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
+        }
     }
 
     /**

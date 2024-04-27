@@ -47,8 +47,21 @@ Route::put('profile/updateadmin/{id}', [ProfileController::class, 'updateadmin']
 // nilai
 Route::get('/nilai',[Controller::class,'dataNilai'])->name('datanilai');
 Route::get('/nilai/detail_nilai',[Controller::class,'detailDataNilai']);
-Route::get('/nilai/add_nilai',[Controller::class,'inputNilai']);
-Route::post('/nilai/add_nilaibaru',[DataNilaiController::class,'store'])->name('datanilai.add');
+//store s1
+Route::get('/nilai/add_nilai1',[Controller::class,'inputNilai1']);
+Route::post('/nilai/add_nilaibaru1',[DataNilaiController::class,'store1'])->name('datanilai1.add');
+//store s2
+Route::get('/nilai/add_nilai2',[Controller::class,'inputNilai2']);
+Route::post('/nilai/add_nilaibaru2',[DataNilaiController::class,'store2'])->name('datanilai2.add');
+//store s3
+Route::get('/nilai/add_nilai3',[Controller::class,'inputNilai3']);
+Route::post('/nilai/add_nilaibaru3',[DataNilaiController::class,'store3'])->name('datanilai3.add');
+//store s4
+Route::get('/nilai/add_nilai4',[Controller::class,'inputNilai4']);
+Route::post('/nilai/add_nilaibaru4',[DataNilaiController::class,'store4'])->name('datanilai4.add');
+//store s5
+Route::get('/nilai/add_nilai5',[Controller::class,'inputNilai5']);
+Route::post('/nilai/add_nilaibaru5',[DataNilaiController::class,'store5'])->name('datanilai5.add');
 
 Route::get('/verifikasi_nilai',[DataNilaiController::class,'verifikasiGuru'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi');
 Route::put('/verifikasi_nilai/verifikasi/tolak/{id}',[DataNilaiController::class,'tolakNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('tolak.nilai');
