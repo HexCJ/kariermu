@@ -82,6 +82,9 @@ class DataKarirController extends Controller
         $siswa = Laporan::where('nisn', $nisn)->first();
         if($request->filled('status')){
             $siswa->status = $request->status;
+            if($siswa->tempat_kerja_kuliah){
+                Laporan::where('nisn', $nisn)->update(['tempat_kerja_kuliah' => null]);
+            }
             $siswa->tempat_kerja_kuliah = $request->tempat_kerja_kuliah;
             if($siswa->save()){
                 return redirect()->route('karir')->with('success_lapor', 'Laporan anda berhasil simpan');

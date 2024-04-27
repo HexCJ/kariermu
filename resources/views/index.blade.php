@@ -52,8 +52,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 d-flex flex-column justify-content-center align-items-center d-none d-sm-block">
-                    <img src="{{ asset('img/sma1.png') }}" alt="sma" style="z-index: 1" class="w-100">
+                <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 d-flex flex-column justify-content-center align-items-center d-none d-md-block text-center">
+                    <img src="{{ asset('img/dashboard.png') }}" alt="sma" style="z-index: 1;width:50%;">
                 </div>
             </div>
         </form>

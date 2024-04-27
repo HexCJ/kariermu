@@ -109,8 +109,7 @@ const genericOptions = {
     radius: 0,
 };
 
-var rataratas1 = {{ $rata_rata }};
-const nilaiData = [$rata_rata, 85.4, 90, 86, 85];
+const nilaiData = [80, 85.4, 90, 86, 85];
 const dataNilai = document.getElementById('datanilai');
 new Chart(dataNilai, {
     type: 'line',
