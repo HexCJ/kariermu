@@ -16,6 +16,30 @@ text: "Data berhasil ditambahkan.",
 </div>
 @endif
 
+@if(session('success-tolak'))
+<script>
+Swal.fire({
+title: "Berhasil!",
+// icon: "success"
+imageUrl: 'img/success.png', // Ganti 'link_ke_gambar.jpg' dengan URL gambar yang ingin Anda tampilkan
+imageHeight: 250, // Lebar gambar dalam piksel
+text: "{!! session('success-tolak') !!}",
+});
+</script>
+@endif
+
+@if(session('success-acc'))
+<script>
+Swal.fire({
+title: "Berhasil!",
+// icon: "success"
+imageUrl: 'img/success.png', // Ganti 'link_ke_gambar.jpg' dengan URL gambar yang ingin Anda tampilkan
+imageHeight: 250, // Lebar gambar dalam piksel
+text: "{!! session('success-acc') !!}",
+});
+</script>
+@endif
+
 @if(session('success-profile'))
   <script>
   Swal.fire({

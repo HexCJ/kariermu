@@ -182,14 +182,14 @@
       </div>
     </div>
     @if ($siswa->kelas == false)
-    <div class="row">
-      <div class="col-12 mt-4">
-          <div class="d-flex mb-3">
-            <h4>Data Diri</h4>
-            <a href="" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto" data-bs-toggle="modal" data-bs-target="#editProfile"><i class="fa-solid fa-user-pen fa-fw me-2"></i>Data Profile</a>
-          </div>
+      <div class="row">
+        <div class="col-12 mt-4">
+            <div class="d-flex mb-3">
+              <h4>Data Diri</h4>
+              <a href="" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto" data-bs-toggle="modal" data-bs-target="#editProfile"><i class="fa-solid fa-user-pen fa-fw me-2"></i>Data Profile</a>
+            </div>
+        </div>
       </div>
-    </div>
       <div class="d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 90vh" data-aos="fade-up">
         <img class="data-kosong" src="{{ asset('img/data_kosong.png') }}" alt="">
         <p class="fw-semibold mt-5 mb-0">Data Profile Anda Kosong</p>

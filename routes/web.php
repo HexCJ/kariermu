@@ -50,6 +50,10 @@ Route::get('/nilai/detail_nilai',[Controller::class,'detailDataNilai']);
 Route::get('/nilai/add_nilai',[Controller::class,'inputNilai']);
 Route::post('/nilai/add_nilaibaru',[DataNilaiController::class,'store'])->name('datanilai.add');
 
+Route::get('/verifikasi_nilai',[DataNilaiController::class,'verifikasiGuru'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi');
+Route::put('/verifikasi_nilai/verifikasi/tolak/{id}',[DataNilaiController::class,'tolakNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('tolak.nilai');
+Route::put('/verifikasi_nilai/verifikasi/terima/{id}',[DataNilaiController::class,'terimaNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('terima.nilai');
+
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('detail_status/menganggur',[DashboardController::class, 'detailStatusTidakKerja'])->middleware(['auth'])->name('detail.tidakkerja');
 Route::get('detail_status/kerja',[DashboardController::class, 'detailStatusKerja'])->middleware(['auth', 'verified'])->name('detail.kerja');

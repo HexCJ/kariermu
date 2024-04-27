@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Nilai;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Siswa;
 
 
 use Illuminate\Http\Request;
@@ -126,5 +127,41 @@ class DataNilaiController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function verifikasiGuru(){
+        $data = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
+        ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')->where('nilai.status', 'Pending')
+        ->get();
+
+        return view('nilai.data_nilai_guru',[
+            'title' => 'Verifikasi Nilai',
+            'data' => $data
+        ]);
+    }
+    public function tolakNilai(Request $request, string $id){
+
+        $nilai = nilai::findOrFail($id);
+        $nilai->update([
+            'status' => $request->status,
+        ]);
+
+        if($nilai->update()){
+            return redirect()->route('verifikasi')->with(['success-tolak' => 'Data Nilai Berhasil Ditolak!']);
+        } else{
+            return redirect()->route('verifikasi')->with(['fail' => 'Data Nilai Tidak Berhasil Ditolak!']);
+        }
+    }
+    public function terimaNilai(Request $request, string $id){
+
+        $nilai = nilai::findOrFail($id);
+        $nilai->update([
+            'status' => $request->status,
+        ]);
+
+        if($nilai->update()){
+            return redirect()->route('verifikasi')->with(['success-acc' => 'Data Nilai Berhasil Diverifikasi!']);
+        } else{
+            return redirect()->route('verifikasi')->with(['fail' => 'Data Nilai Tidak Berhasil Diverifikasi!']);
+        }
     }
 }
