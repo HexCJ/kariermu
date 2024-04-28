@@ -46,7 +46,11 @@ Route::put('profile/updateadmin/{id}', [ProfileController::class, 'updateadmin']
 
 // nilai
 Route::get('/nilai',[Controller::class,'dataNilai'])->name('datanilai');
-Route::get('/nilai/detail_nilai',[Controller::class,'detailDataNilai']);
+Route::get('/nilai/detail_nilai1',[Controller::class,'detailDataNilai1']);
+Route::get('/nilai/detail_nilai2',[Controller::class,'detailDataNilai2']);
+Route::get('/nilai/detail_nilai3',[Controller::class,'detailDataNilai3']);
+Route::get('/nilai/detail_nilai4',[Controller::class,'detailDataNilai4']);
+Route::get('/nilai/detail_nilai5',[Controller::class,'detailDataNilai5']);
 //store s1
 Route::get('/nilai/add_nilai1',[Controller::class,'inputNilai1']);
 Route::post('/nilai/add_nilaibaru1',[DataNilaiController::class,'store1'])->name('datanilai1.add');

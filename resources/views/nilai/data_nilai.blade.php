@@ -27,6 +27,7 @@
                       <p id="nilaiData">Anda Belum Menginputkan Nilai</p>
                     </div>
                     <div class="d-flex justify-content-end">
+                      <a href="/nilai/detail_nilai1" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi bi-box-arrow-in-down-right"></i></a>
                       <a href="/nilai/add_nilai1" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
                     </div>
                   </div>
@@ -41,6 +42,7 @@
                       <p id="nilaiData">81</p>
                     </div>
                     <div class="d-flex justify-content-end">
+                      <a href="/nilai/detail_nilai2" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi bi-box-arrow-in-down-right"></i></a>
                       <a href="/nilai/add_nilai2" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
                     </div>
                   </div>
@@ -58,6 +60,7 @@
                       <a href="/nilai/detail_nilai" class="text-decoration-none text-light">detail nilai..</a>
                     </div> --}}
                     <div class="d-flex justify-content-end">
+                      <a href="/nilai/detail_nilai3" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi bi-box-arrow-in-down-right"></i></a>
                       <a href="/nilai/add_nilai3" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
                     </div>
                   </div>
@@ -75,6 +78,7 @@
                       <a href="/nilai/detail_nilai" class="text-decoration-none text-light">detail nilai..</a>
                     </div> --}}
                     <div class="d-flex justify-content-end">
+                      <a href="/nilai/detail_nilai4" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi bi-box-arrow-in-down-right"></i></a>
                       <a href="/nilai/add_nilai4" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
                     </div>
                   </div>
@@ -89,6 +93,7 @@
                       <p id="nilaiData">80</p>
                     </div>
                     <div class="d-flex justify-content-end">
+                      <a href="/nilai/detail_nilai5" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi bi-box-arrow-in-down-right"></i></a>
                       <a href="/nilai/add_nilai5" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
                     </div>
                   </div>

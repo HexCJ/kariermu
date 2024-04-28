@@ -73,12 +73,103 @@ class Controller extends BaseController
         ]);
     }
 
-    public function detailDataNilai()
+    public function detailDataNilai1()
     {   
-        return view('nilai/detail_data_nilai',[
-            'title' => 'Detail Data Nilai Siswa'
-        ]);
+   
+    $nisn = Auth::user()->nisn;
+    
+    // Mengambil semua data nilai dengan nisn yang sama dengan pengguna yang login dan semester 'S1'
+    $nilaiS1 = Nilai::where('nisn', $nisn)
+        ->where('semester', 'S1')
+        ->get();
+
+        //     return view('nilai/detail_data_nilai',[
+        //         'title' => 'Detail Data Nilai Siswa'
+        //     ]);
+        // }
+        return view('nilai/detail_data_nilai1',[
+        'title' => 'Detail Data Nilai Siswa',
+        'nilaiS1' => $nilaiS1
+    ]);
     }
+    public function detailDataNilai2()
+    {   
+   
+    $nisn = Auth::user()->nisn;
+    
+    // Mengambil semua data nilai dengan nisn yang sama dengan pengguna yang login dan semester 'S1'
+    $nilaiS2 = Nilai::where('nisn', $nisn)
+        ->where('semester', 'S2')
+        ->get();
+
+        //     return view('nilai/detail_data_nilai',[
+        //         'title' => 'Detail Data Nilai Siswa'
+        //     ]);
+        // }
+        return view('nilai/detail_data_nilai2',[
+        'title' => 'Detail Data Nilai Siswa',
+        'nilaiS2' => $nilaiS2
+    ]);
+    }
+    public function detailDataNilai3()
+    {   
+   
+    $nisn = Auth::user()->nisn;
+    
+    // Mengambil semua data nilai dengan nisn yang sama dengan pengguna yang login dan semester 'S1'
+    $nilaiS3 = Nilai::where('nisn', $nisn)
+        ->where('semester', 'S3')
+        ->get();
+
+        //     return view('nilai/detail_data_nilai',[
+        //         'title' => 'Detail Data Nilai Siswa'
+        //     ]);
+        // }
+        return view('nilai/detail_data_nilai3',[
+        'title' => 'Detail Data Nilai Siswa',
+        'nilaiS3' => $nilaiS3
+    ]);
+    }
+    public function detailDataNilai4()
+    {   
+   
+    $nisn = Auth::user()->nisn;
+    
+    // Mengambil semua data nilai dengan nisn yang sama dengan pengguna yang login dan semester 'S1'
+    $nilaiS4 = Nilai::where('nisn', $nisn)
+        ->where('semester', 'S4')
+        ->get();
+
+        //     return view('nilai/detail_data_nilai',[
+        //         'title' => 'Detail Data Nilai Siswa'
+        //     ]);
+        // }
+        return view('nilai/detail_data_nilai4',[
+        'title' => 'Detail Data Nilai Siswa',
+        'nilaiS4' => $nilaiS4
+    ]);
+    }
+    public function detailDataNilai5()
+    {   
+   
+    $nisn = Auth::user()->nisn;
+    
+    // Mengambil semua data nilai dengan nisn yang sama dengan pengguna yang login dan semester 'S1'
+    $nilaiS5 = Nilai::where('nisn', $nisn)
+        ->where('semester', 'S5')
+        ->get();
+
+        //     return view('nilai/detail_data_nilai',[
+        //         'title' => 'Detail Data Nilai Siswa'
+        //     ]);
+        // }
+        return view('nilai/detail_data_nilai5',[
+        'title' => 'Detail Data Nilai Siswa',
+        'nilaiS5' => $nilaiS5
+    ]);
+    }
+
+
     public function inputNilai1()
     {   
         return view('nilai/add_nilai1',[
