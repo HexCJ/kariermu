@@ -24,7 +24,9 @@
                       <div class="d-flex justify-content-between">
                         <h5>Semester 1</h5>
                       </div>
-                      <p id="nilaiData">Anda Belum Menginputkan Nilai</p>
+                      {{-- <p id="nilaiData">Anda Belum Menginputkan Nilai</p> --}}
+                      <p id="nilaiData">{{ $rata_rata_semester['S1'] }}</p>                    
+                    </div>
                     </div>
                     <div class="d-flex justify-content-end">
                       <a href="/nilai/detail_nilai1" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi bi-box-arrow-in-down-right"></i></a>
@@ -39,8 +41,7 @@
                         <h5>Semester 2</h5>
                         <p><i class="fa-regular fa-circle-check" style="font-size: 1.3rem"></i></p>
                       </div>
-                      <p id="nilaiData">81</p>
-                    </div>
+                      <p id="nilaiData">{{ $rata_rata_semester['S2'] }}</p>                    </div>
                     <div class="d-flex justify-content-end">
                       <a href="/nilai/detail_nilai2" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi bi-box-arrow-in-down-right"></i></a>
                       <a href="/nilai/add_nilai2" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
@@ -54,7 +55,7 @@
                         <h5>Semester 3</h5>
                         <p><i class="fa-regular fa-circle-check" style="font-size: 1.3rem"></i></p>
                       </div>
-                      <p id="nilaiData">90</p>
+                      <p id="nilaiData">{{ $rata_rata_semester['S3'] }}</p>                    </div>
                     </div>
                     {{-- <div class="d-flex justify-content-end">
                       <a href="/nilai/detail_nilai" class="text-decoration-none text-light">detail nilai..</a>
@@ -100,8 +101,8 @@
                 </div>
               </div>
             </div>
+            </div>
           </div>
-      </div>
       </div>
     </div>
   </div>
