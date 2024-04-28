@@ -21,7 +21,7 @@ text: "Data berhasil ditambahkan.",
 Swal.fire({
 title: "Berhasil!",
 // icon: "success"
-imageUrl: 'img/success.png', // Ganti 'link_ke_gambar.jpg' dengan URL gambar yang ingin Anda tampilkan
+imageUrl: '{{ asset('img/success.png') }}', // Ganti 'link_ke_gambar.jpg' dengan URL gambar yang ingin Anda tampilkan
 imageHeight: 250, // Lebar gambar dalam piksel
 text: "{!! session('success-tolak') !!}",
 });
@@ -33,7 +33,7 @@ text: "{!! session('success-tolak') !!}",
 Swal.fire({
 title: "Berhasil!",
 // icon: "success"
-imageUrl: 'img/success.png', // Ganti 'link_ke_gambar.jpg' dengan URL gambar yang ingin Anda tampilkan
+imageUrl: '{{ asset('img/success.png') }}', // Ganti 'link_ke_gambar.jpg' dengan URL gambar yang ingin Anda tampilkan
 imageHeight: 250, // Lebar gambar dalam piksel
 text: "{!! session('success-acc') !!}",
 });

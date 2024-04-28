@@ -67,7 +67,7 @@
               <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-12 mt-3">
             <label for="password" class="text-secondary mb-3">Password</label>
             <div class="input-group mb-2">
               <input type="text" class="form-control" id="password" name="password">

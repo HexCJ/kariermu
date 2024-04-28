@@ -68,7 +68,7 @@ class Controller extends BaseController
 
         return view('nilai/data_nilai',[
             'nisn' => $nisn,
-            'title' => 'Input Data Nilai Siswa',
+            'title' => 'Data Nilai Siswa',
             'rata_rata_semester' => $rata_rata_semester
         ]);
     }

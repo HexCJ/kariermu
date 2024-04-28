@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\Nilai;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
-
-
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DataNilaiController extends Controller
 {
@@ -392,39 +392,88 @@ class DataNilaiController extends Controller
         //
     }
     public function verifikasiGuru(){
-        $data = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
-        ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')->where('nilai.status', 'Pending')
-        ->get();
+        $data = User::join('nilai', 'users.nisn', '=', 'nilai.nisn')
+                ->join('siswa', 'users.nisn', '=', 'siswa.nisn')
+                ->select('users.nisn', 'users.name', 'siswa.kelas', 'siswa.jurusan', 'nilai.status','nilai.created_at')
+                ->groupBy('users.nisn', 'users.name', 'siswa.kelas', 'siswa.jurusan', 'nilai.status','nilai.created_at')
+                ->OrderBy('nilai.created_at')
+                ->where('nilai.status', 'Pending')
+                ->get();
 
         return view('nilai.data_nilai_guru',[
             'title' => 'Verifikasi Nilai',
             'data' => $data
         ]);
     }
-    public function tolakNilai(Request $request, string $id){
+    public function verifikasiGuruDetail($nisn){
 
-        $nilai = nilai::findOrFail($id);
+        $semester1 = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
+        ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')
+        ->where('nilai.nisn', $nisn)
+        ->where('nilai.semester', 'S1')
+        ->where('nilai.status', 'Pending')
+        ->get();
+
+        $semester2 = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
+        ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')
+        ->where('nilai.nisn', $nisn)
+        ->where('nilai.semester', 'S2')
+        ->where('nilai.status', 'Pending')
+        ->get();
+
+        $semester3 = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
+        ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')
+        ->where('nilai.nisn', $nisn)
+        ->where('nilai.semester', 'S3')
+        ->where('nilai.status', 'Pending')
+        ->get();
+
+        $semester4 = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
+        ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')
+        ->where('nilai.nisn', $nisn)
+        ->where('nilai.semester', 'S4')
+        ->where('nilai.status', 'Pending')
+        ->get();
+
+        $semester5 = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
+        ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')
+        ->where('nilai.nisn', $nisn)
+        ->where('nilai.semester', 'S5')
+        ->where('nilai.status', 'Pending')
+        ->get();
+        
+        return view('nilai.data_nilai_verifikasi',[
+            'title' => 'Verifikasi Nilai',
+            'semester1' => $semester1,
+            'semester2' => $semester2,
+            'semester3' => $semester3,
+            'semester4' => $semester4,
+            'semester5' => $semester5
+        ]);
+    }
+    public function tolakNilai(Request $request, string $nisn, string $id){
+
+        $nilai = Nilai::where('nisn', $nisn)->where('id', $id)->firstOrFail();
         $nilai->update([
             'status' => $request->status,
         ]);
-
+        
         if($nilai->update()){
-            return redirect()->route('verifikasi')->with(['success-tolak' => 'Data Nilai Berhasil Ditolak!']);
+            return redirect()->route('verifikasi.nilai',['nisn'=> $nilai->nisn])->with(['success-tolak' => 'Data Nilai Berhasil Ditolak!']);
         } else{
-            return redirect()->route('verifikasi')->with(['fail' => 'Data Nilai Tidak Berhasil Ditolak!']);
+            return redirect()->route('verifikasi.nilai',['nisn'=> $nilai->nisn])->with(['fail' => 'Data Nilai Tidak Berhasil Ditolak!']);
         }
     }
-    public function terimaNilai(Request $request, string $id){
-
-        $nilai = nilai::findOrFail($id);
+    public function terimaNilai(Request $request, string $nisn, string $id){
+        $nilai = Nilai::where('nisn', $nisn)->where('id', $id)->firstOrFail();
         $nilai->update([
             'status' => $request->status,
         ]);
 
         if($nilai->update()){
-            return redirect()->route('verifikasi')->with(['success-acc' => 'Data Nilai Berhasil Diverifikasi!']);
+            return redirect()->route('verifikasi.nilai',['nisn'=> $nilai->nisn])->with(['success-acc' => 'Data Nilai Berhasil Diverifikasi!']);
         } else{
-            return redirect()->route('verifikasi')->with(['fail' => 'Data Nilai Tidak Berhasil Diverifikasi!']);
+            return redirect()->route('verifikasi.nilai',['nisn'=> $nilai->nisn])->with(['fail' => 'Data Nilai Tidak Berhasil Diverifikasi!']);
         }
     }
 }

@@ -13,61 +13,61 @@
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Bahasa Indonesia</label>
-              <input type="text" name="bindo" id="bindo" class="form-control">
+              <input required type="text" name="bindo" id="bindo" class="form-control">
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Matematika</label>
-              <input type="text" name="mtk" id="mtk" class="form-control" max="2">
+              <input required type="text" name="mtk" id="mtk" class="form-control" max="2">
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Bahasa Inggris</label>
-              <input type="text" name="bing" id="bing" class="form-control">
+              <input required type="text" name="bing" id="bing" class="form-control">
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Pendidikan Agama</label>
-              <input type="text" name="pai" id="pai" class="form-control">
+              <input required type="text" name="pai" id="pai" class="form-control">
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Sejarah</label>
-              <input type="text" name="si" id="si" class="form-control">
+              <input required type="text" name="si" id="si" class="form-control">
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Ilmu Pengetahuan Alam dan Sosial</label>
-              <input type="text" name="ipas" id="ipas" class="form-control">
+              <input required type="text" name="ipas" id="ipas" class="form-control">
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Seni Budaya</label>
-              <input type="text" name="sb" id="sb" class="form-control">
+              <input required type="text" name="sb" id="sb" class="form-control">
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Pendidikan Kewarganegaraan</label>
-              <input type="text" name="pkn" id="pkn" class="form-control">
+              <input required type="text" name="pkn" id="pkn" class="form-control">
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Pendidikan Olahraga dan Jasmani</label>
-              <input type="text" name="pjok" id="pjok" class="form-control">
+              <input required type="text" name="pjok" id="pjok" class="form-control">
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="form-group">
               <label for="" class="mb-3">Nilai Kejuruan</label>
-              <input type="text" name="kejuruan" id="kejuruan" class="form-control">
+              <input required type="text" name="kejuruan" id="kejuruan" class="form-control">
             </div>
           </div>
         </div>
