@@ -59,13 +59,15 @@ class Controller extends BaseController
         $semesters = ["S1", "S2", "S3", "S4", "S5"];
 
         $rata_rata_semester = [];
+        $status = [];
         foreach ($semesters as $semester) {
             $rata_rata = Nilai::where('nisn', $nisn)
                 ->where('semester', $semester)
                 ->avg('nilai');
-            $rata_rata_semester[$semester] = $rata_rata;
+            $rata_rata_formatted = number_format($rata_rata, 2);
+            $rata_rata_semester[$semester] = $rata_rata_formatted;
         }
-
+        
         return view('nilai/data_nilai',[
             'nisn' => $nisn,
             'title' => 'Data Nilai Siswa',
