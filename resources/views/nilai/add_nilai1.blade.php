@@ -79,7 +79,7 @@
           </div>
         </div>
       </form>
-        <div class="row d-none">
+        <div class="row">
           <div class="alert alert-warning d-flex align-items-center" role="alert">
             <div><i class="bi bi-exclamation-circle me-3"></i>Data Nilai Sudah Terisi</div>
           </div>

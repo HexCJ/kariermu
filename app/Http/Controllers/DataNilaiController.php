@@ -394,10 +394,11 @@ class DataNilaiController extends Controller
     public function verifikasiGuru(){
         $data = User::join('nilai', 'users.nisn', '=', 'nilai.nisn')
                 ->join('siswa', 'users.nisn', '=', 'siswa.nisn')
-                ->select('users.nisn', 'users.name', 'siswa.kelas', 'siswa.jurusan', 'nilai.status','nilai.created_at')
-                ->groupBy('users.nisn', 'users.name', 'siswa.kelas', 'siswa.jurusan', 'nilai.status','nilai.created_at')
+                ->select('users.nisn', 'users.name', 'siswa.kelas','nilai.semester', 'siswa.jurusan', 'nilai.status','nilai.created_at')
+                ->groupBy('users.nisn', 'users.name', 'siswa.kelas','nilai.semester', 'siswa.jurusan', 'nilai.status','nilai.created_at')
                 ->OrderBy('nilai.created_at')
                 ->where('nilai.status', 'Pending')
+                ->limit(1)
                 ->get();
 
         return view('nilai.data_nilai_guru',[

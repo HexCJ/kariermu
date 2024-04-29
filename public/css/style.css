@@ -23,7 +23,9 @@
 .navbar-text {
     color: #3A0CA3;
 }
-
+.bg-navy {
+    background-color: #7986C7;
+}
 .button {
     border: none;
     background-color: #3A0CA3;

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.data_nilai_layout')
 @section('content')
 <div class="container-fluid">
   @include('partials.notification')

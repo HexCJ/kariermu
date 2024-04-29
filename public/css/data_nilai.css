@@ -1,0 +1,11 @@
+.nav-link{
+    color: rgb(0, 0, 0);
+}
+.nav-link:hover{
+    color:#3A0CA3;
+}
+.nav-pills {
+    --bs-nav-pills-border-radius: var(--bs-border-radius);
+    --bs-nav-pills-link-active-color: #fff;
+    --bs-nav-pills-link-active-bg:#3A0CA3;
+}

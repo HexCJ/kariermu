@@ -55,11 +55,18 @@ class Controller extends BaseController
     public function dataNilai()
     {   
         $nisn = Auth::user()->nisn;
-        
+
+        $data = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
+        ->join('semester', 'semester.id_semester','=','nilai.semester')
+        ->select('siswa.nisn','semester.semester_ke', 'nilai.semester', 'nilai.status')
+        ->groupBy('siswa.nisn','semester.semester_ke','nilai.semester', 'nilai.status')
+        ->where('siswa.nisn', $nisn)
+        ->get();
+
         $semesters = ["S1", "S2", "S3", "S4", "S5"];
 
         $rata_rata_semester = [];
-        $status = [];
+        
         foreach ($semesters as $semester) {
             $rata_rata = Nilai::where('nisn', $nisn)
                 ->where('semester', $semester)
@@ -71,7 +78,8 @@ class Controller extends BaseController
         return view('nilai/data_nilai',[
             'nisn' => $nisn,
             'title' => 'Data Nilai Siswa',
-            'rata_rata_semester' => $rata_rata_semester
+            'rata_rata_semester' => $rata_rata_semester,
+            'data' => $data
         ]);
     }
 
@@ -84,14 +92,13 @@ class Controller extends BaseController
     $nilaiS1 = Nilai::where('nisn', $nisn)
         ->where('semester', 'S1')
         ->get();
-
         //     return view('nilai/detail_data_nilai',[
         //         'title' => 'Detail Data Nilai Siswa'
         //     ]);
         // }
         return view('nilai/detail_data_nilai1',[
         'title' => 'Detail Data Nilai Siswa',
-        'nilaiS1' => $nilaiS1
+        'nilaiS1' => $nilaiS1,
     ]);
     }
     public function detailDataNilai2()
