@@ -13,13 +13,13 @@ class DataNilaiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function dataNilai()
-    {
-        $nisn = Auth::user()->nisn;
-        return view('nilai/data_nilai',[
-            'title' => 'Data Nilai Siswa',
-        ]);
-    }
+    // public function dataNilai()
+    // {
+    //     $nisn = Auth::user()->nisn;
+    //     return view('nilai/data_nilai',[
+    //         'title' => 'Data Nilai Siswa',
+    //     ]);
+    // }
     public function detailDataNilai()
     {   
         return view('nilai/detail_data_nilai',[

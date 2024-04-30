@@ -55,13 +55,23 @@ class Controller extends BaseController
     public function dataNilai()
     {   
         $nisn = Auth::user()->nisn;
+        $kelas = Siswa::select('kelas')->where('nisn',$nisn)->first();
+        // $data = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
+        // ->join('semester', 'semester.id_semester','=','nilai.semester')
+        // ->select('siswa.nisn','semester.semester_ke', 'nilai.semester', 'nilai.status')
+        // ->groupBy('siswa.nisn','semester.semester_ke','nilai.semester', 'nilai.status')
+        // ->where('siswa.nisn', $nisn)
+        // ->get();
+        // Mengambil data sesuai kriteria
 
         $data = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
-        ->join('semester', 'semester.id_semester','=','nilai.semester')
-        ->select('siswa.nisn','semester.semester_ke', 'nilai.semester', 'nilai.status')
-        ->groupBy('siswa.nisn','semester.semester_ke','nilai.semester', 'nilai.status')
+        ->join('semester', 'semester.id_semester', '=', 'nilai.semester')
+        ->select('siswa.nisn', 'semester.semester_ke', 'nilai.semester', Nilai::raw('GROUP_CONCAT(nilai.status) as statuses'))
+        ->groupBy('siswa.nisn', 'semester.semester_ke', 'nilai.semester')
         ->where('siswa.nisn', $nisn)
         ->get();
+
+
 
         $semesters = ["S1", "S2", "S3", "S4", "S5"];
 
@@ -79,7 +89,8 @@ class Controller extends BaseController
             'nisn' => $nisn,
             'title' => 'Data Nilai Siswa',
             'rata_rata_semester' => $rata_rata_semester,
-            'data' => $data
+            'data' => $data,
+            'kelas' => $kelas
         ]);
     }
 

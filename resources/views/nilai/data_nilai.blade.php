@@ -20,63 +20,82 @@
                                 <h4 class="mt-3 ms-3 mb-3">Nilai Rata-Rata</h4>
                                 <div class="container">
                                     <div class="row p-3">
-                                        @foreach ($data as $d)
-                                            @if ($d->status === 'Pending')
-                                                <div class="col-12 bg-dark-subtle mb-4 rounded p-3 text-light">
-                                                    <div class="d-flex flex-column gap-2">
-                                                        <div class="d-flex justify-content-between">
-                                                            <h5>Semester {{ $d->semester_ke }}</h5>
-                                                            <p><i class="fa-solid fa-clock-rotate-left" style="font-size: 1.3rem"></i></p>
+                                        @if ($kelas->kelas === 'X')
+                                            @php $jumlah_semester = 2; @endphp
+                                        @elseif ($kelas->kelas === 'XI')
+                                            @php $jumlah_semester = 4; @endphp
+                                        @elseif ($kelas->kelas === 'XII')
+                                            @php $jumlah_semester = 5; @endphp
+                                        @endif
+
+                                        @foreach ($data as $nilai)
+                                            @php
+                                                // Memisahkan status menjadi array
+                                                $statuses = explode(',', $nilai->statuses);
+                                                // Menentukan status
+                                                if (in_array('Tidak Terverifikasi', $statuses)) {
+                                                    // Jika ada setidaknya satu nilai tidak terverifikasi, maka status menjadi "Tidak Terverifikasi"
+                                                    $status = 'Tidak Terverifikasi';
+                                                } elseif (in_array('Pending', $statuses)) {
+                                                    // Jika tidak ada nilai yang tidak terverifikasi, namun ada setidaknya satu nilai yang masih "Pending", maka status menjadi "Pending"
+                                                    $status = 'Pending';
+                                                } else {
+                                                    // Jika tidak ada nilai yang tidak terverifikasi dan semua nilai terverifikasi, maka status menjadi "Terverifikasi"
+                                                    $status = 'Terverifikasi';
+                                                }
+                                            @endphp
+                                            @if ($loop->iteration <= $jumlah_semester)
+                                                @if ($status === 'Pending')
+                                                    <div class="col-12 bg-dark-subtle mb-4 rounded p-3 text-light">
+                                                        <div class="d-flex flex-column gap-2">
+                                                            <div class="d-flex justify-content-between">
+                                                                <h5>Semester {{ $nilai->semester_ke }}</h5>
+                                                                <p><i class="fa-solid fa-clock-rotate-left"
+                                                                        style="font-size: 1.3rem"></i></p>
+                                                            </div>
+                                                            <p id="nilaiData">{{ $rata_rata_semester[$nilai->semester] }}
+                                                            </p>
                                                         </div>
-                                                        <p id="nilaiData">{{ $rata_rata_semester["$d->semester"] }}</p>
-                                                    </div>
-                                                    <div class="d-flex justify-content-end">
-                                                        <a href="/nilai/detail_nilai{{ $d->semester_ke }}" class="text-decoration-none text-light rounded-circle">Detail nilai..</a>
-                                                    </div>
-                                                </div>
-                                            @elseif($d->status === 'Terverifikasi')
-                                                <div class="col-12 bg-success mb-4 rounded p-3 text-light">
-                                                    <div class="d-flex flex-column gap-2">
-                                                        <div class="d-flex justify-content-between">
-                                                            <h5>Semester {{ $d->semester_ke }}</h5>
-                                                            <p><i class="fa-regular fa-circle-check" style="font-size: 1.3rem"></i></p>
-                                                        </div>
-                                                        <p id="nilaiData">{{ $rata_rata_semester["$d->semester"] }}</p>
-                                                    </div>
-                                                    <div class="d-flex justify-content-end">
                                                         <div class="d-flex justify-content-end">
-                                                            <a href="/nilai/detail_nilai{{ $d->semester_ke }}" class="text-decoration-none text-light">detail nilai..</a>
+                                                            <a href="/nilai/detail_nilai{{ $nilai->semester_ke }}"
+                                                                class="text-decoration-none text-light rounded-circle">Detail
+                                                                nilai..</a>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @elseif($d->status === 'Tidak Terverifikasi')
-                                                <div class="col-12 bg-danger mb-4 rounded p-3 text-light">
-                                                    <div class="d-flex flex-column gap-2">
-                                                        <div class="d-flex justify-content-between">
-                                                            <h5>Semester {{ $d->semester_ke }}</h5>
-                                                            <p><i class="fa-regular fa-circle-xmark" style="font-size: 1.3rem"></i></p>
+                                                @elseif ($status === 'Terverifikasi')
+                                                    {{-- Tampilkan sesuai kebutuhan untuk status Terverifikasi --}}
+                                                    <div class="col-12 bg-success mb-4 rounded p-3 text-light">
+                                                        <div class="d-flex flex-column gap-2">
+                                                            <div class="d-flex justify-content-between">
+                                                                <h5>Semester {{ $nilai->semester_ke }}</h5>
+                                                                <p><i class="fa-regular fa-circle-check"
+                                                                        style="font-size: 1.3rem"></i></p>
+                                                            </div>
+                                                            <p id="nilaiData">{{ $rata_rata_semester[$nilai->semester] }}
+                                                            </p>
                                                         </div>
-                                                        <p id="nilaiData">Nilai tidak terverifikasi</p>
-                                                    </div>
-                                                    <div class="d-flex justify-content-end">
                                                         <div class="d-flex justify-content-end">
-                                                            <a href="/nilai/detail_nilai{{ $d->semester_ke }}" class="text-decoration-none text-light">perbarui nilai..</a>
+                                                            <a href="/nilai/detail_nilai{{ $nilai->semester_ke }}"
+                                                                class="text-decoration-none text-light">detail nilai..</a>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @else
-                                                <div class="col-12 bg-navy rounded p-3 text-light">
-                                                    <div class="d-flex flex-column gap-2">
-                                                        <div class="d-flex justify-content-between">
-                                                            <h5>Semester {{ $d->semester_ke }}</h5>
-                                                            <p><i class="fa-solid fa-exclamation me-2" style="font-size: 1.3rem"></i></p>
+                                                @elseif ($status === 'Tidak Terverifikasi')
+                                                    {{-- Tampilkan sesuai kebutuhan untuk status Tidak Terverifikasi --}}
+                                                    <div class="col-12 bg-danger mb-4 rounded p-3 text-light">
+                                                        <div class="d-flex flex-column gap-2">
+                                                            <div class="d-flex justify-content-between">
+                                                                <h5>Semester {{ $nilai->semester_ke }}</h5>
+                                                                <p><i class="fa-regular fa-circle-xmark"
+                                                                        style="font-size: 1.3rem"></i></p>
+                                                            </div>
+                                                            <p id="nilaiData">Nilai tidak terverifikasi</p>
                                                         </div>
-                                                        <p id="nilaiData">Anda belum menginputkan nilai</p>
+                                                        <div class="d-flex justify-content-end">
+                                                            <a href="/nilai/detail_nilai{{ $nilai->semester_ke }}"
+                                                                class="text-decoration-none text-light">perbarui nilai..</a>
+                                                        </div>
                                                     </div>
-                                                    <div class="d-flex justify-content-end">
-                                                        <a href="/nilai/add_nilai{{ $d->semester_ke }}" class="text-decoration-none text-light rounded-circle" style="font-size: 1.3rem"><i class="bi bi-plus-circle"></i></a>
-                                                    </div>
-                                                </div>
+                                                @endif
                                             @endif
                                         @endforeach
                                     </div>
