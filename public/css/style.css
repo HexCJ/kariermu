@@ -140,7 +140,9 @@
     overflow: auto;
     height: 80vh;
 }
-
+.cursor-pointer{
+    cursor: pointer;
+}
 .profile {
     width: 50px;
     height: auto;
@@ -187,6 +189,9 @@
 .title-data {
     font-size: 10px;
     margin-bottom: 10px;
+}
+.bg-tes{
+    background-color: #526D82;
 }
 @media (max-width: 576px) {
     h4 {

@@ -1,42 +1,30 @@
 @extends('layouts.app')
 @section('content')
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12 mt-4">
-      <div class="d-flex justify-content-between">
-        <h4 class="h4">Data Nilai Siswa Semester 1</h4>
-        <div class="alert alert-success">
-          <p class="text-success m-0"><i class="fa-regular fa-circle-check me-2"></i>Data Terverifikasi Guru</p>
-        </div>
-      </div>
-      <div class="container-fluid mt-5">
+    <div class="container-fluid">
         <div class="row">
-          @foreach($nilaiS1 as $nilai)
-          <div class="col-12 col-sm-6 col-md-4 mb-3">
-              <div class="form-group">
-                  <label for="" class="mb-3">Nilai {{ $nilai->mata_pelajaran }}</label>
-                  <input type="text" readonly class="form-control" value="{{ $nilai->nilai }}">
-              </div>
-          </div>
-      @endforeach
-          {{-- <div class="col-12 col-sm-6 col-md-4 mb-3">
-            <div class="form-group">
-              <label for="" class="mb-3">Nilai Matematika</label>
-              <input type="text" readonly name="" id="" class="form-control" value="85">
+            <div class="col-12 mt-4">
+                <div class="d-flex justify-content-between">
+                    <h4 class="h4">Data Nilai Siswa Semester 1</h4>
+                    <div class="alert alert-success">
+                        <p class="text-success m-0"><i class="fa-regular fa-circle-check me-2"></i>Data Terverifikasi Guru</p>
+                    </div>
+                </div>
+                <div class="container-fluid mt-5">
+                    <div class="row">
+                        @foreach ($nilaiS1 as $nilai)
+                            <div class="col-12 col-sm-6 col-md-4 mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-3">Nilai {{ $nilai->mata_pelajaran }}</label>
+                                    <input type="text" readonly class="form-control" value="{{ $nilai->nilai }}">
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 mb-3">
-            <div class="form-group">
-              <label for="" class="mb-3">Nilai Bahasa Inggris</label>
-              <input type="text" readonly name="" id="" class="form-control" value="80">
-            </div>
-          </div> --}}
-      </div>
-    </div>
-  </div>
-</div>
-{{-- jika status ditolak --}}
-{{-- <div class="container-fluid">
+        </div>
+        {{-- jika status ditolak --}}
+        {{-- <div class="container-fluid">
   <div class="row">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between">
@@ -74,8 +62,8 @@
     </div>
   </div>
 </div> --}}
-{{-- jika status sedang dicek guru --}}
-{{-- <div class="container-fluid">
+        {{-- jika status sedang dicek guru --}}
+        {{-- <div class="container-fluid">
   <div class="row">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between">
@@ -108,4 +96,4 @@
     </div>
   </div>
 </div> --}}
-@endsection
+    @endsection
