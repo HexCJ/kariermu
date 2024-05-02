@@ -301,7 +301,6 @@ class SiswaController extends Controller
             $datauser->name = $data->name;
             $datalaporan->jurusan = $data->jurusan;
             $datauser->password = $data->password;
-            $datauser->email = $data->email;
             $datauser->save();
             $datalaporan->save();
             

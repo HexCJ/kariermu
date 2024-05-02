@@ -26,8 +26,10 @@
               <div class="">
                 @if($data->image)
                 <img src="{{asset('storage/photo-guru/'.$data->image) }}" class="profile-foto w-100" alt="profile">
-                @else
-                <img src="{{asset('img/person-circle.svg') }}" class="profile-foto w-100" alt="profile">
+                @elseif($data->jenis_kelamin === 'Laki-laki')
+                <img src="{{asset('img/sma_profile1.png') }}" class="profile-foto w-100" alt="profile">
+                @elseif($data->jenis_kelamin === 'Perempuan')
+                <img src="{{asset('img/sma_profile2.png') }}" class="profile-foto w-100" alt="profile">
                 @endif
               </div>
             </div>
@@ -38,8 +40,8 @@
             </div>
           </div>
         </div>
-        <div class="row mb-3"  data-aos="fade-up">
-          <div class="col-12 col-md-6 mb-3">
+        <div class="row mb-2"  data-aos="fade-up">
+          <div class="col-12 col-md-6">
             <label for="nama" class="text-secondary mb-3">Nama Lengkap</label>
             <div class="input-group mb-2">
               <input type="text" class="form-control" id="nama" name="nama" value="{{ $data->name }}">
@@ -48,7 +50,7 @@
               <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
-          <div class="col-12 col-md-6 mb-3">
+          <div class="col-12 col-md-6">
             <label for="jkelamin" class="text-secondary mb-3">Jenis Kelamin</label>
             <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="jkelamin" name="jkelamin">
               <option value="Laki-laki" {{ $data->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
@@ -71,21 +73,12 @@
           </div>
         </div>
         <div class="row mb-3"  data-aos="fade-up">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-12">
             <label for="email" class="text-secondary mb-3">Email</label>
             <div class="input-group mb-2">
               <input type="email" class="form-control" id="email" name="email"  value="{{ $data->email }}" >
             </div>
             @error('email')
-              <small class="text-danger">{{ $message }}</small>
-            @enderror
-          </div>
-          <div class="col-12 col-md-6">
-            <label for="password" class="text-secondary mb-3">Password</label>
-            <div class="input-group mb-2">
-              <input type="text" class="form-control" id="password" name="password" value="{{ $data->password }}">
-            </div>
-            @error('passsword')
               <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
@@ -101,34 +94,9 @@
             </select>
           </div>
         </div>
-
-        <!-- Button trigger modal -->
-        {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Launch demo modal
-        </button> --}}
-
-        <!-- Modal -->
-        {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div> --}}
-
         <div class="d-flex gap-2 mt-3">
-          <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center ">Submit</button>
           <a href="../" class="btn px-3 btn-secondary">Close</a>
+          <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center ">Submit</button>
         </div>
       </form>
     </div>

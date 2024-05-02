@@ -20,7 +20,7 @@ class SiswaSeeder extends Seeder
             'email' => 'siswa@example.com',
             'password' => bcrypt('siswa1'),
             'alamat' => 'rumah Siswa',
-            'tahun_lulus' => '2022',
+            // 'tahun_lulus' => '2022',
             'jenis_kelamin' => 'Laki-laki',
             'status' => 'Belum Lulus',
             'kelas' => 'X',

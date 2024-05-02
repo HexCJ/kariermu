@@ -33,12 +33,12 @@
                                     <div class="card-body">
                                         <div class="">
                                             @if ($data->isEmpty())
-                                                <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                                    <div><i class="bi bi-exclamation-circle me-3"></i>Data Siswa {{ $status }} Kosong</div>
+                                                <div class="alert alert-success d-flex align-items-center" role="alert">
+                                                    <div><i class="fa-regular fa-circle-check me-3"></i>Data Siswa {{ $status }} Kosong</div>
                                                 </div>
-                                                <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center"
+                                                <div class="alert-alert-success d-flex flex-column text-center d-flex justify-content-center align-items-center"
                                                     style="height: 80vh" data-aos="fade-up">
-                                                    <img class="data-kosong" src="{{ asset('img/data_kosong_guru.png') }}"
+                                                    <img class="data-kosong" src="{{ asset('img/nilai_found1.png') }}"
                                                         alt="">
                                                     <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Siswa Menganggur</p>
                                                 </div>

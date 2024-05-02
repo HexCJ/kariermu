@@ -109,6 +109,7 @@ class AdminController extends Controller
         $data->name = $request->nama;
         $data->email = $request->email;
         $data->alamat = $request->alamat;
+        $data->jenis_kelamin = $request->jkelamin;
         if($request->password){
             $data->password = Hash::make($request->password);
         }
@@ -130,7 +131,6 @@ class AdminController extends Controller
             $datauser = User::where('id_admin', $id_admin)->first();
             $datauser->name = $data->name;
             $datauser->password = $data->password;
-            $datauser->email = $data->email;
             $datauser->save();
             return redirect()->route('admin')->with('success-update', 'Data Admin '.$namaadmin.' berhasil diedit');
         }else{

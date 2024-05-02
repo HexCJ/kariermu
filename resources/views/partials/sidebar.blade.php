@@ -12,7 +12,7 @@
             <a href="{{ route('dashboard') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-house-chimney-user me-3"></i>Dashboard</a>
         </li>
         @endif
-        @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('guru'))
+        @if (auth()->user()->hasRole('admin'))
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Jurusan") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('data-kelas') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-school-flag me-3"></i>Data Jurusan</a>
         </li>
@@ -33,6 +33,18 @@
         </li>
         @endif
         @if (auth()->user()->hasRole('guru'))
+        <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Jurusan") ? 'list-active' : '' }} text-center text-md-start">
+            <a href="{{ route('data-kelas') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-school-flag me-3"></i>Data Jurusan</a>
+        </li>
+        <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Mata Pelajaran") ? 'list-active' : '' }} text-center text-md-start">
+            <a href="{{ route('mapel') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chalkboard me-3"></i>Data Mata Pelajaran</a>
+        </li>
+        <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Guru" || $title == "Tambah Data Guru" || $title == "Edit Data Guru") ? 'list-active' : '' }} text-center text-md-start">
+            <a href="{{ route('guru') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chalkboard-user me-3"></i>Guru</a>
+        </li>
+        <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Siswa" || $title == "Tambah Data Siswa" || $title == "Edit Data Siswa") ? 'list-active' : '' }} text-center text-md-start">
+            <a href="{{ route('siswa') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-graduation-cap me-3"></i>Siswa</a>
+        </li>
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Verifikasi Nilai") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('verifikasi') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-clipboard-check me-3"></i>Verifikasi Nilai</a>
         </li>

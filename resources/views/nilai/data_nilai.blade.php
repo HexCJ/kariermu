@@ -114,7 +114,7 @@
                                                             </div>
                                                         </div>
                                                     @elseif ($status === null)
-                                                        <div class="col-12 bg-tes rounded p-3 text-light">
+                                                        <div class="col-12 bg-tes rounded mb-4 p-3 text-light">
                                                             <div class="d-flex flex-column gap-2">
                                                                 <div class="d-flex justify-content-between">
                                                                     <h5>Semester {{ $nilai->semester_ke }}</h5>

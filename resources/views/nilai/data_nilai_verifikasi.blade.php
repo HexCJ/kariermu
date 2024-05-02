@@ -15,7 +15,7 @@
                 <div class="d-flex flex-column text-center d-flex justify-content-center align-items-center"
                     style="height: 80vh" data-aos="fade-up">
                     <img class="data-kosong" src="{{ asset('img/nilai_found.png') }}">
-                    <p class="fw-semibold mt-5 mb-0">Tidak ada request verifikasi di semester ini.</p>
+                    <p class="fw-semibold mt-5 mb-0">Tidak ada permohonan verifikasi di semester ini.</p>
                 </div>
             @endsection
             <div class="container mt-4">

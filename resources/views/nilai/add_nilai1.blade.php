@@ -75,12 +75,12 @@
                         <div class="col-12 mb-3 mt-5">
                             <div class="form-group">
                                 <a href="./" class="btn btn-secondary">Close</a>
-                                <button type="submit" class="btn btn-primary ms-2">Submit</button>
+                                <button type="submit" class="button px-3 py-2 rounded ms-2">Submit</button>
                             </div>
                         </div>
                     </div>
                 </form>
-                <div class="row">
+                <div class="row d-none">
                     <div class="alert alert-warning d-flex align-items-center" role="alert">
                         <div><i class="bi bi-exclamation-circle me-3"></i>Data Nilai Sudah Terisi</div>
                     </div>

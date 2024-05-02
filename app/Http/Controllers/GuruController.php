@@ -232,7 +232,6 @@ class GuruController extends Controller
             $datauser = User::where('nip', $nip)->first();
             $datauser->name = $data->name;
             $datauser->password = $data->password;
-            $datauser->email = $data->email;
             $datauser->save();
             return redirect()->route('guru')->with('success-update', 'Data Guru '.$namaguru.' berhasil diedit');
         }else{

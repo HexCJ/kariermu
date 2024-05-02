@@ -33,9 +33,19 @@ class DashboardController extends Controller
         $totalkuliah = Laporan::where('status', $statuskl)->count();
         $totalwirausaha = Laporan::where('status', $statusw)->count();
         $totaltkerja = Laporan::where('status', $statusm)->count();
+
+        $totalsiswa = Siswa::count();
+        $totalguru = Guru::count();
+        $totalmapel = MataPelajaran::count();
+        $totaljurusan = Jurusan::count();
         $user = Auth::user();
         // ambil nip dari user
         $nip = $user->nip;
+        
+        $siswa = Siswa::where('status', 'Belum Lulus')->count();
+        $guru = Guru::count();
+        $siswa_belum = Siswa::where('status', 'Belum Lulus')->count();
+        $siswa_sudah = Siswa::where('status', 'Lulus')->count();
     
         // jika nip ada/tidak kosong
         if (!empty($nip)) {
@@ -49,7 +59,7 @@ class DashboardController extends Controller
                     'totalkuliah' => $totalkuliah,
                     'totalwirausaha' => $totalwirausaha,
                     'totaltkerja' => $totaltkerja,
-                    'title' => 'Dashboard'
+                    'title' => 'Dashboard',
                 ]);
             }
         }
@@ -86,6 +96,13 @@ class DashboardController extends Controller
                     'totalkuliah' => $totalkuliah,
                     'totalwirausaha' => $totalwirausaha,
                     'totaltkerja' => $totaltkerja,
+                    'totalsiswa' => $totalsiswa,
+                    'totalguru' => $totalguru,
+                    'totaljurusan' => $totaljurusan,
+                    'totalmapel' => $totalmapel,
+                    'siswa_belum' => $siswa_belum,
+                    'siswa_sudah' => $siswa_sudah,
+                    
                     'title' => 'Dashboard'
                 ]);
             }
@@ -172,7 +189,7 @@ class DashboardController extends Controller
         $data = $query->get();
     
         return view('status',[
-            'title' => 'Detail Siswa Wirausaha',
+            'title' => 'Detail Siswa Berwirausaha',
             'status' => $status,
             'data' => $data,
             'jurusans' => $jurusans,
