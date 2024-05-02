@@ -67,6 +67,10 @@ Route::post('/nilai/add_nilaibaru4',[DataNilaiController::class,'store4'])->name
 Route::get('/nilai/add_nilai5',[Controller::class,'inputNilai5']);
 Route::post('/nilai/add_nilaibaru5',[DataNilaiController::class,'store5'])->name('datanilai5.add');
 
+//update 1
+Route::put('/nilai/update1{id}',[DataNilaiController::class,'update1'])->name('datanilai1.update');
+
+
 Route::get('/verifikasi_nilai',[DataNilaiController::class,'verifikasiGuru'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi');
 // Route::get('/verifikasi_nilai/verifikasi/{nisn}',[DataNilaiController::class,'verifikasiGuruDetail'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi.nilai');
 Route::get('/verifikasi_nilai/verifikasi/{nisn}',[DataNilaiController::class,'verifikasiGuruDetail'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi.nilai');

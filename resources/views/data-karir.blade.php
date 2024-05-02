@@ -124,8 +124,8 @@
                                             @enderror
                                         </div>
                                         <div class="col-12 mb-3">
-                                            <label for="tempat_kerja_kuliah" class="text-secondary mb-3 d-none" id="tempat-karir">Tempat {{ $siswa->status }}</label>
-                                            <div class="input-group mb-2 d-none" id="input-karir">
+                                            <label for="tempat_kerja_kuliah" class="text-secondary mb-3" id="tempat-karir">Tempat {{ $siswa->status }}</label>
+                                            <div class="input-group mb-2" id="input-karir">
                                                 <input type="text" value="{{ $siswa->tempat_kerja_kuliah }}" class="form-control" name="tempat_kerja_kuliah" required>
                                             </div>
                                             @error('tempat_kerja_kuliah')

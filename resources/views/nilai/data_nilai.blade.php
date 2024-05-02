@@ -31,7 +31,7 @@
                                         @for ($i = 1; $i <= $jumlah_semester; $i++)
                                             {{-- Memeriksa apakah ada data untuk semester ini --}}
                                             @if ($data->where('semester_ke', $i)->isEmpty())
-                                                <div class="col-12 bg-tes mb-3 rounded p-3 text-light">
+                                                <div class="col-12 bg-tes mb-4 rounded p-3 text-light">
                                                     <div class="d-flex flex-column gap-2">
                                                         <div class="d-flex justify-content-between">
                                                             <h5>Semester {{ $i }}</h5>

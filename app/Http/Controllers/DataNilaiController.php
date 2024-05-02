@@ -10,16 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class DataNilaiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function dataNilai()
-    // {
-    //     $nisn = Auth::user()->nisn;
-    //     return view('nilai/data_nilai',[
-    //         'title' => 'Data Nilai Siswa',
-    //     ]);
-    // }
     public function detailDataNilai()
     {   
         return view('nilai/detail_data_nilai',[
@@ -48,16 +38,9 @@ class DataNilaiController extends Controller
     //semester 1
     public function store1(Request $request)
     {
-        //
-        // $nisn                   = Auth::user()->nisn;
-        // $data['nisn']           = $nisn;
-        // $data['semester']       = "S1";
-        // $data['mata_pelajaran'] = "BI";
-        // $data['nilai']          = $request->bindo;
-
         $nisn = Auth::user()->nisn;
         $semester = "S1";
-
+    
         $data_nilai = [
             ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
             ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
@@ -70,57 +53,45 @@ class DataNilaiController extends Controller
             ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
             ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
         ];
-
+    
         foreach ($data_nilai as $data) {
             $input_field = $data['request_field'];
             $mata_pelajaran = $data['mata_pelajaran'];
             $nilai = $request->$input_field;
-            
-
-            // simpen data jadi array buat disimpan ke database
-             $data_to_store[] = [
-                'nisn' => $nisn,
-                'semester' => $semester,
-                'mata_pelajaran' => $mata_pelajaran,
-                'nilai' => $nilai,
-                'status' => 'Pending'
-            ];
+    
+            // Periksa apakah data dengan kriteria yang sama sudah ada dalam database
+            $existing_data = Nilai::where('nisn', $nisn)
+                                  ->where('semester', $semester)
+                                  ->where('mata_pelajaran', $mata_pelajaran)
+                                  ->first();
+    
+            // Jika data sudah ada, perbarui nilainya
+            if ($existing_data) {
+                $existing_data->update([
+                    'nilai' => $nilai,
+                    'status' => 'Pending'
+                ]);
+            } else {
+                // Jika tidak, buat data baru
+                Nilai::create([
+                    'nisn' => $nisn,
+                    'semester' => $semester,
+                    'mata_pelajaran' => $mata_pelajaran,
+                    'nilai' => $nilai,
+                    'status' => 'Pending'
+                ]);
+            }
         }
-
-        // Simpan data ke db
-        foreach ($data_to_store as $data) {
-            // dd($request->all());
-            Nilai::create($data);
-        }
-
-        // $rata_rata = Nilai::where('nisn', $nisn)
-        // ->where('semester', $semester)->avg('nilai');
-        
-        // return view('nilai/data_nilai',[
-        //     'nisn' => $nisn,
-        //     'title' => 'Input Data Nilai Siswa',
-        //     'rata_rata' => $rata_rata
-        // ]);
-        if($nilai = Nilai::create($data)){
-            return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
-        }else{
-            return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
-        }
+    
+        return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
     }
-
+    
     //semester 2
     public function store2(Request $request)
     {
-        //
-        // $nisn                   = Auth::user()->nisn;
-        // $data['nisn']           = $nisn;
-        // $data['semester']       = "S1";
-        // $data['mata_pelajaran'] = "BI";
-        // $data['nilai']          = $request->bindo;
-
         $nisn = Auth::user()->nisn;
         $semester = "S2";
-
+    
         $data_nilai = [
             ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
             ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
@@ -133,57 +104,45 @@ class DataNilaiController extends Controller
             ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
             ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
         ];
-
+    
         foreach ($data_nilai as $data) {
             $input_field = $data['request_field'];
             $mata_pelajaran = $data['mata_pelajaran'];
             $nilai = $request->$input_field;
-            
-
-            // simpen data jadi array buat disimpan ke database
-             $data_to_store[] = [
-                'nisn' => $nisn,
-                'semester' => $semester,
-                'mata_pelajaran' => $mata_pelajaran,
-                'nilai' => $nilai,
-                'status' => 'Pending'
-            ];
+    
+            // Periksa apakah data dengan kriteria yang sama sudah ada dalam database
+            $existing_data = Nilai::where('nisn', $nisn)
+                                  ->where('semester', $semester)
+                                  ->where('mata_pelajaran', $mata_pelajaran)
+                                  ->first();
+    
+            // Jika data sudah ada, perbarui nilainya
+            if ($existing_data) {
+                $existing_data->update([
+                    'nilai' => $nilai,
+                    'status' => 'Pending'
+                ]);
+            } else {
+                // Jika tidak, buat data baru
+                Nilai::create([
+                    'nisn' => $nisn,
+                    'semester' => $semester,
+                    'mata_pelajaran' => $mata_pelajaran,
+                    'nilai' => $nilai,
+                    'status' => 'Pending'
+                ]);
+            }
         }
-
-        // Simpan data ke db
-        foreach ($data_to_store as $data) {
-            // dd($request->all());
-            Nilai::create($data);
-        }
-
-        // $rata_rata = Nilai::where('nisn', $nisn)
-        // ->where('semester', $semester)->avg('nilai');
-        
-        // return view('nilai/data_nilai',[
-        //     'nisn' => $nisn,
-        //     'title' => 'Input Data Nilai Siswa',
-        //     'rata_rata' => $rata_rata
-        // ]);
-        if($nilai = Nilai::create($data)){
-            return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
-        }else{
-            return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
-        }
+    
+        return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
     }
 
     //semester 3
     public function store3(Request $request)
     {
-        //
-        // $nisn                   = Auth::user()->nisn;
-        // $data['nisn']           = $nisn;
-        // $data['semester']       = "S1";
-        // $data['mata_pelajaran'] = "BI";
-        // $data['nilai']          = $request->bindo;
-
         $nisn = Auth::user()->nisn;
         $semester = "S3";
-
+    
         $data_nilai = [
             ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
             ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
@@ -196,57 +155,45 @@ class DataNilaiController extends Controller
             ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
             ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
         ];
-
+    
         foreach ($data_nilai as $data) {
             $input_field = $data['request_field'];
             $mata_pelajaran = $data['mata_pelajaran'];
             $nilai = $request->$input_field;
-            
-
-            // simpen data jadi array buat disimpan ke database
-             $data_to_store[] = [
-                'nisn' => $nisn,
-                'semester' => $semester,
-                'mata_pelajaran' => $mata_pelajaran,
-                'nilai' => $nilai,
-                'status' => 'Pending'
-            ];
+    
+            // Periksa apakah data dengan kriteria yang sama sudah ada dalam database
+            $existing_data = Nilai::where('nisn', $nisn)
+                                  ->where('semester', $semester)
+                                  ->where('mata_pelajaran', $mata_pelajaran)
+                                  ->first();
+    
+            // Jika data sudah ada, perbarui nilainya
+            if ($existing_data) {
+                $existing_data->update([
+                    'nilai' => $nilai,
+                    'status' => 'Pending'
+                ]);
+            } else {
+                // Jika tidak, buat data baru
+                Nilai::create([
+                    'nisn' => $nisn,
+                    'semester' => $semester,
+                    'mata_pelajaran' => $mata_pelajaran,
+                    'nilai' => $nilai,
+                    'status' => 'Pending'
+                ]);
+            }
         }
-
-        // Simpan data ke db
-        foreach ($data_to_store as $data) {
-            // dd($request->all());
-            Nilai::create($data);
-        }
-
-        // $rata_rata = Nilai::where('nisn', $nisn)
-        // ->where('semester', $semester)->avg('nilai');
-        
-        // return view('nilai/data_nilai',[
-        //     'nisn' => $nisn,
-        //     'title' => 'Input Data Nilai Siswa',
-        //     'rata_rata' => $rata_rata
-        // ]);
-        if($nilai = Nilai::create($data)){
-            return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
-        }else{
-            return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
-        }
+    
+        return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
     }
 
     //semester 4
     public function store4(Request $request)
     {
-        //
-        // $nisn                   = Auth::user()->nisn;
-        // $data['nisn']           = $nisn;
-        // $data['semester']       = "S1";
-        // $data['mata_pelajaran'] = "BI";
-        // $data['nilai']          = $request->bindo;
-
         $nisn = Auth::user()->nisn;
         $semester = "S4";
-
+    
         $data_nilai = [
             ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
             ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
@@ -259,57 +206,45 @@ class DataNilaiController extends Controller
             ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
             ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
         ];
-
+    
         foreach ($data_nilai as $data) {
             $input_field = $data['request_field'];
             $mata_pelajaran = $data['mata_pelajaran'];
             $nilai = $request->$input_field;
-            
-
-            // simpen data jadi array buat disimpan ke database
-             $data_to_store[] = [
-                'nisn' => $nisn,
-                'semester' => $semester,
-                'mata_pelajaran' => $mata_pelajaran,
-                'nilai' => $nilai,
-                'status' => 'Pending'
-            ];
+    
+            // Periksa apakah data dengan kriteria yang sama sudah ada dalam database
+            $existing_data = Nilai::where('nisn', $nisn)
+                                  ->where('semester', $semester)
+                                  ->where('mata_pelajaran', $mata_pelajaran)
+                                  ->first();
+    
+            // Jika data sudah ada, perbarui nilainya
+            if ($existing_data) {
+                $existing_data->update([
+                    'nilai' => $nilai,
+                    'status' => 'Pending'
+                ]);
+            } else {
+                // Jika tidak, buat data baru
+                Nilai::create([
+                    'nisn' => $nisn,
+                    'semester' => $semester,
+                    'mata_pelajaran' => $mata_pelajaran,
+                    'nilai' => $nilai,
+                    'status' => 'Pending'
+                ]);
+            }
         }
-
-        // Simpan data ke db
-        foreach ($data_to_store as $data) {
-            // dd($request->all());
-            Nilai::create($data);
-        }
-
-        // $rata_rata = Nilai::where('nisn', $nisn)
-        // ->where('semester', $semester)->avg('nilai');
-        
-        // return view('nilai/data_nilai',[
-        //     'nisn' => $nisn,
-        //     'title' => 'Input Data Nilai Siswa',
-        //     'rata_rata' => $rata_rata
-        // ]);
-        if($nilai = Nilai::create($data)){
-            return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
-        }else{
-            return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
-        }
+    
+        return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
     }
     
     //semester 5
     public function store5(Request $request)
     {
-        //
-        // $nisn                   = Auth::user()->nisn;
-        // $data['nisn']           = $nisn;
-        // $data['semester']       = "S1";
-        // $data['mata_pelajaran'] = "BI";
-        // $data['nilai']          = $request->bindo;
-
         $nisn = Auth::user()->nisn;
         $semester = "S5";
-
+    
         $data_nilai = [
             ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
             ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
@@ -322,42 +257,37 @@ class DataNilaiController extends Controller
             ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
             ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
         ];
-
+    
         foreach ($data_nilai as $data) {
             $input_field = $data['request_field'];
             $mata_pelajaran = $data['mata_pelajaran'];
             $nilai = $request->$input_field;
-            
-
-            // simpen data jadi array buat disimpan ke database
-             $data_to_store[] = [
-                'nisn' => $nisn,
-                'semester' => $semester,
-                'mata_pelajaran' => $mata_pelajaran,
-                'nilai' => $nilai,
-                'status' => 'Pending'
-            ];
+    
+            // Periksa apakah data dengan kriteria yang sama sudah ada dalam database
+            $existing_data = Nilai::where('nisn', $nisn)
+                                  ->where('semester', $semester)
+                                  ->where('mata_pelajaran', $mata_pelajaran)
+                                  ->first();
+    
+            // Jika data sudah ada, perbarui nilainya
+            if ($existing_data) {
+                $existing_data->update([
+                    'nilai' => $nilai,
+                    'status' => 'Pending'
+                ]);
+            } else {
+                // Jika tidak, buat data baru
+                Nilai::create([
+                    'nisn' => $nisn,
+                    'semester' => $semester,
+                    'mata_pelajaran' => $mata_pelajaran,
+                    'nilai' => $nilai,
+                    'status' => 'Pending'
+                ]);
+            }
         }
-
-        // Simpan data ke db
-        foreach ($data_to_store as $data) {
-            // dd($request->all());
-            Nilai::create($data);
-        }
-
-        // $rata_rata = Nilai::where('nisn', $nisn)
-        // ->where('semester', $semester)->avg('nilai');
-        
-        // return view('nilai/data_nilai',[
-        //     'nisn' => $nisn,
-        //     'title' => 'Input Data Nilai Siswa',
-        //     'rata_rata' => $rata_rata
-        // ]);
-        if($nilai = Nilai::create($data)){
-            return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
-        }else{
-            return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
-        }
+    
+        return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
     }
 
     /**
@@ -379,10 +309,44 @@ class DataNilaiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+//     public function update1(Request $request, string $id)
+// {
+//     $nisn = Auth::user()->nisn;
+//     $semester = "S1";
+
+//     $data_nilai = [
+//         ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
+//         ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
+//         ['mata_pelajaran' => 'BING', 'request_field' => 'bing'],
+//         ['mata_pelajaran' => 'PAI', 'request_field' => 'pai'],
+//         ['mata_pelajaran' => 'SI', 'request_field' => 'si'],
+//         ['mata_pelajaran' => 'IPAS', 'request_field' => 'ipas'],
+//         ['mata_pelajaran' => 'SB', 'request_field' => 'sb'],
+//         ['mata_pelajaran' => 'PKN', 'request_field' => 'pkn'],
+//         ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
+//         ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
+//     ];
+
+//     foreach ($data_nilai as $data) {
+//         $input_field = $data['request_field'];
+//         $mata_pelajaran = $data['mata_pelajaran'];
+//         $nilai = $request->$input_field;
+
+//         // Simpan data ke db dengan memperbarui atau membuat baru jika tidak ada
+//         $saved = Nilai::updateOrCreate(
+//             ['id' => $id, 'nisn' => $nisn, 'semester' => $semester, 'mata_pelajaran' => $mata_pelajaran],
+//             ['nilai' => $nilai, 'status' => 'Pending']
+//         );
+//         if (!$saved) {
+//             // Jika gagal menyimpan, Anda bisa melakukan sesuatu di sini
+//             return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
+//         }
+//     }
+
+//     return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
+// }
+
+    
 
     /**
      * Remove the specified resource from storage.

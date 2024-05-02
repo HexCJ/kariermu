@@ -31,6 +31,8 @@
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Siswa" || $title == "Tambah Data Siswa" || $title == "Edit Data Siswa") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('siswa') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-graduation-cap me-3"></i>Siswa</a>
         </li>
+        @endif
+        @if (auth()->user()->hasRole('guru'))
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Verifikasi Nilai") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('verifikasi') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-clipboard-check me-3"></i>Verifikasi Nilai</a>
         </li>

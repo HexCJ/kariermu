@@ -19,21 +19,21 @@
               @method('PUT')
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col-12 col-md-6 mb-3 d-flex flex-column gap-3">
+                  {{-- <div class="col-12 col-md-6 mb-3 d-flex flex-column gap-3">
                     <label for="image" class="">Foto Profile</label>
                     @if($siswa->image == true)
-                    <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto">
+                    <img src="{{asset('storage/photo-user/'.$siswa->image)}}" alt="profile" class="profile-foto d-flex justify-content-center">
                     @elseif($siswa->jenis_kelamin === 'Laki-laki')
-                    <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
+                    <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto d-flex justify-content-center">
                     @elseif($siswa->jenis_kelamin === 'Perempuan')
-                    <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto">
+                    <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto d-flex justify-content-center">
                     @endif
                     <input type="file" class="form-control mt-3" id="photo" name="photo">
                     @error('image')
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
-                  </div>
-                  <div class="col-12 col-md-3">
+                  </div> --}}
+                  <div class="col-12 col-md-6">
                     {{-- NISN --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-id-card me-2"></i>NISN</label>
@@ -67,7 +67,7 @@
                       @enderror
                     </div>
                   </div>
-                  <div class="col-12 col-md-3">
+                  <div class="col-12 col-md-6">
                     {{-- Kelas --}}
                     {{-- jk --}}
                     <div class="form-group mb-4">
@@ -235,7 +235,7 @@
                         <strong  data-aos="fade-up"><i class="bi bi-exclamation-triangle-fill me-2"></i>Profile Picture Kosong !</strong>
                       </div>
                       @endif
-                      <p class="fw-bold m-0 mb-2 text-center mt-3">{{ $siswa->name }}</p>
+                      <p class="fw-bold m-0 mb-2 text-center">{{ $siswa->name }}</p>
                       <p class="text-center">{{ $siswa->email }}</p>
                     </div>
                   </div>
@@ -333,21 +333,7 @@
                 @method('PUT')
                 <div class="container-fluid">
                   <div class="row">
-                    <div class="col-12 col-md-6 mb-3 d-flex flex-column gap-3">
-                      <label for="image" class=" ">Foto Profile</label>
-                      @if($guru->image == true)
-                      <img src="{{asset('storage/photo-guru/'.$guru->image)}}" alt="profile" class="profile-foto">
-                      @elseif($guru->jenis_kelamin === 'Laki-laki')
-                      <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
-                      @elseif($guru->jenis_kelamin === 'Perempuan')
-                      <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto">
-                      @endif
-                      <input type="file" class="form-control mt-3" id="photo" name="photo">
-                      @error('image')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-12">
                       {{-- NISN --}}
                       <div class="form-group mb-4">
                         <label for="nama" class=""><i class="fa-solid fa-id-card me-2"></i>NIP</label>
@@ -381,14 +367,14 @@
                         @enderror
                       </div>
                       <div class="form-group mb-4">
-                        <label for="jurusan" class=""><i class="fa-solid fa-chalkboard me-2"></i>Mapel</label>
-                        <select class="form-select form-select-sm select-option-form p-2 mb-3  w-100" aria-label="Small select example" id="mapel" name="mapel">
+                        <label for="matapelajaran" class=""><i class="fa-solid fa-chalkboard me-2"></i>Mapel</label>
+                        <select class="form-select form-select-sm select-option-form p-2 mb-3  w-100" aria-label="Small select example" id="matapelajaran" name="matapelajaran">
                           <option value="">Pilih Mapel</option>
                           @foreach ($mapels as $mapel)
-                            <option value="{{ $mapel->id_mata_pelajaran }}" {{ $guru->mapel == $mapel->id_mata_pelajaran ? 'selected' : '' }}>{{ $mapel->nama_mata_pelajaran }}</option>
+                            <option value="{{ $mapel->id_mata_pelajaran }}" {{ $guru->mata_pelajaran == $mapel->id_mata_pelajaran ? 'selected' : '' }}>{{ $mapel->nama_mata_pelajaran }}</option>
                           @endforeach
                         </select>
-                        @error('jurusan')
+                        @error('matapelajaran')
                           <small class="text-danger">{{ $message }}</small>
                         @enderror
                       </div>
@@ -557,21 +543,7 @@
                   @csrf
                   <div class="container-fluid">
                     <div class="row">
-                      <div class="col-12 col-md-6 mb-3 d-flex flex-column gap-3">
-                        <label for="image" class=" ">Foto Profile</label>
-                        @if($admin->image == true)
-                        <img src="{{asset('storage/photo-admin/'.$admin->image)}}" alt="profile" class="profile-foto">
-                        @elseif($admin->jenis_kelamin === 'Laki-laki')
-                        <img src="{{asset('img/sma_profile1.png')}}" alt="profile" class="profile-foto">
-                        @elseif($admin->jenis_kelamin === 'Perempuan')
-                        <img src="{{asset('img/sma_profile2.png')}}" alt="profile" class="profile-foto">
-                        @endif
-                        <input type="file" class="form-control mt-3" id="photo" name="photo">
-                        @error('image')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                      </div>
-                      <div class="col-12 col-md-6">
+                      <div class="col-12 col-md-12">
                         {{-- NISN --}}
                         <div class="form-group mb-4">
                           <label for="nama" class=""><i class="fa-solid fa-envelope me-2"></i>ID Admin</label>

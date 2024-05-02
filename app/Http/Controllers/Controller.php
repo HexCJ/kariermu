@@ -71,6 +71,14 @@ class Controller extends BaseController
         ->where('siswa.nisn', $nisn)
         ->get();
 
+        // $id = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
+        // ->join('semester', 'semester.id_semester', '=', 'nilai.semester')
+        // ->select('nilai.id')
+        // ->groupBy('nilai.id')
+        // ->where('siswa.nisn', $nisn)
+        // ->get();
+
+        // $id = Nilai::findOrFail($id);
 
 
         $semesters = ["S1", "S2", "S3", "S4", "S5"];
@@ -90,7 +98,8 @@ class Controller extends BaseController
             'title' => 'Data Nilai Siswa',
             'rata_rata_semester' => $rata_rata_semester,
             'data' => $data,
-            'kelas' => $kelas
+            'kelas' => $kelas,
+            // 'id' => $id
         ]);
     }
 
@@ -101,34 +110,67 @@ class Controller extends BaseController
     
     // Mengambil semua data nilai dengan nisn yang sama dengan pengguna yang login dan semester 'S1'
     $nilaiS1 = Nilai::where('nisn', $nisn)
+        ->join('mata_pelajaran', 'mata_pelajaran.id_mata_pelajaran', '=', 'nilai.mata_pelajaran')
+        ->select('nilai.nisn', 'nilai.semester','mata_pelajaran.nama_mata_pelajaran', 'nilai.mata_pelajaran','nilai.nilai','nilai.status', )
         ->where('semester', 'S1')
         ->get();
-        //     return view('nilai/detail_data_nilai',[
-        //         'title' => 'Detail Data Nilai Siswa'
-        //     ]);
-        // }
+
+        $status = $nilaiS1->pluck('status');
+        // Memeriksa apakah ada yang "Tidak Terverifikasi"
+        if ($status->contains('Tidak Terverifikasi')) {
+            $statusAkhir = 'Tidak Terverifikasi';
+        } 
+        // Memeriksa apakah ada yang "Pending"
+        elseif ($status->contains('Pending')  && !$status->contains('Tidak Terverifikasi')) {
+            $statusAkhir = 'Pending';
+        } 
+        // Memeriksa apakah semua "Terverifikasi"
+        elseif ($status->contains('Terverifikasi') && !$status->contains('Tidak Terverifikasi')  && !$status->contains('Pending')) {
+            $statusAkhir = 'Terverifikasi';
+        } 
+        // Jika tidak ada yang tidak terverifikasi, pending, atau terverifikasi
+        else {
+            $statusAkhir = null; // Atau sesuai kebutuhan Anda
+        }       
+        
         return view('nilai/detail_data_nilai1',[
         'title' => 'Detail Data Nilai Siswa',
         'nilaiS1' => $nilaiS1,
+        'statusakhir' => $statusAkhir
     ]);
     }
     public function detailDataNilai2()
     {   
-   
     $nisn = Auth::user()->nisn;
     
     // Mengambil semua data nilai dengan nisn yang sama dengan pengguna yang login dan semester 'S1'
     $nilaiS2 = Nilai::where('nisn', $nisn)
+        ->join('mata_pelajaran', 'mata_pelajaran.id_mata_pelajaran', '=', 'nilai.mata_pelajaran')
+        ->select('nilai.nisn', 'nilai.semester','mata_pelajaran.nama_mata_pelajaran', 'nilai.mata_pelajaran','nilai.nilai','nilai.status', )
         ->where('semester', 'S2')
         ->get();
 
-        //     return view('nilai/detail_data_nilai',[
-        //         'title' => 'Detail Data Nilai Siswa'
-        //     ]);
-        // }
+    $status = $nilaiS2->pluck('status');
+    // Memeriksa apakah ada yang "Tidak Terverifikasi"
+    if ($status->contains('Tidak Terverifikasi')) {
+        $statusAkhir = 'Tidak Terverifikasi';
+    } 
+    // Memeriksa apakah ada yang "Pending"
+    elseif ($status->contains('Pending')  && !$status->contains('Tidak Terverifikasi')) {
+        $statusAkhir = 'Pending';
+    } 
+    // Memeriksa apakah semua "Terverifikasi"
+    elseif ($status->contains('Terverifikasi') && !$status->contains('Tidak Terverifikasi')  && !$status->contains('Pending')) {
+        $statusAkhir = 'Terverifikasi';
+    } 
+    // Jika tidak ada yang tidak terverifikasi, pending, atau terverifikasi
+    else {
+        $statusAkhir = null; // Atau sesuai kebutuhan Anda
+    }       
         return view('nilai/detail_data_nilai2',[
         'title' => 'Detail Data Nilai Siswa',
-        'nilaiS2' => $nilaiS2
+        'nilaiS2' => $nilaiS2,
+        'statusakhir'=> $statusAkhir
     ]);
     }
     public function detailDataNilai3()
@@ -138,16 +180,32 @@ class Controller extends BaseController
     
     // Mengambil semua data nilai dengan nisn yang sama dengan pengguna yang login dan semester 'S1'
     $nilaiS3 = Nilai::where('nisn', $nisn)
+        ->join('mata_pelajaran', 'mata_pelajaran.id_mata_pelajaran', '=', 'nilai.mata_pelajaran')
+        ->select('nilai.nisn', 'nilai.semester','mata_pelajaran.nama_mata_pelajaran', 'nilai.mata_pelajaran','nilai.nilai','nilai.status', )
         ->where('semester', 'S3')
-        ->get();
+        ->get();  
 
-        //     return view('nilai/detail_data_nilai',[
-        //         'title' => 'Detail Data Nilai Siswa'
-        //     ]);
-        // }
+    $status = $nilaiS3->pluck('status');
+    // Memeriksa apakah ada yang "Tidak Terverifikasi"
+    if ($status->contains('Tidak Terverifikasi')) {
+        $statusAkhir = 'Tidak Terverifikasi';
+    } 
+    // Memeriksa apakah ada yang "Pending"
+    elseif ($status->contains('Pending')  && !$status->contains('Tidak Terverifikasi')) {
+        $statusAkhir = 'Pending';
+    } 
+    // Memeriksa apakah semua "Terverifikasi"
+    elseif ($status->contains('Terverifikasi') && !$status->contains('Tidak Terverifikasi')  && !$status->contains('Pending')) {
+        $statusAkhir = 'Terverifikasi';
+    } 
+    // Jika tidak ada yang tidak terverifikasi, pending, atau terverifikasi
+    else {
+        $statusAkhir = null; // Atau sesuai kebutuhan Anda
+    }     
         return view('nilai/detail_data_nilai3',[
         'title' => 'Detail Data Nilai Siswa',
-        'nilaiS3' => $nilaiS3
+        'nilaiS3' => $nilaiS3,
+        'statusakhir'=> $statusAkhir
     ]);
     }
     public function detailDataNilai4()
@@ -157,35 +215,66 @@ class Controller extends BaseController
     
     // Mengambil semua data nilai dengan nisn yang sama dengan pengguna yang login dan semester 'S1'
     $nilaiS4 = Nilai::where('nisn', $nisn)
+        ->join('mata_pelajaran', 'mata_pelajaran.id_mata_pelajaran', '=', 'nilai.mata_pelajaran')
+        ->select('nilai.nisn', 'nilai.semester','mata_pelajaran.nama_mata_pelajaran', 'nilai.mata_pelajaran','nilai.nilai','nilai.status', )
         ->where('semester', 'S4')
         ->get();
-
-        //     return view('nilai/detail_data_nilai',[
-        //         'title' => 'Detail Data Nilai Siswa'
-        //     ]);
-        // }
+        
+    $status = $nilaiS4->pluck('status');
+    // Memeriksa apakah ada yang "Tidak Terverifikasi"
+    if ($status->contains('Tidak Terverifikasi')) {
+        $statusAkhir = 'Tidak Terverifikasi';
+    } 
+    // Memeriksa apakah ada yang "Pending"
+    elseif ($status->contains('Pending')  && !$status->contains('Tidak Terverifikasi')) {
+        $statusAkhir = 'Pending';
+    } 
+    // Memeriksa apakah semua "Terverifikasi"
+    elseif ($status->contains('Terverifikasi') && !$status->contains('Tidak Terverifikasi')  && !$status->contains('Pending')) {
+        $statusAkhir = 'Terverifikasi';
+    } 
+    // Jika tidak ada yang tidak terverifikasi, pending, atau terverifikasi
+    else {
+        $statusAkhir = null; // Atau sesuai kebutuhan Anda
+    }     
         return view('nilai/detail_data_nilai4',[
         'title' => 'Detail Data Nilai Siswa',
-        'nilaiS4' => $nilaiS4
+        'nilaiS4' => $nilaiS4,
+        'statusakhir'=> $statusAkhir
     ]);
     }
     public function detailDataNilai5()
     {   
-   
-    $nisn = Auth::user()->nisn;
-    
-    // Mengambil semua data nilai dengan nisn yang sama dengan pengguna yang login dan semester 'S1'
-    $nilaiS5 = Nilai::where('nisn', $nisn)
-        ->where('semester', 'S5')
+        $nisn = Auth::user()->nisn;
+        
+        // Mengambil semua data nilai dengan nisn yang sama dengan pengguna yang login dan semester 'S1'
+        $nilaiS5 = Nilai::where('nisn', $nisn)
+        ->join('mata_pelajaran', 'mata_pelajaran.id_mata_pelajaran', '=', 'nilai.mata_pelajaran')
+        ->select('nilai.nisn', 'nilai.semester','mata_pelajaran.nama_mata_pelajaran', 'nilai.mata_pelajaran','nilai.nilai','nilai.status', )
+        ->where('semester', 'S1')
         ->get();
 
-        //     return view('nilai/detail_data_nilai',[
-        //         'title' => 'Detail Data Nilai Siswa'
-        //     ]);
-        // }
+        $status = $nilaiS5->pluck('status');
+        // Memeriksa apakah ada yang "Tidak Terverifikasi"
+        if ($status->contains('Tidak Terverifikasi')) {
+            $statusAkhir = 'Tidak Terverifikasi';
+        } 
+        // Memeriksa apakah ada yang "Pending"
+        elseif ($status->contains('Pending')  && !$status->contains('Tidak Terverifikasi')) {
+            $statusAkhir = 'Pending';
+        } 
+        // Memeriksa apakah semua "Terverifikasi"
+        elseif ($status->contains('Terverifikasi') && !$status->contains('Tidak Terverifikasi')  && !$status->contains('Pending')) {
+            $statusAkhir = 'Terverifikasi';
+        } 
+        // Jika tidak ada yang tidak terverifikasi, pending, atau terverifikasi
+        else {
+            $statusAkhir = null; // Atau sesuai kebutuhan Anda
+        }     
         return view('nilai/detail_data_nilai5',[
         'title' => 'Detail Data Nilai Siswa',
-        'nilaiS5' => $nilaiS5
+        'nilaiS5' => $nilaiS5,
+        'statusakhir'=> $statusAkhir
     ]);
     }
 
