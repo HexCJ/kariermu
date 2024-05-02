@@ -7,7 +7,7 @@ new DataTable('#dataStatus', {
 });
 new DataTable('#dataMapel', {
     language: {
-        "search": "Cari :",
+        "search": "Cari Mata Pelajaran :",
         "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img src='img/404.png' alt='' class='notfound'><p class='fw-semibold mt-5 mb-0'>Data Mata Pelajaran Tidak Ditemukan</p></div>"
     }
 });
@@ -37,7 +37,7 @@ new DataTable('#dataAdmin', {
 });
 new DataTable('#dataUser', {
     language: {
-        "search": "Cari Data Mata Pelajaran :",
+        "search": "Cari Data Users :",
         "zeroRecords": "<div class='alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center' style='height: 80vh'><img class='notfound' src='img/404.png' alt=''><p class='fw-semibold mt-5 mb-0'>Data Users Tidak Ditemukan</p></div>"
     }
 });
