@@ -170,12 +170,10 @@ Route::put('users/update/{id}',[UserController::class, 'update'])->middleware(['
 //route hapus users
 Route::delete('/users/hapus/{id}',[UserController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.hapus');
 
-
-
 // Route untuk halaman 404
 Route::fallback(function () {
-    return view('errors.404',[
-        'title' => '404',
+    return view('errors.404-color',[
+        'title' => 'Not Found!',
     ]);
 });
 

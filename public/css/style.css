@@ -193,6 +193,17 @@
 .bg-tes{
     background-color: #526D82;
 }
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 100px;
+}
+.notfound1 {
+    width: 100px;
+    height: auto;
+}
 @media (max-width: 576px) {
     h4 {
         font-size: 20px !important;
@@ -237,6 +248,10 @@
         aspect-ratio: 1;
     }
     .notfound {
+        width: 100px;
+        height: auto;
+    }
+    .notfound1 {
         width: 100px;
         height: auto;
     }
