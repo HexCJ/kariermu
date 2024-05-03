@@ -8,6 +8,7 @@
                     <h4>Verifikasi Nilai</h4>
                 </div>
             @section('alert-kosong')
+            <div class="col-12">
                 <div class="alert alert-success d-flex align-items-center mt-3" role="alert">
                     <div><i class="bi bi-card-checklist me-3"></i>Tidak ada nilai yang perlu diverifikasi di semester ini.
                     </div>
@@ -17,8 +18,9 @@
                     <img class="data-kosong" src="{{ asset('img/nilai_found.png') }}">
                     <p class="fw-semibold mt-5 mb-0">Tidak ada permohonan verifikasi di semester ini.</p>
                 </div>
+            </div>
             @endsection
-            <div class="container mt-4">
+            <div class="container-fluid-fluid mt-4">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="pills-s1=tab" data-bs-toggle="pill"
@@ -49,13 +51,13 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-s1" role="tabpanel" aria-labelledby="pills-s1-tab"
                         tabindex="0">
-                        <div class="container">
+                        <div class="container-fluid" data-aos="fade-up">
                             <div class="row">
                                 @if ($semester1->isEmpty())
                                     @yield('alert-kosong')
                                 @elseif(!$semester1->isEmpty())
                                     @foreach ($semester1 as $d)
-                                        <div class="col-12 col-md-3 mt-3">
+                                        <div class="col-12 col-md-4 col-lg-3 mt-3">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <label class="fw-medium mb-3"><i
@@ -96,13 +98,13 @@
                     </div>
                     <div class="tab-pane fade" id="pills-s2" role="tabpanel" aria-labelledby="pills-s2-tab"
                         tabindex="0">
-                        <div class="container">
+                        <div class="container-fluid" data-aos="fade-up">
                             <div class="row">
                                 @if ($semester2->isEmpty())
                                     @yield('alert-kosong')
                                 @elseif(!$semester2->isEmpty())
                                     @foreach ($semester2 as $d)
-                                        <div class="col-12 col-md-3 mt-3">
+                                        <div class="col-12 col-md-4 col-lg-3 mt-3">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <label class="fw-medium mb-3"><i
@@ -144,13 +146,13 @@
                     </div>
                     <div class="tab-pane fade" id="pills-s3" role="tabpanel" aria-labelledby="pills-s3-tab"
                         tabindex="0">
-                        <div class="container">
+                        <div class="container-fluid" data-aos="fade-up">
                             <div class="row">
                                 @if ($semester3->isEmpty())
                                     @yield('alert-kosong')
                                 @elseif(!$semester3->isEmpty())
                                     @foreach ($semester3 as $d)
-                                        <div class="col-12 col-md-3 mt-3">
+                                        <div class="col-12 col-md-4 col-lg-3 mt-3">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <label class="fw-medium mb-3"><i
@@ -192,13 +194,13 @@
                     </div>
                     <div class="tab-pane fade" id="pills-s4" role="tabpanel" aria-labelledby="pills-s4-tab"
                         tabindex="0">
-                        <div class="container">
+                        <div class="container-fluid" data-aos="fade-up">
                             <div class="row">
                                 @if ($semester4->isEmpty())
                                     @yield('alert-kosong')
                                 @elseif(!$semester4->isEmpty())
                                     @foreach ($semester4 as $d)
-                                        <div class="col-12 col-md-3 mt-3">
+                                        <div class="col-12 col-md-4 col-lg-3 mt-3">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <label class="fw-medium mb-3"><i
@@ -240,13 +242,13 @@
                     </div>
                     <div class="tab-pane fade" id="pills-s5" role="tabpanel" aria-labelledby="pills-s5-tab"
                         tabindex="0">
-                        <div class="container">
+                        <div class="container-fluid" data-aos="fade-up">
                             <div class="row">
                                 @if ($semester5->isEmpty())
                                     @yield('alert-kosong')
                                 @elseif(!$semester5->isEmpty())
                                     @foreach ($semester5 as $d)
-                                        <div class="col-12 col-md-3 mt-3">
+                                        <div class="col-12 col-md-4 col-lg-3 mt-3">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <label class="fw-medium mb-3"><i

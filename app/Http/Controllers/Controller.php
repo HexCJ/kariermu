@@ -89,7 +89,8 @@ class Controller extends BaseController
             $rata_rata = Nilai::where('nisn', $nisn)
                 ->where('semester', $semester)
                 ->avg('nilai');
-            $rata_rata_formatted = number_format($rata_rata, 2);
+             // Jika nilai rata-rata adalah 0.00, ganti dengan NaN
+            $rata_rata_formatted = ($rata_rata == 0.00) ? "NaN" : number_format($rata_rata, 2);
             $rata_rata_semester[$semester] = $rata_rata_formatted;
         }
         

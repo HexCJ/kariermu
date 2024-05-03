@@ -305,52 +305,6 @@ class DataNilaiController extends Controller
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-//     public function update1(Request $request, string $id)
-// {
-//     $nisn = Auth::user()->nisn;
-//     $semester = "S1";
-
-//     $data_nilai = [
-//         ['mata_pelajaran' => 'BI', 'request_field' => 'bindo'],
-//         ['mata_pelajaran' => 'MTK', 'request_field' => 'mtk'],
-//         ['mata_pelajaran' => 'BING', 'request_field' => 'bing'],
-//         ['mata_pelajaran' => 'PAI', 'request_field' => 'pai'],
-//         ['mata_pelajaran' => 'SI', 'request_field' => 'si'],
-//         ['mata_pelajaran' => 'IPAS', 'request_field' => 'ipas'],
-//         ['mata_pelajaran' => 'SB', 'request_field' => 'sb'],
-//         ['mata_pelajaran' => 'PKN', 'request_field' => 'pkn'],
-//         ['mata_pelajaran' => 'PJOK', 'request_field' => 'pjok'],
-//         ['mata_pelajaran' => 'KEJURUAN', 'request_field' => 'kejuruan']
-//     ];
-
-//     foreach ($data_nilai as $data) {
-//         $input_field = $data['request_field'];
-//         $mata_pelajaran = $data['mata_pelajaran'];
-//         $nilai = $request->$input_field;
-
-//         // Simpan data ke db dengan memperbarui atau membuat baru jika tidak ada
-//         $saved = Nilai::updateOrCreate(
-//             ['id' => $id, 'nisn' => $nisn, 'semester' => $semester, 'mata_pelajaran' => $mata_pelajaran],
-//             ['nilai' => $nilai, 'status' => 'Pending']
-//         );
-//         if (!$saved) {
-//             // Jika gagal menyimpan, Anda bisa melakukan sesuatu di sini
-//             return redirect()->route('datanilai')->with('fail', 'Data Nilai gagal ditambahkan');
-//         }
-//     }
-
-//     return redirect()->route('datanilai')->with('success', 'Data Nilai berhasil ditambahkan');
-// }
-
-    
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
@@ -379,12 +333,23 @@ class DataNilaiController extends Controller
         ->where('nilai.status', 'Pending')
         ->get();
 
+        $notif_semester1 = $semester1->count();
+        if($notif_semester1 >99){
+        }
+        $notif_semester1 = '99+';
+
         $semester2 = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
         ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')
         ->where('nilai.nisn', $nisn)
         ->where('nilai.semester', 'S2')
         ->where('nilai.status', 'Pending')
         ->get();
+
+        $notif_semester2 = $semester2->count();
+        if($notif_semester2 >99){
+            $notif_semester2 = '99+';
+        }
+
 
         $semester3 = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
         ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')
@@ -393,12 +358,22 @@ class DataNilaiController extends Controller
         ->where('nilai.status', 'Pending')
         ->get();
 
+        $notif_semester3 = $semester3->count();
+        if($notif_semester3 >99){
+            $notif_semester3 = '99+';
+        }
+
         $semester4 = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
         ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')
         ->where('nilai.nisn', $nisn)
         ->where('nilai.semester', 'S4')
         ->where('nilai.status', 'Pending')
         ->get();
+        
+        $notif_semester4 = $semester4->count();
+        if($notif_semester4 >99){
+            $notif_semester4 = '99+';
+        }
 
         $semester5 = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
         ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')
@@ -406,6 +381,12 @@ class DataNilaiController extends Controller
         ->where('nilai.semester', 'S5')
         ->where('nilai.status', 'Pending')
         ->get();
+
+        $notif_semester5 = $semester5->count();
+        if($notif_semester5 >99){
+            $notif_semester5 = '99+';
+        }
+
         
         return view('nilai.data_nilai_verifikasi',[
             'title' => 'Verifikasi Nilai',
@@ -413,7 +394,14 @@ class DataNilaiController extends Controller
             'semester2' => $semester2,
             'semester3' => $semester3,
             'semester4' => $semester4,
-            'semester5' => $semester5
+            'semester5' => $semester5,
+            'notif_semester1' => $notif_semester1,
+            'notif_semester2' => $notif_semester2,
+            'notif_semester3' => $notif_semester3,
+            'notif_semester4' => $notif_semester4,
+            'notif_semester5' => $notif_semester5,
+
+
         ]);
     }
     public function tolakNilai(Request $request, string $nisn, string $id){
@@ -424,9 +412,9 @@ class DataNilaiController extends Controller
         ]);
         
         if($nilai->update()){
-            return redirect()->route('verifikasi.nilai',['nisn'=> $nilai->nisn])->with(['success-tolak' => 'Data Nilai Berhasil Ditolak!']);
+            return redirect()->back()->with(['success-tolak' => 'Data Nilai Berhasil Ditolak!']);
         } else{
-            return redirect()->route('verifikasi.nilai',['nisn'=> $nilai->nisn])->with(['fail' => 'Data Nilai Tidak Berhasil Ditolak!']);
+            return redirect()->back()->with(['fail' => 'Data Nilai Tidak Berhasil Ditolak!']);
         }
     }
     public function terimaNilai(Request $request, string $nisn, string $id){
@@ -436,9 +424,9 @@ class DataNilaiController extends Controller
         ]);
 
         if($nilai->update()){
-            return redirect()->route('verifikasi.nilai',['nisn'=> $nilai->nisn])->with(['success-acc' => 'Data Nilai Berhasil Diverifikasi!']);
+            return redirect()->back()->with(['success-acc' => 'Data Nilai Berhasil Diverifikasi!']);
         } else{
-            return redirect()->route('verifikasi.nilai',['nisn'=> $nilai->nisn])->with(['fail' => 'Data Nilai Tidak Berhasil Diverifikasi!']);
+            return redirect()->back()->with(['fail' => 'Data Nilai Tidak Berhasil Diverifikasi!']);
         }
     }
 }

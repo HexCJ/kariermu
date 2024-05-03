@@ -6,7 +6,7 @@
   <div class="row px-3">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between" data-aos="fade-up">
-        <h4 class="h4">Welcome {{ $admin->name }} To Dashboard SMKN 4 Tangerang</h4>
+        <h4 class="h4">Selamat Datang {{ $admin->name }} Di Dashboard SMKN 4 Tangerang</h4>
       </div>
       <div class="row mt-5 d-flex justify-content-start px-0 px-lg-3 px-xl-0 px-xl-1">
         <div class="col-6 col-sm-6 col-md-5 col-xl-3 col-lg-3 d-flex px-3 px-md-2 mb-5 justify-content-md-start pe-2 mb-3 mt-3 mt-md-0" data-aos="fade-up">
@@ -185,7 +185,7 @@
   <div class="row px-3">
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between" data-aos="fade-up">
-        <h4 class="h4">Welcome {{ $guru->name }} To Dashboard SMKN 4 Tangerang</h4>
+        <h4 class="h4">Selamat Datang {{ $guru->name }} Di Dashboard SMKN 4 Tangerang</h4>
       </div>
       <div class="row mt-5 d-flex justify-content-center px-0 px-lg-3 px-xl-0 px-xl-1">
         {{-- data status karir tidak bekerja --}}

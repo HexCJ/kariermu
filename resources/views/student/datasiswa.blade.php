@@ -88,8 +88,8 @@
                           <th>Email</th>
                           {{-- <th>Password</th> --}}
                           <th>Alamat</th>
-                          <th>Tahun Lulus</th>
                           <th>Status</th>
+                          <th>Tahun Lulus</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
@@ -104,8 +104,8 @@
                           <td>{{ $d->email }}</td> 
                           {{-- <td>{{ $d->password }}</td>  --}}
                           <td>{{ $d->alamat }}</td> 
-                          <td>{{ $d->tahun_lulus }}</td> 
                           <td>{{ $d->status }}</td> 
+                          <td>{{ $d->tahun_lulus }}</td> 
                           <td class="">
                             <div class="dropdown py-3">
                               <a class="button py-2 px-3 rounded text-decoration-none text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
