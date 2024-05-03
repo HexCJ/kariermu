@@ -35,7 +35,7 @@ Route::get('/',[Controller::class,'index']);
 
 
 // Route::get('/profile',[ProfileController::class,'index'])->middleware(['auth', 'verified'])->name('profile');
-Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile');
+Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth', 'verified')->name('profile');
 Route::put('/profile/updateprofile/{id}', [ProfileController::class, 'profilefoto'])->middleware('auth')->name('profile.foto');
 Route::put('/profile/updateprofile-guru/{id}', [ProfileController::class, 'profilefotoguru'])->middleware('auth')->name('profile.foto-guru');
 Route::put('/profile/updateprofile-admin/{id}', [ProfileController::class, 'profilefotoadmin'])->middleware('auth')->name('profile.foto-admin');
@@ -45,7 +45,7 @@ Route::put('profile/updateguru/{id}', [ProfileController::class, 'updateguru'])-
 Route::put('profile/updateadmin/{id}', [ProfileController::class, 'updateadmin'])->middleware(['auth'])->name('profile.updateadmin');
 
 // nilai
-Route::get('/nilai',[Controller::class,'dataNilai'])->name('datanilai');
+Route::get('/nilai',[Controller::class,'dataNilai'])->middleware('auth', 'verified', 'role:siswa')->name('datanilai');
 Route::get('/nilai/detail_nilai1',[Controller::class,'detailDataNilai1']);
 Route::get('/nilai/detail_nilai2',[Controller::class,'detailDataNilai2']);
 Route::get('/nilai/detail_nilai3',[Controller::class,'detailDataNilai3']);
@@ -154,7 +154,7 @@ Route::put('/mapel/update/{id}',[MapelController::class, 'update'])->middleware(
 Route::delete('/mapel/hapus/{id}',[MapelController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('mapel.hapus');
 
 
-route::get('data-karir',[DataKarirController::class, 'show'])->name('karir');
+route::get('data-karir',[DataKarirController::class, 'show'])->middleware(['auth', 'verified'])->name('karir');
 route::put('data-karir/update/{id}',[DataKarirController::class, 'update'])->name('karir.update');
 
 
