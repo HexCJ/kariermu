@@ -32,7 +32,9 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e)
     {
         if($e instanceof UnauthorizedException) {
-            return response()->view('errors.index', ['exception'=>$e->getMessage()],
+            return response()->view('errors.index', ['exception'=>$e->getMessage(),
+            'title' => 'Error 403'
+        ],
         403);
         }
         return parent::render($request, $e);

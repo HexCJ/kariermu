@@ -15,11 +15,11 @@ class LaporanSeeder extends Seeder
     public function run()
     {
         // Menambahkan data laporan
-        Laporan::updateOrCreate([
-            'nisn' => '1', 
-            'status' => 'Bekerja',
-            'tempat_kerja_kuliah' => 'Sekolah', // Isi jika diperlukan
-        ]);
+        // Laporan::updateOrCreate([
+        //     // 'nisn' => '1', 
+        //     // 'status' => 'Bekerja',
+        //     // 'tempat_kerja_kuliah' => 'Sekolah', // Isi jika diperlukan
+        // ]);
 
         // Laporan::updateOrCreate([
         //     'nisn' => '5003', // Ganti dengan NISN yang sesuai
@@ -28,9 +28,11 @@ class LaporanSeeder extends Seeder
         // ]);
 
         Laporan::updateOrCreate([
-            'nisn' => '5003', // Ganti dengan NISN yang sesuai
-            'status' => null,
-            'tempat_kerja_kuliah' => null, // Isi jika diperlukan
+            'nisn' => '3333', // Ganti dengan NISN yang sesuai
+            'status' => 'Kuliah',
+            'name' => 'siswa',
+            'jurusan' => 'RPL', // Ganti dengan id jurusan yang sesuai
+            'tempat_kerja_kuliah' => 'UI', // Isi jika diperlukan
         ]);
 
         // Tambahkan data laporan lainnya sesuai kebutuhan

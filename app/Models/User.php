@@ -23,16 +23,12 @@ class User extends Authenticatable
 
     protected $fillable = [
         'nisn',
-        'image',
+        'nip',
+        'id_admin',
         'name',
-        'jenis_kelamin',
-        'jurusan',
-        'kelas',
-        'email',
         'password',
-        'alamat',
-        'tahun_lulus',
-        'status',
+        'role',
+
     ];
 
     /**
@@ -55,12 +51,26 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
 
-        static::created(function ($user) {
-            $user->assignRole('siswa');
-        });
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class, 'nisn');
     }
+    public function guru()
+    {
+        return $this->hasOne(Guru::class, 'nip');
+    }
+    public function admin()
+    {
+        return $this->hasOne(Admin::class, 'id_admin');
+    }
+
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::created(function ($user) {
+    //         $user->assignRole('siswa');
+    //     });
+    // }
 }

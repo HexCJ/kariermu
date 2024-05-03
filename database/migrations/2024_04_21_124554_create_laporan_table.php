@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nisn');
             $table->foreign('nisn')->references('nisn')->on('users')->onDelete('cascade');
-            $table->enum('status', ['Menganggur', 'Kuliah', 'Bekerja', 'Siswa'])->nullable();
+            $table->string('name')->nullable();
+            $table->string('jurusan')->nullable();
+            $table->enum('status', ['Menganggur', 'Kuliah', 'Bekerja', 'Wirausaha'])->nullable();
             $table->string('tempat_kerja_kuliah')->nullable();
             $table->timestamps();
         });

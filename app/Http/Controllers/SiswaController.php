@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Jurusan; 
+use App\Models\Jurusan;
+use App\Models\Laporan;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Hash;
@@ -29,7 +31,7 @@ class SiswaController extends Controller
     //     ]);
     // }
     public function siswa (Request $request){
-        $query = User::query();
+        $query = Siswa::query();
 
         // Tampilin data
         if ($request->has('search')) {
@@ -146,7 +148,7 @@ class SiswaController extends Controller
     {
         //
         $validator = Validator::make($request->all(),[
-            'nisn'=>'required',
+            'nip'=>'required',
             'nama'=>'required',
             'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
             // 'email'=>'required|email',
@@ -193,15 +195,18 @@ class SiswaController extends Controller
         $data['alamat']        = $request->alamat;
         $data['tahun_lulus']   = $request->lulus;
         $data['status']        = $request->status;
-
         
-        //create
-        if(User::create($data)){
-            //kembali
+        
+        
+        // create
+        if($siswa = Siswa::create($data)){
             return redirect()->route('siswa')->with('success', 'Data Siswa berhasil ditambahkan');
         }else{
             return redirect()->route('siswa')->with('fail', 'Data Siswa gagal ditambahkan');
         }
+
+    // Jika nama pengguna adalah 'guru', berikan peran 'guru'
+
     }
 
 
@@ -219,7 +224,7 @@ class SiswaController extends Controller
     public function edit(Request $request,$id)
     {
         // Ambil data siswa berdasarkan ID
-    $data = User::findOrFail($id);
+    $data = Siswa::findOrFail($id);
 
     // Ambil data jurusan dari tabel jurusan
     $jurusans = Jurusan::all();
@@ -256,7 +261,7 @@ class SiswaController extends Controller
         }
         
         // Ambil data siswa berdasarkan ID
-        $data = User::find($id);
+        $data = Siswa::find($id);
         $namasiswa = $data->name;
 
     
@@ -272,6 +277,7 @@ class SiswaController extends Controller
         $data->status = $request->status;
     
         // Periksa apakah password baru diisi
+
         if($request->password){
             $data->password = Hash::make($request->password);
         }
@@ -289,6 +295,15 @@ class SiswaController extends Controller
     
         // Simpan perubahan data
         if($data->save()){
+            $nisn = $request->nisn;
+            $datauser = User::where('nisn', $nisn)->first();
+            $datalaporan = Laporan::where('nisn', $nisn)->first();
+            $datauser->name = $data->name;
+            $datalaporan->jurusan = $data->jurusan;
+            $datauser->password = $data->password;
+            $datauser->save();
+            $datalaporan->save();
+            
             return redirect()->route('siswa')->with('success-update', 'Data Siswa '.$namasiswa.' berhasil diedit');
         }else{
             return redirect()->route('siswa')->with('fail', 'Data Siswa gagal '.$namasiswa.' diedit');
@@ -302,10 +317,13 @@ class SiswaController extends Controller
     public function destroy($id)
     {
         //
-        $data = user::findOrFail($id);
+        $data = Siswa::findOrFail($id);
         $namasiswa = $data->name;
-
+        $nisn = $data->nisn;
+        $datasiswa = User::where('nisn', $nisn)->first();
+        
         if($data->delete()){
+            $datasiswa->delete();
             return redirect()->back()->with('success-delete', 'Data Siswa '.$namasiswa.' berhasil dihapus');
         }else{
             return redirect()->back()->with('fail', 'Data Siswa gagal '.$namasiswa.' dihapus');

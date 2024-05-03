@@ -1,0 +1,25 @@
+::-webkit-scrollbar{
+    width: 10px;
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 12px;
+    background-color: #ffffff42;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: #e6e6e6;
+}
+.nav-link{
+    color: rgb(0, 0, 0);
+}
+.nav-link:hover{
+    color:#3A0CA3;
+}
+.nav-pills {
+    --bs-nav-pills-border-radius: var(--bs-border-radius);
+    --bs-nav-pills-link-active-color: #fff;
+    --bs-nav-pills-link-active-bg:#3A0CA3;
+}
+.nilaiData{
+    font-size: 10px !important;
+    font-weight: 700;
+}

@@ -6,6 +6,8 @@ use App\Models\MataPelajaran;
 use Illuminate\Http\Request;
 //return type redirectResponse
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
+
 use Illuminate\View\View;
 
 class MapelController extends Controller
@@ -34,13 +36,21 @@ class MapelController extends Controller
      */
     public function store(Request $request):  RedirectResponse
     {
+
+        $validator = Validator::make($request->all(),[
+            'id_mapel'=>'required',   
+            'nama_mapel'=>'required',   
+            
+        ]);
+        //jika valid gagal
+        if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
         $data['id_mata_pelajaran'] = $request->id_mapel;
         $data['nama_mata_pelajaran'] = $request->nama_mapel;
 
         if(MataPelajaran::create($data)){
-            return redirect()->route('data-kelas')->with('success', 'Data Mapel berhasil ditambahkan');
+            return redirect()->route('mapel')->with('success', 'Data Mapel berhasil ditambahkan');
         }else{
-            return redirect()->route('data-kelas')->with('fail', 'Data Mapel gagal ditambahkan');
+            return redirect()->route('mapel')->with('fail', 'Data Mapel gagal ditambahkan');
         }
     }
 

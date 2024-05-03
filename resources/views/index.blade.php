@@ -28,9 +28,9 @@
                 <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 d-flex flex-column justify-content-center align-items-center px-5">
                     <div class="row d-flex justify-content-center">
                         <h4 class="fw-bold">Login</h4>
-                        <p class="fw-medium text-secondary">Enter Your Account Detail</p>
+                        <p class="fw-medium text-secondary mt-3">Enter your account details</p>
                         <div class="d-flex flex-column gap-3 justify-content-start">
-                            <x-input-label for="nisn" :value="__('nisn or nip')"/>
+                            <x-input-label for="nisn" :value="__('NISN atau NIP')"/>
                             <div class="fom-control">
                                 <input type="text" name="nisn" id="nisn" class="form-control" placeholder="Masukan NISN anda" value="{{old('nisn or nip')}}" required autofocus autocomplete="username">
                                 <x-input-error :messages="$errors->get('nisn')" class="text-danger list-group-item list-none"/>
@@ -52,8 +52,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 d-flex flex-column justify-content-center align-items-center d-none d-sm-block">
-                    <img src="{{ asset('img/sma1.png') }}" alt="sma" style="z-index: 1" class="w-100">
+                <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 d-flex flex-column justify-content-center align-items-center d-none d-md-block text-center">
+                    <img src="{{ asset('img/dashboard.png') }}" alt="sma" style="z-index: 1;width:50%;">
                 </div>
             </div>
         </form>

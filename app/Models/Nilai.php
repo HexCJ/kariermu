@@ -26,6 +26,8 @@ class Nilai extends Model
         'semester',
         'mata_pelajaran',
         'nilai',
+        'status',
+        'pesan',
     ];
 
     /**

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Guru;
 use Illuminate\Support\Facades\DB;
 use App\Models\MataPelajaran;
+use App\Models\User;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -137,23 +138,8 @@ class GuruController extends Controller
     
         
         //create
-        if($guru = Guru::create($data)){
-        // Pastikan peran 'guru' sudah ada di basis data atau buat jika belum ada
-        $role = Role::firstOrCreate(['name' => 'guru', 'guard_name' => 'guru']);
-        // Memberikan peran 'guru' kepada guru yang telah dibuat dengan menggunakan guard 'guru'
-        $guru->assignRole($role);
-        
-            // $guru->assignRole('admin');
-            // $guru->syncRoles(['admin']);
+        if(Guru::create($data)){
             return redirect()->route('guru')->with('success', 'Data Guru berhasil ditambahkan');
-            
-            // $newGuru = Guru::request($data);
-       
-            // DB::table('model_has_roles')->insert([
-            //     'model_id' => $newGuru->id,
-            //     'role_id' => 4,
-            // ]);
-            // $guru = Guru::create($data);
 
         }else{
             return redirect()->route('guru')->with('fail', 'Data Guru gagal ditambahkan');
@@ -242,6 +228,11 @@ class GuruController extends Controller
     
         // Simpan perubahan data
         if($data->save()){
+            $nip = $request->nip;
+            $datauser = User::where('nip', $nip)->first();
+            $datauser->name = $data->name;
+            $datauser->password = $data->password;
+            $datauser->save();
             return redirect()->route('guru')->with('success-update', 'Data Guru '.$namaguru.' berhasil diedit');
         }else{
             return redirect()->route('guru')->with('fail', 'Data Guru '.$namaguru.' gagal diedit');
@@ -255,7 +246,11 @@ class GuruController extends Controller
     {
         $data = Guru::findOrFail($id);
         $namaguru = $data->name;
+        $nip = $data->nip;
+        $dataguru = User::where('nip', $nip)->first();
+
         if($data->delete()){
+            $dataguru->delete();
             return redirect()->back()->with('success-delete', 'Data Guru '.$namaguru.' berhasil dihapus');
         }else{
             return redirect()->back()->with('fail', 'Data Guru'.$namaguru.'gagal dihapus');

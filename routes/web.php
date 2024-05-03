@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\serverSide;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataKarirController;
+use App\Http\Controllers\DataNilaiController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,22 +29,60 @@ use Illuminate\Support\Facades\Route;
 
 // route laravel breezer
 Route::get('/',[Controller::class,'index']);
-Route::get('siswa',[SiswaController::class,'siswa'])->name('siswa');
 
 // Route::get('/siswa/search', ['SiswaController@search'])->name('search');
 
-Route::get('/dashboard',[Controller::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 // Route::get('/profile',[ProfileController::class,'index'])->middleware(['auth', 'verified'])->name('profile');
-Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile');
-
+Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth', 'verified')->name('profile');
+Route::put('/profile/updateprofile/{id}', [ProfileController::class, 'profilefoto'])->middleware('auth')->name('profile.foto');
+Route::put('/profile/updateprofile-guru/{id}', [ProfileController::class, 'profilefotoguru'])->middleware('auth')->name('profile.foto-guru');
+Route::put('/profile/updateprofile-admin/{id}', [ProfileController::class, 'profilefotoadmin'])->middleware('auth')->name('profile.foto-admin');
+// Route::get('profile/edit/{nisn}',[ProfileController::class, 'edit'])->middleware(['auth'])->name('profile.edit');
+Route::put('profile/updatesiswa/{id}', [ProfileController::class, 'updatesiswa'])->middleware(['auth'])->name('profile.updatesiswa');
+Route::put('profile/updateguru/{id}', [ProfileController::class, 'updateguru'])->middleware(['auth'])->name('profile.updateguru');
+Route::put('profile/updateadmin/{id}', [ProfileController::class, 'updateadmin'])->middleware(['auth'])->name('profile.updateadmin');
 
 // nilai
-Route::get('/nilai',[Controller::class,'dataNilai'])->name('datanilai');
-Route::get('/nilai/detail_nilai',[Controller::class,'detailDataNilai']);
+Route::get('/nilai',[Controller::class,'dataNilai'])->middleware('auth', 'verified', 'role:siswa')->name('datanilai');
+Route::get('/nilai/detail_nilai1',[Controller::class,'detailDataNilai1']);
+Route::get('/nilai/detail_nilai2',[Controller::class,'detailDataNilai2']);
+Route::get('/nilai/detail_nilai3',[Controller::class,'detailDataNilai3']);
+Route::get('/nilai/detail_nilai4',[Controller::class,'detailDataNilai4']);
+Route::get('/nilai/detail_nilai5',[Controller::class,'detailDataNilai5']);
+//store s1
+Route::get('/nilai/add_nilai1',[Controller::class,'inputNilai1']);
+Route::post('/nilai/add_nilaibaru1',[DataNilaiController::class,'store1'])->name('datanilai1.add');
+//store s2
+Route::get('/nilai/add_nilai2',[Controller::class,'inputNilai2']);
+Route::post('/nilai/add_nilaibaru2',[DataNilaiController::class,'store2'])->name('datanilai2.add');
+//store s3
+Route::get('/nilai/add_nilai3',[Controller::class,'inputNilai3']);
+Route::post('/nilai/add_nilaibaru3',[DataNilaiController::class,'store3'])->name('datanilai3.add');
+//store s4
+Route::get('/nilai/add_nilai4',[Controller::class,'inputNilai4']);
+Route::post('/nilai/add_nilaibaru4',[DataNilaiController::class,'store4'])->name('datanilai4.add');
+//store s5
+Route::get('/nilai/add_nilai5',[Controller::class,'inputNilai5']);
+Route::post('/nilai/add_nilaibaru5',[DataNilaiController::class,'store5'])->name('datanilai5.add');
 
-Route::get('detail_status',[Controller::class, 'detailStatus'])->name('detail.status');
+//update 1
+Route::put('/nilai/update1{id}',[DataNilaiController::class,'update1'])->name('datanilai1.update');
+
+
+Route::get('/verifikasi_nilai',[DataNilaiController::class,'verifikasiGuru'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi');
+// Route::get('/verifikasi_nilai/verifikasi/{nisn}',[DataNilaiController::class,'verifikasiGuruDetail'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi.nilai');
+Route::get('/verifikasi_nilai/verifikasi/{nisn}',[DataNilaiController::class,'verifikasiGuruDetail'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi.nilai');
+Route::put('/verifikasi_nilai/verifikasi/{nisn}/tolak/{id}',[DataNilaiController::class,'tolakNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('tolak.nilai');
+Route::put('/verifikasi_nilai/verifikasi/{nisn}/terima/{id}',[DataNilaiController::class,'terimaNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('terima.nilai');
+// Route::put('/verifikasi_nilai/verifikasi/terima/{id}',[DataNilaiController::class,'terimaNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('terima.nilai');
+
+Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('detail_status/menganggur',[DashboardController::class, 'detailStatusTidakKerja'])->middleware(['auth'])->name('detail.tidakkerja');
+Route::get('detail_status/kerja',[DashboardController::class, 'detailStatusKerja'])->middleware(['auth', 'verified'])->name('detail.kerja');
+Route::get('detail_status/kuliah',[DashboardController::class, 'detailStatusKuliah'])->middleware(['auth', 'verified'])->name('detail.kuliah');
+Route::get('detail_status/wirausaha',[DashboardController::class, 'detailStatusWira'])->middleware(['auth', 'verified'])->name('detail.wirausaha');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -68,13 +110,18 @@ Route::get('penulis',function(){
 })->middleware(['auth', 'verified', 'role:penulis|admin']);
 require __DIR__.'/auth.php';
 
+// Route Admin
+Route::get('admin',[AdminController::class,'admin'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('admin');
+Route::get('admin/edit/{id}',[AdminController::class, 'edit'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('admin.edit');
+Route::put('admin/update/{id}',[AdminController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('admin.update');
+Route::delete('/admin/hapus/{id}',[AdminController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('admin.hapus');
 
 
 // Route::get('siswa',[SiswaController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa'])->name('siswa');
 Route::get('siswa',[SiswaController::class,'siswa'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('siswa');
-Route::get('siswa/tambah',[SiswaController::class,'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('tambah_siswa');
+// Route::get('siswa/tambah',[SiswaController::class,'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('tambah_siswa');
 //route input siswa
-Route::post('/siswa/tambah',[SiswaController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('user.input');
+// Route::post('/siswa/tambah',[SiswaController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('user.input');
 //route edit siswa  
 Route::get('siswa/edit/{id}',[SiswaController::class, 'edit'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('user.edit');
 Route::put('siswa/update/{id}',[SiswaController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('user.update');
@@ -84,19 +131,14 @@ Route::delete('/siswa/hapus/{id}',[SiswaController::class, 'destroy'])->middlewa
 
 // route guru
 Route::get('guru',[GuruController::class,'guru'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru');
-Route::get('guru/tambah',[GuruController::class,'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('tambah_guru');
+// Route::get('guru/tambah',[GuruController::class,'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('tambah_guru');
 //route input guru
-Route::post('/inputGuru',[GuruController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.input');
+// Route::post('/inputGuru',[GuruController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.input');
 //route edit guru
 Route::get('guru/edit/{id}',[GuruController::class, 'edit'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.edit');
 Route::put('guru/update/{id}',[GuruController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.update');
 //route hapus guru
 Route::delete('/guru/hapus/{id}',[GuruController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.hapus');
-
-// //edit
-// Route::get('data-kelas/edit/{id}',[JurusanController::class, 'edit'])->name('data-kelas.edit');
-// Route::put('data-kelas/update/{id}',[JurusanController::class, 'update'])->name('data-kelas.update');
-//route hapus guru
 
 //route jurusan
 Route::get('data-kelas',[JurusanController::class,'index'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('data-kelas');
@@ -112,11 +154,26 @@ Route::put('/mapel/update/{id}',[MapelController::class, 'update'])->middleware(
 Route::delete('/mapel/hapus/{id}',[MapelController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('mapel.hapus');
 
 
-route::get('data-karir',[DataKarirController::class, 'index'])->name('karir');
+route::get('data-karir',[DataKarirController::class, 'show'])->middleware(['auth', 'verified'])->name('karir');
+route::put('data-karir/update/{id}',[DataKarirController::class, 'update'])->name('karir.update');
 
 
+// Route::get('siswa',[SiswaController::class,'index'])->middleware(['auth', 'verified', 'role:penulis|admin|siswa'])->name('siswa');
+Route::get('users',[UserController::class,'users'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users');
+Route::get('users/tambah',[UserController::class,'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('tambah_users');
+//route input users
+Route::post('/users/tambah',[UserController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.input');
+//route edit users  
+Route::get('users/edit/{id}',[UserController::class, 'edit'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.edit');
 
+Route::put('users/update/{id}',[UserController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.update');
+//route hapus users
+Route::delete('/users/hapus/{id}',[UserController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.hapus');
 
-
-
+// Route untuk halaman 404
+Route::fallback(function () {
+    return view('errors.404-color',[
+        'title' => 'Not Found!',
+    ]);
+});
 

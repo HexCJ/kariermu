@@ -1,19 +1,10 @@
-{{-- pesan eror yang menampilkan pesan dari exception --}}
-
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Errors') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{$exception}}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+@extends('errors.error_view')
+@section('title', 'Tidak Ada Akses!')
+@section('content')
+    <img src="{{ asset('img/no-akses.png') }}" alt="" class="notfound1 mt-5">
+    <h5 class="fw-semibold text-center mt-4" style="font-size:25px;color: rgb(55, 71, 79)">{{ __('Errors') }}</h5>
+    {{-- <h5 class="fw-bold text-uppercase text-center mb-4"  style="font-size: 20px;color: #5276DA" class="navbar-text">{{ $exception }}</h5> --}}
+    <h5 class="fw-medium text-center mt-2" style="color: #5276DA">Anda tidak memiliki akses! 
+        <a href="{{ route('dashboard') }}" class="fw-medium text-center"
+            style="color: #5276DA" class="navbar-text">kembali</a></h5>
+@endsection

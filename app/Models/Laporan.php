@@ -24,6 +24,8 @@ class Laporan extends Model
     protected $fillable = [
         'nisn',
         'status',
+        'name',
+        'jurusan',
         'tempat_kerja_kuliah',
     ];
 

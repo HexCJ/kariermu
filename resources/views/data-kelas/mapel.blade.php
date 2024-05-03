@@ -27,7 +27,7 @@
                       <div class="input-group mb-2">
                         <input type="text" class="form-control" id="id_mapel" name="id_mapel"> 
                       </div>
-                      @error('id_mapel')
+                      @error('id_mata_pelajaran')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
@@ -36,7 +36,7 @@
                       <div class="input-group mb-2">
                         <input type="text" class="form-control" id="nama_mapel" name="nama_mapel">
                       </div>
-                      @error('nama_mapel')
+                      @error('nama_mata_pelajaran')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
@@ -51,13 +51,69 @@
           </div>
         </div>
       </div>
+      <!-- Modal Update -->
+      @foreach ($data as $d)
+      <div class="modal fade" id="editDatamapel{{ $d->id_mata_pelajaran }}" tabindex="" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit mapel</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {{-- add section --}}
+            <div class="modal-body">
+              <form action="{{ route('mapel.update', $d->id_mata_pelajaran) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-12 mb-3">
+                      <label for="id_mapel" class="text-secondary mb-3">ID Mata Pelajaran</label>
+                      <div class="input-group mb-2">
+                        <input type="text" class="form-control" id="id_mapel" name="id_mapel" value="{{ $d->id_mata_pelajaran }}">
+                      </div>
+                      @error('id_mapel')
+                      <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                    <div class="col-12 mb-3">
+                      <label for="nama_mapel" class="text-secondary mb-3">Nama Mata Pelajaran</label>
+                      <div class="input-group mb-2">
+                        <input type="text" class="form-control" id="nama_mapel" name="nama_mapel" value="{{ $d->nama_mata_pelajaran }}">
+                      </div>
+                      @error('nama_mapel')
+                      <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center" data-bs-dismiss="modal">Edit</button>
+                </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      @endforeach
       <div class="container-fluid px-4" data-aos="fade-up">
         <div class="row">
           <div class="col mt-3 p-0">
             <div class="card mt-3" style="min-height: 43rem">
               <div class="card-body table-responsive">
                 <div class="">
-                  <table id="dataSiswa" class="table table-bordered w-100 mt-3">
+                  @if ($data->isEmpty())
+                  <div class="alert alert-warning d-flex align-items-center" role="alert">
+                    <div><i class="bi bi-exclamation-circle me-3"></i>Data Mata Pelajaran Kosong</div>
+                  </div>
+                  <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
+                    <img class="data-kosong-kelas" src="{{ asset('img/data_kosong_mapel.png') }}" alt="">
+                    <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Mata Pelajaran</p>
+                  </div>
+                  @endif
+                  @if(!$data->isEmpty())
+                  <table id="dataMapel" class="table table-bordered w-100 mt-3">
                     <thead>
                       <tr>
                         <th>ID mapel</th>
@@ -68,50 +124,6 @@
                     <tbody>
                       @foreach($data as $d)
                       <tr>
-                        <!-- Modal Update -->
-                        <div class="modal fade" id="editDatamapel{{ $d->id_mata_pelajaran }}" tabindex="" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit mapel</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              {{-- add section --}}
-                              <div class="modal-body">
-                                <form action="{{ route('mapel.update', $d->id_mata_pelajaran) }}" method="POST">
-                                  @csrf
-                                  @method('PUT')
-                                  <div class="container-fluid">
-                                    <div class="row">
-                                      <div class="col-12 mb-3">
-                                        <label for="id_mapel" class="text-secondary mb-3">ID Mata Pelajaran</label>
-                                        <div class="input-group mb-2">
-                                          <input type="text" class="form-control" id="id_mapel" name="id_mapel" value="{{ $d->id_mata_pelajaran }}">
-                                        </div>
-                                        @error('id_mapel')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                      </div>
-                                      <div class="col-12 mb-3">
-                                        <label for="nama_mapel" class="text-secondary mb-3">Nama Mata Pelajaran</label>
-                                        <div class="input-group mb-2">
-                                          <input type="text" class="form-control" id="nama_mapel" name="nama_mapel" value="{{ $d->nama_mata_pelajaran }}">
-                                        </div>
-                                        @error('nama_mapel')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center" data-bs-dismiss="modal">Edit</button>
-                                  </div>
-                                  </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                         <td>{{ $d->id_mata_pelajaran }}</td> 
                         <td>{{ $d->nama_mata_pelajaran }}</td> 
                         <td class="d-flex justify-content-start align-items-center px-3">
@@ -157,6 +169,7 @@
                       @endforeach
                     </tbody>
                   </table>
+                  @endif
                 </div>
               </div>
             </div>

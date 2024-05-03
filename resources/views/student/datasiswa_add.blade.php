@@ -170,8 +170,8 @@
         {{-- end belum dipake --}}
 
         <div class="d-flex gap-2 mt-5">
+          <a href="../" class="btn px-3 btn-secondary">Close</a>
           <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center ">Submit</button>
-          <button type="reset" class="btn px-3 btn-danger">Reset</button>
         </div>
       </form>
     </div>

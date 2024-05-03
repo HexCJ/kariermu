@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('guru', function (Blueprint $table) {
             $table->id();
             $table->string('nip')->unique();
+            $table->foreign('nip')->references('nip')->on('users')->onDelete('cascade');
             $table->string('name');
             $table->string('email')->unique()->nullable();
+            // $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
             $table->string('password');
-            $table->string('alamat');
-            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->string('mata_pelajaran');
+            // $table->foreign('password')->references('password')->on('users')->onDelete('cascade');
+            $table->string('alamat')->nullable();
+            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
+            $table->string('mata_pelajaran')->nullable();
             $table->foreign('mata_pelajaran')->references('id_mata_pelajaran')->on('mata_pelajaran')->onDelete('cascade');
             $table->timestamps();
 

@@ -42,30 +42,24 @@ return [
     //     ],
     // ],
     'guards' => [
-        // 'web' => [
-        //     'driver' => 'session',
-        //     'provider' => 'users', // Ubah provider ke 'users'
-        // ],
-    
-        // 'guru' => [ // Tambahkan guard baru untuk tabel 'guru'
-        //     'driver' => 'session',
-        //     'provider' => 'gurus', // Sesuaikan dengan penyedia pengguna untuk 'guru'
-        // ], 
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswas',
         ],
-    
         'guru' => [
             'driver' => 'session',
             'provider' => 'gurus',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -89,24 +83,26 @@ return [
     //         'driver' => 'eloquent',
     //         'model' => App\Models\User::class,
     //     ],
+    // ],
 
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-    
+        'siswas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Siswa::class,
+        ],
         'gurus' => [
             'driver' => 'eloquent',
             'model' => App\Models\Guru::class,
         ],
-],
-
-    //     // 'users' => [
-    //     //     'driver' => 'database',
-    //     //     'table' => 'users',
-    //     // ],
-    // ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
