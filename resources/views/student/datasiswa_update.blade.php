@@ -81,6 +81,13 @@
                                 </select>
                             </div>
                             <div class="mb-4 col-12">
+                                <label for="urutan_kelas" class="text-secondary mb-3">Urutan Kelas</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="urutan_kelas" name="urutan_kelas"
+                                        value="{{ $data->urutan_kelas }}">
+                                </div>
+                            </div>
+                            <div class="mb-4 col-12">
                                 <label for="email" class="text-secondary mb-3">Email</label>
                                 <div class="input-group">
                                     <input type="email" class="form-control" id="email" name="email"

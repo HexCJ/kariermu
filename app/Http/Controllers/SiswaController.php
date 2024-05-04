@@ -190,6 +190,7 @@ class SiswaController extends Controller
         $data['jenis_kelamin'] = $request->jkelamin;
         $data['jurusan']       = $request->jurusan;
         $data['kelas']         = $request->kelas;
+        $data['urutan_kelas']   = $request->urutan_kelas;
         $data['email']         = $request->email;
         $data['password']      = Hash::make($request->password);
         $data['alamat']        = $request->alamat;
@@ -271,6 +272,7 @@ class SiswaController extends Controller
         $data->jenis_kelamin = $request->jkelamin;
         $data->jurusan = $request->jurusan;
         $data->kelas = $request->kelas;
+        $data->urutan_kelas = $request->urutan_kelas;
         $data->email = $request->email;
         $data->alamat = $request->alamat;
         $data->tahun_lulus = $request->lulus;

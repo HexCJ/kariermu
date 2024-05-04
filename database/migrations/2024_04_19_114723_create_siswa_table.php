@@ -25,6 +25,7 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
             $table->enum('status', ['Lulus', 'Belum Lulus'])->default('Belum Lulus')->nullable();
             $table->enum('kelas', ['X', 'XI', 'XII', 'Lulus'])->nullable();
+            $table->string('urutan_kelas')->nullable();
             $table->string('jurusan')->nullable();
             $table->foreign('jurusan')->references('id_jurusan')->on('jurusan')->onDelete('cascade');
             $table->timestamps();

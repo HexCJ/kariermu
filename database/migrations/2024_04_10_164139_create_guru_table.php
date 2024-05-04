@@ -24,6 +24,10 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
             $table->string('mata_pelajaran')->nullable();
             $table->foreign('mata_pelajaran')->references('id_mata_pelajaran')->on('mata_pelajaran')->onDelete('cascade');
+            $table->enum('walikelas', ['X', 'XI', 'XII', 'Lulus'])->nullable();
+            $table->string('urutan_kelas')->nullable();
+            $table->string('jurusan')->nullable();
+            $table->foreign('jurusan')->references('id_jurusan')->on('jurusan')->onDelete('cascade');
             $table->timestamps();
 
 

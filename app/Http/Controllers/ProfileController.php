@@ -242,6 +242,7 @@ class ProfileController extends Controller
             $siswa->jenis_kelamin = $request->jkelamin;
             $siswa->jurusan = $request->jurusan;
             $siswa->kelas = $request->kelas;
+            $siswa->urutan_kelas = $request->urutan_kelas;
             $siswa->email = $request->email;
             $siswa->alamat = $request->alamat;
             $siswa->tahun_lulus = $request->lulus;
@@ -310,6 +311,9 @@ class ProfileController extends Controller
         $guru->password = Hash::make($request->password);
         $guru->alamat = $request->alamat;
         $guru->mata_pelajaran = $request->matapelajaran;
+        $guru->jurusan = $request->jurusan;
+        $guru->walikelas = $request->kelas;
+        $guru->urutan_kelas = $request->urutan_kelas;
 
         // Periksa apakah password baru diisi
         if($request->password){
@@ -458,10 +462,12 @@ class ProfileController extends Controller
 
         // Jika data guru ketemu, balikin view dengan data guru
         if ($guru) {
+            $jurusans = Jurusan::all();
             $mapels = MataPelajaran::all();
             return view('data-profile', [
                 'guru' => $guru,
                 'mapels' => $mapels,
+                'jurusans' => $jurusans,
                 'title' => 'Data Profile'
             ]);
         }

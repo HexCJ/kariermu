@@ -60,6 +60,9 @@
                         <th>Email</th>
                         {{-- <th>Password</th> --}}
                         <th>Jenis Kelamin</th>
+                        <th>Jurusan</th>
+                        <th>Kelas</th>
+                        <th>Urutan Kelas</th>
                         <th>Mata Pelajaran</th>
                         <th>Aksi</th>
                       </tr>
@@ -74,6 +77,9 @@
                         <td>{{ $d->email }}</td> 
                         {{-- <td>{{ $d->password }}</td>  --}}
                         <td>{{ $d->jenis_kelamin }}</td>
+                        <td>{{ $d->jurusan }}</td> 
+                        <td>{{ $d->kelas }}</td> 
+                        <td>{{ $d->urutan_kelas }}</td> 
                         <td>{{ $d->mata_pelajaran }}</td>
                         <td class="d-flex justify-content-center align-items-center">
                           <div class="dropdown py-3">

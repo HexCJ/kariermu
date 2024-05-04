@@ -74,6 +74,18 @@
           </div>
         </div>
         <div class="row mb-3" data-aos="fade-up">
+          <div class="col-12">
+            <label for="urutan_kelas" class="text-secondary mb-3">Urutan Kelas</label>
+            <div class="input-group mb-2">
+              <input type="text" value="{{old('urutan_kelas')}}" class="form-control" id="urutan_kelas" name="urutan_kelas">
+            </div>
+            @error('urutan_kelas')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
+
+          </div>
+        </div>
+        <div class="row mb-3" data-aos="fade-up">
           <div class="col-12 col-md-6">
             <label for="email" class="text-secondary mb-3">Email</label>
             <div class="input-group mb-2">

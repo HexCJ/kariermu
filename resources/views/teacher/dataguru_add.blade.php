@@ -80,6 +80,43 @@
             @enderror
           </div>
         </div>
+        <div class="col-12 col-md-6 mb-3">
+          <label for="jurusan" class="text-secondary mb-3">Jurusan</label>
+          <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="jurusan" name="jurusan"  value="{{old('jurusan')}}" >
+            <option selected disabled>Pilih Jurusan</option>
+            @foreach($jurusans as $jurusan)
+                <option value="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}</option>
+            @endforeach
+          </select>
+          @error('jurusan')
+            <small class="text-danger">{{ $message }}</small>
+          @enderror
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <label for="kelas" class="text-secondary mb-3">Kelas</label>
+          <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="kelas" name="kelas"  value="{{old('kelas')}}">
+            <option selected>Pilih Kelas</option>
+            <option value="X">X/SEPULUH</option>
+            <option value="XI">XI/SEBELAS</option>
+            <option value="XII">XII/DUA BELAS</option>
+          </select>
+          @error('kelas')
+            <small class="text-danger">{{ $message }}</small>
+          @enderror
+        </div>
+      </div>
+      <div class="row mb-3" data-aos="fade-up">
+        <div class="col-12">
+          <label for="urutan_kelas" class="text-secondary mb-3">Urutan Kelas</label>
+          <div class="input-group mb-2">
+            <input type="text" value="{{old('urutan_kelas')}}" class="form-control" id="urutan_kelas" name="urutan_kelas">
+          </div>
+          @error('urutan_kelas')
+            <small class="text-danger">{{ $message }}</small>
+          @enderror
+
+        </div>
+      </div>
         <div class="row" data-aos="fade-up">
           <div class="col-12">
             <label for="matapelajaran" class="text-secondary mb-3">Mata Pelajaran</label>

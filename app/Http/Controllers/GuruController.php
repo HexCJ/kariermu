@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Role;
 //
 use Illuminate\Http\Request;
 use App\Models\Guru;
+use App\Models\Jurusan;
 use Illuminate\Support\Facades\DB;
 use App\Models\MataPelajaran;
 use App\Models\User;
@@ -49,11 +50,14 @@ class GuruController extends Controller
      
          $data = $query->get();
          $matapelajarans = MataPelajaran::all();
-     
+         $jurusans = Jurusan::all();
+
          return view('teacher.dataguru', [
             'data' => $data,
             'title' => 'Data Guru',
-            'matapelajarans' => $matapelajarans 
+            'matapelajarans' => $matapelajarans,
+            'jurusans' => $jurusans
+
          ]);
      }
      
@@ -127,6 +131,9 @@ class GuruController extends Controller
         $data['password'] = Hash::make($request->password);
         $data['alamat'] = $request->alamat;
         $data['mata_pelajaran'] = $request->matapelajaran;
+        $data['jurusan']       = $request->jurusan;
+        $data['walikelas']         = $request->kelas;
+        $data['urutan_kelas']   = $request->urutan_kelas;
 
         // $newGuru = Guru::request($data);
         // $newGuru->assignRole('admin');
@@ -209,6 +216,9 @@ class GuruController extends Controller
         $data->password = Hash::make($request->password);
         $data->alamat = $request->alamat;
         $data->mata_pelajaran = $request->matapelajaran;
+        $data->jurusan = $request->jurusan;
+        $data->walikelas = $request->kelas;
+        $data->urutan_kelas = $request->urutan_kelas;
 
         // Periksa apakah password baru diisi
         if($request->password){

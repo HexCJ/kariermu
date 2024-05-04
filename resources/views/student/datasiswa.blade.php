@@ -85,6 +85,7 @@
                           <th>Jenis Kelamin</th>
                           <th>Jurusan</th>
                           <th>Kelas</th>
+                          <th>Urutan Kelas</th>
                           <th>Email</th>
                           {{-- <th>Password</th> --}}
                           <th>Alamat</th>
@@ -101,6 +102,7 @@
                           <td>{{ $d->jenis_kelamin }}</td> 
                           <td>{{ $d->jurusan }}</td> 
                           <td>{{ $d->kelas }}</td> 
+                          <td>{{ $d->urutan_kelas }}</td> 
                           <td>{{ $d->email }}</td> 
                           {{-- <td>{{ $d->password }}</td>  --}}
                           <td>{{ $d->alamat }}</td> 

@@ -21,6 +21,7 @@ class Siswa extends Model
         'jenis_kelamin',
         'status',
         'kelas',
+        'urutan_kelas',
         'jurusan',
     ];
 

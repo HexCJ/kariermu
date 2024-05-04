@@ -20,6 +20,9 @@ class Guru extends Model
         'alamat',
         'jenis_kelamin',
         'mata_pelajaran',
+        'walikelas',
+        'urutan_kelas',
+        'jurusan',
     ];
 
 
