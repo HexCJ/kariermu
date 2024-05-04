@@ -72,6 +72,35 @@
             @enderror
           </div>
         </div>
+        <div class="mb-4 col-6">
+          <label for="jurusan" class="text-secondary mb-3">Jurusan</label>
+          <select class="form-select form-select-sm py-2 mb-3 text-secondary"
+              aria-label="Small select example" id="jurusan" name="jurusan">
+              <option selected disabled>Pilih Jurusan</option>
+              @foreach ($jurusans as $jurusan)
+                  <option value="{{ $jurusan->id_jurusan }}"
+                      {{ $data->jurusan == $jurusan->id_jurusan ? 'selected' : '' }}>
+                      {{ $jurusan->nama_jurusan }}</option>
+              @endforeach
+          </select>
+      </div>
+      <div class="mb-4 col-6">
+          <label for="kelas" class="text-secondary mb-3">Kelas</label>
+          <select class="form-select form-select-sm py-2 mb-3 text-secondary"
+              aria-label="Small select example" id="kelas" name="kelas">
+              <option value="X" {{ $data->kelas == 'X' ? 'selected' : '' }}>X/SEPULUH</option>
+              <option value="XI" {{ $data->kelas == 'XI' ? 'selected' : '' }}>XI/SEBELAS</option>
+              <option value="XII" {{ $data->kelas == 'XII' ? 'selected' : '' }}>XII/DUA BELAS
+              </option>
+          </select>
+      </div>
+      <div class="mb-4 col-12">
+          <label for="urutan_kelas" class="text-secondary mb-3">Urutan Kelas</label>
+          <div class="input-group">
+              <input type="text" class="form-control" id="urutan_kelas" name="urutan_kelas"
+                  value="{{ $data->urutan_kelas }}">
+          </div>
+      </div>
         <div class="row mb-3"  data-aos="fade-up">
           <div class="col-12 col-md-12">
             <label for="email" class="text-secondary mb-3">Email</label>

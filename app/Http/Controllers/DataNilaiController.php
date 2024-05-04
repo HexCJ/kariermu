@@ -5,6 +5,7 @@ use App\Models\Nilai;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
 use App\Models\User;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -310,18 +311,28 @@ class DataNilaiController extends Controller
         //
     }
     public function verifikasiGuru(){
+        // ambil nip
+        $guru = Auth::user()->nip;
+        $data_profile = Guru::select()->where('nip', $guru)->first();
+        // ambil kelas first untuk tidak mengulang hanya cari satu data
+        $kelas = Guru::select('walikelas','mata_pelajaran','jurusan','urutan_kelas')->where('nip', $guru)->first();
+
         $data = User::join('nilai', 'users.nisn', '=', 'nilai.nisn')
                 ->join('siswa', 'users.nisn', '=', 'siswa.nisn')
-                ->select('users.nisn', 'users.name', 'siswa.kelas','nilai.semester', 'siswa.jurusan', 'nilai.status','nilai.created_at')
-                ->groupBy('users.nisn', 'users.name', 'siswa.kelas','nilai.semester', 'siswa.jurusan', 'nilai.status','nilai.created_at')
+                ->select('users.nisn', 'users.name', 'siswa.kelas','siswa.jurusan','siswa.urutan_kelas', 'nilai.semester', 'nilai.status','nilai.created_at')
+                ->groupBy('users.nisn', 'users.name', 'siswa.kelas','siswa.jurusan','siswa.urutan_kelas', 'nilai.semester', 'nilai.status','nilai.created_at')
                 ->OrderBy('nilai.created_at')
                 ->where('nilai.status', 'Pending')
+                ->where('siswa.kelas', $kelas->walikelas)
+                ->where('siswa.jurusan', $kelas->jurusan)
+                ->where('siswa.urutan_kelas', $kelas->urutan_kelas)
                 ->limit(1)
                 ->get();
 
         return view('nilai.data_nilai_guru',[
             'title' => 'Verifikasi Nilai',
-            'data' => $data
+            'data' => $data,
+            'data_profile' => $data_profile
         ]);
     }
     public function verifikasiGuruDetail($nisn){

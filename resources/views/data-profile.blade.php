@@ -69,7 +69,7 @@
                       @enderror
                     </div>
                     <div class="form-group mb-4">
-                      <label for="jurusan" class=""><i class="fa-solid fa-user-tie me-2"></i>Jurusan</label>
+                      <label for="jurusan" class=""><i class="fa-solid fa-school-flag me-2"></i>Jurusan</label>
                       <select class="form-select form-select-sm select-option-form p-2 mb-3  w-100" aria-label="Small select example" id="jurusan" name="jurusan">
                         <option value="">Pilih Jurusan</option>
                         @foreach ($jurusans as $jurusan)
@@ -81,6 +81,10 @@
                       @enderror
                     </div>
                     {{-- Tahun lulus --}}
+                    <div class="form-group mb-4" id="urutan_kelas">
+                      <label for="urutan_kelas" class=""><i class="fa-solid fa-list-ol me-2"></i>Urutan Kelas</label>
+                      <input type="text" value="{{ $siswa->urutan_kelas }}" class=" mb-3 mt-2 p-2 card w-100" name="urutan_kelas"></input>
+                    </div>
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-graduation-cap me-2"></i>Status</label>
                       <select class="form-select form-select-sm select-option-form p-2 mb-3  w-100" aria-label="Small select example" id="status" name="status">
@@ -267,9 +271,14 @@
                           </div>
                           {{-- Jurusan --}}
                           <div class="form-group mb-4">
-                            <label for="nama" class="fw-semibold"><i class="fa-solid fa-user-tie me-2"></i>Jurusan</label>
+                            <label for="nama" class="fw-semibold"><i class="fa-solid fa-school-flag me-2"></i>Jurusan</label>
                             <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->jurusan }}</p>
                           </div>
+                          <div class="form-group mb-4">
+                            <label for="urutan_kelas" class="fw-semibold"><i class="fa-solid fa-list-ol me-2"></i>Urutan Kelas</label>
+                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->urutan_kelas }}</p>
+                          </div>
+                          
                           {{-- Tahun lulus --}}
                           <div class="form-group mb-4">
                             <label for="nama" class="fw-semibold"><i class="fa-solid fa-graduation-cap me-2"></i>Status</label>
@@ -314,7 +323,7 @@
               @method('PUT')
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col-12 col-md-12">
+                  <div class="col-12 col-md-6">
                     {{-- NISN --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-id-card me-2"></i>NIP</label>
@@ -346,6 +355,37 @@
                       @error('jkelamin')
                         <small class="text-danger">{{ $message }}</small>
                       @enderror
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group mb-4">
+                      <label for="kelas" class=""><i class="fa-solid fa-chalkboard-user me-2"></i>Walikelas</label>
+                      <select class="form-select form-select-sm select-option-form p-2 mb-3  w-100" aria-label="Small select example" id="kelas" name="kelas">
+                        <option value="">Pilih Kelas</option>
+                        <option value="X" {{ $guru->walikelas == 'X' ? 'selected' : '' }}>X/SEPULUH</option>
+                        <option value="XI" {{ $guru->walikelas == 'XI' ? 'selected' : '' }}>XI/SEBELAS</option>
+                        <option value="XII" {{ $guru->walikelas == 'XII' ? 'selected' : '' }}>XII/DUA BELAS</option>
+                      </select>
+                      @error('kelas')
+                        <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for="jurusan" class=""><i class="fa-solid fa-school-flag me-2"></i>Jurusan</label>
+                      <select class="form-select form-select-sm select-option-form p-2 mb-3  w-100" aria-label="Small select example" id="jurusan" name="jurusan">
+                        <option value="">Pilih Jurusan</option>
+                        @foreach ($jurusans as $jurusan)
+                          <option value="{{ $jurusan->id_jurusan }}" {{ $guru->jurusan == $jurusan->id_jurusan ? 'selected' : '' }}>{{ $jurusan->nama_jurusan }}</option>
+                        @endforeach
+                      </select>
+                      @error('jurusan')
+                        <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                    {{-- Tahun lulus --}}
+                    <div class="form-group mb-4" id="urutan_kelas">
+                      <label for="urutan_kelas" class=""><i class="fa-solid fa-list-ol me-2"></i>Urutan Kelas</label>
+                      <input type="text" value="{{ $guru->urutan_kelas }}" class=" mb-3 mt-2 p-2 card w-100" name="urutan_kelas"></input>
                     </div>
                     <div class="form-group mb-4">
                       <label for="matapelajaran" class=""><i class="fa-solid fa-chalkboard me-2"></i>Mapel</label>
@@ -412,7 +452,7 @@
         </div>
       </div>
     </div>
-    @if ($guru->mata_pelajaran == false)
+    @if ($guru->mata_pelajaran == false || $guru->walikelas == false)
       <div class="row">
         <div class="col-12 mt-4">
             <div class="d-flex mb-3">
@@ -505,6 +545,18 @@
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
+                    <div class="form-group mb-4">
+                      <label for="nama" class="fw-semibold"><i class="fa-solid fa-chalkboard-user me-2"></i>Walikelas</label>
+                      <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->walikelas }}</p>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for="nama" class="fw-semibold"><i class="fa-solid fa-school-flag me-2"></i>Jurusan</label>
+                      <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->jurusan }}</p>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for="urutan_kelas" class="fw-semibold"><i class="fa-solid fa-list-ol me-2"></i>Urutan Kelas</label>
+                      <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->urutan_kelas }}</p>
+                    </div>
                     {{-- Kelas --}}
                     <div class="form-group mb-4">
                       <label for="nama" class="fw-semibold"><i class="fa-solid fa-chalkboard me-2"></i>Mata Pejaran</label>

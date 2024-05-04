@@ -41,6 +41,9 @@ class GuruSeeder extends Seeder
             'password' => bcrypt('guru1'),
             'alamat' => 'rumah guru',
             'jenis_kelamin' => 'Laki-laki',
+            'walikelas' => 'X',
+            'urutan_kelas' => '1',
+            'jurusan' => 'RPL', // Ganti dengan id jurusan yang sesuai
             'mata_pelajaran' => 'MTK', 
         ]);
 

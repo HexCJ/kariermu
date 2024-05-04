@@ -24,6 +24,7 @@ class SiswaSeeder extends Seeder
             'jenis_kelamin' => 'Laki-laki',
             'status' => 'Belum Lulus',
             'kelas' => 'X',
+            'urutan_kelas' => '1',
             'jurusan' => 'RPL', // Ganti dengan id jurusan yang sesuai
         ]);
     }
