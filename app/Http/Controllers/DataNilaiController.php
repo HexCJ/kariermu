@@ -332,7 +332,7 @@ class DataNilaiController extends Controller
         return view('nilai.data_nilai_guru',[
             'title' => 'Verifikasi Nilai',
             'data' => $data,
-            'data_profile' => $data_profile
+            'data_profile' => $data_profile,
         ]);
     }
     public function verifikasiGuruDetail($nisn){
