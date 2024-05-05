@@ -112,7 +112,10 @@ class DashboardController extends Controller
     public function detailStatusTidakKerja(Request $request)
     {
         $status = 'Menganggur';
-        $query = Laporan::query()->where('status', $status);
+        $query = Laporan::join('siswa','siswa.nisn','=','laporan.nisn')
+                ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.tahun_lulus', 'laporan.status')
+                ->where('laporan.status', $status);
+
         $jurusans = Jurusan::all();
 
         // Tampilkan data
@@ -133,7 +136,10 @@ class DashboardController extends Controller
     public function detailStatusKerja(Request $request)
     {
         $status = 'Bekerja';
-        $query = Laporan::query()->where('status', $status);
+        $query = Laporan::join('siswa','siswa.nisn','=','laporan.nisn')
+        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.tahun_lulus', 'laporan.status')
+        ->where('laporan.status', $status);
+
         $jurusans = Jurusan::all();
  
         // Tampilkan data
@@ -154,7 +160,10 @@ class DashboardController extends Controller
     public function detailStatusKuliah(Request $request)
     {
         $status = 'Kuliah';
-        $query = Laporan::query()->where('status', $status);
+        $query = Laporan::join('siswa','siswa.nisn','=','laporan.nisn')
+                ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.tahun_lulus', 'laporan.status')
+                ->where('laporan.status', $status);
+
         $jurusans = Jurusan::all();
 
  
@@ -176,7 +185,10 @@ class DashboardController extends Controller
     public function detailStatusWira(Request $request)
     {
         $status = 'Wirausaha';
-        $query = Laporan::query()->where('status', $status);
+        $query = Laporan::join('siswa','siswa.nisn','=','laporan.nisn')
+        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.tahun_lulus', 'laporan.status')
+        ->where('laporan.status', $status);
+        
         $jurusans = Jurusan::all();
 
  

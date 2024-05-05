@@ -23,22 +23,22 @@
                     {{-- NISN --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-id-card me-2"></i>NISN</label>
-                      <input type="text" readonly value="{{ $siswa->nisn }}" class="text-secondary mb-3 mt-2 p-2 card w-100"  id="nisn" name="nisn"></input>
+                      <input type="text" required readonly value="{{ $siswa->nisn }}" class="text-secondary mb-3 mt-2 p-2 card w-100"  id="nisn" name="nisn" placeholder=""></input>
                     </div>
                     {{-- Nama --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                      <input type="text" value="{{ $siswa->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100"  id="nama" name="nama"></input>
+                      <input type="text" required value="{{ $siswa->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100"  id="nama" name="nama" placeholder="ex : Sucipto Darmono"></input>
                     </div>
                     {{-- Email --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-envelope me-2"></i>Email</label>
-                      <input type="text" value="{{ $siswa->email }}" class=" mb-3 mt-2 p-2 card w-100" id="email" name="email"></input>
+                      <input type="email" required value="{{ $siswa->email }}" class=" mb-3 mt-2 p-2 card w-100" id="email" name="email" placeholder="ex : suciptodarmono12@example.com"></input>
                     </div>
                     {{-- Alamat --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                      <input type="text" value="{{ $siswa->alamat }}" class=" mb-3 mt-2 p-2 card w-100" id="alamat" name="alamat"></input>
+                      <input type="text" required value="{{ $siswa->alamat }}" class=" mb-3 mt-2 p-2 card w-100" id="alamat" name="alamat" placeholder="ex : Jl.Prabu No.12A Kel.Gembor Kec.Periuk Kota Tangerang"></input>
                     </div>
                     {{-- jk --}}
                     <div class="form-group mb-4">
@@ -83,7 +83,7 @@
                     {{-- Tahun lulus --}}
                     <div class="form-group mb-4" id="urutan_kelas">
                       <label for="urutan_kelas" class=""><i class="fa-solid fa-list-ol me-2"></i>Urutan Kelas</label>
-                      <input type="text" value="{{ $siswa->urutan_kelas }}" class=" mb-3 mt-2 p-2 card w-100" name="urutan_kelas"></input>
+                      <input type="text" value="{{ $siswa->urutan_kelas }}" class=" mb-3 mt-2 p-2 card w-100" name="urutan_kelas" placeholder="ex : 1"></input>
                     </div>
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-graduation-cap me-2"></i>Status</label>
@@ -116,7 +116,7 @@
                     {{-- Tahun lulus --}}
                     <div class="form-group mb-4" id="lulus">
                       <label for="nama" class=""><i class="fa-solid fa-calendar-days me-2"></i>Tahun Lulus</label>
-                      <input type="text" value="{{ $siswa->tahun_lulus }}" class=" mb-3 mt-2 p-2 card w-100" name="lulus"></input>
+                      <input type="text" value="{{ $siswa->tahun_lulus }}" class=" mb-3 mt-2 p-2 card w-100" name="lulus" placeholder="ex : 2024"></input>
                     </div>
                   </div>
                 </div>
@@ -305,7 +305,6 @@
       </div>
     @endif
   @endif
-
     {{-- Guru --}}
   @if (auth()->user()->hasRole('guru'))
     <!-- Modal Update -->
@@ -332,17 +331,17 @@
                     {{-- Nama --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                      <input type="text"  value="{{ $guru->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100 w-100" id="nama" name="nama"></input>
+                      <input type="text"  value="{{ $guru->name }}" class="text-secondary mb-3 mt-2 p-2 card w-100 w-100" id="nama" name="nama" placeholder="ex : Sucipto Darmono"></input>
                     </div>
                     {{-- Email --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-envelope me-2"></i>Email</label>
-                      <input type="text" value="{{ $guru->email }}" class="mb-3 mt-2 p-2 card w-100 w-100"  id="email" name="email"></input>
+                      <input type="email" value="{{ $guru->email }}" class="mb-3 mt-2 p-2 card w-100 w-100"  id="email" name="email"  placeholder="ex : suciptodarmono12@example.com"></input>
                     </div>
                     {{-- Alamat --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                      <input type="text" value="{{ $guru->alamat }}" class="mb-3 mt-2 p-2 card w-100 w-100" id="alamat" name="alamat"></input>
+                      <input type="text" value="{{ $guru->alamat }}" class="mb-3 mt-2 p-2 card w-100 w-100" id="alamat" name="alamat" placeholder="ex : Jl.Prabu No.12A Kel.Gembor Kec.Periuk Kota Tangerang"></input>
                     </div>
                     {{-- jk --}}
                     <div class="form-group mb-4">
@@ -385,7 +384,7 @@
                     {{-- Tahun lulus --}}
                     <div class="form-group mb-4" id="urutan_kelas">
                       <label for="urutan_kelas" class=""><i class="fa-solid fa-list-ol me-2"></i>Urutan Kelas</label>
-                      <input type="text" value="{{ $guru->urutan_kelas }}" class=" mb-3 mt-2 p-2 card w-100" name="urutan_kelas"></input>
+                      <input type="text" value="{{ $guru->urutan_kelas }}" class=" mb-3 mt-2 p-2 card w-100" name="urutan_kelas" placeholder="ex : 1"></input>
                     </div>
                     <div class="form-group mb-4">
                       <label for="matapelajaran" class=""><i class="fa-solid fa-chalkboard me-2"></i>Mapel</label>
@@ -607,12 +606,12 @@
                     {{-- Email --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-envelope me-2"></i>Email</label>
-                      <input type="text" value="{{ $admin->email }}" class=" mb-3 mt-2 p-2 card w-100" id="email" name="email"></input>
+                      <input type="email" value="{{ $admin->email }}" class=" mb-3 mt-2 p-2 card w-100" id="email" name="email"></input>
                     </div>
                     {{-- Nama --}}
                     <div class="form-group mb-4">
                       <label for="nama" class=""><i class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                      <input type="text" value="{{ $admin->alamat }}" class=" mb-3 mt-2 p-2 card w-100" id="alamat" name="alamat"></input>
+                      <input type="text" value="{{ $admin->alamat }}" class=" mb-3 mt-2 p-2 card w-100" id="alamat" name="alamat" placeholder=""></input>
                     </div>
                     <div class="form-group mb-4">
                       <label for="jkelamin" class=""><i class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>

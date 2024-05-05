@@ -170,14 +170,14 @@ class GuruController extends Controller
     {
         // Ambil data guru berdasarkan ID
     $data = Guru::findOrFail($id);
-
-    // Ambil data mata pelajaran dari tabel mata pelajaran
+    $jurusans = Jurusan::all();
     $matapelajarans = MataPelajaran::all();
 
     return view('teacher/dataguru_update',[
         'title' => 'Edit Data Guru',
         'data' => $data,
-        'matapelajarans' => $matapelajarans // Kirim data mata pelajaran ke view
+        'matapelajarans' => $matapelajarans, // Kirim data mata pelajaran ke view
+        'jurusans' => $jurusans // Kirim data mata pelajaran ke view
     ]);
    
     }

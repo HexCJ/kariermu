@@ -7,7 +7,6 @@
                 <div class="col-12 mt-4">
                     <div class="d-flex">
                         <h4>List Siswa {{ $status }}</h4>
-                        {{-- <a href="/guru/tambah" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Guru</a> --}}
                     </div>
                     <div class="container-fluid px-4" data-aos="fade-up">
                         <div class="row">
@@ -49,7 +48,10 @@
                                                         <tr>
                                                             <th>NISN</th>
                                                             <th>Nama</th>
+                                                            <th>Kelas</th>
                                                             <th>Jurusan</th>
+                                                            <th>Urutan Kelas</th>
+                                                            <th>Tahun Lulus</th>
                                                             <th>Status</th>
                                                         </tr>
                                                     </thead>
@@ -58,7 +60,10 @@
                                                             <tr>
                                                                 <td>{{ $d->nisn }}</td>
                                                                 <td>{{ $d->name }}</td>
+                                                                <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
+                                                                <td>{{ $d->urutan_kelas }}</td>
+                                                                <td>{{ $d->tahun_lulus }}</td>
                                                                 <td>{{ $d->status }}</td>
                                                             </tr>
                                                         @endforeach
@@ -79,7 +84,6 @@
                 <div class="col-12 mt-4">
                     <div class="d-flex">
                         <h4>List Siswa {{ $status}}</h4>
-                        {{-- <a href="/guru/tambah" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Guru</a> --}}
                     </div>
                     <div class="container-fluid px-4" data-aos="fade-up">
                         <div class="row">
@@ -121,9 +125,11 @@
                                                         <tr>
                                                             <th>NISN</th>
                                                             <th>Nama</th>
+                                                            <th>Kelas</th>
                                                             <th>Jurusan</th>
+                                                            <th>Urutan Kelas</th>
+                                                            <th>Tahun Lulus</th>
                                                             <th>Status</th>
-                                                            <th>Tempat Bekerja</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -131,9 +137,11 @@
                                                             <tr>
                                                                 <td>{{ $d->nisn }}</td>
                                                                 <td>{{ $d->name }}</td>
+                                                                <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
+                                                                <td>{{ $d->urutan_kelas }}</td>
+                                                                <td>{{ $d->tahun_lulus }}</td>
                                                                 <td>{{ $d->status }}</td>
-                                                                <td>{{ $d->tempat_kerja_kuliah }}</td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -153,7 +161,6 @@
                 <div class="col-12 mt-4">
                     <div class="d-flex">
                         <h4>List Siswa {{ $status}}</h4>
-                        {{-- <a href="/guru/tambah" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Guru</a> --}}
                     </div>
                     <div class="container-fluid px-4" data-aos="fade-up">
                         <div class="row">
@@ -195,9 +202,11 @@
                                                         <tr>
                                                             <th>NISN</th>
                                                             <th>Nama</th>
+                                                            <th>Kelas</th>
                                                             <th>Jurusan</th>
+                                                            <th>Urutan Kelas</th>
+                                                            <th>Tahun Lulus</th>
                                                             <th>Status</th>
-                                                            <th>Tempat Bekerja</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -205,9 +214,11 @@
                                                             <tr>
                                                                 <td>{{ $d->nisn }}</td>
                                                                 <td>{{ $d->name }}</td>
+                                                                <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
+                                                                <td>{{ $d->urutan_kelas }}</td>
+                                                                <td>{{ $d->tahun_lulus }}</td>
                                                                 <td>{{ $d->status }}</td>
-                                                                <td>{{ $d->tempat_kerja_kuliah }}</td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -227,7 +238,6 @@
                 <div class="col-12 mt-4">
                     <div class="d-flex">
                         <h4>List Siswa {{ $status}}</h4>
-                        {{-- <a href="/guru/tambah" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Guru</a> --}}
                     </div>
                     <div class="container-fluid px-4" data-aos="fade-up">
                         <div class="row">
@@ -269,9 +279,11 @@
                                                         <tr>
                                                             <th>NISN</th>
                                                             <th>Nama</th>
+                                                            <th>Kelas</th>
                                                             <th>Jurusan</th>
+                                                            <th>Urutan Kelas</th>
+                                                            <th>Tahun Lulus</th>
                                                             <th>Status</th>
-                                                            <th>Tempat Bekerja</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -279,9 +291,11 @@
                                                             <tr>
                                                                 <td>{{ $d->nisn }}</td>
                                                                 <td>{{ $d->name }}</td>
+                                                                <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
+                                                                <td>{{ $d->urutan_kelas }}</td>
+                                                                <td>{{ $d->tahun_lulus }}</td>
                                                                 <td>{{ $d->status }}</td>
-                                                                <td>{{ $d->tempat_kerja_kuliah }}</td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>

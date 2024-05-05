@@ -8,7 +8,7 @@
     <div class="col-12 mt-4">
       <h4>Edit Guru</h4>
       <form action="">
-        <div class="row mb-3 mt-5" data-aos="fade-up">
+        <div class="row mb-3 mt-5">
           <div class="col-12">
             <label for="nama" class="text-secondary mb-3">NIP</label>
             <div class="input-group mb-2">
@@ -19,7 +19,7 @@
             @enderror
           </div>
         </div>
-        <div class="mb-4 col-12" data-aos="fade-up">
+        <div class="mb-4 col-12">
           <label for="photo" class="text-secondary mb-3">Foto</label>
           <div class="row">
             <div class="col-3">
@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        <div class="row mb-2"  data-aos="fade-up">
+        <div class="row mb-2">
           <div class="col-12 col-md-6">
             <label for="nama" class="text-secondary mb-3">Nama Lengkap</label>
             <div class="input-group mb-2">
@@ -61,7 +61,7 @@
             @enderror
           </div>
         </div>
-        <div class="row mb-3"  data-aos="fade-up">
+        <div class="row mb-3">
           <div class="col-12">
             <label for="alamat" class="text-secondary mb-3">Alamat</label>
             <div class="input-group mb-2">
@@ -72,36 +72,38 @@
             @enderror
           </div>
         </div>
-        <div class="mb-4 col-6">
-          <label for="jurusan" class="text-secondary mb-3">Jurusan</label>
-          <select class="form-select form-select-sm py-2 mb-3 text-secondary"
-              aria-label="Small select example" id="jurusan" name="jurusan">
-              <option selected disabled>Pilih Jurusan</option>
-              @foreach ($jurusans as $jurusan)
-                  <option value="{{ $jurusan->id_jurusan }}"
-                      {{ $data->jurusan == $jurusan->id_jurusan ? 'selected' : '' }}>
-                      {{ $jurusan->nama_jurusan }}</option>
-              @endforeach
-          </select>
-      </div>
-      <div class="mb-4 col-6">
-          <label for="kelas" class="text-secondary mb-3">Kelas</label>
-          <select class="form-select form-select-sm py-2 mb-3 text-secondary"
-              aria-label="Small select example" id="kelas" name="kelas">
-              <option value="X" {{ $data->kelas == 'X' ? 'selected' : '' }}>X/SEPULUH</option>
-              <option value="XI" {{ $data->kelas == 'XI' ? 'selected' : '' }}>XI/SEBELAS</option>
-              <option value="XII" {{ $data->kelas == 'XII' ? 'selected' : '' }}>XII/DUA BELAS
-              </option>
-          </select>
-      </div>
-      <div class="mb-4 col-12">
-          <label for="urutan_kelas" class="text-secondary mb-3">Urutan Kelas</label>
-          <div class="input-group">
-              <input type="text" class="form-control" id="urutan_kelas" name="urutan_kelas"
-                  value="{{ $data->urutan_kelas }}">
+        <div class="row">
+          <div class="mb-4 col-6">
+            <label for="jurusan" class="text-secondary mb-3">Jurusan</label>
+            <select class="form-select form-select-sm py-2 mb-3 text-secondary"
+                aria-label="Small select example" id="jurusan" name="jurusan">
+                <option selected disabled>Pilih Jurusan</option>
+                @foreach ($jurusans as $jurusan)
+                    <option value="{{ $jurusan->id_jurusan }}"
+                        {{ $data->jurusan == $jurusan->id_jurusan ? 'selected' : '' }}>
+                        {{ $jurusan->nama_jurusan }}</option>
+                @endforeach
+            </select>
           </div>
-      </div>
-        <div class="row mb-3"  data-aos="fade-up">
+          <div class="mb-4 col-6">
+            <label for="kelas" class="text-secondary mb-3">Kelas</label>
+            <select class="form-select form-select-sm py-2 mb-3 text-secondary"
+                aria-label="Small select example" id="kelas" name="kelas">
+                <option value="X" {{ $data->kelas == 'X' ? 'selected' : '' }}>X/SEPULUH</option>
+                <option value="XI" {{ $data->kelas == 'XI' ? 'selected' : '' }}>XI/SEBELAS</option>
+                <option value="XII" {{ $data->kelas == 'XII' ? 'selected' : '' }}>XII/DUA BELAS
+                </option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-4 col-12">
+            <label for="urutan_kelas" class="text-secondary mb-3">Urutan Kelas</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="urutan_kelas" name="urutan_kelas"
+                    value="{{ $data->urutan_kelas }}">
+            </div>
+        </div>
+        <div class="row mb-3">
           <div class="col-12 col-md-12">
             <label for="email" class="text-secondary mb-3">Email</label>
             <div class="input-group mb-2">
@@ -112,7 +114,7 @@
             @enderror
           </div>
         </div>
-        <div class="row" data-aos="fade-up">
+        <div class="row mb-4">
           <div class="col-12">
             <label for="matapelajaran" class="text-secondary mb-3">Mata Pelajaran</label>
             <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="matapelajaran" name="matapelajaran">

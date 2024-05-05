@@ -56,13 +56,6 @@ class Controller extends BaseController
     {   
         $nisn = Auth::user()->nisn;
         $kelas = Siswa::select('kelas')->where('nisn',$nisn)->first();
-        // $data = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
-        // ->join('semester', 'semester.id_semester','=','nilai.semester')
-        // ->select('siswa.nisn','semester.semester_ke', 'nilai.semester', 'nilai.status')
-        // ->groupBy('siswa.nisn','semester.semester_ke','nilai.semester', 'nilai.status')
-        // ->where('siswa.nisn', $nisn)
-        // ->get();
-        // Mengambil data sesuai kriteria
 
         $data = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
         ->join('semester', 'semester.id_semester', '=', 'nilai.semester')
