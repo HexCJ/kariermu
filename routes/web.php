@@ -76,6 +76,8 @@ Route::get('/verifikasi_nilai',[DataNilaiController::class,'verifikasiGuru'])->m
 Route::get('/verifikasi_nilai/verifikasi/{nisn}',[DataNilaiController::class,'verifikasiGuruDetail'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi.nilai');
 Route::put('/verifikasi_nilai/verifikasi/{nisn}/tolak/{id}',[DataNilaiController::class,'tolakNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('tolak.nilai');
 Route::put('/verifikasi_nilai/verifikasi/{nisn}/terima/{id}',[DataNilaiController::class,'terimaNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('terima.nilai');
+Route::put('/verifikasi_nilai/verifikasi/tolaksemua/{nisn}/semester/{semester}',[DataNilaiController::class,'tolakNilaiSemua'])->middleware(['auth', 'verified', 'role:guru'])->name('tolak.nilai.semua');
+Route::put('/verifikasi_nilai/verifikasi/terimasemua/{nisn}/semester/{semester}',[DataNilaiController::class,'terimaNilaiSemua'])->middleware(['auth', 'verified', 'role:guru'])->name('terima.nilai.semua');
 // Route::put('/verifikasi_nilai/verifikasi/terima/{id}',[DataNilaiController::class,'terimaNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('terima.nilai');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');

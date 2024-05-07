@@ -56,6 +56,30 @@
                                 @if ($semester1->isEmpty())
                                     @yield('alert-kosong')
                                 @elseif(!$semester1->isEmpty())
+                                @php
+                                    $semester = 'S1';
+                                @endphp
+                                <div class="d-flex justify-content-end gap-3 mb-2">
+                                    <div class="tolak-semua">
+                                        <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" value="Tidak Terverifikasi"
+                                            name="status">
+                                        <button type="submit" class="btn btn-danger">Tolak semua nilai<i
+                                                class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                        </form>
+                                    </div>
+                                    <div class="terima-semua">
+                                        <form action="{{ route('terima.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" value="Terverifikasi" name="status">
+                                        <button type="submit" class="btn btn-success">Terima semua nilai<i
+                                                class="ms-2 fa-regular fa-circle-check"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
                                     @foreach ($semester1 as $d)
                                         <div class="col-12 col-md-4 col-lg-3 mt-3">
                                             <div class="card">
@@ -103,6 +127,30 @@
                                 @if ($semester2->isEmpty())
                                     @yield('alert-kosong')
                                 @elseif(!$semester2->isEmpty())
+                                    @php
+                                    $semester = 'S2';
+                                    @endphp
+                                    <div class="d-flex justify-content-end gap-3 mb-2">
+                                        <div class="tolak-semua">
+                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" value="Tidak Terverifikasi"
+                                                name="status">
+                                            <button type="submit" class="btn btn-danger">Tolak semua nilai<i
+                                                    class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                            </form>
+                                        </div>
+                                        <div class="terima-semua">
+                                            <form action="{{ route('terima.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" value="Terverifikasi" name="status">
+                                            <button type="submit" class="btn btn-success">Terima semua nilai<i
+                                                    class="ms-2 fa-regular fa-circle-check"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
                                     @foreach ($semester2 as $d)
                                         <div class="col-12 col-md-4 col-lg-3 mt-3">
                                             <div class="card">
@@ -151,6 +199,30 @@
                                 @if ($semester3->isEmpty())
                                     @yield('alert-kosong')
                                 @elseif(!$semester3->isEmpty())
+                                    @php
+                                    $semester = 'S3';
+                                    @endphp
+                                    <div class="d-flex justify-content-end gap-3 mb-2">
+                                        <div class="tolak-semua">
+                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" value="Tidak Terverifikasi"
+                                                name="status">
+                                            <button type="submit" class="btn btn-danger">Tolak semua nilai<i
+                                                    class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                            </form>
+                                        </div>
+                                        <div class="terima-semua">
+                                            <form action="{{ route('terima.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" value="Terverifikasi" name="status">
+                                            <button type="submit" class="btn btn-success">Terima semua nilai<i
+                                                    class="ms-2 fa-regular fa-circle-check"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
                                     @foreach ($semester3 as $d)
                                         <div class="col-12 col-md-4 col-lg-3 mt-3">
                                             <div class="card">
@@ -199,6 +271,30 @@
                                 @if ($semester4->isEmpty())
                                     @yield('alert-kosong')
                                 @elseif(!$semester4->isEmpty())
+                                    @php
+                                    $semester = 'S4';
+                                    @endphp
+                                    <div class="d-flex justify-content-end gap-3 mb-2">
+                                        <div class="tolak-semua">
+                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" value="Tidak Terverifikasi"
+                                                name="status">
+                                            <button type="submit" class="btn btn-danger">Tolak semua nilai<i
+                                                    class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                            </form>
+                                        </div>
+                                        <div class="terima-semua">
+                                            <form action="{{ route('terima.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" value="Terverifikasi" name="status">
+                                            <button type="submit" class="btn btn-success">Terima semua nilai<i
+                                                    class="ms-2 fa-regular fa-circle-check"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
                                     @foreach ($semester4 as $d)
                                         <div class="col-12 col-md-4 col-lg-3 mt-3">
                                             <div class="card">
@@ -247,6 +343,30 @@
                                 @if ($semester5->isEmpty())
                                     @yield('alert-kosong')
                                 @elseif(!$semester5->isEmpty())
+                                    @php
+                                    $semester = 'S5';
+                                    @endphp
+                                    <div class="d-flex justify-content-end gap-3 mb-2">
+                                        <div class="tolak-semua">
+                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" value="Tidak Terverifikasi"
+                                                name="status">
+                                            <button type="submit" class="btn btn-danger">Tolak semua nilai<i
+                                                    class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                            </form>
+                                        </div>
+                                        <div class="terima-semua">
+                                            <form action="{{ route('terima.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" value="Terverifikasi" name="status">
+                                            <button type="submit" class="btn btn-success">Terima semua nilai<i
+                                                    class="ms-2 fa-regular fa-circle-check"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
                                     @foreach ($semester5 as $d)
                                         <div class="col-12 col-md-4 col-lg-3 mt-3">
                                             <div class="card">

@@ -31,27 +31,40 @@
                             @elseif(!$data->isEmpty())
                                 @foreach ($data as $d)
                                     <div class="col-12 col-xl-3 col-md-6 mt-4">
-                                        <div class="card-body alert alert-secondary">
+                                        <div class="card-body alert alert-primary">
+                                            @if($d->image)
+                                            <div class="d-flex justify-content-center align-items-cebter mb-5 mt-3">
+                                                <img src="{{ asset('storage/photo-user/'.$d->image) }}" alt="" class="profile-foto">
+                                            </div>
+                                            @elseif($d->jenis_kelamin === 'Laki-laki')
+                                            <div class="d-flex justify-content-center align-items-cebter mb-5 mt-3">
+                                                <img src="{{ asset('img/sma_profile1.png') }}" alt="" class="profile-foto">
+                                            </div>
+                                            @elseif($d->jenis_kelamin === 'Perempuan')
+                                                <div class="d-flex justify-content-center align-items-cebter mb-5 mt-3">
+                                                    <img src="{{ asset('img/sma_profile2.png') }}" alt="" class="profile-foto">
+                                                </div>
+                                            @endif
                                             <div class="d-flex">
                                                 <div class="d-flex flex-column">
                                                     <label for="nama" class="fw-medium mb-3"><i
                                                             class="fa-solid fa-id-card me-2"></i>NISN</label>
-                                                    <p class="mb-4 text-secondary">{{ $d->nisn }}</p>
+                                                    <p class="mb-4">{{ $d->nisn }}</p>
                                                 </div>
                                                 <div class="d-flex flex-column ms-auto">
                                                     <p class="ms-auto" style="font-size: 12px">menunggu..<i
                                                             class="fa-solid fa-clock-rotate-left ms-2"
                                                             style="font-size: 1rem"></i>
                                                     </p>
-                                                    <p class="ms-auto" style="font-size: 12px">{{ $d->created_at }}</p>
+                                                    <p class="ms-auto" style="font-size: 12px">{{ $d->last_created_at }}</p>
                                                 </div>
                                             </div>
                                             <label for="nama" class="fw-medium mb-3"><i
                                                     class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                                            <p class="mb-4 text-secondary">{{ $d->name }}</p>
+                                            <p class="mb-4">{{ $d->name }}</p>
                                             <label for="kelas" class="fw-medium mb-3"><i
                                                     class="fa-solid fa-school me-2"></i>Kelas</label>
-                                            <p class="mb-4 text-secondary">{{ $d->kelas }} {{ $d->jurusan }}</p>
+                                            <p class="mb-4">{{ $d->kelas }} {{ $d->jurusan }} {{ $d->urutan_kelas }}</p>
                                             <!-- Button trigger modal -->
                                             <div class="d-flex">
                                                 <a href="{{ route('verifikasi.nilai', ['nisn' => $d->nisn]) }}"

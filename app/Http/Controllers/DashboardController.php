@@ -53,7 +53,7 @@ class DashboardController extends Controller
             $guru = Guru::where('nip', $nip)->first();
             // Jika data guru ketemu, balikin view dengan data guru
             if ($guru) {
-                return view('dashboard', [
+                return view('dashboard.dashboard-guru', [
                     'guru' => $guru,
                     'totalkerja' => $totalkerja,
                     'totalkuliah' => $totalkuliah,
@@ -74,7 +74,7 @@ class DashboardController extends Controller
             // kalo data siswa ketemu, balik ke view dengan data siswa
             if ($siswa) {
                 $jurusans = Jurusan::all();
-                return view('dashboard', [
+                return view('dashboard.dashboard-siswa', [
                     'siswa' => $siswa,
                     'jurusans' => $jurusans,
                     'title' => 'Dashboard'
@@ -90,7 +90,7 @@ class DashboardController extends Controller
     
             // kalo data admin ketemu, kembalikan view dengan data admin
             if ($admin) {
-                return view('dashboard', [
+                return view('dashboard.dashboard-admin', [
                     'admin' => $admin,
                     'totalkerja' => $totalkerja,
                     'totalkuliah' => $totalkuliah,

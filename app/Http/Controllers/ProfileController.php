@@ -464,7 +464,7 @@ class ProfileController extends Controller
         if ($guru) {
             $jurusans = Jurusan::all();
             $mapels = MataPelajaran::all();
-            return view('data-profile', [
+            return view('data-profile.profile-guru', [
                 'guru' => $guru,
                 'mapels' => $mapels,
                 'jurusans' => $jurusans,
@@ -483,7 +483,7 @@ class ProfileController extends Controller
         // kalo data siswa ketemu, balik ke view dengan data siswa
         if ($siswa) {
             $jurusans = Jurusan::all();
-            return view('data-profile', [
+            return view('data-profile.profile-siswa', [
                 'siswa' => $siswa,
                 'jurusans' => $jurusans,
                 'title' => 'Data Profile'
@@ -499,7 +499,7 @@ class ProfileController extends Controller
 
         // kalo data admin ketemu, kembalikan view dengan data admin
         if ($admin) {
-            return view('data-profile', [
+            return view('data-profile.profile-admin', [
                 'admin' => $admin,
                 'title' => 'Data Profile'
             ]);

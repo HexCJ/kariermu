@@ -30,9 +30,11 @@
                                                 <option value="Wirausaha"
                                                     {{ old('status') == 'Wirausaha' ? 'selected' : '' }}>Wirausaha
                                                 </option>
+                                                @if($status_siswa->status === 'Lulus')
                                                 <option value="Menganggur"
                                                     {{ old('status') == 'Menganggur' ? 'selected' : '' }}>Menganggur
                                                 </option>
+                                                @endif
                                             </select>
                                             @error('status')
                                                 <small class="text-danger">{{ $message }}</small>
@@ -115,9 +117,11 @@
                                                 <option value="Wirausaha"
                                                     {{ $siswa->status == 'Wirausaha' ? 'selected' : '' }}>Wirausaha
                                                 </option>
-                                                <option value="Menganggur"
-                                                    {{ $siswa->status == 'Menganggur' ? 'selected' : '' }}>Menganggur
-                                                </option>
+                                                @if($status_siswa->status === 'Lulus')
+                                                    <option value="Menganggur"
+                                                        {{ $siswa->status == 'Menganggur' ? 'selected' : '' }}>Menganggur
+                                                    </option>
+                                                @endif
                                             </select>
                                             @error('status')
                                                 <small class="text-danger">{{ $message }}</small>
@@ -254,4 +258,4 @@
                 </div>
             </div>
         @endif
-    @endsection
+@endsection

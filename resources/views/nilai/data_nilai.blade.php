@@ -196,6 +196,7 @@
                 scale: {
                     y: {
                         suggestedMax: 100,
+                        suggestedMin: 0,
                     }
                 }
             }
