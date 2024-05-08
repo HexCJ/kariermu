@@ -4,9 +4,6 @@
     {{-- user --}}
     <div class="row px-4 px-md-5">
       <div class="col-12 mt-4">
-        {{-- <div class="d-flex justify-content-between" data-aos="fade-up">
-          <h4 class="h4">Welcome Siswa To Dashboard SMKN 4 Tangerang</h4>
-        </div> --}}
         <div class="row mt-5 px-0 px-lg-3 px-xl-1">
           <div class="col-12 col-md-6 text-center">
             <img src="{{ asset('img/dashboard.png') }}" alt="" class="w-50">

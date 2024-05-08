@@ -210,41 +210,45 @@
                                 <div class="card-body">
                                     <h4 class="mb-3">Personal Information</h4>
                                     <h4 class="mb-3 border-bottom"></h4>
-                                    <div class="data-profile row px-2 px-md-5 py-3">
-                                        <div class="col-12">
+                                    <div class="data-profile1 row px-2 px-md-5 py-3">
+                                        <div class="col-12 col-md-6">
                                             {{-- NISN --}}
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-id-card me-2"></i>ID Admin</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->id_admin }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $admin->id_admin }}</p>
                                             </div>
                                             {{-- Nama --}}
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->name }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $admin->name }}</p>
                                             </div>
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-envelope me-2"></i>Email</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->email }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $admin->email }}</p>
                                             </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->alamat }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $admin->alamat }}</p>
                                             </div>
                                             {{-- jk --}}
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $admin->jenis_kelamin }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $admin->jenis_kelamin }}</p>
                                             </div>
                                         </div>
-                                        <div class="d-flex justify-content-end">
-                                            <p class=""><a href="" class="cursor-pointer btn btn-success"
-                                                    data-bs-toggle="modal" data-bs-target="#editProfileAdmin"><i
-                                                        class="fa-regular fa-pen-to-square"></i></a></p>
+                                        <div class="row">
+                                            <div class="d-flex justify-content-end">
+                                                <p class="d-inline"><a href="" class="cursor-pointer btn btn-success"
+                                                        data-bs-toggle="modal" data-bs-target="#editProfileAdmin"><i
+                                                            class="fa-regular fa-pen-to-square"></i></a></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

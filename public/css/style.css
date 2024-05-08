@@ -98,6 +98,9 @@
 .group-list {
     color: white;
 }
+.status-foto{
+    width: 300px;
+}
 
 .a-icon {
     text-decoration: none;
@@ -204,6 +207,12 @@
     width: 450px;
     height: auto;
 }
+.form-status{
+    padding-top: 10rem !important;
+}
+.data-profile1 {
+    min-height: 70vh;
+}
 @media (max-width: 576px) {
     h4 {
         font-size: 20px !important;
@@ -254,6 +263,12 @@
     .notfound1 {
         width: px;
         height: auto;
+    }
+    .status-foto{
+        width: 100px;
+    }
+    .data-profile1 {
+        min-height: 80vh;
     }
 }
 

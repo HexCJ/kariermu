@@ -279,54 +279,54 @@
                                         <div class="form-group mb-4">
                                             <label for="nama" class="fw-semibold"><i
                                                     class="fa-solid fa-id-card me-2"></i>NIP</label>
-                                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->nip }}</p>
+                                            <p class=" mb-3 mt-2 p-2 w-100">{{ $guru->nip }}</p>
                                         </div>
                                         {{-- Nama --}}
                                         <div class="form-group mb-4">
                                             <label for="nama" class="fw-semibold"><i
                                                     class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->name }}</p>
+                                            <p class=" mb-3 mt-2 p-2 w-100">{{ $guru->name }}</p>
                                         </div>
                                         {{-- Email --}}
                                         <div class="form-group mb-4">
                                             <label for="nama" class="fw-semibold"><i
                                                     class="fa-solid fa-envelope me-2"></i>Email</label>
-                                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->email }}</p>
+                                            <p class=" mb-3 mt-2 p-2 w-100">{{ $guru->email }}</p>
                                         </div>
                                         {{-- Alamat --}}
                                         <div class="form-group mb-4">
                                             <label for="nama" class="fw-semibold"><i
                                                     class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->alamat }}</p>
+                                            <p class=" mb-3 mt-2 p-2 w-100">{{ $guru->alamat }}</p>
                                         </div>
                                         {{-- jk --}}
                                         <div class="form-group mb-4">
                                             <label for="nama" class="fw-semibold"><i
                                                     class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
-                                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->jenis_kelamin }}</p>
+                                            <p class=" mb-3 mt-2 p-2 w-100">{{ $guru->jenis_kelamin }}</p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group mb-4">
                                             <label for="nama" class="fw-semibold"><i
                                                     class="fa-solid fa-chalkboard-user me-2"></i>Walikelas</label>
-                                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->walikelas }}</p>
+                                            <p class=" mb-3 mt-2 p-2 w-100">{{ $guru->walikelas }}</p>
                                         </div>
                                         <div class="form-group mb-4">
                                             <label for="nama" class="fw-semibold"><i
                                                     class="fa-solid fa-school-flag me-2"></i>Jurusan</label>
-                                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->jurusan }}</p>
+                                            <p class=" mb-3 mt-2 p-2 w-100">{{ $guru->jurusan }}</p>
                                         </div>
                                         <div class="form-group mb-4">
                                             <label for="urutan_kelas" class="fw-semibold"><i
                                                     class="fa-solid fa-list-ol me-2"></i>Urutan Kelas</label>
-                                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->urutan_kelas }}</p>
+                                            <p class=" mb-3 mt-2 p-2 w-100">{{ $guru->urutan_kelas }}</p>
                                         </div>
                                         {{-- Kelas --}}
                                         <div class="form-group mb-4">
                                             <label for="nama" class="fw-semibold"><i
                                                     class="fa-solid fa-chalkboard me-2"></i>Mata Pejaran</label>
-                                            <p class=" mb-3 mt-2 p-2 card w-100">{{ $guru->mata_pelajaran }}</p>
+                                            <p class=" mb-3 mt-2 p-2 w-100">{{ $guru->mata_pelajaran }}</p>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end">

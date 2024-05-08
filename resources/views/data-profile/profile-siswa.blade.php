@@ -306,31 +306,31 @@
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-id-card me-2"></i>NISN</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->nisn }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $siswa->nisn }}</p>
                                             </div>
                                             {{-- Nama --}}
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-user-tag me-2"></i>Nama Lengkap</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->name }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $siswa->name }}</p>
                                             </div>
                                             {{-- Email --}}
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-envelope me-2"></i>Email</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->email }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $siswa->email }}</p>
                                             </div>
                                             {{-- Alamat --}}
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-location-dot me-2"></i>Alamat</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->alamat }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $siswa->alamat }}</p>
                                             </div>
                                             {{-- jk --}}
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-venus-mars me-2"></i>Jenis Kelamin</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->jenis_kelamin }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $siswa->jenis_kelamin }}</p>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -338,25 +338,25 @@
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-school me-2"></i>Kelas</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->kelas }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $siswa->kelas }}</p>
                                             </div>
                                             {{-- Jurusan --}}
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-school-flag me-2"></i>Jurusan</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->jurusan }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $siswa->jurusan }}</p>
                                             </div>
                                             <div class="form-group mb-4">
                                                 <label for="urutan_kelas" class="fw-semibold"><i
                                                         class="fa-solid fa-list-ol me-2"></i>Urutan Kelas</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->urutan_kelas }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $siswa->urutan_kelas }}</p>
                                             </div>
 
                                             {{-- Tahun lulus --}}
                                             <div class="form-group mb-4">
                                                 <label for="nama" class="fw-semibold"><i
                                                         class="fa-solid fa-graduation-cap me-2"></i>Status</label>
-                                                <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->status }}</p>
+                                                <p class=" mb-3 mt-2 p-2 w-100">{{ $siswa->status }}</p>
                                             </div>
                                             @if ($siswa->tahun_lulus)
                                                 {{-- Tahun lulus --}}
@@ -364,7 +364,7 @@
                                                     <label for="nama" class="fw-semibold"><i
                                                             class="fa-solid fa-calendar-days me-2"></i>Tahun
                                                         Lulus</label>
-                                                    <p class=" mb-3 mt-2 p-2 card w-100">{{ $siswa->tahun_lulus }}</p>
+                                                    <p class=" mb-3 mt-2 p-2 w-100">{{ $siswa->tahun_lulus }}</p>
                                                 </div>
                                             @endif
                                         </div>

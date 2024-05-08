@@ -209,19 +209,27 @@
             </div>
         @elseif($siswa->status == true)
             <div class="row">
+                <div class="col-12 mt-4">
+                    <div class="d-flex mb-3">
+                        <h4>Status Karir</h4>
+                    </div>
+                </div>
                 <div class="container-fluid px-4">
                     <div class="row">
                         <div class="col p-0">
                             <div class="mt-3">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-12">
-                                            <div class="data-profile row px-5 py-3">
+                                        <div class="col-12 col-md-4 text-center">
+                                            <img src="{{ asset('img/pengumuman.png') }}" alt="" class="status-foto">
+                                        </div>
+                                        <div class="col-12 col-md-8">
+                                            <div class="row px-5 py-5">
                                                 <div class="col-12">
                                                     <div class="form-group mb-4" data-aos="fade-up">
                                                         <label for="nama"><i
                                                                 class="fa-solid fa-user-tag me-2"></i>Status Karir</label>
-                                                        <p class="text-secondary mb-3 mt-2 p-2 card">{{ $siswa->status }}
+                                                        <p class="text-secondary mb-3 mt-2 p-2">{{ $siswa->status }}
                                                         </p>
                                                     </div>
                                                     @if ($siswa->status === 'Bekerja' || $siswa->status === 'Kuliah' || $siswa->status === 'Wirausaha')
@@ -232,21 +240,21 @@
                                                         <div class="form-group mb-4" data-aos="fade-up">
                                                             <label for="nama"><i class="fa-solid fa-location-dot me-2"></i>Alamat Tempat {{ $status }}</label>
                                                             @if($siswa->tempat_kerja_kuliah == null)
-                                                                <p class="text-danger mb-3 mt-2 p-2 card border border-danger">
+                                                                <p class="text-danger mb-3 mt-2 p-2 border border-danger">
                                                                     Data anda kosong
                                                                 </p>
                                                             @elseif ($siswa->tempat_kerja_kuliah)  
-                                                                <p class="text-secondary mb-3 mt-2 p-2 card">
+                                                                <p class="text-secondary mb-3 mt-2 p-2">
                                                                     {{ $siswa->tempat_kerja_kuliah }}
                                                                 </p>
                                                             @endif 
                                                         </div>
                                                     @endif
-                                                </div>
-                                                <div class="d-flex justify-content-end">
-                                                    <p class="position-absolute"><a href=""
-                                                            class="cursor-pointer btn btn-success" data-bs-toggle="modal" 
-                                                            data-bs-target="#editDataKarir"><i class="fa-regular fa-pen-to-square"></i></a></p>
+                                                    <div class="d-flex justify-content-end mt-5">
+                                                        <p class="position-absolute"><a href=""
+                                                                class="cursor-pointer btn btn-success" data-bs-toggle="modal" 
+                                                                data-bs-target="#editDataKarir"><i class="fa-regular fa-pen-to-square"></i></a></p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
