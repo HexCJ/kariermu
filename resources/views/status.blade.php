@@ -11,23 +11,6 @@
                     <div class="container-fluid px-4" data-aos="fade-up">
                         <div class="row">
                             <div class="col p-0">
-                                <form action="{{ route('guru') }}" method="GET">
-                                    <div class="row mt-3">
-                                        {{-- <div class="col-6 col-md-5">
-                                            <div class="input-group mb-3 mt-3">
-                                                <select name="mata_pelajaran" id="mata_pelajaran" class="rounded form-select">
-                                                    <option value="" multiple aria-label="Multiple select example">Semua
-                                                        Jurusan </option>
-                                                    @foreach ($jurusans as $jurusan)
-                                                        <option value="{{ $jurusan->id_jurusan }}"
-                                                            {{ request()->input('jurusan') == $jurusan->id_jurusan ? 'selected' : '' }}>
-                                                            {{ $jurusan->nama_jurusan }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div> --}}
-                                    </div>
-                                </form>
                                 <div class="card mt-3 table-responsive" style="min-height: 43rem">
                                     <div class="card-body">
                                         <div class="">
@@ -43,6 +26,9 @@
                                                 </div>
                                             @endif
                                             @if (!$data->isEmpty())
+                                            <div class="d-flex mb-3">
+                                                <a href="{{ route('detail.tidakkerja.download') }}" class=" ms-auto btn btn-success"><i class="bi bi-file-earmark-arrow-down me-3"></i>Download</a>
+                                            </div>
                                                 <table id="dataStatus" class="table table-hover w-100 mt-3">
                                                     <thead>
                                                         <tr>
@@ -51,8 +37,9 @@
                                                             <th>Kelas</th>
                                                             <th>Jurusan</th>
                                                             <th>Urutan Kelas</th>
+                                                            <th>Status Siswa</th>
                                                             <th>Tahun Lulus</th>
-                                                            <th>Status</th>
+                                                            <th>Status Karir</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -63,6 +50,7 @@
                                                                 <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
                                                                 <td>{{ $d->urutan_kelas }}</td>
+                                                                <td>{{ $d->status_siswa }}</td>
                                                                 <td>{{ $d->tahun_lulus }}</td>
                                                                 <td>{{ $d->status }}</td>
                                                             </tr>
@@ -88,23 +76,6 @@
                     <div class="container-fluid px-4" data-aos="fade-up">
                         <div class="row">
                             <div class="col p-0">
-                                <form action="{{ route('guru') }}" method="GET">
-                                    <div class="row mt-3">
-                                        {{-- <div class="col-6 col-md-5">
-                                            <div class="input-group mb-3 mt-3">
-                                                <select name="mata_pelajaran" id="mata_pelajaran" class="rounded form-select">
-                                                    <option value="" multiple aria-label="Multiple select example">Semua
-                                                        Jurusan </option>
-                                                    @foreach ($jurusans as $jurusan)
-                                                        <option value="{{ $jurusan->id_jurusan }}"
-                                                            {{ request()->input('jurusan') == $jurusan->id_jurusan ? 'selected' : '' }}>
-                                                            {{ $jurusan->nama_jurusan }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div> --}}
-                                    </div>
-                                </form>
                                 <div class="card mt-3 table-responsive" style="min-height: 43rem">
                                     <div class="card-body">
                                         <div class="">
@@ -120,6 +91,9 @@
                                                 </div>
                                             @endif
                                             @if (!$data->isEmpty())
+                                                <div class="d-flex mb-3">
+                                                    <a href="{{ route('detail.kerja.download') }}" class=" ms-auto btn btn-success"><i class="bi bi-file-earmark-arrow-down me-3"></i>Download</a>
+                                                </div>
                                                 <table id="dataStatus" class="table table-hover w-100 mt-3">
                                                     <thead>
                                                         <tr>
@@ -128,8 +102,9 @@
                                                             <th>Kelas</th>
                                                             <th>Jurusan</th>
                                                             <th>Urutan Kelas</th>
+                                                            <th>Status Siswa</th>
                                                             <th>Tahun Lulus</th>
-                                                            <th>Status</th>
+                                                            <th>Status Karir</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -140,6 +115,7 @@
                                                                 <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
                                                                 <td>{{ $d->urutan_kelas }}</td>
+                                                                <td>{{ $d->status_siswa }}</td>
                                                                 <td>{{ $d->tahun_lulus }}</td>
                                                                 <td>{{ $d->status }}</td>
                                                             </tr>
@@ -167,19 +143,6 @@
                             <div class="col p-0">
                                 <form action="{{ route('guru') }}" method="GET">
                                     <div class="row mt-3">
-                                        {{-- <div class="col-6 col-md-5">
-                                            <div class="input-group mb-3 mt-3">
-                                                <select name="mata_pelajaran" id="mata_pelajaran" class="rounded form-select">
-                                                    <option value="" multiple aria-label="Multiple select example">Semua
-                                                        Jurusan </option>
-                                                    @foreach ($jurusans as $jurusan)
-                                                        <option value="{{ $jurusan->id_jurusan }}"
-                                                            {{ request()->input('jurusan') == $jurusan->id_jurusan ? 'selected' : '' }}>
-                                                            {{ $jurusan->nama_jurusan }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div> --}}
                                     </div>
                                 </form>
                                 <div class="card mt-3 table-responsive" style="min-height: 43rem">
@@ -197,6 +160,9 @@
                                                 </div>
                                             @endif
                                             @if (!$data->isEmpty())
+                                                <div class="d-flex mb-3">
+                                                    <a href="{{ route('detail.kuliah.download') }}" class=" ms-auto btn btn-success"><i class="bi bi-file-earmark-arrow-down me-3"></i>Download</a>
+                                                </div>
                                                 <table id="dataStatus" class="table table-hover w-100 mt-3">
                                                     <thead>
                                                         <tr>
@@ -205,8 +171,9 @@
                                                             <th>Kelas</th>
                                                             <th>Jurusan</th>
                                                             <th>Urutan Kelas</th>
+                                                            <th>Status Siswa</th>
                                                             <th>Tahun Lulus</th>
-                                                            <th>Status</th>
+                                                            <th>Status Karir</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -217,6 +184,7 @@
                                                                 <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
                                                                 <td>{{ $d->urutan_kelas }}</td>
+                                                                <td>{{ $d->status_siswa }}</td>
                                                                 <td>{{ $d->tahun_lulus }}</td>
                                                                 <td>{{ $d->status }}</td>
                                                             </tr>
@@ -244,19 +212,6 @@
                             <div class="col p-0">
                                 <form action="{{ route('guru') }}" method="GET">
                                     <div class="row mt-3">
-                                        {{-- <div class="col-6 col-md-5">
-                                            <div class="input-group mb-3 mt-3">
-                                                <select name="mata_pelajaran" id="mata_pelajaran" class="rounded form-select">
-                                                    <option value="" multiple aria-label="Multiple select example">Semua
-                                                        Jurusan </option>
-                                                    @foreach ($jurusans as $jurusan)
-                                                        <option value="{{ $jurusan->id_jurusan }}"
-                                                            {{ request()->input('jurusan') == $jurusan->id_jurusan ? 'selected' : '' }}>
-                                                            {{ $jurusan->nama_jurusan }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div> --}}
                                     </div>
                                 </form>
                                 <div class="card mt-3 table-responsive" style="min-height: 43rem">
@@ -274,6 +229,9 @@
                                                 </div>
                                             @endif
                                             @if (!$data->isEmpty())
+                                                <div class="d-flex mb-3">
+                                                    <a href="{{ route('detail.wirausaha.download') }}" class=" ms-auto btn btn-success"><i class="bi bi-file-earmark-arrow-down me-3"></i>Download</a>
+                                                </div>
                                                 <table id="dataStatus" class="table table-hover w-100 mt-3">
                                                     <thead>
                                                         <tr>
@@ -282,8 +240,9 @@
                                                             <th>Kelas</th>
                                                             <th>Jurusan</th>
                                                             <th>Urutan Kelas</th>
+                                                            <th>Status Siswa</th>
                                                             <th>Tahun Lulus</th>
-                                                            <th>Status</th>
+                                                            <th>Status Karir</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -294,6 +253,7 @@
                                                                 <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jurusan }}</td>
                                                                 <td>{{ $d->urutan_kelas }}</td>
+                                                                <td>{{ $d->status_siswa }}</td>
                                                                 <td>{{ $d->tahun_lulus }}</td>
                                                                 <td>{{ $d->status }}</td>
                                                             </tr>

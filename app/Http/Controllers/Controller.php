@@ -29,29 +29,6 @@ class Controller extends BaseController
             'title' => 'Login'
         ]);
     }
-
-    // public function dataKelas()
-    // {   
-    //     $data = Jurusan::get();
-
-    //     return view('data-kelas.data-kelas',compact('data'),[
-    //         'title' => 'Data Jurusan'
-    //     ]);
-    // }
-
-    // nilai
-    // public function dataNilai()
-    // {   
-    //     $nisn = Auth::user()->nisn;
-    //     $semester = "S1";
-    //     $rata_rata = Nilai::where('nisn', $nisn)
-    //     ->where('semester', $semester)->avg('nilai');
-    //     return view('nilai/data_nilai',[
-    //         'nisn' => $nisn,
-    //         'title' => 'Input Data Nilai Siswa',
-    //         'rata_rata' => $rata_rata        
-    //     ]);
-    // }
     public function dataNilai()
     {   
         $nisn = Auth::user()->nisn;
@@ -63,15 +40,6 @@ class Controller extends BaseController
         ->groupBy('siswa.nisn', 'semester.semester_ke', 'nilai.semester')
         ->where('siswa.nisn', $nisn)
         ->get();
-
-        // $id = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
-        // ->join('semester', 'semester.id_semester', '=', 'nilai.semester')
-        // ->select('nilai.id')
-        // ->groupBy('nilai.id')
-        // ->where('siswa.nisn', $nisn)
-        // ->get();
-
-        // $id = Nilai::findOrFail($id);
 
 
         $semesters = ["S1", "S2", "S3", "S4", "S5"];
@@ -87,13 +55,12 @@ class Controller extends BaseController
             $rata_rata_semester[$semester] = $rata_rata_formatted;
         }
         
-        return view('nilai/data_nilai',[
+        return view('nilai.data_nilai',[
             'nisn' => $nisn,
             'title' => 'Data Nilai Siswa',
             'rata_rata_semester' => $rata_rata_semester,
             'data' => $data,
             'kelas' => $kelas,
-            // 'id' => $id
         ]);
     }
 
@@ -127,7 +94,7 @@ class Controller extends BaseController
             $statusAkhir = null; // Atau sesuai kebutuhan Anda
         }       
         
-        return view('nilai/detail_data_nilai1',[
+        return view('nilai.detail_data_nilai1',[
         'title' => 'Detail Data Nilai Siswa',
         'nilaiS1' => $nilaiS1,
         'statusakhir' => $statusAkhir
@@ -161,7 +128,7 @@ class Controller extends BaseController
     else {
         $statusAkhir = null; // Atau sesuai kebutuhan Anda
     }       
-        return view('nilai/detail_data_nilai2',[
+        return view('nilai.detail_data_nilai2',[
         'title' => 'Detail Data Nilai Siswa',
         'nilaiS2' => $nilaiS2,
         'statusakhir'=> $statusAkhir
@@ -196,7 +163,7 @@ class Controller extends BaseController
     else {
         $statusAkhir = null; // Atau sesuai kebutuhan Anda
     }     
-        return view('nilai/detail_data_nilai3',[
+        return view('nilai.detail_data_nilai3',[
         'title' => 'Detail Data Nilai Siswa',
         'nilaiS3' => $nilaiS3,
         'statusakhir'=> $statusAkhir
@@ -231,7 +198,7 @@ class Controller extends BaseController
     else {
         $statusAkhir = null; // Atau sesuai kebutuhan Anda
     }     
-        return view('nilai/detail_data_nilai4',[
+        return view('nilai.detail_data_nilai4',[
         'title' => 'Detail Data Nilai Siswa',
         'nilaiS4' => $nilaiS4,
         'statusakhir'=> $statusAkhir
@@ -265,7 +232,7 @@ class Controller extends BaseController
         else {
             $statusAkhir = null; // Atau sesuai kebutuhan Anda
         }     
-        return view('nilai/detail_data_nilai5',[
+        return view('nilai.detail_data_nilai5',[
         'title' => 'Detail Data Nilai Siswa',
         'nilaiS5' => $nilaiS5,
         'statusakhir'=> $statusAkhir
@@ -275,31 +242,31 @@ class Controller extends BaseController
 
     public function inputNilai1()
     {   
-        return view('nilai/add_nilai1',[
+        return view('nilai.add_nilai1',[
             'title' => 'Detail Data Nilai Siswa'
         ]);
     }
     public function inputNilai2()
     {   
-        return view('nilai/add_nilai2',[
+        return view('nilai.add_nilai2',[
             'title' => 'Detail Data Nilai Siswa'
         ]);
     }
     public function inputNilai3()
     {   
-        return view('nilai/add_nilai3',[
+        return view('nilai.add_nilai3',[
             'title' => 'Detail Data Nilai Siswa'
         ]);
     }
     public function inputNilai4()
     {   
-        return view('nilai/add_nilai4',[
+        return view('nilai.add_nilai4',[
             'title' => 'Detail Data Nilai Siswa'
         ]);
     }
     public function inputNilai5()
     {   
-        return view('nilai/add_nilai5',[
+        return view('nilai.add_nilai5',[
             'title' => 'Detail Data Nilai Siswa'
         ]);
     }
