@@ -317,18 +317,6 @@ class DataNilaiController extends Controller
         // ambil kelas first untuk tidak mengulang hanya cari satu data
         $kelas = Guru::select('walikelas','mata_pelajaran','jurusan','urutan_kelas')->where('nip', $guru)->first();
 
-        // $data = User::join('nilai', 'users.nisn', '=', 'nilai.nisn')
-        //         ->join('siswa', 'users.nisn', '=', 'siswa.nisn')
-        //         ->select('users.nisn', 'users.name', 'siswa.kelas','siswa.jurusan','siswa.urutan_kelas', 'nilai.semester', 'nilai.status','nilai.created_at')
-        //         ->groupBy('users.nisn', 'users.name', 'siswa.kelas','siswa.jurusan','siswa.urutan_kelas', 'nilai.semester', 'nilai.status','nilai.created_at')
-        //         ->OrderBy('nilai.created_at')
-        //         ->where('nilai.status', 'Pending')
-        //         ->where('siswa.kelas', $kelas->walikelas)
-        //         ->where('siswa.jurusan', $kelas->jurusan)
-        //         ->where('siswa.urutan_kelas', $kelas->urutan_kelas)
-        //         ->limit(1)
-        //         ->get();
-
         $data = User::join('nilai', 'users.nisn', '=', 'nilai.nisn')
                 ->join('siswa', 'users.nisn', '=', 'siswa.nisn')
                 ->select('users.nisn', 'users.name', 'siswa.jenis_kelamin', 'siswa.image', 'siswa.kelas','siswa.jurusan','siswa.urutan_kelas', 'nilai.status', Siswa::raw('MAX(nilai.created_at) as last_created_at'))

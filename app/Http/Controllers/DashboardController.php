@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KerjaExport;
+use App\Exports\KuliahExport;
 use App\Models\Jurusan; 
 use App\Models\MataPelajaran; 
 use App\Models\User;
@@ -16,7 +18,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
 use App\Models\Laporan;
 use App\Models\Admin;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PengangguranExport;
+use App\Exports\WirausahaExport;
 
 class DashboardController extends Controller
 {
@@ -113,8 +117,8 @@ class DashboardController extends Controller
     {
         $status = 'Menganggur';
         $query = Laporan::join('siswa','siswa.nisn','=','laporan.nisn')
-                ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.tahun_lulus', 'laporan.status')
-                ->where('laporan.status', $status);
+        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.status as status_siswa','siswa.tahun_lulus', 'laporan.status')
+        ->where('laporan.status', $status);
 
         $jurusans = Jurusan::all();
 
@@ -137,7 +141,7 @@ class DashboardController extends Controller
     {
         $status = 'Bekerja';
         $query = Laporan::join('siswa','siswa.nisn','=','laporan.nisn')
-        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.tahun_lulus', 'laporan.status')
+        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.status as status_siswa','siswa.tahun_lulus', 'laporan.status')
         ->where('laporan.status', $status);
 
         $jurusans = Jurusan::all();
@@ -161,8 +165,8 @@ class DashboardController extends Controller
     {
         $status = 'Kuliah';
         $query = Laporan::join('siswa','siswa.nisn','=','laporan.nisn')
-                ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.tahun_lulus', 'laporan.status')
-                ->where('laporan.status', $status);
+        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.status as status_siswa','siswa.tahun_lulus', 'laporan.status')
+        ->where('laporan.status', $status);
 
         $jurusans = Jurusan::all();
 
@@ -186,7 +190,7 @@ class DashboardController extends Controller
     {
         $status = 'Wirausaha';
         $query = Laporan::join('siswa','siswa.nisn','=','laporan.nisn')
-        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.tahun_lulus', 'laporan.status')
+        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.status as status_siswa','siswa.tahun_lulus', 'laporan.status')
         ->where('laporan.status', $status);
         
         $jurusans = Jurusan::all();
@@ -254,5 +258,17 @@ class DashboardController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function detailStatusTidakKerja_download(){
+        return Excel::download(new PengangguranExport, 'siswa_menganggur.xlsx');
+    }
+    public function detailStatusKerja_download(){
+        return Excel::download(new KerjaExport, 'siswa_berkerja.xlsx');
+    }
+    public function detailStatusKuliah_download(){
+        return Excel::download(new KuliahExport, 'siswa_berkuliah.xlsx');
+    }
+    public function detailStatusWirausaha_download(){
+        return Excel::download(new WirausahaExport, 'siswa_berwirausaha.xlsx');
     }
 }
