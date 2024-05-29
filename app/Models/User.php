@@ -64,6 +64,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Admin::class, 'id_admin');
     }
+    public function laporan()
+    {
+        return $this->hasOne(Laporan::class, 'nisn','nisn');
+    }
 
     // protected static function boot()
     // {
