@@ -276,6 +276,4 @@ class Controller extends BaseController
             'title' => 'Dashboard'
         ]);
     }
-
-
 }
