@@ -55,7 +55,8 @@
         </li>
             @php
                 $user = auth()->user();
-                $berkuliah = $user->laporan()->where('status','Kuliah')->exists();
+                $nisn = auth()->user()->nisn;
+                $berkuliah = $user->laporan()->where('nisn',$nisn)->where('status','Kuliah')->exists();
             @endphp
             @if ($berkuliah)
             <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Nilai Siswa" || $title == "Detail Data Nilai Siswa") ? 'list-active' : '' }} text-center text-md-start">
