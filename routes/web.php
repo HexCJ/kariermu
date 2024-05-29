@@ -45,7 +45,7 @@ Route::put('profile/updateguru/{id}', [ProfileController::class, 'updateguru'])-
 Route::put('profile/updateadmin/{id}', [ProfileController::class, 'updateadmin'])->middleware(['auth'])->name('profile.updateadmin');
 
 // nilai
-Route::get('/nilai',[Controller::class,'dataNilai'])->middleware('auth', 'verified', 'role:siswa')->name('datanilai');
+Route::get('/nilai',[Controller::class,'dataNilai'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah')->name('datanilai');
 Route::get('/nilai/detail_nilai1',[Controller::class,'detailDataNilai1']);
 Route::get('/nilai/detail_nilai2',[Controller::class,'detailDataNilai2']);
 Route::get('/nilai/detail_nilai3',[Controller::class,'detailDataNilai3']);
@@ -76,6 +76,8 @@ Route::get('/verifikasi_nilai',[DataNilaiController::class,'verifikasiGuru'])->m
 Route::get('/verifikasi_nilai/verifikasi/{nisn}',[DataNilaiController::class,'verifikasiGuruDetail'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi.nilai');
 Route::put('/verifikasi_nilai/verifikasi/{nisn}/tolak/{id}',[DataNilaiController::class,'tolakNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('tolak.nilai');
 Route::put('/verifikasi_nilai/verifikasi/{nisn}/terima/{id}',[DataNilaiController::class,'terimaNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('terima.nilai');
+Route::put('/verifikasi_nilai/verifikasi/tolaksemua/{nisn}/semester/{semester}',[DataNilaiController::class,'tolakNilaiSemua'])->middleware(['auth', 'verified', 'role:guru'])->name('tolak.nilai.semua');
+Route::put('/verifikasi_nilai/verifikasi/terimasemua/{nisn}/semester/{semester}',[DataNilaiController::class,'terimaNilaiSemua'])->middleware(['auth', 'verified', 'role:guru'])->name('terima.nilai.semua');
 // Route::put('/verifikasi_nilai/verifikasi/terima/{id}',[DataNilaiController::class,'terimaNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('terima.nilai');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -99,16 +101,6 @@ Route::get('admin',[Controller::class,'dashboardAdmin'])->middleware(['auth', 'v
 // data guru
 Route::get('guru',[GuruController::class,'index'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru');
 Route::get('guru/tambah',[GuruController::class,'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('tambah_guru');
-
-
-Route::get('tulisan',function(){
-    return view('tulisan');
-})->middleware(['auth', 'verified', 'role_or_permission:lihat-tulisan|admin']);
-
-Route::get('penulis',function(){
-    return view('tulisan');
-})->middleware(['auth', 'verified', 'role:penulis|admin']);
-require __DIR__.'/auth.php';
 
 // Route Admin
 Route::get('admin',[AdminController::class,'admin'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('admin');
@@ -177,3 +169,4 @@ Route::fallback(function () {
     ]);
 });
 
+require __DIR__.'/auth.php';

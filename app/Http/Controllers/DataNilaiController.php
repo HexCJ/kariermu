@@ -317,16 +317,27 @@ class DataNilaiController extends Controller
         // ambil kelas first untuk tidak mengulang hanya cari satu data
         $kelas = Guru::select('walikelas','mata_pelajaran','jurusan','urutan_kelas')->where('nip', $guru)->first();
 
+        // $data = User::join('nilai', 'users.nisn', '=', 'nilai.nisn')
+        //         ->join('siswa', 'users.nisn', '=', 'siswa.nisn')
+        //         ->select('users.nisn', 'users.name', 'siswa.kelas','siswa.jurusan','siswa.urutan_kelas', 'nilai.semester', 'nilai.status','nilai.created_at')
+        //         ->groupBy('users.nisn', 'users.name', 'siswa.kelas','siswa.jurusan','siswa.urutan_kelas', 'nilai.semester', 'nilai.status','nilai.created_at')
+        //         ->OrderBy('nilai.created_at')
+        //         ->where('nilai.status', 'Pending')
+        //         ->where('siswa.kelas', $kelas->walikelas)
+        //         ->where('siswa.jurusan', $kelas->jurusan)
+        //         ->where('siswa.urutan_kelas', $kelas->urutan_kelas)
+        //         ->limit(1)
+        //         ->get();
+
         $data = User::join('nilai', 'users.nisn', '=', 'nilai.nisn')
                 ->join('siswa', 'users.nisn', '=', 'siswa.nisn')
-                ->select('users.nisn', 'users.name', 'siswa.kelas','siswa.jurusan','siswa.urutan_kelas', 'nilai.semester', 'nilai.status','nilai.created_at')
-                ->groupBy('users.nisn', 'users.name', 'siswa.kelas','siswa.jurusan','siswa.urutan_kelas', 'nilai.semester', 'nilai.status','nilai.created_at')
-                ->OrderBy('nilai.created_at')
+                ->select('users.nisn', 'users.name', 'siswa.jenis_kelamin', 'siswa.image', 'siswa.kelas','siswa.jurusan','siswa.urutan_kelas', 'nilai.status', Siswa::raw('MAX(nilai.created_at) as last_created_at'))
+                ->groupBy('users.nisn', 'users.name', 'siswa.image', 'siswa.kelas','siswa.jurusan','siswa.urutan_kelas', 'nilai.status')
                 ->where('nilai.status', 'Pending')
                 ->where('siswa.kelas', $kelas->walikelas)
                 ->where('siswa.jurusan', $kelas->jurusan)
                 ->where('siswa.urutan_kelas', $kelas->urutan_kelas)
-                ->limit(1)
+                ->orderBy('last_created_at','desc')
                 ->get();
 
         return view('nilai.data_nilai_guru',[
@@ -336,7 +347,7 @@ class DataNilaiController extends Controller
         ]);
     }
     public function verifikasiGuruDetail($nisn){
-
+        $nisn_siswa = $nisn;
         $semester1 = Siswa::join('nilai', 'siswa.nisn', '=', 'nilai.nisn')
         ->select('siswa.nisn', 'siswa.name','nilai.id','siswa.jurusan','siswa.kelas','nilai.semester', 'nilai.mata_pelajaran', 'nilai.nilai')
         ->where('nilai.nisn', $nisn)
@@ -401,6 +412,8 @@ class DataNilaiController extends Controller
         
         return view('nilai.data_nilai_verifikasi',[
             'title' => 'Verifikasi Nilai',
+            'nisn_siswa' => $nisn_siswa,
+            'semester' => 'S1',
             'semester1' => $semester1,
             'semester2' => $semester2,
             'semester3' => $semester3,
@@ -438,6 +451,28 @@ class DataNilaiController extends Controller
             return redirect()->back()->with(['success-acc' => 'Data Nilai Berhasil Diverifikasi!']);
         } else{
             return redirect()->back()->with(['fail' => 'Data Nilai Tidak Berhasil Diverifikasi!']);
+        }
+    }
+    public function tolakNilaiSemua(Request $request, string $nisn, string $semester){
+        $nilai = Nilai::where('nisn', $nisn)
+        ->where('semester', $semester)
+        ->update(['status' => $request->status]);
+
+        if($nilai > 0){
+            return redirect()->back()->with(['success-tolak' => 'Data Nilai Berhasil Ditolak!']);
+        } else{
+            return redirect()->back()->with(['fail' => 'Data Nilai Tidak Berhasil Ditolak!']);
+        }
+    }
+    public function TerimaNilaiSemua(Request $request, string $nisn,string $semester){
+        $nilai = Nilai::where('nisn', $nisn)
+        ->where('semester', $semester)
+        ->update(['status' => $request->status]);
+        
+        if($nilai > 0){
+            return redirect()->back()->with(['success-acc' => 'Data Nilai Berhasil Diverifikasi!']);
+        } else{
+            return redirect()->back()->with(['fail' => 'Data Nilai Tidak Berhasil Ditolak!']);
         }
     }
 }

@@ -45,10 +45,13 @@ class DataKarirController extends Controller
 
         // ambil nip dari user
         $nisn = $user->nisn;
+        $status_siswa = Siswa::where('nisn', $nisn)->select('status')->first();
         $siswa = Laporan::where('nisn', $nisn)->first();
+
         return view('data-karir',[
-        'siswa' => $siswa,
-        'title' => 'Data Karir'
+            'siswa' => $siswa,
+            'status_siswa' => $status_siswa ,
+            'title' => 'Data Karir'
 
         ]);
     }

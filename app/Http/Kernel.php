@@ -78,6 +78,7 @@ class Kernel extends HttpKernel
         //membuat kernel permission
         'permission'=>\Spatie\Permission\Middleware\PermissionMiddleware::class,
         //membuat kernel untuk role or permission yang berfungsi untuk memberikan akses tanpa role
-        'role_or_permission'=>\Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class
+        'role_or_permission'=>\Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+        'checkLaporanStatus' => \App\Http\Middleware\CheckLaporanStatus::class,
     ];
 }

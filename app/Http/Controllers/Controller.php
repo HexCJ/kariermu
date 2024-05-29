@@ -245,7 +245,7 @@ class Controller extends BaseController
         $nilaiS5 = Nilai::where('nisn', $nisn)
         ->join('mata_pelajaran', 'mata_pelajaran.id_mata_pelajaran', '=', 'nilai.mata_pelajaran')
         ->select('nilai.nisn', 'nilai.semester','mata_pelajaran.nama_mata_pelajaran', 'nilai.mata_pelajaran','nilai.nilai','nilai.status', )
-        ->where('semester', 'S1')
+        ->where('semester', 'S5')
         ->get();
 
         $status = $nilaiS5->pluck('status');

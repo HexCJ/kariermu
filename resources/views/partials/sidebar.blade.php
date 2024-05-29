@@ -53,9 +53,15 @@
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Karir") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('karir') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-briefcase me-3"></i>Data Karir</a>
         </li>
-        <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Nilai Siswa" || $title == "Detail Data Nilai Siswa") ? 'list-active' : '' }} text-center text-md-start">
-            <a href="{{ route('datanilai') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chart-column me-3"></i>Data Nilai</a>
-        </li>
+            @php
+                $user = auth()->user();
+                $berkuliah = $user->laporan()->where('status','Kuliah')->exists();
+            @endphp
+            @if ($berkuliah)
+            <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Nilai Siswa" || $title == "Detail Data Nilai Siswa") ? 'list-active' : '' }} text-center text-md-start">
+                <a href="{{ route('datanilai') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chart-column me-3"></i>Data Nilai</a>
+            </li>
+            @endif
         @endif
         <li class="list-group list-logout text-medium cursor-pointer text-center rounded text-md-start mb-5">
             <form  action="{{ route('logout') }}" method="POST">
