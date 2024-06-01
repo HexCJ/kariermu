@@ -25,7 +25,7 @@
             <div class="d-flex flex-column gap-1 gap-sm-2 ms-3 ms-sm-3 ms-md-4">
               <p class="title-data fw-medium text-secondary">Siswa Aktif</p>
               <h1 class="detail-data fw-bold text-primary-emphasis">{{ $siswa_belum }}</h1>
-              <a href="{{ route('siswa') }}" class="detail text-secondary">detail siswa aktif..</a>
+              <a href="siswa?jurusan=&kelas=&jenis_kelamin=&status=Belum+Lulus" class="detail text-secondary">detail siswa aktif..</a>
             </div>
           </div>
           <div class="col-6 col-sm-6 col-md-5 col-xl-3 col-lg-3 d-flex px-3 px-md-2 mb-5 justify-content-md-start pe-2 mb-3 mt-3 mt-md-0" data-aos="fade-up">
@@ -35,7 +35,7 @@
             <div class="d-flex flex-column gap-1 gap-sm-2 ms-3 ms-sm-3 ms-md-4">
               <p class="title-data fw-medium text-secondary">Siswa Alumni</p>
               <h1 class="detail-data fw-bold text-primary-emphasis">{{ $siswa_sudah }}</h1>
-              <a href="{{ route('siswa') }}" class="detail text-secondary">detail siswa alumni..</a>
+              <a href="siswa?jurusan=&kelas=&jenis_kelamin=&status=Lulus" class="detail text-secondary">detail siswa alumni..</a>
             </div>
           </div>
           <div class="col-6 col-sm-6 col-md-5 col-xl-3 col-lg-3 d-flex px-3 px-md-2 mb-5 justify-content-md-start pe-2 mb-3 mt-3 mt-md-0" data-aos="fade-up">

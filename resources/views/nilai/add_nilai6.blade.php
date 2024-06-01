@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-12 mt-4">
                 <div class="d-flex justify-content-between">
-                    <h4 class="h4">Data Nilai Siswa Semester 1</h4>
+                    <h4 class="h4">Data Nilai Siswa Semester 6</h4>
                 </div>
-                <form action="{{ route('datanilai1.add') }}" method="POST">
+                <form action="{{ route('datanilai6.add') }}" method="POST">
                     @csrf
                     <div class="container-fluid mt-5">
                         <div class="row">

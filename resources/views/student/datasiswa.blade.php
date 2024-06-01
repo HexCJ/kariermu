@@ -83,15 +83,17 @@
                           <th>Nama</th>
                           <th>Foto</th>
                           <th>Jenis Kelamin</th>
-                          <th>Jurusan</th>
                           <th>Kelas</th>
+                          <th>Jurusan</th>
                           <th>Urutan Kelas</th>
                           <th>Email</th>
                           {{-- <th>Password</th> --}}
                           <th>Alamat</th>
                           <th>Status</th>
                           <th>Tahun Lulus</th>
+                          @if(auth()->user()->hasRole('admin'))
                           <th>Aksi</th>
+                          @endif
                         </tr>
                       </thead>
                         @foreach($data as $d)
@@ -100,14 +102,15 @@
                           <td>{{ $d->name }}</td> 
                           <td><img src="{{asset('storage/photo-user/'.$d->image)}}" alt="" style="width: 100px"></td> 
                           <td>{{ $d->jenis_kelamin }}</td> 
-                          <td>{{ $d->jurusan }}</td> 
                           <td>{{ $d->kelas }}</td> 
+                          <td>{{ $d->jurusan }}</td> 
                           <td>{{ $d->urutan_kelas }}</td> 
                           <td>{{ $d->email }}</td> 
                           {{-- <td>{{ $d->password }}</td>  --}}
                           <td>{{ $d->alamat }}</td> 
                           <td>{{ $d->status }}</td> 
                           <td>{{ $d->tahun_lulus }}</td> 
+                          @if(auth()->user()->hasRole('admin'))
                           <td class="">
                             <div class="dropdown py-3">
                               <a class="button py-2 px-3 rounded text-decoration-none text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -147,6 +150,7 @@
                               </ul>
                             </div>
                           </td>
+                          @endif
                         </tr>
                         @endforeach 
                     </table>

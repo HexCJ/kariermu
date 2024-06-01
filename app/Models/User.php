@@ -68,13 +68,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(Laporan::class, 'nisn','nisn');
     }
-
-    // protected static function boot()
-    // {
-    //     parent::boot();
-
-    //     static::created(function ($user) {
-    //         $user->assignRole('siswa');
-    //     });
-    // }
 }

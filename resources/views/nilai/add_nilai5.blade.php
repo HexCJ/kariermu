@@ -10,67 +10,18 @@
                     @csrf
                     <div class="container-fluid mt-5">
                         <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label for="" class="mb-3">Nilai Bahasa Indonesia</label>
-                                    <input required type="text" name="bindo" id="bindo" class="form-control">
+                            @foreach ($mata_pelajaran as $mapel)
+                                <div class="col-12 col-sm-6 col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-3">Nilai {{ $mapel->nama_mata_pelajaran }}</label>
+                                        <input required type="text" name="{{ $mapel->id_mata_pelajaran }}" class="form-control"
+                                            maxlength="3">
+                                    </div>
+                                    @error($mapel->id_mata_pelajaran)
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label for="" class="mb-3">Nilai Matematika</label>
-                                    <input required type="text" name="mtk" id="mtk" class="form-control"
-                                        max="2">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label for="" class="mb-3">Nilai Bahasa Inggris</label>
-                                    <input required type="text" name="bing" id="bing" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label for="" class="mb-3">Nilai Pendidikan Agama</label>
-                                    <input required type="text" name="pai" id="pai" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label for="" class="mb-3">Nilai Sejarah</label>
-                                    <input required type="text" name="si" id="si" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label for="" class="mb-3">Nilai Ilmu Pengetahuan Alam dan Sosial</label>
-                                    <input required type="text" name="ipas" id="ipas" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label for="" class="mb-3">Nilai Seni Budaya</label>
-                                    <input required type="text" name="sb" id="sb" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label for="" class="mb-3">Nilai Pendidikan Kewarganegaraan</label>
-                                    <input required type="text" name="pkn" id="pkn" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label for="" class="mb-3">Nilai Pendidikan Olahraga dan Jasmani</label>
-                                    <input required type="text" name="pjok" id="pjok" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label for="" class="mb-3">Nilai Kejuruan</label>
-                                    <input required type="text" name="kejuruan" id="kejuruan" class="form-control">
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <div class="col-12 mb-3 mt-5">
                             <div class="form-group">

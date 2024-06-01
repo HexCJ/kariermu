@@ -60,8 +60,8 @@
                         <th>Email</th>
                         {{-- <th>Password</th> --}}
                         <th>Jenis Kelamin</th>
-                        <th>Jurusan</th>
                         <th>Walikelas</th>
+                        <th>Jurusan</th>
                         <th>Urutan Kelas</th>
                         <th>Mata Pelajaran</th>
                         <th>Aksi</th>
@@ -77,8 +77,8 @@
                         <td>{{ $d->email }}</td> 
                         {{-- <td>{{ $d->password }}</td>  --}}
                         <td>{{ $d->jenis_kelamin }}</td>
-                        <td>{{ $d->jurusan }}</td> 
                         <td>{{ $d->walikelas }}</td> 
+                        <td>{{ $d->jurusan }}</td> 
                         <td>{{ $d->urutan_kelas }}</td> 
                         <td>{{ $d->mata_pelajaran }}</td>
                         <td class="d-flex justify-content-center align-items-center">

@@ -32,7 +32,7 @@
                                             @elseif ($kelas->kelas === 'XI')
                                                 @php $jumlah_semester = 4; @endphp
                                             @elseif ($kelas->kelas === 'XII')
-                                                @php $jumlah_semester = 5; @endphp
+                                                @php $jumlah_semester = 6; @endphp
                                             @endif
 
                                             @for ($i = 1; $i <= $jumlah_semester; $i++)
@@ -171,15 +171,16 @@
         var rata3 = {{ $rata_rata_semester['S3'] ?? '0' }};
         var rata4 = {{ $rata_rata_semester['S4'] ?? '0' }};
         var rata5 = {{ $rata_rata_semester['S5'] ?? '0' }};
+        var rata6 = {{ $rata_rata_semester['S6'] ?? '0' }};
 
         // Menggunakan nilai-nilai tersebut dalam variabel nilaiData
-        const nilaiData = [rata1, rata2, rata3, rata4, rata5];
+        const nilaiData = [rata1, rata2, rata3, rata4, rata5,rata6];
 
         const dataNilai = document.getElementById('datanilai');
         new Chart(dataNilai, {
             type: 'line',
             data: {
-                labels: ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4', 'Semester 5'],
+                labels: ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4', 'Semester 5','Semester 6'],
                 datasets: [{
                     label: 'Grafik Nilai Per Semester',
                     data: nilaiData,

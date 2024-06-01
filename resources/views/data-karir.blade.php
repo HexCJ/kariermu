@@ -55,30 +55,75 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function() {
-                                            document.getElementById('status').addEventListener('change', function() {
-                                                var status = this.value;
-                                                var tempat = document.getElementById('tempat');
-                                                var input = document.getElementById('input');
+                                    <!DOCTYPE html>
+                                    <html lang="en">
+                                    <head>
+                                        <meta charset="UTF-8">
+                                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                        <title>Form Example</title>
+                                        <style>
+                                            .d-none {
+                                                display: none;
+                                            }
+                                        </style>
+                                    </head>
+                                    <body>
+                                        <form>
+                                            <select name="status" id="status" class="form-select mb-3">
+                                                <option value="Bekerja" {{ old('status') == 'Bekerja' ? 'selected' : '' }}>Bekerja</option>
+                                                <option value="Kuliah" {{ old('status') == 'Kuliah' ? 'selected' : '' }}>Kuliah</option>
+                                                <option value="Wirausaha" {{ old('status') == 'Wirausaha' ? 'selected' : '' }}>Wirausaha</option>
+                                                <option value="Menganggur" {{ old('status') == 'Menganggur' ? 'selected' : '' }}>Menganggur</option>
+                                            </select>
 
-                                                // Tampilkan input yang sesuai dengan opsi yang dipilih
-                                                if (status === 'Bekerja') {
-                                                    tempat.textContent = 'Tempat Bekerja';
-                                                    input.classList.remove('d-none');
-                                                } else if (status === 'Kuliah') {
-                                                    tempat.textContent = 'Tempat Kuliah';
-                                                    input.classList.remove('d-none');
-                                                } else if (status === 'Wirausaha') {
-                                                    tempat.textContent = 'Tempat Berwirausaha';
-                                                    input.classList.remove('d-none');
-                                                } else {
-                                                    tempat.classList.add('d-none');
-                                                    input.classList.add('d-none');
+                                            <label id="tempat" class="fw-medium mb-2">Tempat</label>
+                                            <input type="text" id="input" class="form-control mb-3" placeholder="Tempat">
+                                        </form>
+                                    
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                var statusSelect = document.getElementById('status');
+                                                var tempatLabel = document.getElementById('tempat');
+                                                var inputKarir = document.getElementById('input');
+                                    
+                                                // Fungsi untuk memperbarui tampilan berdasarkan status yang dipilih
+                                                function updateDisplayBasedOnStatus(status) {
+                                                    if (status === 'Bekerja') {
+                                                        tempatLabel.textContent = 'Tempat Bekerja';
+                                                        tempatLabel.classList.remove('d-none');
+                                                        inputKarir.classList.remove('d-none');
+                                                    } else if (status === 'Kuliah') {
+                                                        tempatLabel.textContent = 'Tempat Kuliah';
+                                                        tempatLabel.classList.remove('d-none');
+                                                        inputKarir.classList.remove('d-none');
+                                                    } else if (status === 'Wirausaha') {
+                                                        tempatLabel.textContent = 'Tempat Berwirausaha';
+                                                        tempatLabel.classList.remove('d-none');
+                                                        inputKarir.classList.remove('d-none');
+                                                    } else if (status === 'Menganggur') {
+                                                        tempatLabel.classList.add('d-none');
+                                                        inputKarir.classList.add('d-none');
+                                                    } else {
+                                                        tempatLabel.classList.add('d-none');
+                                                        inputKarir.classList.add('d-none');
+                                                    }
                                                 }
+                                    
+                                                // Perbarui tampilan saat halaman dimuat
+                                                var initialStatus = '{{ $siswa->status }}';
+                                                console.log(initialStatus);
+                                                updateDisplayBasedOnStatus(initialStatus);
+                                    
+                                                // Perbarui tampilan saat pilihan status diubah
+                                                statusSelect.addEventListener('change', function() {
+                                                    updateDisplayBasedOnStatus(this.value);
+                                                });
                                             });
-                                        });
-                                    </script>
+                                        </script>
+                                    </body>
+                                    </html>
+                                    
+                                    
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center"
                                         data-bs-dismiss="modal">Submit</button>

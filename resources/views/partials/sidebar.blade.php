@@ -33,15 +33,15 @@
         </li>
         @endif
         @if (auth()->user()->hasRole('guru'))
-        <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Jurusan") ? 'list-active' : '' }} text-center text-md-start">
+        {{-- <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Jurusan") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('data-kelas') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-school-flag me-3"></i>Data Jurusan</a>
         </li>
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Mata Pelajaran") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('mapel') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chalkboard me-3"></i>Data Mata Pelajaran</a>
-        </li>
-        <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Guru" || $title == "Tambah Data Guru" || $title == "Edit Data Guru") ? 'list-active' : '' }} text-center text-md-start">
+        </li> --}}
+        {{-- <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Guru" || $title == "Tambah Data Guru" || $title == "Edit Data Guru") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('guru') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-chalkboard-user me-3"></i>Guru</a>
-        </li>
+        </li> --}}
         <li class="list-group list text-medium cursor-pointer {{ ($title == "Data Siswa" || $title == "Tambah Data Siswa" || $title == "Edit Data Siswa") ? 'list-active' : '' }} text-center text-md-start">
             <a href="{{ route('siswa') }}" class="a-icon d-none d-md-block py-2 px-3"><i class="fa-solid fa-graduation-cap me-3"></i>Siswa</a>
         </li>

@@ -207,6 +207,10 @@
     width: 450px;
     height: auto;
 }
+.eror {
+    width: 300px;
+    height: auto;
+}
 .form-status{
     padding-top: 10rem !important;
 }
@@ -261,8 +265,11 @@
         height: auto;
     }
     .notfound1 {
-        width: px;
+        width: 200px;
         height: auto;
+    }
+    .eror{
+        width: 200px;
     }
     .status-foto{
         width: 100px;

@@ -79,32 +79,6 @@ class UserController extends Controller
         ]);
         //jika valid gagal
         if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
-        //terima dan kirim
-        // $photo    = $request->file('photo');
-        // if($photo){
-        //     $filename = date('Y-m-d').$photo->getClientOriginalName();
-        //     $path     = 'photo-user/'.$filename;
-            
-        //     Storage::disk('public')->put($path,file_get_contents($photo));
-        // }
-        // $data['nisn']          = $request->nisn;
-        // $photo                 = $request->file('photo');
-        // if($photo){
-        //     $filename          = date('Y-m-d').$photo->getClientOriginalName();
-        //     $path              = 'photo-user/'.$filename;
-    
-        //     Storage::disk('public')->put($path,file_get_contents($photo));
-        //     $data['image']     = $filename;     
-        // }
-        // $data['name']          = $request->nama;
-        // $data['jenis_kelamin'] = $request->jkelamin;
-        // $data['jurusan']       = $request->jurusan;
-        // $data['kelas']         = $request->kelas;
-        // $data['email']         = $request->email;
-        // $data['password']      = Hash::make($request->password);
-        // $data['alamat']        = $request->alamat;
-        // $data['tahun_lulus']   = $request->lulus;
-        // $data['status']        = $request->status;
         
             $data['nisn']            = $request->nisn;
             $data['nip']             = $request->nip;
@@ -113,16 +87,6 @@ class UserController extends Controller
             $data['password']        = $request->password;
             $data['role']            = $request->role;
 
-        // if($request->nisn){
-        //     $data['nisn']        = $request->nisn;
-        // }
-        // if($request->nip){
-        //     $data['nip']        = $request->nip;
-        // }
-        // if($request->id_admin){
-        //     $data['id_admin']        = $request->id_admin;
-        // }
-        
         // create
         if($user = User::create($data)){
             if ($request->role === 'Siswa') {

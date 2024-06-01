@@ -44,34 +44,37 @@ Route::put('profile/updateguru/{id}', [ProfileController::class, 'updateguru'])-
 Route::put('profile/updateadmin/{id}', [ProfileController::class, 'updateadmin'])->middleware(['auth'])->name('profile.updateadmin');
 
 // nilai
-Route::get('/nilai',[Controller::class,'dataNilai'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah')->name('datanilai');
-Route::get('/nilai/detail_nilai1',[Controller::class,'detailDataNilai1']);
-Route::get('/nilai/detail_nilai2',[Controller::class,'detailDataNilai2']);
-Route::get('/nilai/detail_nilai3',[Controller::class,'detailDataNilai3']);
-Route::get('/nilai/detail_nilai4',[Controller::class,'detailDataNilai4']);
-Route::get('/nilai/detail_nilai5',[Controller::class,'detailDataNilai5']);
+Route::get('/nilai',[DataNilaiController::class,'dataNilai'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah')->name('datanilai');
+Route::get('/nilai/detail_nilai1',[DataNilaiController::class,'detailDataNilai1']);
+Route::get('/nilai/detail_nilai2',[DataNilaiController::class,'detailDataNilai2']);
+Route::get('/nilai/detail_nilai3',[DataNilaiController::class,'detailDataNilai3']);
+Route::get('/nilai/detail_nilai4',[DataNilaiController::class,'detailDataNilai4']);
+Route::get('/nilai/detail_nilai5',[DataNilaiController::class,'detailDataNilai5']);
+Route::get('/nilai/detail_nilai6',[DataNilaiController::class,'detailDataNilai6']);
 //store s1
-Route::get('/nilai/add_nilai1',[Controller::class,'inputNilai1']);
-Route::post('/nilai/add_nilaibaru1',[DataNilaiController::class,'store1'])->name('datanilai1.add');
+Route::get('/nilai/add_nilai1',[DataNilaiController::class,'inputNilai1'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah');
+Route::post('/nilai/add_nilaibaru1',[DataNilaiController::class,'store1'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah')->name('datanilai1.add');
 //store s2
-Route::get('/nilai/add_nilai2',[Controller::class,'inputNilai2']);
-Route::post('/nilai/add_nilaibaru2',[DataNilaiController::class,'store2'])->name('datanilai2.add');
+Route::get('/nilai/add_nilai2',[DataNilaiController::class,'inputNilai2'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah');
+Route::post('/nilai/add_nilaibaru2',[DataNilaiController::class,'store2'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah')->name('datanilai2.add');
 //store s3
-Route::get('/nilai/add_nilai3',[Controller::class,'inputNilai3']);
-Route::post('/nilai/add_nilaibaru3',[DataNilaiController::class,'store3'])->name('datanilai3.add');
+Route::get('/nilai/add_nilai3',[DataNilaiController::class,'inputNilai3'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah');
+Route::post('/nilai/add_nilaibaru3',[DataNilaiController::class,'store3'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah')->name('datanilai3.add');
 //store s4
-Route::get('/nilai/add_nilai4',[Controller::class,'inputNilai4']);
-Route::post('/nilai/add_nilaibaru4',[DataNilaiController::class,'store4'])->name('datanilai4.add');
+Route::get('/nilai/add_nilai4',[DataNilaiController::class,'inputNilai4'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah');
+Route::post('/nilai/add_nilaibaru4',[DataNilaiController::class,'store4'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah')->name('datanilai4.add');
 //store s5
-Route::get('/nilai/add_nilai5',[Controller::class,'inputNilai5']);
-Route::post('/nilai/add_nilaibaru5',[DataNilaiController::class,'store5'])->name('datanilai5.add');
+Route::get('/nilai/add_nilai5',[DataNilaiController::class,'inputNilai5'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah');
+Route::post('/nilai/add_nilaibaru5',[DataNilaiController::class,'store5'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah')->name('datanilai5.add');
+//store s6
+Route::get('/nilai/add_nilai6',[DataNilaiController::class,'inputNilai6'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah');
+Route::post('/nilai/add_nilaibaru6',[DataNilaiController::class,'store6'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah')->name('datanilai6.add');
 
 //update 1
-Route::put('/nilai/update1{id}',[DataNilaiController::class,'update1'])->name('datanilai1.update');
+Route::put('/nilai/update1{id}',[DataNilaiController::class,'update1'])->middleware('auth', 'verified', 'role:siswa','checkLaporanStatus:Kuliah')->name('datanilai1.update');
 
 
 Route::get('/verifikasi_nilai',[DataNilaiController::class,'verifikasiGuru'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi');
-// Route::get('/verifikasi_nilai/verifikasi/{nisn}',[DataNilaiController::class,'verifikasiGuruDetail'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi.nilai');
 Route::get('/verifikasi_nilai/verifikasi/{nisn}',[DataNilaiController::class,'verifikasiGuruDetail'])->middleware(['auth', 'verified','role:guru'])->name('verifikasi.nilai');
 Route::put('/verifikasi_nilai/verifikasi/{nisn}/tolak/{id}',[DataNilaiController::class,'tolakNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('tolak.nilai');
 Route::put('/verifikasi_nilai/verifikasi/{nisn}/terima/{id}',[DataNilaiController::class,'terimaNilai'])->middleware(['auth', 'verified', 'role:guru'])->name('terima.nilai');
@@ -118,17 +121,17 @@ Route::put('guru/update/{id}',[GuruController::class, 'update'])->middleware(['a
 Route::delete('/guru/hapus/{id}',[GuruController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.hapus');
 
 //route jurusan
-Route::get('data-kelas',[JurusanController::class,'index'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('data-kelas');
-Route::post('/input',[JurusanController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('data-kelas.input');
-Route::put('/data-kelas/update/{id}',[JurusanController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('data-kelas.update');
-Route::delete('/data-kelas/hapus/{id}', [JurusanController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('data-kelas.hapus');
+Route::get('data-kelas',[JurusanController::class,'index'])->middleware(['auth', 'verified', 'role:admin'])->name('data-kelas');
+Route::post('/input',[JurusanController::class, 'store'])->middleware(['auth', 'verified', 'role:admin'])->name('data-kelas.input');
+Route::put('/data-kelas/update/{id}',[JurusanController::class, 'update'])->middleware(['auth', 'verified', 'role:admin'])->name('data-kelas.update');
+Route::delete('/data-kelas/hapus/{id}', [JurusanController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin'])->name('data-kelas.hapus');
 
 // mapel
-Route::get('mapel',[MapelController::class, 'mapel'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('mapel');
-Route::get('mapel/tambah',[MapelController::class, 'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('tambah-mapel');
-Route::post('mapelInput',[MapelController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('mapel.input');
-Route::put('/mapel/update/{id}',[MapelController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('mapel.update');
-Route::delete('/mapel/hapus/{id}',[MapelController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('mapel.hapus');
+Route::get('mapel',[MapelController::class, 'mapel'])->middleware(['auth', 'verified', 'role:admin'])->name('mapel');
+Route::get('mapel/tambah',[MapelController::class, 'create'])->middleware(['auth', 'verified', 'role:admin'])->name('tambah-mapel');
+Route::post('mapelInput',[MapelController::class, 'store'])->middleware(['auth', 'verified', 'role:admin'])->name('mapel.input');
+Route::put('/mapel/update/{id}',[MapelController::class, 'update'])->middleware(['auth', 'verified', 'role:admin'])->name('mapel.update');
+Route::delete('/mapel/hapus/{id}',[MapelController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin'])->name('mapel.hapus');
 
 
 route::get('data-karir',[DataKarirController::class, 'show'])->middleware(['auth', 'verified'])->name('karir');

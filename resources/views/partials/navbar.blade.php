@@ -73,10 +73,17 @@
                   <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Karir") ? 'list-active' : '' }} text-md-start">
                       <a href="{{ route('karir') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-briefcase me-3"></i>Data Karir</a>
                   </li>
+                  @php
+                    $user = auth()->user();
+                    $nisn = auth()->user()->nisn;
+                    $berkuliah = $user->laporan()->where('nisn',$nisn)->where('status','Kuliah')->exists();
+                  @endphp
+                  @if ($berkuliah)
                   {{-- data nilai  --}}
                   <li class="list-group w-100 list text-medium cursor-pointer {{ ($title == "Data Nilai Siswa" || $title == "Detail Data Nilai Siswa") ? 'list-active' : '' }} text-md-start">
                       <a href="{{ route('datanilai') }}" class="a-icon py-2 px-3"><i class="fa-solid fa-chart-column me-3"></i>Data Nilai</a>
                   </li>
+                  @endif
                 @endif
                 {{-- logout --}}
                 <li class="list-group w-100 list-logout text-medium cursor-pointer rounded text-md-start">
