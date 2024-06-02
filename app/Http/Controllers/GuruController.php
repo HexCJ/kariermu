@@ -39,14 +39,7 @@ class GuruController extends Controller
          if ($request->filled('jenis_kelamin')) {
              $query->where('jenis_kelamin', $request->input('jenis_kelamin'));
          }
-         // Tampilkan data
-        //  if ($request->filled('kelas')) {
-        //      $query->where('kelas', $request->input('kelas'));
-        //  }
-         // Tampilkan data
-        //  if ($request->filled('status')) {
-        //      $query->where('status', $request->input('status'));
-        //  }
+
      
          $data = $query->get();
          $matapelajarans = MataPelajaran::all();
@@ -60,15 +53,6 @@ class GuruController extends Controller
 
          ]);
      }
-     
-    // public function index()
-    // {
-    //     $data = Guru::get();
-    //     return view('teacher/dataguru',compact('data'),
-    //     [
-    //         'title' => 'Data Guru'
-    //     ]);
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -151,35 +135,22 @@ class GuruController extends Controller
         }else{
             return redirect()->route('guru')->with('fail', 'Data Guru gagal ditambahkan');
         }
-        //kembali
-        // dd($request->all());
     }
-
-    /**
-     * Display the specified resource.
-     */
-    // public function show(string $id)
-    // {
-    //     //
-    // }
-
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request,$id)
-    {
-        // Ambil data guru berdasarkan ID
-    $data = Guru::findOrFail($id);
-    $jurusans = Jurusan::all();
-    $matapelajarans = MataPelajaran::all();
+    public function edit(Request $request,$id){
+            // Ambil data guru berdasarkan ID
+        $data = Guru::findOrFail($id);
+        $jurusans = Jurusan::all();
+        $matapelajarans = MataPelajaran::all();
 
-    return view('teacher/dataguru_update',[
-        'title' => 'Edit Data Guru',
-        'data' => $data,
-        'matapelajarans' => $matapelajarans, // Kirim data mata pelajaran ke view
-        'jurusans' => $jurusans // Kirim data mata pelajaran ke view
-    ]);
-   
+        return view('teacher/dataguru_update',[
+            'title' => 'Edit Data Guru',
+            'data' => $data,
+            'matapelajarans' => $matapelajarans, // Kirim data mata pelajaran ke view
+            'jurusans' => $jurusans // Kirim data mata pelajaran ke view
+        ]);
     }
 
     /**
@@ -187,13 +158,12 @@ class GuruController extends Controller
      */
     public function update(Request $request,$id)
     {
-        
             //validator
             $validator = Validator::make($request->all(),[
             // 'nip'=>'required',
             'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
+            'email'=>'required|email|unique:guru,email',
             // 'nama'=>'required',
-            // 'email'=>'required|email',
             // // 'jkelamin'=>'required|in:Laki-laki, Perempuan',   
             // 'password'=>'required',   
             // 'alamat'=>'required',
@@ -213,17 +183,11 @@ class GuruController extends Controller
         $data->name = $request->nama;
         $data->jenis_kelamin = $request->jkelamin;
         $data->email = $request->email;
-        $data->password = Hash::make($request->password);
         $data->alamat = $request->alamat;
         $data->mata_pelajaran = $request->matapelajaran;
         $data->jurusan = $request->jurusan;
         $data->walikelas = $request->kelas;
         $data->urutan_kelas = $request->urutan_kelas;
-
-        // Periksa apakah password baru diisi
-        if($request->password){
-            $data->password = Hash::make($request->password);
-        }
 
         $photo    = $request->file('photo');
         if($photo){
@@ -241,7 +205,6 @@ class GuruController extends Controller
             $nip = $request->nip;
             $datauser = User::where('nip', $nip)->first();
             $datauser->name = $data->name;
-            $datauser->password = $data->password;
             $datauser->save();
             return redirect()->route('guru')->with('success-update', 'Data Guru '.$namaguru.' berhasil diedit');
         }else{
