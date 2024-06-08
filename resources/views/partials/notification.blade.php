@@ -130,9 +130,8 @@ text: "Data berhasil terhapus.",
 <script>
 Swal.fire({
 title: "Gagal!",
-imageUrl: 'img/.png', // Ganti 'link_ke_gambar.jpg' dengan URL gambar yang ingin Anda tampilkan
-imageHeight: 250, // Lebar gambar dalam piksel
-text: "Data berhasil terhapus.",
+icon:"error",
+text: "Gagal mengimport data!.",
 });
 </script>
 @endif

@@ -241,7 +241,7 @@ class GuruController extends Controller
             return redirect()->route('guru')->with(['success' => 'Data Berhasil Diimport!']);
         } else {
             //redirect
-            return redirect()->route('guru')->with(['fail' => 'Data Gagal Diimport!']);
+            return redirect()->route('guru')->with(['fail-import' => 'Data Gagal Diimport!']);
         }
     }
 }

@@ -356,7 +356,7 @@ class SiswaController extends Controller
         } catch (\Exception $e) {
             storage::delete('public/excel/' . $excel);
             
-            return redirect()->route('siswa')->with(['fail' => 'Data Gagal Diimport! Error: ' . $e->getMessage()]);
+            return redirect()->route('siswa')->with(['fail-import' => 'Data Gagal Diimport! Error: ' . $e->getMessage()]);
         }
     }
 }
