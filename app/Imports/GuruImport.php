@@ -6,8 +6,9 @@ use App\Models\guru;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class GuruImport implements ToModel
+class GuruImport implements ToModel,WithHeadingRow
 {
     /**
     * @param array $row
@@ -17,47 +18,47 @@ class GuruImport implements ToModel
     public function model(array $row)
     {
         // jika datanya ada maka update data
-        $existingUser = Guru::where('nip', $row[0])->first();
-        $user = User::where('nip', $row[0])->first();
+        $existingUser = Guru::where('nip', $row['nip'])->first();
+        $user = User::where('nip', $row['nip'])->first();
         if ($existingUser) {
-            $existingUser->nip = $row[0];
-            $existingUser->name = $row[1];
-            $existingUser->email = $row[2];
-            $existingUser->password = Hash::make($row[3]);
-            $existingUser->jenis_kelamin = $row[4];
-            $existingUser->alamat = $row[5];
-            $existingUser->mata_pelajaran= $row[6];
-            $existingUser->walikelas = $row[7];
-            $existingUser->jurusan = $row[8];
-            $existingUser->urutan_kelas = $row[9];
+            $existingUser->nip = $row['nip'];
+            $existingUser->name = $row['nama'];
+            $existingUser->email = $row['email'];
+            $existingUser->password = Hash::make($row['password']);
+            $existingUser->jenis_kelamin = $row['jenis_kelamin'];
+            $existingUser->alamat = $row['alamat'];
+            $existingUser->mata_pelajaran= $row['mata_pelajaran'];
+            $existingUser->walikelas = $row['walikelas'];
+            $existingUser->jurusan = $row['jurusan'];
+            $existingUser->urutan_kelas = $row['urutan_kelas'];
             $existingUser->save();
 
-            $user->nip = $row[0];
-            $user->name = $row[1];
-            $user->password = Hash::make($row[3]);
+            $user->nip = $row['nip'];
+            $user->name = $row['nama'];
+            $user->password = Hash::make($row['password']);
             $user->password = 'Guru';
             $user->save();
 
             return null;
         }
         return new guru([
-            'nip' => $row[0],
-            'name' => $row[1],
-            'email' => $row[2],
-            'password' => Hash::make($row[3]),
-            'jenis_kelamin' => $row[4],
-            'alamat' => $row[5],
-            'mata_pelajaran'=> $row[6],
-            'walikelas' => $row[7],
-            'jurusan' => $row[8],
-            'urutan_kelas' => $row[9],
+            'nip' => $row['nip'],
+            'name' => $row['nama'],
+            'email' => $row['email'],
+            'password' => Hash::make($row['password']),
+            'jenis_kelamin' => $row['jenis_kelamin'],
+            'alamat' => $row['alamat'],
+            'mata_pelajaran'=> $row['mata_pelajaran'],
+            'walikelas' => $row['walikelas'],
+            'jurusan' => $row['jurusan'],
+            'urutan_kelas' => $row['urutan_kelas'],
         ]);
     }
 
     public function rules(): array
     {
         return [
-            'nisn' => 'required|unique:users,nisn',
+            'nip' => 'required|unique:users,nip',
         ];
     }
 }

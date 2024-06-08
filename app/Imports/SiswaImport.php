@@ -7,36 +7,37 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class SiswaImport implements ToModel
+class SiswaImport implements ToModel,WithHeadingRow
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    public function model(array $row)
+    public function model(array $row) 
     {
         // jika datanya ada maka update data
-        $existingUser = Siswa::where('nisn', $row[0])->first();
-        $user = User::where('nisn', $row[0])->first();
+        $existingUser = Siswa::where('nisn', $row['nisn'])->first();
+        $user = User::where('nisn', $row['nisn'])->first();
         if ($existingUser) {
             // Update the existing user
-            $existingUser->name = $row[1];
-            $existingUser->email = $row[2];
-            $existingUser->password = Hash::make($row[3]);
-            $existingUser->jenis_kelamin = $row[4];
-            $existingUser->alamat = $row[5];
-            $existingUser->kelas = $row[6];
-            $existingUser->jurusan = $row[7];
-            $existingUser->urutan_kelas = $row[8];
-            $existingUser->status = $row[9];
-            $existingUser->tahun_lulus = $row[10];
+            $existingUser->name = $row['nama'];
+            $existingUser->email = $row['email'];
+            $existingUser->password = Hash::make($row['password']);
+            $existingUser->jenis_kelamin = $row['jenis_kelamin'];
+            $existingUser->alamat = $row['alamat'];
+            $existingUser->kelas = $row['kelas'];
+            $existingUser->jurusan = $row['jurusan'];
+            $existingUser->urutan_kelas = $row['urutan_kelas'];
+            $existingUser->status = $row['status'];
+            $existingUser->tahun_lulus = $row['tahun_lulus'];
             $existingUser->save();
 
-            $user->nisn = $row[0];
-            $user->name = $row[1];
-            $user->password = Hash::make($row[3]);
+            $user->nisn = $row['nisn'];
+            $user->name = $row['nama'];
+            $user->password = Hash::make($row['password']);
             $user->password = 'Siswa';
             $user->save();
 
@@ -44,17 +45,17 @@ class SiswaImport implements ToModel
         }
 
         return new Siswa([
-            'nisn' => $row[0],
-            'name'  => $row[1],
-            'email' => $row[2],
-            'password' => Hash::make($row[3]),
-            'jenis_kelamin' => $row[4],
-            'alamat' => $row[5],
-            'kelas' => $row[6],
-            'jurusan' => $row[7],
-            'urutan_kelas' => $row[8],
-            'status' => $row[9],
-            'tahun_lulus' => $row[10],
+            'nisn' => $row['nisn'],
+            'name'  => $row['nama'],
+            'email' => $row['email'],
+            'password' => Hash::make($row['password']),
+            'jenis_kelamin' => $row['jenis_kelamin'],
+            'alamat' => $row['alamat'],
+            'kelas' => $row['kelas'],
+            'jurusan' => $row['jurusan'],
+            'urutan_kelas' => $row['urutan_kelas'],
+            'status' => $row['status'],
+            'tahun_lulus' => $row['tahun_lulus'],
         ]);
     }
 
