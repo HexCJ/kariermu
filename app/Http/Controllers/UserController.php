@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\UserImport;
 use App\Models\Admin;
 use App\Models\Guru;
 use App\Models\User;
@@ -14,6 +15,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 use Route;
 
@@ -24,28 +26,6 @@ class UserController extends Controller
      */
     public function users (Request $request){
         $query = User::query();
-
-        // // Tampilin data
-        // if ($request->has('search')) {
-        //     $query->where('name', 'LIKE', '%' . $request->input('search') . '%');
-        // }
-        // // Tampilkan data
-        // if ($request->filled('jurusan')) {
-        //     $query->where('jurusan', $request->input('jurusan'));
-        // }
-        // // Tampilkan data
-        // if ($request->filled('kelas')) {
-        //     $query->where('kelas', $request->input('kelas'));
-        // }
-        // // Tampilkan data
-        // if ($request->filled('jenis_kelamin')) {
-        //     $query->where('jenis_kelamin', $request->input('jenis_kelamin'));
-        // }
-        // // Tampilkan data
-        // if ($request->filled('status')) {
-        //     $query->where('status', $request->input('status'));
-        // }
-        
         $data = $query->get();
 
         return view('users.users', [
@@ -89,21 +69,6 @@ class UserController extends Controller
 
         // create
         if($user = User::create($data)){
-            if ($request->role === 'Siswa') {
-                $siswa = Siswa::create($data);
-                // $datanilaisiswa = Nilai::create(['nisn' => $request->nisn]); 
-                $datalaporansiswa = Laporan::create(['nisn' => $request->nisn, 'name' => $request->name]); 
-                $user->assignRole('siswa');
-            }else if ($request->role === 'Guru'){
-                // Berikan peran 'siswa' jika tidak
-                $guru = Guru::create($data);
-                $user->assignRole('guru');            
-            }else if ($request->role === 'Admin'){
-                // Berikan peran 'siswa' jika tidak
-                $admin = Admin::create($data);
-                $user->assignRole('admin');            
-            }
-            //kembali
             return redirect()->route('users')->with('success', 'Data User berhasil ditambahkan');
         }else{
             return redirect()->route('users')->with('fail', 'Data User gagal ditambahkan');
@@ -197,12 +162,9 @@ class UserController extends Controller
                 return redirect()->route('users')->with('success-update', 'Data Admin berhasil diedit');        
             }
         }
-
         else{
             return redirect()->route('users')->with('fail', 'Data Siswa gagal diedit');
         }
-    
-        
     }
     
     /**

@@ -35,5 +35,28 @@ class Guru extends Model
     {
         return $this->belongsTo(User::class, 'nip');
     }
+
+    protected static function boot(){
+        parent::boot();
+        static::creating(function($guru){
+            $user_guru = User::where('nip',$guru->nip)->first();
+            if($user_guru === null){
+                $user = User::create([
+                    'nip' => $guru->nip,
+                    'name' => $guru->name,
+                    'password' => $guru->password,
+                    'role' => 'Guru',
+                ]);
+                $user->assignRole('guru');
+            }else{
+                $user_guru->update([
+                    'nip' => $guru->nip,
+                    'name' => $guru->name,
+                    'password' => $guru->password,
+                    'role' => 'Guru',
+                ]);
+            }
+        });
+    }
 }
 

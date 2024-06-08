@@ -54,6 +54,12 @@
             </select>
           </div>
           <div class="mb-2 mt-3 col-12">
+            <label for="email" class="text-secondary mb-3">Alamat</label>
+            <div class="input-group">
+              <input type="text" class="form-control" name="alamat" value="{{ $data->alamat }}">
+            </div>
+          </div>
+          <div class="mb-2 mt-3 col-12">
             <label for="email" class="text-secondary mb-3">Email</label>
             <div class="input-group">
               <input type="text" class="form-control" name="email" value="{{ $data->email }}">

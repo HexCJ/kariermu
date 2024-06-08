@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form action="{{ route('guru.input') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('guru.store') }}" method="POST" enctype="multipart/form-data">
   @csrf
 <div class="container">
   <div class="row">
@@ -11,7 +11,7 @@
           <div class="col-12" data-aos="fade-up">
             <label for="nama" class="text-secondary mb-3">NIP</label>
             <div class="input-group mb-2">
-              <input type="text" class="form-control" id="nip" name="nip">
+              <input type="text" class="form-control" id="nip" value="{{ old('nip') }}" name="nip">
             </div>
             @error('nip')
               <small class="text-danger">{{ $message }}</small>
@@ -40,7 +40,7 @@
           <div class="col-12 col-md-6">
             <label for="jkelamin" class="text-secondary mb-3">Jenis Kelamin</label>
             <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="jkelamin" name="jkelamin"  value="{{old('jkelamin')}}">
-              <option selected>Pilih Jenis Kelamin</option>
+              <option value="">Pilih Jenis Kelamin</option>
               <option value="Laki-laki">Laki-laki</option>
               <option value="Perempuan">Perempuan</option>
             </select>
@@ -75,36 +75,37 @@
             <div class="input-group mb-2">
               <input type="text" class="form-control" id="password" name="password">
             </div>
-            @error('passsword')
+            @error('password')
               <small class="text-danger">{{ $message }}</small>
             @enderror
           </div>
         </div>
-        <div class="col-12 col-md-6 mb-3">
-          <label for="jurusan" class="text-secondary mb-3">Jurusan</label>
-          <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="jurusan" name="jurusan"  value="{{old('jurusan')}}" >
-            <option selected disabled>Pilih Jurusan</option>
-            @foreach($jurusans as $jurusan)
-                <option value="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}</option>
-            @endforeach
-          </select>
-          @error('jurusan')
-            <small class="text-danger">{{ $message }}</small>
-          @enderror
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3">
+            <label for="kelas" class="text-secondary mb-3">Kelas</label>
+            <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="kelas" name="kelas"  value="{{old('kelas')}}">
+              <option value="">Pilih Kelas</option>
+              <option value="X">X/SEPULUH</option>
+              <option value="XI">XI/SEBELAS</option>
+              <option value="XII">XII/DUA BELAS</option>
+            </select>
+            @error('kelas')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
+          </div>
+          <div class="col-12 col-md-6 mb-3">
+            <label for="jurusan" class="text-secondary mb-3">Jurusan</label>
+            <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="jurusan" name="jurusan"  value="{{old('jurusan')}}" >
+              <option value="" disabled>Pilih Jurusan</option>
+              @foreach($jurusans as $jurusan)
+                  <option value="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}</option>
+              @endforeach
+            </select>
+            @error('jurusan')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
+          </div>
         </div>
-        <div class="col-12 col-md-6 mb-3">
-          <label for="kelas" class="text-secondary mb-3">Kelas</label>
-          <select class="form-select form-select-sm py-2 mb-2 text-secondary" aria-label="Small select example" id="kelas" name="kelas"  value="{{old('kelas')}}">
-            <option selected>Pilih Kelas</option>
-            <option value="X">X/SEPULUH</option>
-            <option value="XI">XI/SEBELAS</option>
-            <option value="XII">XII/DUA BELAS</option>
-          </select>
-          @error('kelas')
-            <small class="text-danger">{{ $message }}</small>
-          @enderror
-        </div>
-      </div>
       <div class="row mb-3" data-aos="fade-up">
         <div class="col-12">
           <label for="urutan_kelas" class="text-secondary mb-3">Urutan Kelas</label>
@@ -114,45 +115,19 @@
           @error('urutan_kelas')
             <small class="text-danger">{{ $message }}</small>
           @enderror
-
         </div>
       </div>
         <div class="row" data-aos="fade-up">
           <div class="col-12">
             <label for="matapelajaran" class="text-secondary mb-3">Mata Pelajaran</label>
             <select class="form-select form-select-sm py-2 mb-3 text-secondary" aria-label="Small select example" id="matapelajaran" name="matapelajaran">
-              <option selected disabled>Pilih Jurusan</option>
+              <option selected disabled>Pilih Mata Pelajaran</option>
               @foreach($matapelajarans as $matapelajaran)
                   <option value="{{ $matapelajaran->id_mata_pelajaran }}">{{ $matapelajaran->nama_mata_pelajaran }}</option>
               @endforeach
             </select>
           </div>
         </div>
-
-        <!-- Button trigger modal -->
-        {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Launch demo modal
-        </button> --}}
-
-        <!-- Modal -->
-        {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div> --}}
-
         <div class="d-flex gap-2 mt-3">
           <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center ">Submit</button>
           <button type="reset" class="btn px-3 btn-danger">Reset</button>

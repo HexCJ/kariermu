@@ -53,80 +53,52 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <!DOCTYPE html>
-                                    <html lang="en">
-                                    <head>
-                                        <meta charset="UTF-8">
-                                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                        <title>Form Example</title>
-                                        <style>
-                                            .d-none {
-                                                display: none;
-                                            }
-                                        </style>
-                                    </head>
-                                    <body>
-                                        <form>
-                                            <select name="status" id="status" class="form-select mb-3">
-                                                <option value="Bekerja" {{ old('status') == 'Bekerja' ? 'selected' : '' }}>Bekerja</option>
-                                                <option value="Kuliah" {{ old('status') == 'Kuliah' ? 'selected' : '' }}>Kuliah</option>
-                                                <option value="Wirausaha" {{ old('status') == 'Wirausaha' ? 'selected' : '' }}>Wirausaha</option>
-                                                <option value="Menganggur" {{ old('status') == 'Menganggur' ? 'selected' : '' }}>Menganggur</option>
-                                            </select>
-
-                                            <label id="tempat" class="fw-medium mb-2">Tempat</label>
-                                            <input type="text" id="input" class="form-control mb-3" placeholder="Tempat">
-                                        </form>
-                                    
-                                        <script>
-                                            document.addEventListener('DOMContentLoaded', function() {
-                                                var statusSelect = document.getElementById('status');
-                                                var tempatLabel = document.getElementById('tempat');
-                                                var inputKarir = document.getElementById('input');
-                                    
-                                                // Fungsi untuk memperbarui tampilan berdasarkan status yang dipilih
-                                                function updateDisplayBasedOnStatus(status) {
-                                                    if (status === 'Bekerja') {
-                                                        tempatLabel.textContent = 'Tempat Bekerja';
-                                                        tempatLabel.classList.remove('d-none');
-                                                        inputKarir.classList.remove('d-none');
-                                                    } else if (status === 'Kuliah') {
-                                                        tempatLabel.textContent = 'Tempat Kuliah';
-                                                        tempatLabel.classList.remove('d-none');
-                                                        inputKarir.classList.remove('d-none');
-                                                    } else if (status === 'Wirausaha') {
-                                                        tempatLabel.textContent = 'Tempat Berwirausaha';
-                                                        tempatLabel.classList.remove('d-none');
-                                                        inputKarir.classList.remove('d-none');
-                                                    } else if (status === 'Menganggur') {
-                                                        tempatLabel.classList.add('d-none');
-                                                        inputKarir.classList.add('d-none');
-                                                    } else {
-                                                        tempatLabel.classList.add('d-none');
-                                                        inputKarir.classList.add('d-none');
-                                                    }
-                                                }
-                                    
-                                                // Perbarui tampilan saat halaman dimuat
-                                                var initialStatus = '{{ $siswa->status }}';
-                                                console.log(initialStatus);
-                                                updateDisplayBasedOnStatus(initialStatus);
-                                    
-                                                // Perbarui tampilan saat pilihan status diubah
-                                                statusSelect.addEventListener('change', function() {
-                                                    updateDisplayBasedOnStatus(this.value);
-                                                });
-                                            });
-                                        </script>
-                                    </body>
-                                    </html>
-                                    
-                                    
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center"
-                                        data-bs-dismiss="modal">Submit</button>
+                                        <div class="mt-3">
+                                            <button type="button" class="btn btn-secondary me-3" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center"
+                                                data-bs-dismiss="modal">Submit</button>
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', function() {
+                                                        var statusSelect = document.getElementById('status');
+                                                        var tempatLabel = document.getElementById('tempat');
+                                                        var inputKarir = document.getElementById('input');
+                                            
+                                                        // Fungsi untuk memperbarui tampilan berdasarkan status yang dipilih
+                                                        function updateDisplayBasedOnStatus(status) {
+                                                            if (status === 'Bekerja') {
+                                                                tempatLabel.textContent = 'Tempat Bekerja';
+                                                                tempatLabel.classList.remove('d-none');
+                                                                inputKarir.classList.remove('d-none');
+                                                            } else if (status === 'Kuliah') {
+                                                                tempatLabel.textContent = 'Tempat Kuliah';
+                                                                tempatLabel.classList.remove('d-none');
+                                                                inputKarir.classList.remove('d-none');
+                                                            } else if (status === 'Wirausaha') {
+                                                                tempatLabel.textContent = 'Tempat Berwirausaha';
+                                                                tempatLabel.classList.remove('d-none');
+                                                                inputKarir.classList.remove('d-none');
+                                                            } else if (status === 'Menganggur') {
+                                                                tempatLabel.classList.add('d-none');
+                                                                inputKarir.classList.add('d-none');
+                                                            } else {
+                                                                tempatLabel.classList.add('d-none');
+                                                                inputKarir.classList.add('d-none');
+                                                            }
+                                                        }
+                                            
+                                                        // Perbarui tampilan saat halaman dimuat
+                                                        var initialStatus = '{{ $siswa->status }}';
+                                                        console.log(initialStatus);
+                                                        updateDisplayBasedOnStatus(initialStatus);
+                                            
+                                                        // Perbarui tampilan saat pilihan status diubah
+                                                        statusSelect.addEventListener('change', function() {
+                                                            updateDisplayBasedOnStatus(this.value);
+                                                        });
+                                                    });
+                                                </script>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -238,10 +210,7 @@
                         <h4>Laporan Data Karir Siswa</h4>
                         {{-- jika gak ada --}}
                         @if ($siswa->status == false)
-                            <a href=""
-                                class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"
-                                data-bs-toggle="modal" data-bs-target="#addDataKarir"><i
-                                    class="fa-solid fa-briefcase me-2"></i>Lapor Karir</a>
+                            <button type="button" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto" data-bs-toggle="modal" data-bs-target="#addDataKarir"><i class="fa-solid fa-briefcase me-2"></i>Lapor Karir</button>
                         @endif
                     </div>
                     <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center"

@@ -6,7 +6,6 @@
     <div class="col-12 mt-4">
       <div class="d-flex">
         <h4>Data Guru</h4>
-        {{-- <a href="/guru/tambah" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Guru</a> --}}
       </div>
       <div class="container-fluid px-4" data-aos="fade-up">
         <div class="row">
@@ -50,6 +49,10 @@
                   </div>
                   @endif
                   @if(!$data->isEmpty())
+                  <div class="d-flex mb-3">
+                    <a href="{{ route('guru.create') }}" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Guru</a>
+                    <a href="" class="ms-3 btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-earmark-arrow-down me-3"></i>Import Data</a>
+                  </div>
                   <table id="dataguru" class="table table-hover w-100 mt-3">
                     <thead>
                       <tr>
@@ -131,6 +134,29 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Import Data Guru</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ route('guru.import') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          @method('POST')
+          <div class="form-group">
+            <input type="file" name="guru_excel" class="form-control">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Import</button>
+        </form>
       </div>
     </div>
   </div>

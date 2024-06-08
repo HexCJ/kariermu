@@ -102,23 +102,30 @@ Route::get('guru/tambah',[GuruController::class,'create'])->middleware(['auth', 
 
 // Route Admin
 Route::get('admin',[AdminController::class,'admin'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('admin');
+Route::get('admin/tambah',[AdminController::class, 'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('admin.create');
+Route::post('admin/tambah',[AdminController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('admin.store');
 Route::get('admin/edit/{id}',[AdminController::class, 'edit'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('admin.edit');
 Route::put('admin/update/{id}',[AdminController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('admin.update');
 Route::delete('/admin/hapus/{id}',[AdminController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('admin.hapus');
 
 
 Route::get('siswa',[SiswaController::class,'siswa'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('siswa');
+Route::get('siswa/tambah',[SiswaController::class, 'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('siswa.create');
+Route::post('siswa/tambah',[SiswaController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('siswa.store');
 Route::get('siswa/edit/{id}',[SiswaController::class, 'edit'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('user.edit');
 Route::put('siswa/update/{id}',[SiswaController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('user.update');
 Route::delete('/siswa/hapus/{id}',[SiswaController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('siswa.hapus');
+Route::post('/siswa/import',[SiswaController::class, 'import_siswa'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('siswa.import');
 
 
 // route guru
 Route::get('guru',[GuruController::class,'guru'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru');
+Route::get('guru/tambah',[GuruController::class, 'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.create');
+Route::post('guru/tambah',[GuruController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.store');
 Route::get('guru/edit/{id}',[GuruController::class, 'edit'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.edit');
 Route::put('guru/update/{id}',[GuruController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.update');
-//route hapus guru
 Route::delete('/guru/hapus/{id}',[GuruController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.hapus');
+Route::post('/guru/import',[GuruController::class, 'import_guru'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('guru.import');
 
 //route jurusan
 Route::get('data-kelas',[JurusanController::class,'index'])->middleware(['auth', 'verified', 'role:admin'])->name('data-kelas');
@@ -139,15 +146,12 @@ route::put('data-karir/update/{id}',[DataKarirController::class, 'update'])->nam
 
 
 Route::get('users',[UserController::class,'users'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users');
-Route::get('users/tambah',[UserController::class,'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('tambah_users');
-//route input users
-Route::post('/users/tambah',[UserController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.input');
-//route edit users  
+// Route::get('users/tambah',[UserController::class,'create'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('tambah_users');
+// Route::post('/users/tambah',[UserController::class, 'store'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.input');
 Route::get('users/edit/{id}',[UserController::class, 'edit'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.edit');
-
 Route::put('users/update/{id}',[UserController::class, 'update'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.update');
-//route hapus users
 Route::delete('/users/hapus/{id}',[UserController::class, 'destroy'])->middleware(['auth', 'verified', 'role:admin|guru'])->name('users.hapus');
+
 
 // Route untuk halaman 404
 Route::fallback(function () {
