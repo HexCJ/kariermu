@@ -131,7 +131,7 @@ text: "Data berhasil terhapus.",
 Swal.fire({
 title: "Gagal!",
 icon:"error",
-text: "Gagal mengimport data!.",
+text: "Gagal mengimport data!",
 });
 </script>
 @endif
