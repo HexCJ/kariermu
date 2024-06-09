@@ -51,7 +51,7 @@ class AdminController extends Controller
     public function create()
     {
         return view('admin.admin_add',[
-            'title' => 'Tambah Admin',
+            'title' => 'Edit Data Admin',
         ]);
     }
 
