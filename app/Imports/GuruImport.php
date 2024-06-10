@@ -36,12 +36,12 @@ class GuruImport implements ToModel,WithHeadingRow
             $user->nip = $row['nip'];
             $user->name = $row['nama'];
             $user->password = Hash::make($row['password']);
-            $user->password = 'Guru';
+            $user->role = 'Guru';
             $user->save();
 
             return null;
         }
-        return new guru([
+        return new Guru([
             'nip' => $row['nip'],
             'name' => $row['nama'],
             'email' => $row['email'],

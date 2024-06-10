@@ -38,7 +38,7 @@ class SiswaImport implements ToModel,WithHeadingRow
             $user->nisn = $row['nisn'];
             $user->name = $row['nama'];
             $user->password = Hash::make($row['password']);
-            $user->password = 'Siswa';
+            $user->role = 'Siswa';
             $user->save();
 
             return null;
