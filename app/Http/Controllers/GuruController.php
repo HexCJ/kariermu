@@ -231,16 +231,11 @@ class GuruController extends Controller
         $excel = $guru_excel->HashName();
 
         $path = $guru_excel->storeAs('public/excel/',$excel);
-
-        $import = Excel::import(new GuruImport, storage_path('app/public/excel/'.$excel));
-
-        storage::delete($path);
-
-        if($import) {
-            //redirect
+        try {
+            Excel::import(new GuruImport, storage_path('app/public/excel/'.$excel));
+            storage::delete('public/excel/' . $excel);
             return redirect()->route('guru')->with(['success' => 'Data Berhasil Diimport!']);
-        } else {
-            //redirect
+        } catch (\Exception $e) {
             return redirect()->route('guru')->with(['fail-import' => 'Data Gagal Diimport!']);
         }
     }
