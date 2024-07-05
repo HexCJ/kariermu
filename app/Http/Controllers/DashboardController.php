@@ -141,7 +141,7 @@ class DashboardController extends Controller
     {
         $status = 'Bekerja';
         $query = Laporan::join('siswa','siswa.nisn','=','laporan.nisn')
-        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.status as status_siswa','siswa.tahun_lulus', 'laporan.status')
+        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.status as status_siswa','siswa.tahun_lulus', 'laporan.status','laporan.tempat_kerja_kuliah')
         ->where('laporan.status', $status);
 
         $jurusans = Jurusan::all();
@@ -165,7 +165,7 @@ class DashboardController extends Controller
     {
         $status = 'Kuliah';
         $query = Laporan::join('siswa','siswa.nisn','=','laporan.nisn')
-        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.status as status_siswa','siswa.tahun_lulus', 'laporan.status')
+        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.status as status_siswa','siswa.tahun_lulus', 'laporan.status','laporan.tempat_kerja_kuliah')
         ->where('laporan.status', $status);
 
         $jurusans = Jurusan::all();
@@ -190,7 +190,7 @@ class DashboardController extends Controller
     {
         $status = 'Wirausaha';
         $query = Laporan::join('siswa','siswa.nisn','=','laporan.nisn')
-        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.status as status_siswa','siswa.tahun_lulus', 'laporan.status')
+        ->select('laporan.nisn','siswa.name','siswa.kelas', 'siswa.jurusan','siswa.urutan_kelas','siswa.status as status_siswa','siswa.tahun_lulus', 'laporan.status','laporan.tempat_kerja_kuliah')
         ->where('laporan.status', $status);
         
         $jurusans = Jurusan::all();
