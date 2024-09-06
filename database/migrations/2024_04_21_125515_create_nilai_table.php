@@ -22,9 +22,8 @@ return new class extends Migration
             $table->integer('nilai')->nullable(); 
             $table->enum('status', ['Pending', 'Tidak Terverifikasi', 'Terverifikasi'])->nullable();
             $table->string('pesan')->nullable();
-
-
-
+            $table->string('id_guru')->nullable();
+            $table->foreign('id_guru')->references('nip')->on('guru')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

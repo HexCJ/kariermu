@@ -5,14 +5,14 @@
             <div class="row">
                 <div class="col-12 mt-4">
                     <div class="d-flex justify-content-between">
-                        <h4 class="h4">Data Nilai Siswa Semester 4</h4>
+                        <h4 class="h4">Data Nilai Siswa Semester 6</h4>
                         <div class="alert alert-success">   
                             <p class="text-success m-0"><i class="fa-regular fa-circle-check me-2"></i>Data Nilai Terverifikasi oleh {{ $nama_guru->name }}</p>
                         </div>
                     </div>
                     <div class="container-fluid mt-5">
                         <div class="row">
-                            @foreach ($nilaiS4 as $nilai)
+                            @foreach ($nilaiS6 as $nilai)
                                 <div class="col-12 col-sm-6 col-md-4 mb-3">
                                     <div class="form-group">
                                         <label for="" class="mb-3">Nilai {{ $nilai->nama_mata_pelajaran }}</label>
@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-12 mt-4">
                     <div class="d-flex justify-content-between">
-                        <h4 class="h4">Data Nilai Siswa Semester 4</h4> 
+                        <h4 class="h4">Data Nilai Siswa Semester 6</h4> 
                         <div class="alert alert-danger">
                             <p class="text-danger m-0"><i class="fa-regular fa-circle-xmark me-2"></i>Verifikasi Data Nilai digagalkan oleh {{ $nama_guru->name }}</p>
                         </div>
@@ -37,11 +37,11 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12 mt-4">
-                                <form action="{{ route('datanilai4.add') }}" method="POST">
+                                <form action="{{ route('datanilai6.add') }}" method="POST">
                                     @csrf
                                     <div class="container-fluid mt-5">
                                         <div class="row">
-                                        @foreach ($nilaiS4 as $nilai)
+                                        @foreach ($nilaiS6 as $nilai)
                                             <div class="col-12 col-sm-6 col-md-4 mb-3">
                                                 <div class="form-group">
                                                     <label for="" class="mb-3">Nilai {{ $nilai->nama_mata_pelajaran }}</label>
@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-12 mt-4">
                     <div class="d-flex justify-content-between">
-                        <h4 class="h4">Data Nilai Siswa Semester 4</h4>
+                        <h4 class="h4">Data Nilai Siswa Semester 6</h4>
                         <div class="alert alert-secondary">
                             <p class="text-secondary m-0"><i class="fa-solid fa-clock-rotate-left me-2"></i>Data Nilai Sedang
                                 Diverifikasi</p>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="container-fluid mt-5">
                         <div class="row">
-                            @foreach ($nilaiS4 as $nilai)
+                            @foreach ($nilaiS6 as $nilai)
                                 <div class="col-12 col-sm-6 col-md-4 mb-3">
                                     <div class="form-group">
                                         <label for="" class="mb-3">Nilai {{ $nilai->nama_mata_pelajaran }}</label>

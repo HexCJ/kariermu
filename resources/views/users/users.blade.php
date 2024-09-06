@@ -6,7 +6,7 @@
     <div class="col-12 mt-4">
         <div class="d-flex">
           <h4>Data Users</h4>
-          <a href="{{ route('tambah_users') }}" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Users</a>
+          {{-- <a href="{{ route('tambah_users') }}" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Users</a> --}}
         </div>
         <div class="container-fluid px-4" data-aos="fade-up">
           <div class="row">
@@ -42,7 +42,25 @@
                           <td>{{ $d->nip }}</td> 
                           <td>{{ $d->id_admin }}</td> 
                           <td>{{ $d->name }}</td> 
-                          <td>{{ $d->role }}</td>
+                          @if($d->role === 'Siswa')
+                          <td>
+                            <div class="m-0 mt-3 alert alert-danger p-1 text-center">
+                              <p class="alert-link m-0 p-0" style="font-size: 10px">{{ $d->role }}</p>
+                            </div>
+                          </td>
+                          @elseif($d->role === 'Guru')
+                          <td>
+                            <div class="m-0 mt-3 alert alert-primary p-1 text-center">
+                              <p class="alert-link m-0 p-0" style="font-size: 10px">{{ $d->role }}</p>
+                            </div>
+                          </td>
+                          @elseif($d->role === 'Admin')
+                          <td>
+                            <div class="m-0 mt-3 alert alert-success p-1 text-center">
+                              <p class="alert-link m-0 p-0" style="font-size: 10px">{{ $d->role }}</p>
+                            </div>
+                          </td>
+                          @endif
                           <td class="d-flex justify-content-center align-items-center">
                             <div class="dropdown py-3">
                               <a class="button py-2 px-3 rounded text-decoration-none text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

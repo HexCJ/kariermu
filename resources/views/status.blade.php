@@ -105,6 +105,7 @@
                                                             <th>Status Siswa</th>
                                                             <th>Tahun Lulus</th>
                                                             <th>Status Karir</th>
+                                                            <th>Nama Intansi/Perusahaan</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -118,6 +119,7 @@
                                                                 <td>{{ $d->status_siswa }}</td>
                                                                 <td>{{ $d->tahun_lulus }}</td>
                                                                 <td>{{ $d->status }}</td>
+                                                                <td>{{ $d->tempat_kerja_kuliah }}</td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -174,6 +176,7 @@
                                                             <th>Status Siswa</th>
                                                             <th>Tahun Lulus</th>
                                                             <th>Status Karir</th>
+                                                            <th>Nama Universitas</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -187,6 +190,7 @@
                                                                 <td>{{ $d->status_siswa }}</td>
                                                                 <td>{{ $d->tahun_lulus }}</td>
                                                                 <td>{{ $d->status }}</td>
+                                                                <td>{{ $d->tempat_kerja_kuliah }}</td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -243,7 +247,9 @@
                                                             <th>Status Siswa</th>
                                                             <th>Tahun Lulus</th>
                                                             <th>Status Karir</th>
+                                                            <th>Nama Wirausaha</th>
                                                         </tr>
+                                                        
                                                     </thead>
                                                     <tbody>
                                                         @foreach ($data as $d)
@@ -256,6 +262,7 @@
                                                                 <td>{{ $d->status_siswa }}</td>
                                                                 <td>{{ $d->tahun_lulus }}</td>
                                                                 <td>{{ $d->status }}</td>
+                                                                <td>{{ $d->tempat_kerja_kuliah }}</td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>

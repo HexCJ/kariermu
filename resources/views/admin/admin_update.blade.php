@@ -54,6 +54,12 @@
             </select>
           </div>
           <div class="mb-2 mt-3 col-12">
+            <label for="email" class="text-secondary mb-3">Alamat</label>
+            <div class="input-group">
+              <input type="text" class="form-control" name="alamat" value="{{ $data->alamat }}">
+            </div>
+          </div>
+          <div class="mb-2 mt-3 col-12">
             <label for="email" class="text-secondary mb-3">Email</label>
             <div class="input-group">
               <input type="text" class="form-control" name="email" value="{{ $data->email }}">
@@ -61,7 +67,7 @@
           </div>
         </div>
         <div class="d-flex gap-2 mt-5">
-          <a href="../" class="btn px-3 btn-secondary">Close</a>
+          <a href="{{ route('admin') }}" class="btn px-3 btn-secondary">Close</a>
           <button type="submit" class="button py-2 px-3 rounded text-decoration-none text-center ">Submit</button>
         </div>
       </form>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 //test
+
+use App\Imports\GuruImport;
 use Spatie\Permission\Models\Role;
 //
 use Illuminate\Http\Request;
@@ -15,6 +17,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GuruController extends Controller
 {
@@ -39,14 +42,7 @@ class GuruController extends Controller
          if ($request->filled('jenis_kelamin')) {
              $query->where('jenis_kelamin', $request->input('jenis_kelamin'));
          }
-         // Tampilkan data
-        //  if ($request->filled('kelas')) {
-        //      $query->where('kelas', $request->input('kelas'));
-        //  }
-         // Tampilkan data
-        //  if ($request->filled('status')) {
-        //      $query->where('status', $request->input('status'));
-        //  }
+
      
          $data = $query->get();
          $matapelajarans = MataPelajaran::all();
@@ -60,15 +56,6 @@ class GuruController extends Controller
 
          ]);
      }
-     
-    // public function index()
-    // {
-    //     $data = Guru::get();
-    //     return view('teacher/dataguru',compact('data'),
-    //     [
-    //         'title' => 'Data Guru'
-    //     ]);
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -76,11 +63,12 @@ class GuruController extends Controller
     public function create()
     {
         $matapelajarans = MataPelajaran::all();
+        $jurusans = Jurusan::all();
 
         return view('teacher/dataguru_add',[
             'title' => 'Tambah Data Guru' ,
-            'matapelajarans' => $matapelajarans 
-
+            'matapelajarans' => $matapelajarans,
+            'jurusans' => $jurusans 
         ]);
     }
 
@@ -94,13 +82,11 @@ class GuruController extends Controller
             'nip'=>'required',
             'nama'=>'required',
             'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
-            'email'=>'required|email',
-            // 'jkelamin'=>'required|in:Laki-laki, Perempuan',   
+            'email'=>'required|email|unique:guru,email',
+            'jkelamin'=>'required|in:Laki-laki, Perempuan',   
             'password'=>'required',   
             'alamat'=>'required',
             // 'matapelajaran'=>'required|in:MTK, BING',   
-   
-
         ]);
         // jika valid gagal
         if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
@@ -134,16 +120,7 @@ class GuruController extends Controller
         $data['jurusan']       = $request->jurusan;
         $data['walikelas']         = $request->kelas;
         $data['urutan_kelas']   = $request->urutan_kelas;
-
-        // $newGuru = Guru::request($data);
-        // $newGuru->assignRole('admin');
-
-        // $guru = Guru::updateOrCreate([
-        //     'nip'=>'request->nip',
-        // ]);
-
     
-        
         //create
         if(Guru::create($data)){
             return redirect()->route('guru')->with('success', 'Data Guru berhasil ditambahkan');
@@ -151,35 +128,22 @@ class GuruController extends Controller
         }else{
             return redirect()->route('guru')->with('fail', 'Data Guru gagal ditambahkan');
         }
-        //kembali
-        // dd($request->all());
     }
-
-    /**
-     * Display the specified resource.
-     */
-    // public function show(string $id)
-    // {
-    //     //
-    // }
-
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request,$id)
-    {
-        // Ambil data guru berdasarkan ID
-    $data = Guru::findOrFail($id);
-    $jurusans = Jurusan::all();
-    $matapelajarans = MataPelajaran::all();
+    public function edit(Request $request,$id){
+            // Ambil data guru berdasarkan ID
+        $data = Guru::findOrFail($id);
+        $jurusans = Jurusan::all();
+        $matapelajarans = MataPelajaran::all();
 
-    return view('teacher/dataguru_update',[
-        'title' => 'Edit Data Guru',
-        'data' => $data,
-        'matapelajarans' => $matapelajarans, // Kirim data mata pelajaran ke view
-        'jurusans' => $jurusans // Kirim data mata pelajaran ke view
-    ]);
-   
+        return view('teacher/dataguru_update',[
+            'title' => 'Edit Data Guru',
+            'data' => $data,
+            'matapelajarans' => $matapelajarans, // Kirim data mata pelajaran ke view
+            'jurusans' => $jurusans // Kirim data mata pelajaran ke view
+        ]);
     }
 
     /**
@@ -187,13 +151,12 @@ class GuruController extends Controller
      */
     public function update(Request $request,$id)
     {
-        
-            //validator
+        $data = Guru::findOrFail($id);
             $validator = Validator::make($request->all(),[
             // 'nip'=>'required',
             'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
+            'email'=>'required|email|unique:guru,email,'.$data->id,
             // 'nama'=>'required',
-            // 'email'=>'required|email',
             // // 'jkelamin'=>'required|in:Laki-laki, Perempuan',   
             // 'password'=>'required',   
             // 'alamat'=>'required',
@@ -213,17 +176,11 @@ class GuruController extends Controller
         $data->name = $request->nama;
         $data->jenis_kelamin = $request->jkelamin;
         $data->email = $request->email;
-        $data->password = Hash::make($request->password);
         $data->alamat = $request->alamat;
         $data->mata_pelajaran = $request->matapelajaran;
         $data->jurusan = $request->jurusan;
         $data->walikelas = $request->kelas;
         $data->urutan_kelas = $request->urutan_kelas;
-
-        // Periksa apakah password baru diisi
-        if($request->password){
-            $data->password = Hash::make($request->password);
-        }
 
         $photo    = $request->file('photo');
         if($photo){
@@ -241,7 +198,6 @@ class GuruController extends Controller
             $nip = $request->nip;
             $datauser = User::where('nip', $nip)->first();
             $datauser->name = $data->name;
-            $datauser->password = $data->password;
             $datauser->save();
             return redirect()->route('guru')->with('success-update', 'Data Guru '.$namaguru.' berhasil diedit');
         }else{
@@ -264,6 +220,23 @@ class GuruController extends Controller
             return redirect()->back()->with('success-delete', 'Data Guru '.$namaguru.' berhasil dihapus');
         }else{
             return redirect()->back()->with('fail', 'Data Guru'.$namaguru.'gagal dihapus');
+        }
+    }
+    public function import_guru(Request $request){
+        $this->validate($request,[
+            'guru_excel' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $guru_excel = $request->guru_excel;
+        $excel = $guru_excel->HashName();
+
+        $path = $guru_excel->storeAs('public/excel/',$excel);
+        try {
+            Excel::import(new GuruImport, storage_path('app/public/excel/'.$excel));
+            storage::delete('public/excel/' . $excel);
+            return redirect()->route('guru')->with(['success' => 'Data Berhasil Diimport!']);
+        } catch (\Exception $e) {
+            return redirect()->route('guru')->with(['fail-import' => 'Data Gagal Diimport!']);
         }
     }
 }

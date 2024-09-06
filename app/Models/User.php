@@ -69,12 +69,35 @@ class User extends Authenticatable
         return $this->hasOne(Laporan::class, 'nisn','nisn');
     }
 
-    // protected static function boot()
-    // {
+    // protected static function boot(){
     //     parent::boot();
 
-    //     static::created(function ($user) {
-    //         $user->assignRole('siswa');
+    //     static::created(function($user){
+    //         if($user->role === 'Admin'){
+    //             $admin = Admin::create([
+    //                 'id_admin' => $user->id_admin,
+    //                 'name' => $user->name,
+    //                 'password' => $user->password,
+    //             ]);
+    //             $user->assignRole('admin');
+    //         }
+    //         elseif($user->role === 'Guru'){
+    //             $guru = Guru::create([
+    //                 'nip' => $user->nip,
+    //                 'name' => $user->name,
+    //                 'password' => $user->password,
+    //             ]);
+    //             $user->assignRole('guru');
+    //         }
+    //         elseif($user->role === 'Siswa'){
+    //             $user->assignRole('siswa');
+    //             $siswa = Siswa::create([
+    //                 'nisn' => $user->nisn,
+    //                 'name' => $user->name,
+    //                 'password' => $user->password,
+    //             ]);
+    //             $datalaporansiswa = Laporan::create(['nisn' => $user->nisn, 'name' => $user->name]); 
+    //         }
     //     });
     // }
 }

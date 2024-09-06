@@ -42,14 +42,36 @@ class Siswa extends Model
     {
         return $this->hasOne(Siswa::class, 'nisn');
     }
-
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class, 'nisn');
-    // }
-
     public function jurusan()
     {
         return $this->belongsTo(Jurusan::class, 'jurusan', 'id_jurusan');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function($siswa){
+            $user_siswa = User::where('nisn',$siswa->nisn)->first();
+            if($user_siswa === null){
+                $user = User::create([
+                    'nisn' => $siswa->nisn,
+                    'name' => $siswa->name,
+                    'password' => $siswa->password,
+                    'role' => 'Siswa',
+                ]);
+                $user->assignRole('siswa');
+            }else{
+                $user_siswa->update([
+                    'nisn' => $siswa->nisn,
+                    'name' => $siswa->name,
+                    'password' => $siswa->password,
+                    'role' => 'Siswa',
+                ]);
+            }
+            $laporan = Laporan::create([
+                'nisn' => $siswa->nisn,
+                'name' => $siswa->name,
+            ]);
+        });
     }
 }

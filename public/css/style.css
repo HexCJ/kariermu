@@ -173,6 +173,19 @@
     border-radius: 12px;
     aspect-ratio: 1;
 }
+.profile-foto1 {
+    width: 50%;
+    object-fit: cover;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    transition: all ease-in-out 0.3s;
+}
+.profile-foto1:hover {
+    transition: all ease-in-out 0.3s;
+    object-fit: cover;
+    border-radius: 12px;
+    aspect-ratio: 1;
+}
 .notfound {
     width: 200px;
     height: auto;
@@ -207,11 +220,21 @@
     width: 450px;
     height: auto;
 }
+.eror {
+    width: 300px;
+    height: auto;
+}
 .form-status{
     padding-top: 10rem !important;
 }
 .data-profile1 {
     min-height: 70vh;
+}
+.alert-purple {
+    --bs-alert-color:#3A0CA3;;
+    --bs-alert-bg: #c4abff8d;
+    --bs-alert-border-color:  #a17bf88d;
+    --bs-alert-link-color: var(--bs-danger-text-emphasis);
 }
 @media (max-width: 576px) {
     h4 {
@@ -261,8 +284,11 @@
         height: auto;
     }
     .notfound1 {
-        width: px;
+        width: 200px;
         height: auto;
+    }
+    .eror{
+        width: 200px;
     }
     .status-foto{
         width: 100px;

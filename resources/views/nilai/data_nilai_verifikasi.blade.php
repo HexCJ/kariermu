@@ -47,6 +47,11 @@
                             type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Semester
                             5</button>
                     </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-s6"
+                            type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Semester
+                            6</button>
+                    </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-s1" role="tabpanel" aria-labelledby="pills-s1-tab"
@@ -61,13 +66,31 @@
                                 @endphp
                                 <div class="d-flex justify-content-end gap-3 mb-2">
                                     <div class="tolak-semua">
-                                        <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
-                                        @csrf
-                                        @method('PUT')
-                                        <input type="hidden" value="Tidak Terverifikasi"
-                                            name="status">
-                                        <button type="submit" class="btn btn-danger">Tolak semua nilai<i
-                                                class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                        <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" id="tolak-semua-nilai-button-s1" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" value="Tidak Terverifikasi"
+                                                name="status">
+                                            <button type="button" class="btn btn-danger" id="tolak-semua-nilai-button-s1">Tolak semua nilai<i
+                                                    class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                            <script>
+                                                document.getElementById('tolak-semua-nilai-button-s1').addEventListener('click', function() {
+                                                    Swal.fire({
+                                                        title: 'Apakah Anda yakin?',
+                                                        text: "Anda tidak dapat mengembalikan status perubahan nilai ini!",
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#3085d6',
+                                                        confirmButtonText: 'Ya, tolak!',
+                                                        cancelButtonColor: '#d33',
+                                                        cancelButtonText: 'Batal'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            document.getElementById('tolak-semua-nilai-button-s1').submit();
+                                                        }
+                                                    });
+                                                });
+                                            </script>        
                                         </form>
                                     </div>
                                     <div class="terima-semua">
@@ -132,13 +155,30 @@
                                     @endphp
                                     <div class="d-flex justify-content-end gap-3 mb-2">
                                         <div class="tolak-semua">
-                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" value="Tidak Terverifikasi"
-                                                name="status">
-                                            <button type="submit" class="btn btn-danger">Tolak semua nilai<i
-                                                    class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" id="tolak-semua-nilai-button-s2" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" value="Tidak Terverifikasi"
+                                                    name="status">
+                                                <button type="button" class="btn btn-danger" id="tolak-semua-nilai-button-s2">Tolak semua nilai<i class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                                <script>
+                                                    document.getElementById('tolak-semua-nilai-button-s2').addEventListener('click', function() {
+                                                        Swal.fire({
+                                                            title: 'Apakah Anda yakin?',
+                                                            text: "Anda tidak dapat mengembalikan status perubahan nilai ini!",
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            confirmButtonText: 'Ya, tolak!',
+                                                            cancelButtonColor: '#d33',
+                                                            cancelButtonText: 'Batal'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById('tolak-semua-nilai-button-s2').submit();
+                                                            }
+                                                        });
+                                                    });
+                                                </script>        
                                             </form>
                                         </div>
                                         <div class="terima-semua">
@@ -204,13 +244,30 @@
                                     @endphp
                                     <div class="d-flex justify-content-end gap-3 mb-2">
                                         <div class="tolak-semua">
-                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" value="Tidak Terverifikasi"
-                                                name="status">
-                                            <button type="submit" class="btn btn-danger">Tolak semua nilai<i
-                                                    class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" id="tolak-semua-nilai-button-s3" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" value="Tidak Terverifikasi"
+                                                    name="status">
+                                                <button type="button" class="btn btn-danger" id="tolak-semua-nilai-button-s3">Tolak semua nilai<i class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                                <script>
+                                                    document.getElementById('tolak-semua-nilai-button-s3').addEventListener('click', function() {
+                                                        Swal.fire({
+                                                            title: 'Apakah Anda yakin?',
+                                                            text: "Anda tidak dapat mengembalikan status perubahan nilai ini!",
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            confirmButtonText: 'Ya, tolak!',
+                                                            cancelButtonColor: '#d33',
+                                                            cancelButtonText: 'Batal'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById('tolak-semua-nilai-button-s3').submit();
+                                                            }
+                                                        });
+                                                    });
+                                                </script>        
                                             </form>
                                         </div>
                                         <div class="terima-semua">
@@ -276,13 +333,30 @@
                                     @endphp
                                     <div class="d-flex justify-content-end gap-3 mb-2">
                                         <div class="tolak-semua">
-                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" value="Tidak Terverifikasi"
-                                                name="status">
-                                            <button type="submit" class="btn btn-danger">Tolak semua nilai<i
-                                                    class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" id="tolak-semua-nilai-button-s4" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" value="Tidak Terverifikasi"
+                                                    name="status">
+                                                <button type="button" class="btn btn-danger" id="tolak-semua-nilai-button-s4">Tolak semua nilai<i class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                                <script>
+                                                    document.getElementById('tolak-semua-nilai-button-s4').addEventListener('click', function() {
+                                                        Swal.fire({
+                                                            title: 'Apakah Anda yakin?',
+                                                            text: "Anda tidak dapat mengembalikan status perubahan nilai ini!",
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            confirmButtonText: 'Ya, tolak!',
+                                                            cancelButtonColor: '#d33',
+                                                            cancelButtonText: 'Batal'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById('tolak-semua-nilai-button-s4').submit();
+                                                            }
+                                                        });
+                                                    });
+                                                </script>        
                                             </form>
                                         </div>
                                         <div class="terima-semua">
@@ -348,13 +422,30 @@
                                     @endphp
                                     <div class="d-flex justify-content-end gap-3 mb-2">
                                         <div class="tolak-semua">
-                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" value="Tidak Terverifikasi"
-                                                name="status">
-                                            <button type="submit" class="btn btn-danger">Tolak semua nilai<i
-                                                    class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" id="tolak-semua-nilai-button-s5" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" value="Tidak Terverifikasi"
+                                                    name="status">
+                                                <button type="button" class="btn btn-danger" id="tolak-semua-nilai-button-s5">Tolak semua nilai<i class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                                <script>
+                                                    document.getElementById('tolak-semua-nilai-button-s5').addEventListener('click', function() {
+                                                        Swal.fire({
+                                                            title: 'Apakah Anda yakin?',
+                                                            text: "Anda tidak dapat mengembalikan status perubahan nilai ini!",
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            confirmButtonText: 'Ya, tolak!',
+                                                            cancelButtonColor: '#d33',
+                                                            cancelButtonText: 'Batal'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById('tolak-semua-nilai-button-s5').submit();
+                                                            }
+                                                        });
+                                                    });
+                                                </script>        
                                             </form>
                                         </div>
                                         <div class="terima-semua">
@@ -368,6 +459,95 @@
                                         </div>
                                     </div>
                                     @foreach ($semester5 as $d)
+                                        <div class="col-12 col-md-4 col-lg-3 mt-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <label class="fw-medium mb-3"><i
+                                                            class="fa-solid fa-chalkboard me-2"></i>Mata
+                                                        Pelajaran</label>
+                                                    <p class="mb-4 text-secondary">{{ $d->mata_pelajaran }}</p>
+                                                    <label class="fw-medium mb-3"><i
+                                                            class="bi bi-clipboard2-data me-2"></i>Nilai</label>
+                                                    <h2 class="fw-bold">{{ $d->nilai }}</h2>
+                                                    <div class="d-flex justify-content-end gap-3">
+                                                        <form
+                                                            action="{{ route('tolak.nilai', ['id' => $d->id, 'nisn' => $d->nisn]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" value="Tidak Terverifikasi"
+                                                                name="status">
+                                                            <button type="submit" class="btn btn-danger"><i
+                                                                    class="fa-regular fa-circle-xmark"></i></button>
+                                                        </form>
+                                                        <form
+                                                            action="{{ route('terima.nilai', ['id' => $d->id, 'nisn' => $d->nisn]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" value="Terverifikasi"
+                                                                name="status">
+                                                            <button type="submit" class="btn btn-success"><i
+                                                                    class="fa-regular fa-circle-check"></i></button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-s6" role="tabpanel" aria-labelledby="pills-s6-tab"
+                        tabindex="0">
+                        <div class="container-fluid" data-aos="fade-up">
+                            <div class="row">
+                                @if ($semester6->isEmpty())
+                                    @yield('alert-kosong')
+                                @elseif(!$semester6->isEmpty())
+                                    @php
+                                    $semester = 'S6';
+                                    @endphp
+                                    <div class="d-flex justify-content-end gap-3 mb-2">
+                                        <div class="tolak-semua">
+                                            <form action="{{ route('tolak.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" id="tolak-semua-nilai-button-s6" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" value="Tidak Terverifikasi"
+                                                    name="status">
+                                                <button type="button" class="btn btn-danger" id="tolak-semua-nilai-button-s6">Tolak semua nilai<i class="ms-2 fa-regular fa-circle-xmark"></i></button>
+                                                <script>
+                                                    document.getElementById('tolak-semua-nilai-button-s6').addEventListener('click', function() {
+                                                        Swal.fire({
+                                                            title: 'Apakah Anda yakin?',
+                                                            text: "Anda tidak dapat mengembalikan status perubahan nilai ini!",
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            confirmButtonText: 'Ya, tolak!',
+                                                            cancelButtonColor: '#d33',
+                                                            cancelButtonText: 'Batal'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById('tolak-semua-nilai-button-s6').submit();
+                                                            }
+                                                        });
+                                                    });
+                                                </script>        
+                                            </form>
+                                        </div>
+                                        <div class="terima-semua">
+                                            <form action="{{ route('terima.nilai.semua', ['nisn' => $nisn_siswa, 'semester' => $semester]) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" value="Terverifikasi" name="status">
+                                            <button type="submit" class="btn btn-success">Terima semua nilai<i
+                                                    class="ms-2 fa-regular fa-circle-check"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    @foreach ($semester6 as $d)
                                         <div class="col-12 col-md-4 col-lg-3 mt-3">
                                             <div class="card">
                                                 <div class="card-body">

@@ -6,7 +6,6 @@
     <div class="col-12 mt-4">
         <div class="d-flex">
           <h4>Data Admin</h4>
-          {{-- <a href="{{ route('tambah_admin') }}" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Admin</a> --}}
         </div>
         <div class="container-fluid px-4" data-aos="fade-up">
           <div class="row">
@@ -21,6 +20,9 @@
                     </div>
                     @endif
                     @if (!$data->isEmpty())
+                    <div class="d-flex mt-3 mb-3">
+                    <a href="{{ route('admin.create') }}" class="py-2 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Admin</a>
+                    </div>
                     <table id="dataAdmin" class="table table-hover w-100 mt-3">
                       <thead>
                         <tr>

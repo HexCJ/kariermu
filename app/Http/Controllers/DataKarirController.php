@@ -15,8 +15,7 @@ class DataKarirController extends Controller
     public function index()
     {
         return view('data-karir',[
-            'title' => 'Data Karir'
-
+            'title' => 'Data Karir',
         ]);
     }
 
@@ -42,7 +41,6 @@ class DataKarirController extends Controller
     public function show()
     {
         $user = Auth::user();
-
         // ambil nip dari user
         $nisn = $user->nisn;
         $status_siswa = Siswa::where('nisn', $nisn)->select('status')->first();
@@ -93,7 +91,6 @@ class DataKarirController extends Controller
                 return redirect()->route('karir')->with('success_lapor', 'Laporan anda berhasil simpan');
                 if($siswa->status === 'Kuliah' ){
                     $datanilai = Nilai::create(['nisn' => $siswa->nisn]); 
-                    // $datanilaisiswa = Nilai::create(['nisn' => $request->nisn]); 
                     return redirect()->route('karir')->with('success_lapor', 'Laporan anda berhasil simpan');
                 }
             }else{

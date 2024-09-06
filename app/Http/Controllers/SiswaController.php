@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\SiswaImport;
 use App\Models\User;
 use App\Models\Jurusan;
 use App\Models\Laporan;
@@ -11,6 +12,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 use Route;
 
@@ -146,20 +148,18 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $validator = Validator::make($request->all(),[
-            'nip'=>'required',
+            'nisn'=>'required',
             'nama'=>'required',
             'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
-            // 'email'=>'required|email',
-            // 'jkelamin'=>'required|in:Laki-laki, Perempuan',   
-            // 'jurusan'=>'required|in:RPL, DGM, DPIB, TITL',   
-            // 'kelas'=>'required|in:X/SEPULUH, XI/SEBELAS, XII/DUA BELAS',   
+            'email'=>'required|email',
+            'jkelamin'=>'required|in:Laki-laki, Perempuan',   
+            'jurusan'=>'required',   
+            'kelas'=>'required',   
             'password'=>'required',   
             'alamat'=>'required',   
-            'lulus'=>'required',   
-            // 'status'=>'required|in:Belum Lulus, Lulus',   
-
+            'status'=>'required',   
+            'lulus'=> 'nullable',  
         ]);
         //jika valid gagal
         if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
@@ -299,12 +299,9 @@ class SiswaController extends Controller
         if($data->save()){
             $nisn = $request->nisn;
             $datauser = User::where('nisn', $nisn)->first();
-            $datalaporan = Laporan::where('nisn', $nisn)->first();
             $datauser->name = $data->name;
-            $datalaporan->jurusan = $data->jurusan;
             $datauser->password = $data->password;
             $datauser->save();
-            $datalaporan->save();
             
             return redirect()->route('siswa')->with('success-update', 'Data Siswa '.$namasiswa.' berhasil diedit');
         }else{
@@ -340,4 +337,26 @@ class SiswaController extends Controller
     
     //     return view('search', compact('data','products'));
     // }
+
+    public function import_siswa(Request $request){
+        $this->validate($request,[
+            'siswa_excel' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $siswa_excel = $request->siswa_excel;
+        $excel = $siswa_excel->HashName();
+
+        $path = $siswa_excel->storeAs('public/excel/',$excel);
+
+        try {
+            Excel::import(new SiswaImport, storage_path('app/public/excel/' . $excel));
+            storage::delete('public/excel/' . $excel);
+    
+            return redirect()->route('siswa')->with(['success' => 'Data Berhasil Diimport!']);
+        } catch (\Exception $e) {
+            storage::delete('public/excel/' . $excel);
+            
+            return redirect()->route('siswa')->with(['fail-import' => 'Data Gagal Diimport! Error: ' . $e->getMessage()]);
+        }
+    }
 }

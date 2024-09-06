@@ -61,21 +61,21 @@ class UserSeeder extends Seeder
         // //buat role sesuai RolePermission
         // $siswa->assignRole('siswa');
 
-        $siswa = User::updateOrCreate([
-            'nisn'=>'3333',
-            'name'=>'siswa',
-            // 'email' => 'siswa@example.com',
-        //     // 'alamat'=>'rumah guru',
-        //     // 'tahun_lulus'=>'2025',
-        //     // 'jenis_kelamin'=>'Laki-laki',
-        //     // 'status'=>'Belum Lulus',
-        //     // 'kelas'=>'XI',
-        //     // 'jurusan'=>'OT',
-            'role'=>'Siswa',
-            'password'=>bcrypt('siswa1')
-        ]);
-        // //buat role sesuai RolePermission
-        $siswa->assignRole('siswa');
+        // $siswa = User::updateOrCreate([
+        //     'nisn'=>'3333',
+        //     'name'=>'siswa',
+        //     // 'email' => 'siswa@example.com',
+        // //     // 'alamat'=>'rumah guru',
+        // //     // 'tahun_lulus'=>'2025',
+        // //     // 'jenis_kelamin'=>'Laki-laki',
+        // //     // 'status'=>'Belum Lulus',
+        // //     // 'kelas'=>'XI',
+        // //     // 'jurusan'=>'OT',
+        //     'role'=>'Siswa',
+        //     'password'=>bcrypt('siswa1')
+        // ]);
+        // // //buat role sesuai RolePermission
+        // $siswa->assignRole('siswa');
 
         $admin = User::updateOrCreate([
             'id_admin'=>'1111',
@@ -93,21 +93,21 @@ class UserSeeder extends Seeder
         // //buat role sesuai RolePermission
         $admin->assignRole('admin');
 
-        $guru = User::updateOrCreate([
-            'nip'=>'2222',
-            'name'=>'guru',
-            // 'email' => 'guru@example.com',
-        //     // 'alamat'=>'rumah guru',
-        //     // 'tahun_lulus'=>'2025',
-        //     // 'jenis_kelamin'=>'Laki-laki',
-        //     // 'status'=>'Belum Lulus',
-        //     // 'kelas'=>'XI',
-        //     // 'jurusan'=>'OT',
-            'role'=>'Guru',
-            'password'=>bcrypt('guru1')
-        ]);
-        // //buat role sesuai RolePermission
-        $guru->assignRole('guru');
+        // $guru = User::updateOrCreate([
+        //     'nip'=>'2222',
+        //     'name'=>'guru',
+        //     // 'email' => 'guru@example.com',
+        // //     // 'alamat'=>'rumah guru',
+        // //     // 'tahun_lulus'=>'2025',
+        // //     // 'jenis_kelamin'=>'Laki-laki',
+        // //     // 'status'=>'Belum Lulus',
+        // //     // 'kelas'=>'XI',
+        // //     // 'jurusan'=>'OT',
+        //     'role'=>'Guru',
+        //     'password'=>bcrypt('guru1')
+        // ]);
+        // // //buat role sesuai RolePermission
+        // $guru->assignRole('guru');
         }
         
 }

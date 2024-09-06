@@ -50,16 +50,52 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.admin_add',[
+            'title' => 'Edit Data Admin',
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    
+     public function store(Request $request)
+     {
+         $this->validate($request, [
+             'id_admin' => 'required|min:4',
+             'nama' => 'required',
+             'photo' => 'nullable|mimes:png,jpg,jpeg|max:2048',
+             'email' => 'required|email',
+             'password' => 'required|min:6',
+             'jkelamin' => 'required',
+             'alamat' => 'required',
+         ]);
+     
+         $data = [
+             'id_admin' => $request->id_admin,
+             'name' => $request->nama,
+             'email' => $request->email,
+             'password' => Hash::make($request->password),
+             'alamat' => $request->alamat,
+             'jenis_kelamin' => $request->jkelamin,
+         ];
+     
+         $photo = $request->file('photo');
+         if ($photo) {
+             $filename = date('Y-m-d') . '_' . $photo->getClientOriginalName();
+             $path = 'photo-admin/' . $filename;
+             
+             Storage::disk('public')->put($path, file_get_contents($photo));
+             $data['photo'] = $filename;
+         }
+     
+         if ($admin = Admin::create($data)) {
+             return redirect()->route('admin')->with('success', 'Data berhasil disimpan');
+         } else {
+             return redirect()->route('admin.create')->with('error', 'Data gagal disimpan');
+         }
+     }
+     
 
     /**
      * Display the specified resource.
@@ -75,7 +111,6 @@ class AdminController extends Controller
     public function edit(string $id)
     {
     $data = Admin::findOrFail($id);
-
     return view('admin/admin_update',[
         'title' => 'Edit Data Admin',
         'data' => $data,
@@ -87,11 +122,12 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {   
+        $admin = Admin::findOrFail($id); 
         $validator = Validator::make($request->all(),[
             // 'id_admin'=>'required',
             // 'nama'=>'required',
             'photo'=>'nullable|mimes:png,jpg,jpeg|max:2408',
-            // 'email'=>'required|email',
+            'email'=>'required|email|unique:admin,email,'.$admin->id,
             // 'jkelamin'=>'required|in:Laki-laki, Perempuan',
             // 'password'=>'required',   
             // 'alamat'=>'required',     

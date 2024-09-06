@@ -48,7 +48,7 @@
 </style>
 
 <body>
-    <div class="row d-flex justify-content-center align-items-center" style="width: 600px">
+    <div class="row d-flex justify-content-center align-items-center eror">
       @yield('content')
     </div>
     

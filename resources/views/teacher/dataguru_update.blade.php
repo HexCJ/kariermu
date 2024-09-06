@@ -74,6 +74,16 @@
         </div>
         <div class="row">
           <div class="mb-4 col-6">
+            <label for="kelas" class="text-secondary mb-3">Kelas</label>
+            <select class="form-select form-select-sm py-2 mb-3 text-secondary"
+                aria-label="Small select example" id="kelas" name="kelas">
+                <option value="X" {{ $data->kelas == 'X' ? 'selected' : '' }}>X/SEPULUH</option>
+                <option value="XI" {{ $data->kelas == 'XI' ? 'selected' : '' }}>XI/SEBELAS</option>
+                <option value="XII" {{ $data->kelas == 'XII' ? 'selected' : '' }}>XII/DUA BELAS
+                </option>
+            </select>
+          </div>
+          <div class="mb-4 col-6">
             <label for="jurusan" class="text-secondary mb-3">Jurusan</label>
             <select class="form-select form-select-sm py-2 mb-3 text-secondary"
                 aria-label="Small select example" id="jurusan" name="jurusan">
@@ -83,16 +93,6 @@
                         {{ $data->jurusan == $jurusan->id_jurusan ? 'selected' : '' }}>
                         {{ $jurusan->nama_jurusan }}</option>
                 @endforeach
-            </select>
-          </div>
-          <div class="mb-4 col-6">
-            <label for="kelas" class="text-secondary mb-3">Kelas</label>
-            <select class="form-select form-select-sm py-2 mb-3 text-secondary"
-                aria-label="Small select example" id="kelas" name="kelas">
-                <option value="X" {{ $data->kelas == 'X' ? 'selected' : '' }}>X/SEPULUH</option>
-                <option value="XI" {{ $data->kelas == 'XI' ? 'selected' : '' }}>XI/SEBELAS</option>
-                <option value="XII" {{ $data->kelas == 'XII' ? 'selected' : '' }}>XII/DUA BELAS
-                </option>
             </select>
           </div>
         </div>

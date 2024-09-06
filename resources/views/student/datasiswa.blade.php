@@ -6,7 +6,6 @@
     <div class="col-12 mt-4">
         <div class="d-flex">
           <h4>Data Siswa</h4>
-          {{-- <a href="{{ route('tambah_siswa') }}" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah siswa</a> --}}
         </div>
         <div class="container-fluid px-4" data-aos="fade-up">
           <div class="row">
@@ -52,12 +51,6 @@
                       </select>
                     </div>
                   </div>
-                  {{-- input manual --}}
-                  {{-- <div class="col d-none">
-                    <div class="input-group mb-3 mt-3">
-                      <input type="text" name="search" class="form-control" aria-label="Text input with dropdown button" placeholder="Cari siswa berdasarkan NIP atau Nama" value="">
-                    </div>
-                  </div> --}}
                   <div class="col-12 mb-3 d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary"><i class="fa-solid fa-sort me-2"></i>Sortir Data Siswa</button>
                   </div>
@@ -70,12 +63,20 @@
                     <div class="alert alert-warning d-flex align-items-center" role="alert">
                       <div><i class="bi bi-exclamation-circle me-3"></i>Data Siswa Kosong</div>
                     </div>
+                    <div class="d-flex mb-3">
+                      <a href="{{ route('siswa.create') }}" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Siswa</a>
+                      <a href="" class="ms-3 btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-earmark-arrow-down me-3"></i>Import Data</a>
+                    </div>
                     <div class="alert-alert-warning d-flex flex-column text-center d-flex justify-content-center align-items-center" style="height: 80vh" data-aos="fade-up">
                       <img class="data-kosong" src="{{ asset('img/data_kosong.png') }}" alt="">
                       <p class="fw-semibold mt-5 mb-0">Tidak Ada Data Siswa</p>
                     </div>
                     @endif
                     @if(!$data->isEmpty())
+                    <div class="d-flex mb-3">
+                      <a href="{{ route('siswa.create') }}" class="py-1 px-3 text-center align-items-center d-flex rounded text-decoration-none button ms-auto"><i class="fa-solid fa-user-plus me-2"></i>Tambah Siswa</a>
+                      <a href="" class="ms-3 btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-earmark-arrow-down me-3"></i>Import Data</a>
+                    </div>
                     <table class="table table-hover w-100 mt-3" id="dataSiswa">
                       <thead>
                         <tr>
@@ -83,15 +84,17 @@
                           <th>Nama</th>
                           <th>Foto</th>
                           <th>Jenis Kelamin</th>
-                          <th>Jurusan</th>
                           <th>Kelas</th>
+                          <th>Jurusan</th>
                           <th>Urutan Kelas</th>
                           <th>Email</th>
                           {{-- <th>Password</th> --}}
                           <th>Alamat</th>
                           <th>Status</th>
                           <th>Tahun Lulus</th>
+                          @if(auth()->user()->hasRole('admin'))
                           <th>Aksi</th>
+                          @endif
                         </tr>
                       </thead>
                         @foreach($data as $d)
@@ -100,14 +103,15 @@
                           <td>{{ $d->name }}</td> 
                           <td><img src="{{asset('storage/photo-user/'.$d->image)}}" alt="" style="width: 100px"></td> 
                           <td>{{ $d->jenis_kelamin }}</td> 
-                          <td>{{ $d->jurusan }}</td> 
                           <td>{{ $d->kelas }}</td> 
+                          <td>{{ $d->jurusan }}</td> 
                           <td>{{ $d->urutan_kelas }}</td> 
                           <td>{{ $d->email }}</td> 
                           {{-- <td>{{ $d->password }}</td>  --}}
                           <td>{{ $d->alamat }}</td> 
                           <td>{{ $d->status }}</td> 
                           <td>{{ $d->tahun_lulus }}</td> 
+                          @if(auth()->user()->hasRole('admin'))
                           <td class="">
                             <div class="dropdown py-3">
                               <a class="button py-2 px-3 rounded text-decoration-none text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -147,6 +151,7 @@
                               </ul>
                             </div>
                           </td>
+                          @endif
                         </tr>
                         @endforeach 
                     </table>
@@ -157,6 +162,29 @@
             </div>
           </div>
         </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Import Data Siswa</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ route('siswa.import') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          @method('POST')
+          <div class="form-group">
+            <input type="file" name="siswa_excel" class="form-control">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Import</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

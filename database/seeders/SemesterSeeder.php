@@ -36,6 +36,10 @@ class SemesterSeeder extends Seeder
             'id_semester' => 'S5',
             'semester_ke' => '5',
         ]);
+        Semester::updateOrCreate([
+            'id_semester' => 'S6',
+            'semester_ke' => '6',
+        ]);
 
         // Tambahkan data semester lainnya sesuai kebutuhan
     }

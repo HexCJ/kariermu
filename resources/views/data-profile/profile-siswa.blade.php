@@ -74,7 +74,7 @@
                                     <div class="form-group mb-4">
                                         <label for="kelas" class=""><i
                                                 class="fa-solid fa-school me-2"></i>Kelas</label>
-                                        <select class="form-select form-select-sm select-option-form p-2 mb-3  w-100"
+                                        <select class="form-select form-select-sm select-option-form p-2 mb-3 w-100"
                                             aria-label="Small select example" id="kelas" name="kelas">
                                             <option value="">Pilih Kelas</option>
                                             <option value="X" {{ $siswa->kelas == 'X' ? 'selected' : '' }}>

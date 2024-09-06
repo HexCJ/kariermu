@@ -8,12 +8,6 @@ imageHeight: 250, // Lebar gambar dalam piksel
 text: "Data berhasil ditambahkan.",
 });
 </script>
-<div class="position-absolute notif">
-  <div class="alert alert-success alert-dismissible" role="alert">
-      <div><i class="fa-solid fa-check me-2"></i><strong>Berhasil </strong>{!! session('success') !!}</div>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-</div>
 @endif
 
 @if(session('success-tolak'))
@@ -110,12 +104,6 @@ text: "Data berhasil diedit.",
 // icon: "success"
 });
 </script>
-<div class="position-absolute notif">
-  <div class="alert alert-success alert-dismissible" role="alert">
-      <div><i class="fa-solid fa-check me-2"></i><strong>Berhasil </strong>{!! session('success-update') !!}</div>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-</div>
 @endif
 
 @if(session('success-delete'))
@@ -127,12 +115,6 @@ imageHeight: 250, // Lebar gambar dalam piksel
 text: "Data berhasil terhapus.",
 });
 </script>
-<div class="position-absolute notif">
-  <div class="alert alert-success alert-dismissible" role="alert">
-      <div><i class="fa-solid fa-check me-2"></i><strong>Berhasil </strong>{!! session('success-delete') !!}</div>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-</div>
 @endif
 
 @if(session('fail'))
@@ -142,4 +124,14 @@ text: "Data berhasil terhapus.",
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
+@endif
+
+@if(session('fail-import'))
+<script>
+Swal.fire({
+title: "Gagal!",
+icon:"error",
+text: "Gagal mengimport data.",
+});
+</script>
 @endif
